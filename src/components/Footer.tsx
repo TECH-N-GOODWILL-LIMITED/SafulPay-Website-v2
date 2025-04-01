@@ -16,13 +16,13 @@ function Footer() {
             <img
               src={company.lemonLogo}
               alt=""
-              className="w-12.5 px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
+              className="w-7 m:w-12.5 px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
             />
             <span className="text-[clamp(20px,7.907vw,64px)] font-semibold text-secondary-color tracking-[-1.92px] max-m:tracking-[-1.36px]">
               {company.name}
             </span>
           </div>
-          <h1 className="max-w-275 p-2.5 text-[clamp(16px,5.117vw,34px)] max-m:tracking-[-0.44px] font-semibold tracking-[-1.36px] leading-none max-md:mx-10">
+          <h1 className="max-w-275 p-2.5 text-[clamp(16px,5.117vw,34px)] max-m:tracking-[-0.44px] font-semibold tracking-[-1.36px] leading-none max-md:mx-10 max-m:mx-1!">
             {company.slogan}
             <span className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
               {company.name}
@@ -30,10 +30,12 @@ function Footer() {
           </h1>
           <p className="small-text p-2.5">{featuresText[2]}</p>
         </div>
-        <div className="flex lg:gap-12.5 gap-10 mx-5 max-md:px-10 max-md:gap-20">
+        <div className="flex lg:gap-12.5 gap-10  max-md:gap-7">
           {footerLinks.map((links, index) => (
             <div className="flex flex-col gap-1.25" key={index}>
-              <h2 className="title-text text-white p-2.5">{links.category}</h2>
+              <h2 className="title-text text-white p-1.5 md:p-2.5">
+                {links.category}
+              </h2>
               {links.links.map((link, index) => (
                 <a
                   href={link.url}
@@ -73,9 +75,9 @@ function Footer() {
             <img
               src={regulated.icon}
               alt=""
-              className="w-10 filter grayscale invert"
+              className="w-8 md:w-10 filter grayscale invert"
             />
-            <span className="text-[16px] font-semibold py-2.5">
+            <span className="text-[clamp(12px,3.721vw,16px)] font-semibold py-2.5">
               {regulated.text}
             </span>
           </div>
@@ -90,7 +92,7 @@ function Footer() {
               <a
                 href={link.url}
                 key={index}
-                className="py-2.5 px-7.5 font-semibold"
+                className="py-2.5 px-5 m:px-7.5 font-semibold"
               >
                 {link.label}
               </a>

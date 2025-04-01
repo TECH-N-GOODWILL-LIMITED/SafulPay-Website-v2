@@ -31,7 +31,7 @@ function FaqItem({ question, answer, isOpen, toggleFAQ }: FaqItemProps) {
         <img
           src={isOpen ? collapseIcon : expandIcon}
           alt=""
-          className="w-5 h-5 max-md:w-3"
+          className="w-3 h-3 md:h-5 md:w-5"
         />
       </button>
       {isOpen && (

@@ -12,7 +12,7 @@ function TestimonialItem({
   text,
 }: TestimonialItemProps) {
   return (
-    <div className="bg-primary-shade-10 p-7.5 rounded-[50px] tracking-[-0.4px] w-full relative">
+    <div className="bg-primary-shade-10 p-7.5 rounded-[50px] tracking-[-0.4px] max-w-100 self-center relative my-[-40px]">
       <span className="text-[128px] font-extralight p-2.5 absolute tracking-[-2.56px] right-7.5 top-[-21px] bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
         “
       </span>

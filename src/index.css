@@ -7,11 +7,13 @@
   --color-primary-color: #3a5646;
   --color-primary-shade-5: rgba(58, 86, 70, 0.05);
   --color-primary-shade-10: rgba(58, 86, 70, 0.1);
+  --color-primary-shade-30: rgba(58, 86, 70, 0.3);
   --color-secondary-color: #c3f02c;
   --color-secondary-shade-10: rgba(195, 240, 44, 0.2);
   --color-error-color: #ff8181;
   --color-offwhite: #ececec;
   --color-text-color: #121212;
+  /* --color-text-shade-40: rgba(27, 27, 27, 0.2); */
 
   --breakpoint-m: 444px;
   --breakpoint-mobile: 360px;
@@ -126,6 +128,10 @@
   .small-text {
     @apply text-[clamp(12px,3.721vw,20px)] font-extralight tracking-[-0.4px] max-md:tracking-normal;
   }
+
+  .marquee {
+    @apply pt-2.5 px-2.5 flex flex-col gap-2.5 space-y-0 text-left max-w-105 h-102.5 max-md:h-full max-md:max-w-full max-md:mx-5;
+  }
 }
 
 .show ~ .hide {
@@ -140,22 +146,26 @@
   0% {
     transform: translateX(-25%);
   }
-  25% {
-    transform: translateX(15%);
-  }
-  50% {
-    transform: translateX(-25%);
-  }
-  75% {
-    transform: translateX(15%);
-  }
   100% {
-    transform: translateX(-25%);
+    transform: translateX(15%);
   }
 }
 
 .animate-scroll {
-  animation: scroll 200s linear infinite;
+  animation: scroll 150s linear infinite alternate;
+}
+
+@keyframes scrollTestimonials {
+  0% {
+    transform: translateY(-85%);
+  }
+  100% {
+    transform: translateY(5%);
+  }
+}
+
+.auto-scroll-vertical {
+  animation: scrollTestimonials 5s linear infinite alternate;
 }
 
 /* :root {

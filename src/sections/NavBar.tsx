@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [parent] = useAutoAnimate();
   const { company } = companyData;
   const { otherLinks } = footerData;

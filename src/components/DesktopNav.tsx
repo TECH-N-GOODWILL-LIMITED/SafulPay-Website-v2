@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router";
+// import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
 
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import menuIcon from "/icon-menu-green.svg";
+import { useSmoothScroll } from "../hooks/useScrollHandler";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -19,68 +20,36 @@ interface CompanyData {
 }
 
 interface DesktopNavProps {
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  navLinks: NavLink[];
   company: CompanyData;
+  navLinks: NavLink[];
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
-  const [activeSection, setActiveSection] = useState<string>("");
   const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5, rootMargin: "0px 0px -50% 0px" }
-    );
-
-    navLinks.forEach((link) => {
-      if (link.type === "scroll") {
-        const element = document.getElementById(link.url);
-        if (element) observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, [navLinks]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      gsap.to(window, {
-        duration: 2,
-        scrollTo: { y: `#${sectionId}`, offsetY: 80, autoKill: true },
-        ease: "power3.inOut",
-        onComplete: () => setActiveSection(sectionId),
-      });
-    }
-  };
+  // const { isHomePage, activeSection, scrollToSection } = useScrollHandler();
+  const { isHomePage, activeSection, setActiveSection, scrollToSection } =
+    useSmoothScroll();
 
   const handleScrollLink = (link: NavLink) => {
-    if (location.pathname !== "/" && link.url !== "contact-us") {
-      // Navigate to home page with scroll target in state
-      navigate("/", {
-        state: { scrollTo: link.url },
-        replace: true,
-      });
+    if (!isHomePage && link.url !== "contact-us") {
+      setActiveSection(link.url);
+      navigate("/", { state: { scrollTo: link.url }, replace: true });
     } else {
-      // Already on home page - just scroll
-      scrollToSection(link.url);
+      const offset = link.url === "features" ? 280 : 120;
+      scrollToSection(link.url, offset);
     }
   };
+
+  const isHeroSection =
+    isHomePage &&
+    (window.scrollY < 100 || !activeSection || activeSection === "home");
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
   const scrollLinks = navLinks.filter((link) => link.type === "scroll");
 
   return (
-    <div className="mx-2.5 max-w-container-width w-full bg-[rgba(27,27,27,0.5)] backdrop-blur-[10px] p-5 my-2 rounded-[20px] flex justify-between items-center small-text font-semibold text-white">
+    <div className="mx-2.25 max-lg:mx-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-[10px] p-4 mt-10 lg:mt-5 rounded-[20px] flex justify-between items-center small-text font-semibold text-white">
       <Link
         to="/"
         onClick={() => scrollToSection("home")}
@@ -97,35 +66,54 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           {company.name}
         </p>
       </Link>
-      <nav className="max-lg:hidden" aria-label="Main navigation">
-        {scrollLinks.map((link) => (
-          <button
-            key={`scroll-${link.url}`}
-            onClick={() => handleScrollLink(link)}
-            className={`cursor-pointer px-5 max-xl:px-3 hover:text-secondary-color transition-colors ${
-              activeSection === link.url && "text-secondary-color font-bold"
-            }`}
-            aria-label={`Scroll to ${link.label} section`}
-            aria-current={activeSection === link.url ? "location" : undefined}
-          >
-            {link.label}
-          </button>
-        ))}
+      <nav
+        // className={`${
+        //   location.pathname !== "/" && "text-[#1b1b1b]"
+        // } max-lg:hidden`}
+        className={`max-lg:hidden`}
+        aria-label="Main navigation"
+      >
+        {!isHeroSection ? (
+          <>
+            {scrollLinks.map((link) => (
+              <button
+                key={`scroll-${link.url}`}
+                onClick={() => handleScrollLink(link)}
+                className={`cursor-pointer px-5 max-xl:px-3 hover:text-secondary-color transition-colors ${
+                  activeSection === link.url && "text-secondary-color font-bold"
+                }`}
+                aria-label={`Scroll to ${link.label} section`}
+                aria-current={
+                  activeSection === link.url ? "location" : undefined
+                }
+              >
+                {link.label}
+              </button>
+            ))}
 
-        {routeLinks.map((link) => (
-          <NavLink
-            key={`route-${link.url}`}
-            to={link.url}
-            className={({ isActive }) =>
-              `px-5 max-xl:px-3 hover:text-secondary-color transition-colors cursor-pointer ${
-                isActive && "text-secondary-color font-bold"
-              }`
-            }
-            aria-label={`Navigate to ${link.label}`}
+            {routeLinks.map((link) => (
+              <NavLink
+                key={`route-${link.url}`}
+                to={link.url}
+                className={({ isActive }) =>
+                  `px-5 max-xl:px-3 hover:text-secondary-color transition-colors cursor-pointer ${
+                    isActive && "text-secondary-color font-bold"
+                  }`
+                }
+                aria-label={`Navigate to ${link.label}`}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </>
+        ) : (
+          <button
+            onClick={() => scrollToSection("features", 280)}
+            className="cursor-pointer"
           >
-            {link.label}
-          </NavLink>
-        ))}
+            Open App
+          </button>
+        )}
       </nav>
       <button
         onClick={() => scrollToSection("download")}

@@ -82,40 +82,40 @@ export const companyData: SafulPayData = {
   },
   partners: [
     {
-      name: "Q Money",
-      image: "/qcell-logo.svg",
+      name: "QCell",
+      image: "/partners/logo-qcell.svg",
     },
     {
-      name: "Orange Money",
-      image: "/orange-logo.svg",
+      name: "Orange",
+      image: "/partners/logo-orange.svg",
     },
     {
-      name: "Afri Money",
-      image: "/africell-logo.svg",
+      name: "Africell",
+      image: "/partners/logo-africell.svg",
     },
     {
       name: "Western Union",
-      image: "/wu-logo.svg",
+      image: "/partners/logo-wu.svg",
     },
     {
       name: "Ria Money",
-      image: "/ria-logo.svg",
+      image: "/partners/logo-ria.svg",
     },
     {
       name: "MoneyGram",
-      image: "/mg-logo.svg",
+      image: "/partners/logo-moneygram.svg",
     },
     {
       name: "VISA & Master Card",
-      image: "/visa_master-logo.svg",
+      image: "/partners/logo-bankcard.svg",
     },
     {
       name: "DSTV Subscriptions",
-      image: "/dstv-logo.svg",
+      image: "/partners/logo-dstv.svg",
     },
     {
       name: "EDSA Meter",
-      image: "/edsa-logo.svg",
+      image: "/partners/logo-edsa.svg",
     },
   ],
   regulated: {
@@ -124,25 +124,20 @@ export const companyData: SafulPayData = {
   },
   socials: [
     {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/company/safulpay",
-      icon: "/icon-linkedin.svg",
-    },
-    {
       name: "Twitter",
-      url: "https://www.twitter.com/safulpay",
+      url: "https://x.com/safulpay?s=21&t=C8AmSZA0skcAWJ-gYIUjFg",
       icon: "/icon-twitter.svg",
     },
     {
       name: "Facebook",
-      url: "https://www.facebook.com/safulpay",
+      url: "https://www.facebook.com/share/18X8Vz9tuQ/",
       icon: "/icon-facebook.svg",
     },
-    {
-      name: "Whatsapp",
-      url: "https://www.whatsapp.com/safulpay",
-      icon: "/icon-whatsapp.svg",
-    },
+    // {
+    //   name: "Whatsapp",
+    //   url: "https://www.whatsapp.com/safulpay",
+    //   icon: "/icon-whatsapp.svg",
+    // },
     {
       name: "TikTok",
       url: "https://www.tiktok.com/safulpay",
@@ -150,8 +145,13 @@ export const companyData: SafulPayData = {
     },
     {
       name: "Instagram",
-      url: "https://www.instagram.com/safulpay",
+      url: "https://www.instagram.com/safulpay?igsh=eWl4YjFtOW5rcGQ=",
       icon: "/icon-instagram.svg",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/company/105177286/admin/dashboard/",
+      icon: "/icon-linkedin.svg",
     },
   ],
   downloads: {
@@ -159,11 +159,11 @@ export const companyData: SafulPayData = {
     subtitle: "Secure, Fast, and Easy Financial Management",
     text: "Get started with SafulPay by downloading the app on your device. Manage your money, make payments, and access all the powerful features from anywhere, anytime. Experience the convenience and security SafulPay brings to your financial life—download now!",
     appStore: {
-      link: "https://www.apple.com/app-store/safulpay",
+      link: "https://apps.apple.com/ng/app/safulpay/id6480344064",
       image: "/download-appstore-icon.svg",
     },
     playStore: {
-      link: "https://play.google.com/store/apps/details?id=safulpay",
+      link: "https://play.google.com/store/apps/details?id=com.techengood.safulpay",
       image: "/download-playstore-icon.svg",
     },
   },
