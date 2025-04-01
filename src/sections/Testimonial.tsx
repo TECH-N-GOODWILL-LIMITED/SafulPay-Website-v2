@@ -2,12 +2,22 @@ import { testimonialsData } from "../data/appContent";
 import TestimonialItem from "../components/TestimonialItem";
 import testimonialLogo from "../assets/safulpay-testimonial-logo.png";
 import lineImage from "../assets/long-line-illustration.svg";
+import Marquee from "react-fast-marquee";
+// import { useRef, useState } from "react";
 
 function Testimonial() {
+  // const [direction, setDirection] = useState<"down" | "up">("up");
+  // const marqueeRef = useRef(null);
+
+  // const handleComplete = () => {
+  //   setDirection((prev) => (prev === "up" ? "down" : "up"));
+  // };
+
   return (
     <section
       id="testimonials"
       className="section py-12.5 gap-12.5 relative max-md:gap-2.5"
+      data-section
     >
       <img
         src={lineImage}
@@ -23,7 +33,15 @@ function Testimonial() {
         Don't just take our word for it.
       </h2>
       <div className="w-full flex justify-between max-w-207.75 max-md:justify-center">
-        <div className="pt-2.5 px-2.5 flex flex-col gap-2.5 text-left max-w-105 overflow-y-auto h-102.5 max-md:h-full max-md:max-w-full max-md:mx-5">
+        <Marquee
+          // ref={marqueeRef}
+          className="marquee"
+          direction="up"
+          loop={0}
+          speed={200}
+          pauseOnClick={true}
+          // onCycleComplete={handleComplete}
+        >
           {testimonialsData?.length > 0 ? (
             testimonialsData.map((testimony, index) => (
               <TestimonialItem
@@ -37,7 +55,8 @@ function Testimonial() {
           ) : (
             <p className="text-center text-gray-500">No testimonials found.</p>
           )}
-        </div>
+        </Marquee>
+
         <div className="w-78 flex justify-end max-md:hidden">
           <div className="w-75 h-75 bg-primary-shade-10 backdrop-blur-[25px] mt-4 rounded-[200px] flex items-center justify-center shrink-0 rounded-bl-[15px]">
             <img src={testimonialLogo} alt="" className="w-37.5" />

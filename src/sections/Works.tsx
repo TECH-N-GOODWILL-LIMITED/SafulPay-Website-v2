@@ -7,6 +7,7 @@ function Works() {
     <section
       id="works"
       className="section max-w-400 py-25 px-5 gap-5 md:gap-10 bg-text-color text-white rounded-[50px]"
+      data-section
     >
       <h2 className="primary-heading font-bold p-2.5 tracking-[-2.1px]">
         {title}

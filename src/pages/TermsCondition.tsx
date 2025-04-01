@@ -7,7 +7,6 @@ function TermsCondition() {
   return (
     <>
       <NavBar />
-
       <Agreement data={termsAndConditionsData} />
       <MainFooter />
     </>

@@ -7,7 +7,8 @@ function Hero() {
   const { company } = companyData;
 
   return (
-    <section id="home" className="section gap-10 min-h-[80vh]">
+    // <section id="home" className="section gap-10 min-h-[80vh]">
+    <section id="home" className="section gap-10 min-h-[80vh]" data-section>
       <div className="flex-center flex-col gap-2.5 max-m:gap-7.5 mt-50 py-2.5 text-white">
         <h1 className="max-w-275 p-2.5">
           {company.slogan}

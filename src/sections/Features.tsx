@@ -6,9 +6,13 @@ function Features() {
   const { featuresText, featuresIllustration } = featuresData;
 
   return (
-    <section id="features" className="section gap-12.5 max-md:gap-2.5">
+    <section
+      id="features"
+      className="section gap-12.5 max-md:gap-2.5"
+      data-section
+    >
       <img
-        className="max-w-147.5 absolute top-[-47px] left-[-68px] opacity-80 max-md:max-w-120 max-sm:max-w-100"
+        className="max-w-147.5 absolute top-[-47px] left-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         alt=""
       />
