@@ -5,7 +5,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+}
 
 export function useSmoothScroll() {
   const location = useLocation();
@@ -24,6 +26,26 @@ export function useSmoothScroll() {
       activeSection === "");
 
   // Smooth scroll function
+  // const scrollToSection = (
+  //   sectionId: string,
+  //   offset = 0,
+  //   autoKill = true,
+  //   forceUpdate = false
+  // ) => {
+  //   scrollTween.current?.kill();
+  //   scrollTween.current = gsap.to(window, {
+  //     duration: 1.2,
+  //     scrollTo: { y: `#${sectionId}`, offsetY: offset, autoKill },
+  //     ease: "power2.inOut",
+  //     onComplete: () => {
+  //       setActiveSection(sectionId);
+  //       if (forceUpdate) window.history.replaceState({}, "");
+  //     },
+  //     onInterrupt: () => (scrollTween.current = null),
+  //   });
+  // };
+
+  // Updated scrollToSection function
   const scrollToSection = (
     sectionId: string,
     offset = 0,
@@ -31,9 +53,17 @@ export function useSmoothScroll() {
     forceUpdate = false
   ) => {
     scrollTween.current?.kill();
+
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    // Mobile-friendly scroll position calculation
+    const targetY = element.offsetTop - offset;
+    const duration = Math.min(1.2, Math.abs(window.scrollY - targetY) / 1000);
+
     scrollTween.current = gsap.to(window, {
-      duration: 1.2,
-      scrollTo: { y: `#${sectionId}`, offsetY: offset, autoKill },
+      duration,
+      scrollTo: { y: targetY, autoKill },
       ease: "power2.inOut",
       onComplete: () => {
         setActiveSection(sectionId);
@@ -84,10 +114,33 @@ export function useSmoothScroll() {
     };
   }, [isHomePage]);
 
+  // useEffect(() => {
+  //   if (!isHomePage) return;
+
+  //   let isScrolling = false;
+
+  //   const handleWheel = (e: WheelEvent) => {
+  //     if (window.scrollY > 300 || isScrolling) return;
+  //     if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+
+  //     isScrolling = true;
+
+  //     if (e.deltaY > 0) {
+  //       scrollToSection("features", 280, false);
+  //     }
+
+  //     setTimeout(() => (isScrolling = false), 1000);
+  //   };
+
+  //   window.addEventListener("wheel", handleWheel, { passive: false });
+  //   return () => window.removeEventListener("wheel", handleWheel);
+  // }, [isHomePage]);
+
   useEffect(() => {
     if (!isHomePage) return;
 
     let isScrolling = false;
+    let touchStartY = 0;
 
     const handleWheel = (e: WheelEvent) => {
       if (window.scrollY > 300 || isScrolling) return;
@@ -102,8 +155,34 @@ export function useSmoothScroll() {
       setTimeout(() => (isScrolling = false), 1000);
     };
 
+    // Add touch event handlers for mobile
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (window.scrollY > 300 || isScrolling) return;
+
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchY - touchStartY;
+
+      if (deltaY < -20) {
+        // Threshold for swipe down
+        isScrolling = true;
+        scrollToSection("features", 280, false);
+        setTimeout(() => (isScrolling = false), 1000);
+      }
+    };
+
     window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
+    window.addEventListener("touchstart", handleTouchStart, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
   }, [isHomePage]);
 
   return {
