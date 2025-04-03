@@ -1,10 +1,9 @@
-// import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
-
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { useSmoothScroll } from "../hooks/useSmoothScroll";
+import { useViewportHeight } from "../hooks/useViewportHeight";
 import menuIcon from "/icon-menu-green.svg";
-import { useSmoothScroll } from "../hooks/useScrollHandler";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -27,9 +26,15 @@ interface DesktopNavProps {
 
 function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
   const navigate = useNavigate();
-  // const { isHomePage, activeSection, scrollToSection } = useScrollHandler();
-  const { isHomePage, activeSection, setActiveSection, scrollToSection } =
-    useSmoothScroll();
+  const vh = useViewportHeight();
+
+  const {
+    isHomePage,
+    isHeroSection,
+    activeSection,
+    setActiveSection,
+    scrollToSection,
+  } = useSmoothScroll();
 
   const handleScrollLink = (link: NavLink) => {
     if (!isHomePage && link.url !== "contact-us") {
@@ -41,15 +46,16 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
     }
   };
 
-  const isHeroSection =
-    isHomePage &&
-    (window.scrollY < 100 || !activeSection || activeSection === "home");
-
   const routeLinks = navLinks.filter((link) => link.type === "route");
   const scrollLinks = navLinks.filter((link) => link.type === "scroll");
 
   return (
-    <div className="mx-2.25 max-lg:mx-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-[10px] p-4 mt-10 lg:mt-5 rounded-[20px] flex justify-between items-center small-text font-semibold text-white">
+    <div
+      className="mx-2.25 max-lg:mx-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-[10px] p-4 mt-10 lg:mt-5 rounded-[20px] flex justify-between items-center small-text font-semibold text-white"
+      style={{
+        marginTop: vh < 600 ? "16px" : "",
+      }}
+    >
       <Link
         to="/"
         onClick={() => scrollToSection("home")}
@@ -66,20 +72,14 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           {company.name}
         </p>
       </Link>
-      <nav
-        // className={`${
-        //   location.pathname !== "/" && "text-[#1b1b1b]"
-        // } max-lg:hidden`}
-        className={`max-lg:hidden`}
-        aria-label="Main navigation"
-      >
+      <nav className={`max-lg:hidden`} aria-label="Main navigation">
         {!isHeroSection ? (
           <>
             {scrollLinks.map((link) => (
               <button
                 key={`scroll-${link.url}`}
                 onClick={() => handleScrollLink(link)}
-                className={`cursor-pointer px-5 max-xl:px-3 hover:text-secondary-color transition-colors ${
+                className={`cursor-pointer hover:cursor-pointer px-5 max-xl:px-3 hover:text-secondary-color transition-colors ${
                   activeSection === link.url && "text-secondary-color font-bold"
                 }`}
                 aria-label={`Scroll to ${link.label} section`}
@@ -96,7 +96,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
                 key={`route-${link.url}`}
                 to={link.url}
                 className={({ isActive }) =>
-                  `px-5 max-xl:px-3 hover:text-secondary-color transition-colors cursor-pointer ${
+                  `px-5 max-xl:px-3 hover:text-secondary-color transition-colors cursor-pointer hover:cursor-pointer ${
                     isActive && "text-secondary-color font-bold"
                   }`
                 }
@@ -109,7 +109,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
         ) : (
           <button
             onClick={() => scrollToSection("features", 280)}
-            className="cursor-pointer"
+            className="cursor-pointer hover:cursor-pointer"
           >
             Open App
           </button>

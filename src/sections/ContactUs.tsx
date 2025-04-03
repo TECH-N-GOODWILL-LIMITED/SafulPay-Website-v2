@@ -6,7 +6,7 @@ function ContactUs() {
 
   return (
     <section id="contact-us" className="w-full flex-center" data-section>
-      <div className="relative max-m:w-87.5 max-w-250 w-full mx-5 z-2 bg-white px-10 py-20 rounded-[20px] flex flex-col gap-7.5 items-center justify-center overflow-hidden md:shadow-[0px_0px_30px_0px_rgba(0,0,0,0.20)] shadow-[0px_0px_30px_0px_rgba(195,240,44,0.30)] md:mb-[-80px] mb-[-36px]">
+      <div className="relative max-m:w-87.5 max-w-250 w-full mx-5 z-2 bg-white px-10 py-20 rounded-[20px] flex flex-col gap-7.5 items-center justify-center overflow-hidden shadow-[0_0_30px_0_rgba(11,70,80,0.4)] md:mb-[-80px] mb-[-36px]">
         <img
           className="max-w-147.5 absolute rotate-[152.08deg] opacity-80 left-[-176px] top-[-6%] max-md:hidden"
           src={bgIcon}
