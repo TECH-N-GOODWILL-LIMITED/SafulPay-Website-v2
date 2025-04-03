@@ -22,11 +22,11 @@ function NavBar() {
         setIsMenuOpen={setIsMenuOpen}
       />
       <MobileNav
+        companyName={company.name}
         navLinks={navLinks}
         otherLinks={otherLinks}
-        companyName={company.name}
-        setIsMenuOpen={setIsMenuOpen}
         isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
       />
     </header>
   );

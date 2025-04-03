@@ -30,12 +30,6 @@ export interface MoreFeature {
   image?: string;
 }
 
-// export interface FeaturesFlow {
-//   icon?: string;
-//   title: string;
-//   text: string;
-// }
-
 export interface FeaturesProp {
   keyFeatures: string[];
   featuresText: string[];
@@ -222,32 +216,39 @@ export const securityData: SecurityData = {
 // TESTIMONIAL
 export const testimonialsData: Testimonial[] = [
   {
-    name: "John s Kamara",
+    name: "Hauwa Kamara",
     location: "Kono, Sierra Leone",
     title: "Small Business Owner",
     text: "SafulPay has been a game-changer for my small business. The ease of using their services has increased our sales and customer satisfaction.",
-    image: "/assets/testimonials/john.png",
+    image: "testimonial/lady2.png",
   },
   {
     name: "Thomas Massaquoi",
     location: "Freetown, Sierra Leone",
     title: "Excellent Customer Service",
     text: "I had a query regarding a transaction, and the support team was quick to respond and resolve my issue. It's reassuring to know they have such responsive and helpful customer service.",
-    image: "/assets/testimonials/john.png",
+    image: "testimonial/thomas.png",
   },
   {
     name: "Chrislin Johnson",
     location: "Lungi, Sierra Leone",
     title: "Impressive Features",
     text: "The app's digital wallet is a game-changer. I can store multiple cards, make contactless payments, and even track my spending habits. It's like having a personal finance assistant right in my pocket.",
-    image: "/assets/testimonials/john.png",
+    image: "testimonial/chrislin.png",
   },
   {
-    name: "Johnston Kabba",
+    name: "Josephine Kabba",
     location: "Freetown, Sierra Leone",
     title: "Saves Me Time and Effort",
     text: "I love how easy it is to manage my money with this app. I can check my balance, pay for purchases, and send money to family in just a few taps. It's made my financial life so much simpler!",
-    image: "/assets/testimonials/john.png",
+    image: "testimonial/lady.png",
+  },
+  {
+    name: "Josephine Kabba",
+    location: "Freetown, Sierra Leone",
+    title: "Saves Me Time and Effort",
+    text: "I love how easy it is to manage my money with this app. I can check my balance, pay for purchases, and send money to family in just a few taps. It's made my financial life so much simpler!",
+    image: "testimonial/lady.png",
   },
 ];
 

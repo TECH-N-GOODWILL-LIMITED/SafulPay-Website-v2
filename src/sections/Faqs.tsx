@@ -12,7 +12,11 @@ function Faqs() {
   const { title, intro, faqs } = faqsData;
 
   return (
-    <section id="faqs" className="section py-2.5 px-5 gap-2.5 relative mb-50">
+    <section
+      id="faqs"
+      className="section py-2.5 px-5 gap-2.5 relative mb-50"
+      data-section
+    >
       <img
         src={bgIcon}
         alt=""
