@@ -8,7 +8,9 @@ import safulpayTextIcon from "/safulpay-navbar-text-logo-icon.svg";
 import safulPayLogo from "/safulpay-icon-white.svg";
 import { useEffect, useRef } from "react";
 
-gsap.registerPlugin(ScrollToPlugin);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollToPlugin);
+}
 
 interface NavLink {
   url: string;
@@ -39,8 +41,7 @@ function MobileNav({
   const navigate = useNavigate();
 
   const vh = useViewportHeight();
-  const { isHomePage, activeSection, setActiveSection, scrollToSection } =
-    useSmoothScroll();
+  const { isHomePage, activeSection, scrollToSection } = useSmoothScroll();
 
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -61,15 +62,36 @@ function MobileNav({
     };
   }, [isMenuOpen, setIsMenuOpen]);
 
-  const handleScrollLink = (link: NavLink) => {
-    if (!isHomePage && link.url !== "contact-us") {
-      setActiveSection(link.url);
-      navigate("/", { state: { scrollTo: link.url }, replace: true });
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
     } else {
-      const offset = link.url === "features" ? 280 : 120;
-      scrollToSection(link.url, offset);
-      setIsMenuOpen(false);
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
+  }, [isMenuOpen]);
+
+  const handleScrollLink = (link: NavLink) => {
+    setIsMenuOpen(false);
+    if (!isHomePage && link.url !== "contact-us") {
+      navigate("/", {
+        state: { scrollTo: link.url },
+        replace: true,
+      });
+      return;
+    }
+
+    const offset = link.url === "features" ? 280 : 120;
+
+    setTimeout(() => {
+      scrollToSection(link.url, offset);
+    }, 300);
   };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
@@ -80,12 +102,16 @@ function MobileNav({
       {isMenuOpen && (
         <>
           <div
-            className="fixed h-screen w-full bg-black opacity-40 backdrop-blur-[40px] z-2 lg:hidden"
+            className="fixed h-screen w-full bg-black/40 backdrop-blur-lg z-5 lg:hidden"
             onClick={() => setIsMenuOpen(false)}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              setIsMenuOpen(false);
+            }}
           />
           <div
             ref={menuRef}
-            className="max-w-75 h-screen w-full p-5 pt-19.5 rounded-l-[20px] bg-primary-color fixed right-0 font-outfit flex flex-col justify-between text-white lg:hidden z-10"
+            className="max-w-75 h-[100dvh] w-full p-5 pt-19.5 rounded-l-[20px] bg-primary-color fixed right-0 font-outfit flex flex-col justify-between text-white lg:hidden z-10"
             style={{
               paddingTop: vh < 600 ? "40px" : "",
             }}
@@ -95,6 +121,10 @@ function MobileNav({
                 src={safulpayTextIcon}
                 alt={`${companyName} text logo`}
                 onClick={() => scrollToSection("home")}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  scrollToSection("home");
+                }}
                 className="h-42.5 px-3.25 py-1.25 cursor-pointer max-md:h-auto"
                 style={{
                   maxHeight: vh < 760 ? "100px" : "",
@@ -107,6 +137,11 @@ function MobileNav({
                 className="flex-center"
                 style={{
                   display: vh > 680 ? "none" : "",
+                }}
+                onClick={() => scrollToSection("home")}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  scrollToSection("home");
                 }}
               >
                 <img
@@ -124,8 +159,12 @@ function MobileNav({
               </div>
 
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                onClick={() => setIsMenuOpen(false)}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                }}
+                aria-label={isMenuOpen && "Close menu"}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
                 className="cursor-pointer"
@@ -144,6 +183,10 @@ function MobileNav({
               {scrollLinks.map((link) => (
                 <button
                   onClick={() => handleScrollLink(link)}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    handleScrollLink(link);
+                  }}
                   className={`px-5 py-3 text-lg font-semibold tracking-[-0.28px] cursor-pointer hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color transition-colors ${
                     activeSection === link.url &&
                     "text-secondary-color font-bold"
@@ -157,7 +200,6 @@ function MobileNav({
               {routeLinks.map((link) => (
                 <NavLink
                   to={link.url}
-                  onClick={() => setIsMenuOpen(false)}
                   className={({ isActive }) =>
                     `tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color${
                       isActive ? "text-secondary-color" : ""
@@ -177,6 +219,11 @@ function MobileNav({
             >
               <button
                 onClick={() => {
+                  scrollToSection("download");
+                  setIsMenuOpen(false);
+                }}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
                   scrollToSection("download");
                   setIsMenuOpen(false);
                 }}

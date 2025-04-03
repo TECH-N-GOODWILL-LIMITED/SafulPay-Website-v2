@@ -5,7 +5,9 @@ import { useSmoothScroll } from "../hooks/useSmoothScroll";
 import { useViewportHeight } from "../hooks/useViewportHeight";
 import menuIcon from "/icon-menu-green.svg";
 
-gsap.registerPlugin(ScrollToPlugin);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollToPlugin);
+}
 
 interface NavLink {
   url: string;

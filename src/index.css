@@ -2,24 +2,6 @@
 
 @import "tailwindcss";
 
-@theme {
-  --font-outfit: Outfit, sans-serif;
-  --color-primary-color: #3a5646;
-  --color-primary-shade-5: rgba(58, 86, 70, 0.05);
-  --color-primary-shade-10: rgba(58, 86, 70, 0.1);
-  --color-primary-shade-30: rgba(58, 86, 70, 0.3);
-  --color-secondary-color: #c3f02c;
-  --color-secondary-shade-10: rgba(195, 240, 44, 0.2);
-  --color-error-color: #ff8181;
-  --color-offwhite: #ececec;
-  --color-text-color: #121212;
-  /* --color-text-shade-40: rgba(27, 27, 27, 0.2); */
-
-  --breakpoint-m: 444px;
-  --breakpoint-mobile: 360px;
-  --container-container-width: 1500px;
-}
-
 :root {
   --primary-color: #3a5646;
   --secondary-color: #c3f02c;
@@ -36,6 +18,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color-scheme: light dark;
+}
+
+@theme {
+  --font-outfit: Outfit, sans-serif;
+  --color-primary-color: #3a5646;
+  --color-primary-shade-5: rgba(58, 86, 70, 0.05);
+  --color-primary-shade-10: rgba(58, 86, 70, 0.1);
+  --color-primary-shade-30: rgba(58, 86, 70, 0.3);
+  --color-secondary-color: #c3f02c;
+  --color-secondary-shade-10: rgba(195, 240, 44, 0.2);
+  --color-error-color: #ff8181;
+  --color-offwhite: #ececec;
+  --color-text-color: #121212;
+  /* --color-text-shade-40: rgba(27, 27, 27, 0.2); */
+
+  --breakpoint-m: 444px;
+  --container-container-width: 1500px;
 }
 
 @layer base {
@@ -149,7 +148,7 @@
 }
 
 .animate-scroll {
-  animation: scroll 150s linear infinite alternate;
+  animation: scroll 100s linear infinite alternate;
 }
 
 @keyframes scrollTestimonials {

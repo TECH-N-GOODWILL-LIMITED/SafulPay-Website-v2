@@ -81,10 +81,34 @@ export const companyData: SafulPayData = {
       "Our mission is to provide seamless and secure mobile money solutions, empowering users to manage their finances with ease.",
   },
   partners: [
-    {
-      name: "QCell",
-      image: "/partners/logo-qcell.svg",
-    },
+    // {
+    //   name: "V2 is Coming!",
+    //   image: "/safulpay-icon-lemon.svg",
+    // },
+    // {
+    //   name: "V2 is Coming!!",
+    //   image: "/safulpay-icon-lemon.svg",
+    // },
+    // {
+    //   name: "V2 is Coming!!!",
+    //   image: "/safulpay-icon-lemon.svg",
+    // },
+    // {
+    //   name: "V2 is Coming!",
+    //   image: "/safulpay-icon-lemon.svg",
+    // },
+    // {
+    //   name: "V2 is Coming!!",
+    //   image: "/safulpay-icon-lemon.svg",
+    // },
+    // {
+    //   name: "V2 is Coming!!!",
+    //   image: "/safulpay-icon-lemon.svg",
+    // },
+    // {
+    //   name: "QCell",
+    //   image: "/partners/logo-qcell.svg",
+    // },
     {
       name: "Orange",
       image: "/partners/logo-orange.svg",
