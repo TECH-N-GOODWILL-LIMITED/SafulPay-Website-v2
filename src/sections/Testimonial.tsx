@@ -34,6 +34,7 @@ function Testimonial() {
     <section
       id="testimonials"
       className="section py-12.5 gap-12.5 relative max-md:gap-2.5"
+      data-section
     >
       <img
         src={lineImage}
@@ -94,15 +95,15 @@ function Testimonial() {
             testimonialsData.map((testimony, index) => (
               <div
                 key={index}
-                className="testimonial-item" // Added for observer
-                ref={index === 0 ? firstItemRef : null} // Optional ref for first item
+                className="testimonial-item"
+                ref={index === 0 ? firstItemRef : null}
               >
                 <TestimonialItem
                   name={testimony.name}
                   location={testimony.location}
                   title={testimony.title}
                   text={testimony.text}
-                  isActive={index === activeIndex} // Pass active state
+                  isActive={index === activeIndex}
                 />
               </div>
             ))

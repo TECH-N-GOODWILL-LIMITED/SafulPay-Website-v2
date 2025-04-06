@@ -41,14 +41,14 @@ function HomePage() {
   // }, [isHomePage]);
 
   return (
-    <div id="smooth-wrapper" className="relative">
+    <div className="relative">
       <NavBar />
       <Hero />
       {/* <main className="relative md:mt-[-34rem] sm:mt-[-31rem] m:max-[580px]:mt-[33rem] m:mt-[-32rem] mt-[-15rem] rounded-t-[40px] max-m:pt-15"> */}
       {/* <main className="relative mt-[-34rem] max-md:mt-[-32rem] max-sm:mt-[-30rem] max-[580px]:mt-[-24rem]!  rounded-t-[40px] max-m:pt-15"> */}
 
       <div className="absolute top-[80vh] w-screen bg-transparent overflow-auto">
-        <div className="h-32 md:h-30  sticky"></div>
+        <div className="h-32 md:h-30 sticky"></div>
         <main className="relative rounded-t-[40px] max-m:pt-15">
           <Features />
           <MoreFeatures />

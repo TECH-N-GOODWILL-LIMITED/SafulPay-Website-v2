@@ -2,11 +2,28 @@ import { companyData } from "../data/companyData";
 import { featuresData, footerData } from "../data/appContent";
 import DownloadItem from "./DownloadItem";
 import bgIcon from "../assets/bg-logo-illustration.svg";
+// import { useSmoothScroll } from "../hooks/useSmoothScroll";
+import { NavLink, useNavigate } from "react-router";
+import { useSmoothScroll } from "../context/SmoothScrollProvider";
 
 function Footer() {
+  const navigate = useNavigate();
   const { company, socials, regulated } = companyData;
   const { featuresText } = featuresData;
   const { footerLinks, copyright, otherLinks } = footerData;
+
+  const { isHomePage, activeSection, setActiveSection, scrollToSection } =
+    useSmoothScroll();
+
+  const handleScrollLink = (url: string) => {
+    if (!isHomePage && url !== "contact-us") {
+      setActiveSection(url);
+      navigate("/", { state: { scrollTo: url }, replace: true });
+    } else {
+      const offset = url === "features" ? 280 : 120;
+      scrollToSection(url, offset);
+    }
+  };
 
   return (
     <footer className="rounded-t-[50px] max-md:rounded-t-[30px] bg-[#1B1B1B] text-white text-start w-full">
@@ -36,14 +53,36 @@ function Footer() {
               <h2 className="title-text text-white p-1.5 md:p-2.5">
                 {links.category}
               </h2>
-              {links.links.map((link, index) => (
-                <a
-                  href={link.url}
-                  className="small-text py-1.25 px-2.5"
-                  key={index}
-                >
-                  {link.label}
-                </a>
+
+              {links.links.map((link) => (
+                <>
+                  {link.type === "route" ? (
+                    <NavLink
+                      key={`route-${link.url}`}
+                      to={link.url}
+                      className={({ isActive }) =>
+                        `small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-colors cursor-pointer hover:cursor-pointer max-md:text-center ${
+                          isActive && "text-secondary-color font-bold"
+                        }`
+                      }
+                      aria-label={`Navigate to ${link.label}`}
+                    >
+                      {link.label}
+                    </NavLink>
+                  ) : (
+                    <button
+                      key={`route-${link.url}`}
+                      onClick={() => handleScrollLink(link.url)}
+                      className={`small-text text-left py-1.25 px-2.5 cursor-pointer hover:cursor-pointer hover:text-secondary-color transition-colors max-md:text-center`}
+                      aria-label={`Scroll to ${link.label} section`}
+                      aria-current={
+                        activeSection === link.url ? "location" : undefined
+                      }
+                    >
+                      {link.label}
+                    </button>
+                  )}
+                </>
               ))}
             </div>
           ))}
