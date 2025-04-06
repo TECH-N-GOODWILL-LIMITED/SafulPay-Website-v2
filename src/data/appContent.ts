@@ -8,9 +8,14 @@ interface NavLink {
 }
 
 // FOOTER
+export interface FooterLinkItem {
+  label: string;
+  url: string;
+  type: "route" | "scroll";
+}
 export interface FooterLink {
   category: string;
-  links: { label: string; url: string }[];
+  links: FooterLinkItem[];
 }
 
 export interface OtherLink {
@@ -128,19 +133,19 @@ export const footerData: FooterData = {
     {
       category: "Quick links",
       links: [
-        { label: "Home", url: "/" },
-        { label: "How it Works", url: "works" },
-        { label: "Features", url: "features" },
-        { label: "Download", url: "download" },
-        { label: "FAQs", url: "faqs" },
-        { label: "Testimonial", url: "testimonials" },
+        { label: "Home", url: "/", type: "route" },
+        { label: "How it Works", url: "works", type: "scroll" },
+        { label: "Features", url: "features", type: "scroll" },
+        { label: "Download", url: "download", type: "scroll" },
+        { label: "FAQs", url: "faqs", type: "scroll" },
+        { label: "Testimonial", url: "testimonials", type: "scroll" },
       ],
     },
     {
       category: "Contact",
       links: [
-        { label: "About Us", url: "/about-us" },
-        { label: "Contact Us", url: "/contact-us" },
+        { label: "About Us", url: "/about-us", type: "route" },
+        { label: "Contact Us", url: "contact-us", type: "scroll" },
       ],
     },
   ],

@@ -1,9 +1,9 @@
 import { Link, NavLink, useNavigate } from "react-router";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { useSmoothScroll } from "../hooks/useSmoothScroll";
 import { useViewportHeight } from "../hooks/useViewportHeight";
 import menuIcon from "/icon-menu-green.svg";
+import { useSmoothScroll } from "../context/SmoothScrollProvider";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollToPlugin);
@@ -38,13 +38,13 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
     scrollToSection,
   } = useSmoothScroll();
 
-  const handleScrollLink = (link: NavLink) => {
-    if (!isHomePage && link.url !== "contact-us") {
-      setActiveSection(link.url);
-      navigate("/", { state: { scrollTo: link.url }, replace: true });
+  const handleScrollLink = (url: string) => {
+    if (!isHomePage && url !== "contact-us") {
+      setActiveSection(url);
+      navigate("/", { state: { scrollTo: url }, replace: true });
     } else {
-      const offset = link.url === "features" ? 280 : 120;
-      scrollToSection(link.url, offset);
+      const offset = url === "features" ? 280 : 120;
+      scrollToSection(url, offset);
     }
   };
 
@@ -53,7 +53,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
 
   return (
     <div
-      className="mx-2.25 max-lg:mx-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-[10px] p-4 mt-10 lg:mt-5 rounded-[20px] flex justify-between items-center small-text font-semibold text-white"
+      className="mx-2.25 max-lg:mx-5 p-4 mt-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-[10px]  rounded-[20px] flex justify-between items-center small-text font-semibold text-white"
       style={{
         marginTop: vh < 600 ? "16px" : "",
       }}
@@ -80,7 +80,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
             {scrollLinks.map((link) => (
               <button
                 key={`scroll-${link.url}`}
-                onClick={() => handleScrollLink(link)}
+                onClick={() => handleScrollLink(link.url)}
                 className={`cursor-pointer hover:cursor-pointer px-5 max-xl:px-3 hover:text-secondary-color transition-colors ${
                   activeSection === link.url && "text-secondary-color font-bold"
                 }`}

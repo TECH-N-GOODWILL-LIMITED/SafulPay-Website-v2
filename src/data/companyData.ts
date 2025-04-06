@@ -81,66 +81,66 @@ export const companyData: SafulPayData = {
       "Our mission is to provide seamless and secure mobile money solutions, empowering users to manage their finances with ease.",
   },
   partners: [
-    // {
-    //   name: "V2 is Coming!",
-    //   image: "/safulpay-icon-lemon.svg",
-    // },
-    // {
-    //   name: "V2 is Coming!!",
-    //   image: "/safulpay-icon-lemon.svg",
-    // },
-    // {
-    //   name: "V2 is Coming!!!",
-    //   image: "/safulpay-icon-lemon.svg",
-    // },
-    // {
-    //   name: "V2 is Coming!",
-    //   image: "/safulpay-icon-lemon.svg",
-    // },
-    // {
-    //   name: "V2 is Coming!!",
-    //   image: "/safulpay-icon-lemon.svg",
-    // },
-    // {
-    //   name: "V2 is Coming!!!",
-    //   image: "/safulpay-icon-lemon.svg",
-    // },
+    {
+      name: "V2 is Coming!",
+      image: "/safulpay-icon-lemon.svg",
+    },
+    {
+      name: "V2 is Coming!!",
+      image: "/safulpay-icon-lemon.svg",
+    },
+    {
+      name: "V2 is Coming!!!",
+      image: "/safulpay-icon-lemon.svg",
+    },
+    {
+      name: "V2 is Coming!",
+      image: "/safulpay-icon-lemon.svg",
+    },
+    {
+      name: "V2 is Coming!!",
+      image: "/safulpay-icon-lemon.svg",
+    },
+    {
+      name: "V2 is Coming!!!",
+      image: "/safulpay-icon-lemon.svg",
+    },
     // {
     //   name: "QCell",
     //   image: "/partners/logo-qcell.svg",
     // },
-    {
-      name: "Orange",
-      image: "/partners/logo-orange.svg",
-    },
-    {
-      name: "Africell",
-      image: "/partners/logo-africell.svg",
-    },
-    {
-      name: "Western Union",
-      image: "/partners/logo-wu.svg",
-    },
-    {
-      name: "Ria Money",
-      image: "/partners/logo-ria.svg",
-    },
-    {
-      name: "MoneyGram",
-      image: "/partners/logo-moneygram.svg",
-    },
-    {
-      name: "VISA & Master Card",
-      image: "/partners/logo-bankcard.svg",
-    },
-    {
-      name: "DSTV Subscriptions",
-      image: "/partners/logo-dstv.svg",
-    },
-    {
-      name: "EDSA Meter",
-      image: "/partners/logo-edsa.svg",
-    },
+    // {
+    //   name: "Orange",
+    //   image: "/partners/logo-orange.svg",
+    // },
+    // {
+    //   name: "Africell",
+    //   image: "/partners/logo-africell.svg",
+    // },
+    // {
+    //   name: "Western Union",
+    //   image: "/partners/logo-wu.svg",
+    // },
+    // {
+    //   name: "Ria Money",
+    //   image: "/partners/logo-ria.svg",
+    // },
+    // {
+    //   name: "MoneyGram",
+    //   image: "/partners/logo-moneygram.svg",
+    // },
+    // {
+    //   name: "VISA & Master Card",
+    //   image: "/partners/logo-bankcard.svg",
+    // },
+    // {
+    //   name: "DSTV Subscriptions",
+    //   image: "/partners/logo-dstv.svg",
+    // },
+    // {
+    //   name: "EDSA Meter",
+    //   image: "/partners/logo-edsa.svg",
+    // },
   ],
   regulated: {
     text: "Licensed and Regulated by the Bank of Sierra Leone",
