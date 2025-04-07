@@ -20,7 +20,7 @@ export interface AgreementData {
 /** Privacy Policy Data */
 export const privacyPolicyData: AgreementData = {
   title: "Privacy Policy",
-  lastUpdated: "Last Updated: November 2023",
+  lastUpdated: "Last Updated: March 2024",
   sections: [
     {
       title: "Privacy Statement",
@@ -53,7 +53,7 @@ export const privacyPolicyData: AgreementData = {
         {
           subtitle:
             "For Bank Transfer, Top-up, P2P Payment, and Bill Payment services, we collect:",
-          list: ["Bank Account.", "Details Transaction History."],
+          list: ["Bank Account.", "Details of Transaction History."],
         },
         {
           subtitle: "Usage Data",
@@ -77,10 +77,10 @@ export const privacyPolicyData: AgreementData = {
         {
           subtitle: "We use your information to:",
           list: [
-            "Facilitate Bank Transfers, P2P Payments, Top-up, and Bill Payments.",
+            "Facilitate Bank Transfers, P2P Payments, Top-up and Bill Payments.",
             "Provide and improve our services.",
             "Personalize user experiences and offer .",
-            "To comply with legal and regulatory requirements.",
+            "Comply with legal and regulatory requirements.",
             "Customize and enhance your experience with personalized services and relevant features.",
           ],
         },
@@ -184,7 +184,7 @@ export const privacyPolicyData: AgreementData = {
       title: "Contact Us",
       content: [
         {
-          text: "If you have any questions or concerns about this Privacy Policy, please contact us at info@techengood.com Or +232-77-076235 / +232-77076237",
+          text: "If you have any questions or concerns about this Privacy Policy, please contact us at info@safulpay.com Or +232-77-076235 / +232-77076237",
         },
       ],
     },
@@ -210,9 +210,9 @@ export const termsAndConditionsData: AgreementData = {
       title: "Description of Services",
       content: [
         {
-          text: `Saful-pay is a financial application designed to empower users with quality financial services The specific features and functionalities of Saful-pay are comprehensively outlined within the application.
+          text: `SafulPay is a financial application designed to empower users with quality financial services The specific features and functionalities of SafulPay are comprehensively outlined within the application.
           
-          Please note that these features and functionalities may be subject to change, and Saful-pay will notify users of any modifications in advance. It is the user's responsibility to stay informed about the services through the information provided within the application`,
+          Please note that these features and functionalities may be subject to change, and SafulPay will notify users of any modifications in advance. It is the user's responsibility to stay informed about the services through the information provided within the application`,
         },
       ],
     },
@@ -220,7 +220,7 @@ export const termsAndConditionsData: AgreementData = {
       title: "User Registration and Responsibilities",
       content: [
         {
-          text: `To use Saful-pay, users must create an account and provide accurate information.
+          text: `To use Safulpay, users must create an account and provide accurate information.
           
           Users are responsible for maintaining the confidentiality of their account credentials and are liable for all activities performed under their account. Any activities conducted under a user's account will be deemed their responsibility, and they are liable for any consequences arising from unauthorized access or use.
           "SafulPay is not liable for unauthorized access to your account due to negligence on your part."`,
@@ -231,7 +231,7 @@ export const termsAndConditionsData: AgreementData = {
       title: "Privacy and Data Security",
       content: [
         {
-          text: `Saful-pay is committed to protecting user privacy. Our Privacy Policy outlines how we collect, use, and protect user information. By using Saful-pay, you consent to the terms of our Privacy Policy. We encourage users to review the Privacy Policy regularly to stay informed about how their data is handled.`,
+          text: `SafulPay is committed to protecting user privacy. Our Privacy Policy outlines how we collect, use, and protect user information. By using Safulpay, you consent to the terms of our Privacy Policy. We encourage users to review the Privacy Policy regularly to stay informed about how their data is handled.`,
         },
       ],
     },
@@ -239,9 +239,9 @@ export const termsAndConditionsData: AgreementData = {
       title: "Security Measures",
       content: [
         {
-          text: `Saful-pay employs industry-standard security measures to protect user data. Users are obligated to adhere to prescribed security guidelines to maintain the integrity of their accounts and the overall security of the application.
+          text: `SafulPay employs industry-standard security measures to protect user data. Users are obligated to adhere to prescribed security guidelines to maintain the integrity of their accounts and the overall security of the application.
           
-          Any instances of unauthorized access or suspicious activities should be promptly reported to Saful-pay, fostering a collaborative effort to uphold the security of the platform.`,
+          Any instances of unauthorized access or suspicious activities should be promptly reported to Safulpay, fostering a collaborative effort to uphold the security of the platform.`,
         },
       ],
     },
@@ -257,7 +257,7 @@ export const termsAndConditionsData: AgreementData = {
       title: "Reversal",
       content: [
         {
-          text: `Saful-pay's reversal policies, essential for transaction reversals, are conveniently accessible within the application. 
+          text: `SafulPay's reversal policies, essential for transaction reversals, are conveniently accessible within the application. 
           
           Users are obligated to comply with these policies when initiating the reversal of transactions or requesting refunds. It is imperative to review and understand the details provided within the application to ensure adherence to SafulPay's established procedures for transaction reversals.`,
         },
@@ -267,7 +267,7 @@ export const termsAndConditionsData: AgreementData = {
       title: "User Conduct",
       content: [
         {
-          text: `Users must comply with all applicable laws and regulations when using Saful-pay. Any use of the application for illegal or fraudulent activities is strictly prohibited.     "Violations may result in account suspension or legal action.",`,
+          text: `Users must comply with all applicable laws and regulations when using Safulpay. Any use of the application for illegal or fraudulent activities is strictly prohibited.     "Violations may result in account suspension or legal action."`,
         },
       ],
     },
@@ -275,7 +275,7 @@ export const termsAndConditionsData: AgreementData = {
       title: "Limitation of Liability & Disclaimers",
       content: [
         {
-          text: `Saful-pay is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services. Users acknowledge that the use of financial services involves inherent risks."SafulPay is not responsible for third-party service failures or transaction delays caused by external factors."`,
+          text: `SafulPay is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services. Users acknowledge that the use of financial services involves inherent risks."SafulPay is not responsible for third-party service failures or transaction delays caused by external factors."`,
         },
       ],
     },
@@ -284,7 +284,7 @@ export const termsAndConditionsData: AgreementData = {
       title: "Termination of Services",
       content: [
         {
-          text: `Saful-pay reserves the right to terminate or suspend user accounts for violations of these terms and conditions, fraudulent activities, or other reasons deemed necessary for the security and integrity of the application.`,
+          text: `SafulPay reserves the right to terminate or suspend user accounts for violations of these terms and conditions, fraudulent activities, or other reasons deemed necessary for the security and integrity of the application.`,
         },
       ],
     },
@@ -292,9 +292,9 @@ export const termsAndConditionsData: AgreementData = {
       title: "Amendments and Updates",
       content: [
         {
-          text: `Saful-pay may update these terms and conditions from time to time. Users will be notified of significant changes, and continued use of Saful-pay constitutes acceptance of the modified terms.
+          text: `SafulPay may update these terms and conditions from time to time. Users will be notified of significant changes, and continued use of SafulPay constitutes acceptance of the modified terms.
           
-          By using Saful-pay, you affirm that you have read, understood, and agree to be bound by these terms and conditions.`,
+          By using Safulpay, you affirm that you have read, understood, and agree to be bound by these terms and conditions.`,
         },
       ],
     },
