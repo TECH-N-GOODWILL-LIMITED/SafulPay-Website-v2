@@ -97,6 +97,7 @@ function Footer() {
               {socials.map((social, index) => (
                 <a
                   href={social.url}
+                  target="_blank"
                   key={index}
                   className="w-full p-3 md:p-4 lg:p-5 bg-primary-shade-10 rounded-full hover:bg-primary-color max-md:bg-secondary-shade-10"
                 >
@@ -128,13 +129,13 @@ function Footer() {
           </p>
           <div>
             {otherLinks.map((link, index) => (
-              <a
-                href={link.url}
+              <NavLink
+                to={link.url}
                 key={index}
                 className="py-2.5 px-5 m:px-7.5 font-semibold"
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
           </div>
         </div>
