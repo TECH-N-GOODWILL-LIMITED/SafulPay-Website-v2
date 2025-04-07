@@ -296,7 +296,7 @@ export const faqsData: FAQData = {
     {
       question: "What should I do if I forget my password?",
       answer:
-        "You can reset your password by clicking on 'Forgot Password' on the login page and following the instructions.",
+        "You can reset your password by clicking on 'Forgot Password' on the login page and follow the instructions.",
     },
     {
       question: "How can I request money from someone using SafulPay?",

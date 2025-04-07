@@ -51,6 +51,7 @@ export interface Member {
     linkedin?: string;
     facebook?: string;
     github?: string;
+    instagram?: string;
   };
 }
 
@@ -206,7 +207,7 @@ export const companyData: SafulPayData = {
       {
         img: "/team/wale-ceo.png",
         name: "Adeola Olukoya",
-        role: "Founder & CEO",
+        role: "Co-Founder & CEO",
         socials: {
           twitter: "https://twitter.com/johndoe",
           linkedin: "https://linkedin.com/in/johndoe",
@@ -215,7 +216,7 @@ export const companyData: SafulPayData = {
       {
         img: "/team/tolu-cto.png",
         name: "Toluwani Adepoju",
-        role: "Founder & COO",
+        role: "Co-Founder & COO",
         socials: {
           twitter: "https://twitter.com/janesmith",
           linkedin: "https://linkedin.com/in/janesmith",

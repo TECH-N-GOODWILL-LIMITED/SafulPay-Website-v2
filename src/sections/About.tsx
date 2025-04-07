@@ -7,7 +7,7 @@ function About() {
   return (
     <section className="section gap-50 py-2.5 max-lg:gap-25">
       <div className="relative w-screen flex-center mx-12.5">
-        <h1 className="px-2.5 py-50 max-lg:py-25">
+        <h1 className="px-2.5 py-50 max-lg:py-25 max-md:pb-0">
           About&nbsp;
           <span className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent  ">
             {company.name}

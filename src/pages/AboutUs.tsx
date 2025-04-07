@@ -8,7 +8,7 @@ function AboutUs() {
   return (
     <>
       <NavBar />
-      <main className="py-75 gap-75 max-md:gap-25">
+      <main className="py-75 gap-75 max-md:gap-25 max-md:pt-36">
         <About />
         <Team />
         <Download />
