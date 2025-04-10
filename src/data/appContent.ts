@@ -222,7 +222,7 @@ export const securityData: SecurityData = {
 export const testimonialsData: Testimonial[] = [
   {
     name: "Hauwa Kamara",
-    location: "Kono, Sierra Leone",
+    location: "Bo, Sierra Leone",
     title: "Small Business Owner",
     text: "SafulPay has been a game-changer for my small business. The ease of using their services has increased our sales and customer satisfaction.",
     image: "testimonial/lady2.png",
@@ -242,10 +242,10 @@ export const testimonialsData: Testimonial[] = [
     image: "testimonial/chrislin.png",
   },
   {
-    name: "Josephine Kabba",
+    name: "Mariam Jalloh",
     location: "Freetown, Sierra Leone",
-    title: "Saves Me Time and Effort",
-    text: "I love how easy it is to manage my money with this app. I can check my balance, pay for purchases, and send money to family in just a few taps. It's made my financial life so much simpler!",
+    title: "I love SafulPay",
+    text: "Great agency services with good management, transparency  and commission",
     image: "testimonial/lady.png",
   },
   {
@@ -253,7 +253,7 @@ export const testimonialsData: Testimonial[] = [
     location: "Freetown, Sierra Leone",
     title: "Saves Me Time and Effort",
     text: "I love how easy it is to manage my money with this app. I can check my balance, pay for purchases, and send money to family in just a few taps. It's made my financial life so much simpler!",
-    image: "testimonial/lady.png",
+    image: "testimonial/lady3.png",
   },
 ];
 

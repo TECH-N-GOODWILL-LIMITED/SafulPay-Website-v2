@@ -48,25 +48,6 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
       activeSection === "home" ||
       activeSection === "");
 
-  // Smooth scroll function
-  //   const scrollToSection = (
-  //     sectionId: string,
-  //     offset = 0,
-  //     autoKill = true,
-  //     forceUpdate = false
-  //   ) => {
-  //     scrollTween.current?.kill();
-  //     scrollTween.current = gsap.to(window, {
-  //       duration: 1.2,
-  //       scrollTo: { y: `#${sectionId}`, offsetY: offset, autoKill },
-  //       ease: "power2.inOut",
-  //       onComplete: () => {
-  //         setActiveSection(sectionId);
-  //         if (forceUpdate) window.history.replaceState({}, "");
-  //       },
-  //       onInterrupt: () => (scrollTween.current = null),
-  //     });
-  //   };
   const scrollToSection = (
     sectionId: string,
     offset = 0,
@@ -105,6 +86,13 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  useEffect(() => {
+    // Reset when navigating away from home
+    if (!isHomePage) {
+      setActiveSection("");
+    }
+  }, [location.pathname, isHomePage]);
+
   //   Refresh ScrollTrigger on Resize / Orientation Change
   useEffect(() => {
     const onResize = () => {
@@ -120,20 +108,6 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
-  //   useEffect(() => {
-  //     if (scrollToRef.current) {
-  //       const id = scrollToRef.current;
-  //       scrollToRef.current = undefined;
-
-  //       setTimeout(() => {
-  //         const element = document.getElementById(id);
-  //         if (element) {
-  //           scrollToSection(id, 120, true, true);
-  //         }
-  //       }, 200);
-  //     }
-  //   }, [location.pathname]);
-
   useEffect(() => {
     const scrollTarget = scrollToRef.current || location.hash?.replace("#", "");
 
@@ -147,7 +121,7 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
         }
       }, 200);
     }
-  }, [location.pathname, location.hash]);
+  }, [location.hash]);
 
   useEffect(() => {
     if (!isHomePage) return;

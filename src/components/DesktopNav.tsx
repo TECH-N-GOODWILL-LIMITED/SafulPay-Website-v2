@@ -1,13 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { useSmoothScroll } from "../context/SmoothScrollProvider";
 import { useViewportHeight } from "../hooks/useViewportHeight";
 import menuIcon from "/icon-menu-green.svg";
-import { useSmoothScroll } from "../context/SmoothScrollProvider";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollToPlugin);
-}
 
 interface NavLink {
   url: string;
@@ -42,10 +36,10 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
     if (!isHomePage && url !== "contact-us") {
       setActiveSection(url);
       navigate("/", { state: { scrollTo: url }, replace: true });
-    } else {
-      const offset = url === "features" ? 280 : 120;
-      scrollToSection(url, offset);
     }
+
+    const offset = url === "features" ? 280 : 120;
+    scrollToSection(url, offset);
   };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
@@ -110,7 +104,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           </>
         ) : (
           <button
-            onClick={() => scrollToSection("features", 280)}
+            onClick={() => handleScrollLink("features")}
             className="cursor-pointer hover:cursor-pointer"
           >
             Open App
@@ -118,7 +112,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
         )}
       </nav>
       <button
-        onClick={() => scrollToSection("download")}
+        onClick={() => scrollToSection("download", 120)}
         className="cursor-pointer px-7.5 py-4.25 rounded-[10px] bg-secondary-color text-primary-color text-[20px] tracking-[-0.4px] font-semibold max-xl:p-2.75 max-lg:hidden"
         aria-label="Scroll to download section"
       >
