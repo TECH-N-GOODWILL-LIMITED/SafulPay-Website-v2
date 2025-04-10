@@ -92,11 +92,34 @@ function MobileNav({
     };
   }, [isMenuOpen]);
 
+  // const handleScrollLink = (url: string) => {
+  //   document.body.style.overflow = "";
+  //   document.body.style.touchAction = "";
+  //   setIsMenuOpen(false);
+
+  //   if (!isHomePage && url !== "contact-us") {
+  //     navigate("/", {
+  //       state: { scrollTo: url },
+  //       replace: true,
+  //     });
+  //     return;
+  //   }
+
+  //   const offset = url === "features" ? 280 : 120;
+
+  //   setTimeout(() => {
+  //     scrollToSection(url, offset);
+  //   }, 300);
+  // };
+
   const handleScrollLink = (url: string) => {
-    document.body.style.overflow = "";
-    document.body.style.touchAction = "";
     setIsMenuOpen(false);
 
+    // Restore body scroll manually
+    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
+
+    // Navigate if you're not on homepage
     if (!isHomePage && url !== "contact-us") {
       navigate("/", {
         state: { scrollTo: url },
@@ -105,11 +128,15 @@ function MobileNav({
       return;
     }
 
+    // Delay scroll slightly using RAF chaining instead of setTimeout
     const offset = url === "features" ? 280 : 120;
 
-    setTimeout(() => {
-      scrollToSection(url, offset);
-    }, 300);
+    // Give DOM 1–2 frames to reflow, then scroll
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollToSection(url, offset);
+      });
+    });
   };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");

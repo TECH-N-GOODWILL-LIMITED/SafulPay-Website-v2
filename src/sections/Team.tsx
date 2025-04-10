@@ -22,7 +22,7 @@ function Team() {
         src={bgIcon}
         alt=""
       />
-      <div className="max-w-250 flex-center flex-col gap-7.5 py-2.5 mx-12.5">
+      {/* <div className="max-w-250 flex-center flex-col gap-7.5 py-2.5 mx-12.5">
         <h1 className="p-2.5">
           Meet Our Team of <span className="text-primary-color">Experts</span>
         </h1>
@@ -38,13 +38,53 @@ function Team() {
               key={index}
               className="bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
             >
-              <img src={member.img} alt="" className="max-w-75" />
+              <img
+                src={member.img}
+                alt=""
+                className="w-full h-3/4 object-cover"
+              />
               <div className="p-6.75">
                 <p className="title-text">{member.name}</p>
                 <p className="text-[14px]">{member.role}</p>
               </div>
             </div>
           ))}
+        </div>
+      </div> */}
+      <div className="max-w-250 flex-center flex-col gap-7.5 py-2.5 mx-12.5 max-md:mx-5">
+        <h1 className="p-2.5">
+          Meet Our Team of
+          <span className="text-primary-color">&nbsp; Experts</span>
+        </h1>
+        <h2 className="p-2.5 text-[clamp(16px,5.117vw,34px)] font-semibold tracking-[-1.36px] max-m:tracking-[-0.44px]">
+          {title}
+        </h2>
+
+        {/* Intro Text (static, no overflow) */}
+        <p className="p-2.5 w-full max-md:whitespace-normal max-md:overflow-visible">
+          {intro}
+        </p>
+
+        {/* Scrollable team cards only */}
+        <div className="w-full">
+          <div className="grid grid-cols-3 gap-7.5 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:overflow-x-auto max-md:scrollbar-hide">
+            {members.map((member, index) => (
+              <div
+                key={index}
+                className="min-w-[260px] shrink-0 bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
+              >
+                <img
+                  src={member.img}
+                  alt=""
+                  className="w-full h-3/4 object-cover"
+                />
+                <div className="p-6.75">
+                  <p className="title-text">{member.name}</p>
+                  <p className="text-[14px]">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

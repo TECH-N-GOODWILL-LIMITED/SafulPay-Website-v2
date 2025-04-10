@@ -224,6 +224,15 @@ export const companyData: SafulPayData = {
         },
       },
       {
+        img: "/team/adama-pro.png",
+        name: "Adama Jalloh",
+        role: "Customer Relations Officer",
+        socials: {
+          twitter: "https://twitter.com/emilyjohnson",
+          linkedin: "https://linkedin.com/in/emilyjohnson",
+        },
+      },
+      {
         img: "/team/oyinn-tech.png",
         name: "Oyinlola Lawal",
         role: "Lead Software Engineer",
@@ -234,17 +243,8 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "/team/adama-pro.png",
-        name: "Adama Jalloh",
-        role: "Customer Relations",
-        socials: {
-          twitter: "https://twitter.com/emilyjohnson",
-          linkedin: "https://linkedin.com/in/emilyjohnson",
-        },
-      },
-      {
-        img: "/team/.png",
-        name: "Elijah",
+        img: "/team/kai-marketing.jpg",
+        name: "Kai Pengusaquee",
         role: "Marketing Lead",
         socials: {
           twitter: "https://twitter.com/emilyjohnson",

@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { AgreementData } from "../data/agreementData";
 import arrowBack from "/icon-arrow-back.svg";
+import Download from "../sections/Download";
 
 interface AgreementProps {
   data: AgreementData;
@@ -58,6 +59,7 @@ const Agreement: React.FC<AgreementProps> = ({ data }) => {
           </div>
         ))}
       </article>
+      <Download />
     </main>
   );
 };
