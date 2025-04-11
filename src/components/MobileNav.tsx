@@ -115,28 +115,35 @@ function MobileNav({
   const handleScrollLink = (url: string) => {
     setIsMenuOpen(false);
 
-    // Restore body scroll manually
+    // Restore scroll (especially important for iOS)
     document.body.style.overflow = "";
     document.body.style.touchAction = "";
 
-    // Navigate if you're not on homepage
+    const scrollNow = () => {
+      const offset = url === "features" ? 280 : 120;
+
+      // Use a short delay to allow DOM changes (important for iOS)
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          scrollToSection(url, offset);
+        });
+      });
+    };
+
     if (!isHomePage && url !== "contact-us") {
       navigate("/", {
         state: { scrollTo: url },
         replace: true,
       });
+
+      // Scroll after navigation
+      setTimeout(() => {
+        scrollNow();
+      }, 300); // Slight delay to allow for page transition
       return;
     }
 
-    // Delay scroll slightly using RAF chaining instead of setTimeout
-    const offset = url === "features" ? 280 : 120;
-
-    // Give DOM 1–2 frames to reflow, then scroll
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        scrollToSection(url, offset);
-      });
-    });
+    scrollNow();
   };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
