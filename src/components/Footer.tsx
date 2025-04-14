@@ -15,14 +15,43 @@ function Footer() {
   const { isHomePage, activeSection, setActiveSection, scrollToSection } =
     useSmoothScroll();
 
+  // const handleScrollLink = (url: string) => {
+  //   if (!isHomePage && url !== "contact-us") {
+  //     setActiveSection(url);
+  //     navigate("/", { state: { scrollTo: url }, replace: true });
+  //   } else {
+  //     const offset = url === "features" ? 280 : 120;
+  //     scrollToSection(url, offset);
+  //   }
+  // };
+
   const handleScrollLink = (url: string) => {
+    const scrollNow = () => {
+      const offset = url === "features" ? 280 : 120;
+
+      // Use a short delay to allow DOM changes (important for iOS)
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          scrollToSection(url, offset);
+        });
+      });
+    };
+
     if (!isHomePage && url !== "contact-us") {
       setActiveSection(url);
-      navigate("/", { state: { scrollTo: url }, replace: true });
-    } else {
-      const offset = url === "features" ? 280 : 120;
-      scrollToSection(url, offset);
+      navigate("/", {
+        state: { scrollTo: url },
+        replace: true,
+      });
+
+      // Scroll after navigation
+      setTimeout(() => {
+        scrollNow();
+      }, 300); // Slight delay to allow for page transition
+      return;
     }
+
+    scrollNow();
   };
 
   return (

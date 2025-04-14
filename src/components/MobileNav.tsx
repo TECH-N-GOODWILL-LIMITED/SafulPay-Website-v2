@@ -92,6 +92,18 @@ function MobileNav({
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("keydown", handleEsc);
+    }
+
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [isMenuOpen, setIsMenuOpen]);
+
   // const handleScrollLink = (url: string) => {
   //   document.body.style.overflow = "";
   //   document.body.style.touchAction = "";
