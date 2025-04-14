@@ -16,6 +16,12 @@ function NavBar() {
       ref={parent}
       className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-99"
     >
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-black px-4 py-2 z-50"
+      >
+        Skip to main content
+      </a>
       <DesktopNav
         company={company}
         navLinks={navLinks}

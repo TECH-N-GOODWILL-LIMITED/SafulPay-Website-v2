@@ -26,7 +26,7 @@ function ContactUs() {
           <input
             type="email"
             placeholder="Enter your email address"
-            className="focus:outline-none title-text font-extralight text-primary-color placeholder:text-[#67967b] block border-none bg-none w-full mr-2.5 caret-secondary-color max-sm:p-2.5"
+            className="focus:outline-none focus:ring-0 title-text font-extralight text-primary-color placeholder:text-[#67967b] block border-none bg-none w-full mr-2.5 caret-primary-color max-sm:p-2.5"
           />
           <button
             type="submit"
