@@ -1,12 +1,15 @@
+import { useEffect, useRef, useState } from "react";
 import { testimonialsData } from "../data/appContent";
 import TestimonialItem from "../components/TestimonialItem";
 import testimonialLogo from "../assets/safulpay-testimonial-logo.png";
 import lineImage from "../assets/long-line-illustration.svg";
-import { useEffect, useRef, useState } from "react";
+import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
 
 function Testimonial() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const firstItemRef = useRef(null);
+  const firstItemRef = useRef<HTMLDivElement | null>(null);
+  const testimonialRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const testimonialItems = document.querySelectorAll(".testimonial-item");
 
@@ -30,21 +33,42 @@ function Testimonial() {
     return () => observer.disconnect();
   }, []);
 
+  useGsapCustomAnimation({
+    containerRef: testimonialRef,
+    targetSelector: ".lineimage",
+    from: {
+      opacity: 0.6,
+      scaleX: -1,
+    },
+    to: {
+      opacity: 1,
+      scaleX: 1,
+      ease: "power2.out",
+    },
+    scrollTrigger: {
+      scrub: true,
+      end: "bottom center",
+    },
+  });
+
   return (
     <section
+      ref={testimonialRef}
       id="testimonials"
+      role="region"
+      aria-label="What our users say about SafulPay"
       className="section py-12.5 gap-12.5 relative max-md:gap-2.5"
       data-section
     >
       <img
         src={lineImage}
         alt=""
-        className="absolute h-[1000px] left-0 bottom-[-24%] z-1 max-xl:hidden"
+        className="lineimage absolute h-[1000px] left-0 bottom-[-24%] max-xl:hidden"
       />
       <img
         src={lineImage}
         alt=""
-        className="absolute h-[1000px] right-0 bottom-[-24%] scale-x-[-1] z-1 max-xl:hidden"
+        className="lineimage absolute h-[1000px] right-0 bottom-[-24%] scale-x-[-1] max-xl:hidden"
       />
       <h2 className="py-2.5 px-12.5 primary-heading font-bold tracking-[-2.1px] max-m:tracking-[-1.36px]">
         Don't just take our word for it.

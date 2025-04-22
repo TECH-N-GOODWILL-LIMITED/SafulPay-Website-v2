@@ -5,37 +5,27 @@ function Partners() {
   const { partners } = companyData;
 
   return (
-    <div className="flex items-center gap-2.5 bg-primary-color animate-scroll">
+    <div
+      role="region"
+      aria-labelledby="partners-heading"
+      className="flex items-center gap-2.5 bg-primary-color animate-scroll"
+    >
+      <h2 id="partners-heading" className="sr-only">
+        Our Trusted Partners
+      </h2>
       {/* Original set */}
       {partners.map((partner, index) => (
-        <PartnerItem key={index} name={partner.name} image={partner.image} />
+        <PartnerItem key={index} partner={partner} />
       ))}
 
       {/* Duplicate set */}
       {partners.map((partner, index) => (
-        <PartnerItem
-          key={`duplicate-${index}`}
-          name={partner.name}
-          image={partner.image}
-        />
+        <PartnerItem key={`duplicate-${index}`} partner={partner} />
       ))}
 
       {/* Duplicate set 2 */}
       {partners.map((partner, index) => (
-        <PartnerItem
-          key={`duplicate-${index}-2`}
-          name={partner.name}
-          image={partner.image}
-        />
-      ))}
-
-      {/* Duplicate set 3 */}
-      {partners.map((partner, index) => (
-        <PartnerItem
-          key={`duplicate-${index}-3`}
-          name={partner.name}
-          image={partner.image}
-        />
+        <PartnerItem key={`duplicate-${index}-2`} partner={partner} />
       ))}
     </div>
   );

@@ -1,32 +1,65 @@
+import { useRef } from "react";
 import { companyData } from "../data/companyData";
+import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import KeyFeatures from "../components/KeyFeatures";
 import bgImage from "/bg-about-icons.png";
 import bgIcon from "../assets/bg-logo-illustration.svg";
+import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
+import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
 
 function About() {
   const { aboutus, company } = companyData;
+
+  const aboutRef = useRef<HTMLHeadingElement>(null);
+  const aboutIntroRef = useRef<HTMLDivElement>(null);
+  const aboutBgRef = useRef<HTMLImageElement>(null);
+
+  useScaleFadeIn({ containerRef: aboutRef });
+
+  useHeaderAnimation({
+    containerRef: aboutIntroRef,
+  });
+
+  useSlideFadeIn({ containerRef: aboutBgRef, fromY: 0 });
+
   return (
-    <section className="section gap-50 py-2.5 max-lg:gap-25">
+    <section
+      role="region"
+      aria-labelledby="about-heading"
+      className="section gap-50 py-2.5 max-lg:gap-25"
+    >
       <div className="relative w-screen flex-center mx-12.5">
-        <h1 className="px-2.5 py-50 max-lg:py-40 max-md:pb-0">
-          About&nbsp;
+        <h1
+          ref={aboutRef}
+          id="about-heading"
+          className="px-2.5 py-50 max-lg:py-40 max-md:pb-0"
+        >
+          About{" "}
           <span className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent  ">
             {company.name}
           </span>
         </h1>
         <img
+          ref={aboutBgRef}
           src={bgImage}
-          alt="background-image"
-          className="absolute max-w-432.75 top-0 max-md:hidden max-lg:max-w-216.5"
+          alt=""
+          aria-hidden="true"
+          role="presentation"
+          className="absolute max-w-460 w-full top-0 max-md:hidden max-lg:max-w-216.5"
         />
         <img
           className="absolute max-w-400 top-1/3 md:hidden block"
           src={bgIcon}
           alt=""
+          aria-hidden="true"
+          role="presentation"
         />
       </div>
-      <div className="max-w-250 flex-center flex-col gap-2.5 ">
-        <h2 className="primary-heading p-2.5">{aboutus.title}</h2>
+      <div
+        ref={aboutIntroRef}
+        className="max-w-250 flex-center flex-col gap-2.5"
+      >
+        <h2 className="animateheader primary-heading p-2.5">{aboutus.title}</h2>
         <KeyFeatures />
         <div className="mx-12.5">
           {aboutus.intro.map((intro, index) => (

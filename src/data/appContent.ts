@@ -198,16 +198,16 @@ export const securityData: SecurityData = {
       icon: "icon-currency.svg",
     },
     {
-      title: "Fraud Detection and Monitoring",
-      description:
-        "We continuously monitor your transactions with cutting-edge fraud detection systems, instantly flagging any suspicious activity to protect your funds from potential threats.",
-      icon: "icon-shield.svg",
-    },
-    {
       title: "Advanced Encryption",
       description:
         "Your personal and financial data is protected with industry-leading encryption technology. Every transaction is securely encrypted to keep your sensitive information safe from unauthorized access.",
       icon: "icon-encrypt.svg",
+    },
+    {
+      title: "Fraud Detection and Monitoring",
+      description:
+        "We continuously monitor your transactions with cutting-edge fraud detection systems, instantly flagging any suspicious activity to protect your funds from potential threats.",
+      icon: "icon-shield.svg",
     },
     {
       title: "Two-Factor Authentication",
@@ -294,14 +294,14 @@ export const faqsData: FAQData = {
         "If you experience any issues with a transaction, please contact our support team immediately at support@safulpay.com. We offer 24/7 customer support to help resolve any problems you may encounter.",
     },
     {
-      question: "What should I do if I forget my password?",
+      question: "What should I do if I forget my pin code?",
       answer:
-        "You can reset your password by clicking on 'Forgot Password' on the login page and follow the instructions.",
+        "You can reset your pin by clicking on 'Forgot PinCode' on the login page and follow the instructions.",
     },
     {
       question: "How can I request money from someone using SafulPay?",
       answer:
-        'To request money, go to the "Request" section in the app, enter the amount you need, and select the recipient from your contacts. They will receive a notification to fulfill your request, making it easy to get the funds you need.',
+        'To request money, go to the "Request" section in the app, select a wallet, and enter an optional amount and a note. A QR code and a request link will be generated — simply share the link with anyone to fulfill your request. It’s an easy way to get the funds you need.',
     },
   ],
 };

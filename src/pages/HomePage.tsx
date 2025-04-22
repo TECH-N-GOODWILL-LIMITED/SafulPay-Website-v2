@@ -9,36 +9,19 @@ import Download from "../sections/Download";
 import Faqs from "../sections/Faqs";
 import Partners from "../components/Partners";
 import MainFooter from "../sections/MainFooter";
-// import { useEffect } from "react";
-// import { useSmoothScroll } from "../hooks/useScrollHandler";
-// import { gsap } from "gsap";
-
-// gsap.registerPlugin(ScrollToPlugin);
-// gsap.registerPlugin(ScrollTrigger);
-
-// let smoother = ScrollSmoother.create({
-//   smooth: 2,
-//   effects: true,
-// });
-
-// let smooth = _ScrollSmoother.create({
-//   smooth: 2,
-//   smoothTouch: 0.1,
-//   effects: true,
-// });
+import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
+import { useRef } from "react";
 
 function HomePage() {
-  // const { isHomePage, setActiveSection } = useSmoothScroll();
-  // useEffect(() => {
-  //   // Ensure home is active if at top on mount
-  //   if (isHomePage && window.scrollY === 0) {
-  //     setActiveSection("home");
-  //   }
+  const mainRef = useRef<HTMLDivElement | null>(null);
 
-  //   if (isHomePage && window.scrollY > 700) {
-  //     setActiveSection("home");
-  //   }
-  // }, [isHomePage]);
+  useScaleFadeIn({
+    containerRef: mainRef,
+    fromScaleX: 0.8,
+    fromOpacity: 1,
+    scrub: 0.5,
+    end: "top top",
+  });
 
   return (
     <div className="relative">
@@ -49,7 +32,7 @@ function HomePage() {
 
       <div className="absolute top-[80vh] w-screen bg-transparent overflow-auto">
         <div className="h-32 md:h-30 sticky"></div>
-        <main className="relative rounded-t-[40px] max-m:pt-15">
+        <main ref={mainRef} className="relative rounded-t-[40px] max-m:pt-15">
           <Features />
           <MoreFeatures />
           <Security />

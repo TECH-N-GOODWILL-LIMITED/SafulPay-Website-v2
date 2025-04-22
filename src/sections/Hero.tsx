@@ -1,19 +1,48 @@
 import { companyData } from "../data/companyData";
 import DownloadItem from "../components/DownloadItem";
 import mockUpImage from "../assets/mockup-home-page.png";
+import { useRef } from "react";
+import { useAnimateText } from "../hooks/animations/useAnimateText";
+import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
+import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
 // import Partners from "../components/Partners";
 
 function Hero() {
   const { company } = companyData;
 
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const companyNameRef = useRef<HTMLSpanElement | null>(null);
+  const mockupImageRef = useRef<HTMLImageElement | null>(null);
+
+  useAnimateText({
+    containerRef: companyNameRef,
+    text: company.name,
+  });
+
+  useHeaderAnimation({ containerRef: heroRef });
+
+  useSlideFadeIn({ containerRef: mockupImageRef, fromX: 0, fromY: -100 });
+
   return (
     // <section id="home" className="section gap-10 min-h-[80vh]">
-    <section id="home" className="section gap-10 min-h-[80vh]" data-section>
-      <div className="flex-center flex-col gap-2.5 max-m:gap-7.5 mt-50 py-2.5 text-white">
-        <h1 className="max-w-275 p-2.5">
+    <section
+      id="home"
+      role="region"
+      aria-labelledby="hero-heading"
+      className="section gap-10 min-h-[80vh]"
+      data-section
+    >
+      <div
+        ref={heroRef}
+        className="flex-center flex-col gap-2.5 max-m:gap-7.5 mt-50 py-2.5 text-white"
+      >
+        <h1 id="hero-heading" className="animateheader max-w-275 p-2.5">
           {company.slogan}
-          <span className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
-            {company.name}
+          <span
+            ref={companyNameRef}
+            className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent"
+          >
+            {/* {company.name} */}
           </span>
         </h1>
         <p className="text-[clamp(16px,3.721vw,30px)] font-normal tracking-[-0.9px] max-m:tracking-normal p-2.5 max-w-250 max-m:max-w-80">
@@ -23,8 +52,8 @@ function Hero() {
           <DownloadItem />
         </div>
       </div>
-      <div className="max-w-[min(63.49vw,444px)] relative">
-        <img src={mockUpImage} alt="" />
+      <div className="cursor-pointer max-w-[min(63.49vw,444px)] relative">
+        <img ref={mockupImageRef} src={mockUpImage} alt="App homepage mockup" />
         {/* <div className="absolute top-[16%] left-[-900%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[8.29deg] w-max z-[-1] max-md:hidden">
           <Partners />
         </div> */}
