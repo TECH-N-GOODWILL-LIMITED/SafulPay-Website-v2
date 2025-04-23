@@ -7,6 +7,7 @@ import safulpayTextIcon from "/safulpay-navbar-text-logo-icon.svg";
 import safulPayLogo from "/safulpay-icon-white.svg";
 import { useEffect, useRef } from "react";
 import { useSmoothScroll } from "../context/SmoothScrollProvider";
+import { iosScrollTo, isIOSChrome } from "../utils/iosScroll";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollToPlugin);
@@ -38,71 +39,7 @@ function MobileNav({
   isMenuOpen,
   setIsMenuOpen,
 }: MobileNavProps) {
-  const navigate = useNavigate();
-
-  const vh = useViewportHeight();
-  const { isHomePage, activeSection, scrollToSection } = useSmoothScroll();
-
-  const menuRef = useRef<HTMLDivElement>(null);
-
   // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    if (isMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMenuOpen, setIsMenuOpen]);
-
-  // checks orientation of mobile devices
-  useEffect(() => {
-    const onResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener("resize", onResize);
-    window.addEventListener("orientationchange", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("orientationchange", onResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.touchAction = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.touchAction = "";
-    };
-  }, [isMenuOpen]);
-
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsMenuOpen(false);
-    };
-
-    if (isMenuOpen) {
-      document.addEventListener("keydown", handleEsc);
-    }
-
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, [isMenuOpen, setIsMenuOpen]);
 
   // const handleScrollLink = (url: string) => {
   //   document.body.style.overflow = "";
@@ -124,39 +61,85 @@ function MobileNav({
   //   }, 300);
   // };
 
-  const handleScrollLink = (url: string) => {
+  // NEW
+  const vh = useViewportHeight();
+  const { isHomePage, activeSection, scrollToSection } = useSmoothScroll();
+  const navigate = useNavigate();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const firstLinkRef = useRef<HTMLButtonElement>(null);
+
+  // Enhanced scroll handler with iOS Chrome detection
+  const handleScrollLink = async (url: string) => {
     setIsMenuOpen(false);
 
-    // Restore scroll (especially important for iOS)
+    // Immediately restore scroll capability
     document.body.style.overflow = "";
+    document.body.style.position = "";
     document.body.style.touchAction = "";
 
-    const scrollNow = () => {
-      const offset = url === "features" ? 280 : 120;
-
-      // Use a short delay to allow DOM changes (important for iOS)
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          scrollToSection(url, offset);
-        });
-      });
-    };
-
     if (!isHomePage && url !== "contact-us") {
-      navigate("/", {
-        state: { scrollTo: url },
-        replace: true,
-      });
-
-      // Scroll after navigation
-      setTimeout(() => {
-        scrollNow();
-      }, 300); // Slight delay to allow for page transition
-      return;
+      await navigate("/", { replace: true });
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
-    scrollNow();
+    if (isIOSChrome()) {
+      // Use our custom iOS Chrome scroll implementation
+      await iosScrollTo(url, 140);
+    } else {
+      // Use native smooth scroll for other browsers
+      const element = document.getElementById(url);
+      if (element) {
+        const targetY =
+          element.getBoundingClientRect().top + window.scrollY - 140;
+        window.scrollTo({
+          top: targetY,
+          behavior: "smooth",
+        });
+      }
+    }
   };
+
+  // Focus management for accessibility
+  useEffect(() => {
+    if (isMenuOpen && firstLinkRef.current) {
+      setTimeout(() => firstLinkRef.current?.focus(), 50);
+    }
+  }, [isMenuOpen]);
+
+  // Body scroll lock that works with iOS Chrome
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.touchAction = "";
+
+      // iOS Chrome needs this to prevent scroll position jumps
+      if (isIOSChrome()) {
+        setTimeout(() => {
+          window.scrollTo(0, window.scrollY);
+        }, 10);
+      }
+    }
+  }, [isMenuOpen]);
+
+  // Close menu on escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("keydown", handleEsc);
+    }
+
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [isMenuOpen, setIsMenuOpen]);
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
   const scrollLinks = navLinks.filter((link) => link.type === "scroll");
@@ -178,6 +161,7 @@ function MobileNav({
           >
             <div className="flex justify-between items-start">
               <img
+                onClick={() => handleScrollLink("home")}
                 src={safulpayTextIcon}
                 alt={`${companyName} text logo`}
                 className="h-42.5 px-3.25 py-1.25 cursor-pointer max-md:h-auto"
@@ -186,7 +170,6 @@ function MobileNav({
                   height: "100%",
                   display: vh < 680 ? "none" : "",
                 }}
-                onClick={() => handleScrollLink("home")}
               />
 
               <div
@@ -212,6 +195,7 @@ function MobileNav({
 
               <button
                 onClick={() => setIsMenuOpen(false)}
+                ref={firstLinkRef}
                 aria-label={isMenuOpen && "Close menu"}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
@@ -219,23 +203,25 @@ function MobileNav({
               >
                 <img
                   src={menuIconWhite}
-                  alt="hamburger menu icon"
+                  alt="Close menu icon"
                   className="w-7.5"
                 />
               </button>
             </div>
             <nav
-              className="flex flex-col items-start mb-0 m:mb-11.25 "
               aria-label="Mobile navigation"
+              role="menu"
+              className="flex flex-col items-start mb-0 m:mb-11.25 "
             >
               {scrollLinks.map((link) => (
                 <button
+                  key={`mobile-scroll-${link.url}`}
                   onClick={() => handleScrollLink(link.url)}
+                  role="menuitem"
                   className={`px-5 py-3 text-lg font-semibold tracking-[-0.28px] cursor-pointer hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color transition-colors ${
                     activeSection === link.url &&
                     "text-secondary-color font-bold"
                   }`}
-                  key={`mobile-scroll-${link.url}`}
                 >
                   {link.label}
                 </button>
@@ -243,13 +229,14 @@ function MobileNav({
 
               {routeLinks.map((link) => (
                 <NavLink
+                  key={`mobile-route-${link.url}`}
                   to={link.url}
+                  role="menuitem"
                   className={({ isActive }) =>
                     `tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color${
                       isActive ? "text-secondary-color" : ""
                     }`
                   }
-                  key={`mobile-route-${link.url}`}
                 >
                   {link.label}
                 </NavLink>

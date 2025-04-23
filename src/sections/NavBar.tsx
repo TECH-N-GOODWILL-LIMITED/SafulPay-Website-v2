@@ -14,6 +14,7 @@ function NavBar() {
   return (
     <header
       ref={parent}
+      role="banner"
       className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-99"
     >
       <a

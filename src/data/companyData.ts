@@ -206,7 +206,7 @@ export const companyData: SafulPayData = {
     members: [
       {
         img: "/team/wale-ceo.png",
-        name: "Adeola Olukoya",
+        name: "Adewale Olukoya",
         role: "Co-Founder & CEO",
         socials: {
           twitter: "https://twitter.com/johndoe",

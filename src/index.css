@@ -57,10 +57,6 @@
     @apply text-[clamp(24px,7.91vw,100px)] font-bold tracking-[-3px] max-m:tracking-[-1.36px] leading-none;
   }
 
-  /* :focus-visible {
-    @apply outline-none ring-2 ring-offset-3 ring-secondary-color;
-  } */
-
   button,
   a {
     transition: box-shadow 0.2s ease;
@@ -68,6 +64,10 @@
 
   :focus-visible {
     @apply outline-none shadow-[0_0_0_0.3rem_rgba(195,240,44,0.5)] rounded-2xl;
+  }
+
+  * {
+    @apply selection:bg-secondary-shade-10;
   }
 
   ::-webkit-scrollbar {

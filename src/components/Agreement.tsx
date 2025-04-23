@@ -1,7 +1,9 @@
 import { Link } from "react-router";
-import { AgreementData } from "../data/agreementData";
+import type { AgreementData } from "../data/agreementData";
 import arrowBack from "/icon-arrow-back.svg";
 import Download from "../sections/Download";
+import { useRef } from "react";
+import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 
 interface AgreementProps {
   data: AgreementData;
@@ -10,12 +12,33 @@ interface AgreementProps {
 const Agreement: React.FC<AgreementProps> = ({ data }) => {
   const { title, lastUpdated, sections } = data;
 
+  const agreementRef = useRef<HTMLDivElement>(null);
+  const agreementHeader = useRef<HTMLDivElement>(null);
+
+  useHeaderAnimation({
+    containerRef: agreementRef,
+  });
+
   return (
-    <main className="gap-5 pb-30 pt-0 md:gap-12.5 md:py-37.5">
-      <section className="section h-84.5 py-12.5 text-white justify-center bg-text-color rounded-[50px] max-md:rounded-t-none max-md:justify-end m:h-125 ">
+    <main
+      ref={agreementRef}
+      className="gap-5 pb-30 pt-0 md:gap-12.5 md:py-37.5"
+    >
+      <header
+        ref={agreementHeader}
+        className="animateheader section h-84.5 py-12.5 text-white justify-center bg-text-color rounded-[50px] max-md:rounded-t-none max-md:justify-end m:h-125 "
+      >
         <div className="max-w-285 w-full text-left px-7.5">
-          <Link to="/" className="flex gap-7.5">
-            <img src={arrowBack} alt="" className="max-[600px]:w-6.75 w-15.5" />
+          <Link
+            to="/"
+            className="flex gap-7.5"
+            aria-label="Go back to homepage"
+          >
+            <img
+              src={arrowBack}
+              alt="Back"
+              className="max-[600px]:w-6.75 w-15.5"
+            />
             <span className="py-2.5">Back</span>
           </Link>
           <h2 className="py-0 md:py-2.5 text-[clamp(20px,7.907vw,64px)] font-semibold text-primary-color uppercase tracking-[-2.562x] max-md:tracking-[-1.36px]">
@@ -23,10 +46,15 @@ const Agreement: React.FC<AgreementProps> = ({ data }) => {
           </h2>
           <p className="py-2.5">{lastUpdated}</p>
         </div>
-      </section>
-      <article className="max-w-250 flex flex-col gap-5 text-left lg:gap-12.5">
-        {sections.map((section) => (
-          <div>
+      </header>
+
+      {/* Agreement Content */}
+      <article
+        aria-labelledby="agreement-title"
+        className="max-w-250 flex flex-col gap-5 text-left lg:gap-12.5"
+      >
+        {sections.map((section, sectionIndex) => (
+          <section key={sectionIndex} aria-label={section.title}>
             <h2 className="mx-10 py-2.5 text-primary-color text-[clamp(16px,5.117vw,34px)] max-m:tracking-[-0.4px] font-semibold tracking-[-1.36px]">
               {section.title}
             </h2>
@@ -44,9 +72,9 @@ const Agreement: React.FC<AgreementProps> = ({ data }) => {
                 )}
                 {content.list && (
                   <ul className="mx-15 pb-2.5 pt-1.25 ">
-                    {content.list?.map((listItem, index) => (
+                    {content.list?.map((listItem, listIndex) => (
                       <li
-                        key={index}
+                        key={listIndex}
                         className="small-text list-disc list-inside"
                       >
                         {listItem}
@@ -56,7 +84,7 @@ const Agreement: React.FC<AgreementProps> = ({ data }) => {
                 )}
               </div>
             ))}
-          </div>
+          </section>
         ))}
       </article>
       <Download />

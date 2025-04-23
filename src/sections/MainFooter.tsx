@@ -10,6 +10,7 @@ function MainFooter() {
         className="max-w-147.5 absolute right-[-14%] top-[-9%] max-md:max-w-120 max-sm:max-w-100 opacity-80"
         src={bgIcon}
         alt=""
+        aria-hidden="true"
       />
       <Footer />
     </div>
