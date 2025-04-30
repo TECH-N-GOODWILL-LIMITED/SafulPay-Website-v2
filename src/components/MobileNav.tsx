@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
@@ -41,17 +41,18 @@ function MobileNav({
 }: MobileNavProps) {
   // NEW
   const menuRef = useRef<HTMLDivElement>(null);
-  const firstLinkRef = useRef<HTMLButtonElement>(null);
+  // const firstLinkRef = useRef<HTMLButtonElement>(null);
+  const navigate = useNavigate();
   const { scrollToSection, activeSection, isHomePage } =
     useSmoothScrollContext();
   const vh = useViewportHeight();
 
   // Focus management for accessibility
-  useEffect(() => {
-    if (isMenuOpen && firstLinkRef.current) {
-      firstLinkRef.current.focus();
-    }
-  }, [isMenuOpen]);
+  // useEffect(() => {
+  //   if (isMenuOpen && firstLinkRef.current) {
+  //     firstLinkRef.current.focus();
+  //   }
+  // }, [isMenuOpen]);
 
   // iOS-specific body scroll lock
   useEffect(() => {
@@ -101,7 +102,7 @@ function MobileNav({
       return;
     }
 
-    // navigate("/", { state: { scrollTo: url }, replace: true });
+    navigate("/", { state: { scrollTo: url }, replace: true });
   };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
@@ -124,7 +125,10 @@ function MobileNav({
           >
             <div className="flex justify-between items-start">
               <img
-                onClick={() => handleScrollLink("home")}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleScrollLink("home");
+                }}
                 src={safulpayTextIcon}
                 alt={`${companyName} text logo`}
                 className="h-42.5 px-3.25 py-1.25 cursor-pointer max-md:h-auto"
@@ -140,7 +144,10 @@ function MobileNav({
                 style={{
                   display: vh > 680 ? "none" : "",
                 }}
-                onClick={() => handleScrollLink("home")}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleScrollLink("home");
+                }}
               >
                 <img
                   src={safulPayLogo}
@@ -175,9 +182,9 @@ function MobileNav({
               role="menu"
               className="flex flex-col items-start mb-0 m:mb-11.25 "
             >
-              {scrollLinks.map((link, index) => (
+              {scrollLinks.map((link) => (
                 <button
-                  ref={index === 0 ? firstLinkRef : null}
+                  // ref={index === 0 ? firstLinkRef : null}
                   key={`mobile-scroll-${link.url}`}
                   onClick={() => handleScrollLink(link.url)}
                   role="menuitem"
