@@ -5,20 +5,21 @@ import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
 import DownloadItem from "../components/DownloadItem";
 import mockupImage from "../assets/mockup-login-signup.png";
+import { useViewportWidth } from "../hooks/useViewportWidth";
 
 function Download() {
-  const { downloads } = companyData;
-  const { title, subtitle, text } = downloads;
-
   const downloadRef = useRef<HTMLHeadingElement | null>(null);
   const downloadTextRef = useRef<HTMLDivElement>(null);
   const mockupSlide = useRef<HTMLImageElement>(null);
+  const { isMobile } = useViewportWidth();
+  const { downloads } = companyData;
+  const { title, subtitle, text } = downloads;
 
   useScaleFadeIn({
     containerRef: downloadRef,
     start: "top bottom",
-    end: "bottom center",
-    scrub: 0.5,
+    end: "bottom bottom",
+    scrub: isMobile ? false : 0.5,
   });
 
   useHeaderAnimation({ containerRef: downloadTextRef });

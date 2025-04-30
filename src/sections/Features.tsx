@@ -1,16 +1,22 @@
 import { useRef } from "react";
+import KeyFeatures from "../components/KeyFeatures";
 import { featuresData } from "../data/appContent";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import KeyFeatures from "../components/KeyFeatures";
 import bgIcon from "../assets/bg-logo-illustration.svg";
 import illustrationImage from "../assets/illustration-image.png";
+import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
 
 function Features() {
+  const featuresTextRef = useRef<HTMLDivElement>(null);
+  const IllustrationsRef = useRef<HTMLDivElement>(null);
   const { featuresText, featuresIllustration } = featuresData;
 
-  const featuresTextRef = useRef<HTMLDivElement>(null);
-
   useHeaderAnimation({ containerRef: featuresTextRef });
+
+  useScaleFadeIn({
+    containerRef: IllustrationsRef,
+    targetSelector: ".feature-images",
+  });
 
   return (
     <section
@@ -52,9 +58,17 @@ function Features() {
         role="presentation"
         className="max-w-[min(90vw,1000px)] max-md:hidden"
       />
-      <div className="max-w-90 p-7.5 hidden max-md:flex-center flex-col gap-2.5">
+      <div
+        ref={IllustrationsRef}
+        className="max-w-90 p-7.5 hidden max-md:flex-center flex-col gap-2.5"
+      >
         {featuresIllustration.map((illustration, index) => (
-          <img src={illustration} alt="" key={index} />
+          <img
+            src={illustration}
+            alt="Illustration Image for SafulPay Features"
+            key={index}
+            className="feature-images"
+          />
         ))}
       </div>
     </section>

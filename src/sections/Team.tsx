@@ -1,14 +1,13 @@
 import { useRef } from "react";
 import { companyData } from "../data/companyData";
+import Member from "../components/Member";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import bgIcon from "../assets/bg-logo-illustration.svg";
-import AnimatedStep from "../hooks/animations/AnimatedStep";
 
 function Team() {
+  const teamRef = useRef<HTMLDivElement>(null);
   const { team } = companyData;
   const { title, intro, members } = team;
-
-  const teamRef = useRef<HTMLDivElement>(null);
 
   useHeaderAnimation({
     containerRef: teamRef,
@@ -92,25 +91,7 @@ function Team() {
         <div className="w-full">
           <div className="grid grid-cols-3 gap-7.5 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:overflow-x-auto max-md:scrollbar-hide">
             {members.map((member, index) => (
-              <AnimatedStep index={index}>
-                <article
-                  key={index}
-                  aria-label={`Team member: ${member.name}, ${member.role}`}
-                  className="min-w-[260px] h-full shrink-0 bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
-                >
-                  <div className="bg-red-200 h-3/4">
-                    <img
-                      src={member.img}
-                      alt={`${member.name}'s photo`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-6.75">
-                    <p className="title-text">{member.name}</p>
-                    <p className="text-[14px]">{member.role}</p>
-                  </div>
-                </article>
-              </AnimatedStep>
+              <Member key={index} data={member} index={index} />
             ))}
           </div>
         </div>

@@ -1,6 +1,6 @@
 import NavBar from "../sections/NavBar";
-import Team from "../sections/Team";
 import About from "../sections/About";
+import Team from "../sections/Team";
 import Download from "../sections/Download";
 import MainFooter from "../sections/MainFooter";
 

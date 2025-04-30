@@ -1,15 +1,14 @@
 import { useRef } from "react";
+import SecurityFeature from "../components/SecurityFeature";
 import { companyData } from "../data/companyData";
 import { securityData } from "../data/appContent";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import SecurityFeature from "../components/SecurityFeature";
 import bgIcon from "../assets/bg-logo-illustration.svg";
 
 function Security() {
+  const securityRef = useRef<HTMLDivElement>(null);
   const { regulated } = companyData;
   const { title, intro, securityFeatures } = securityData;
-
-  const securityRef = useRef<HTMLDivElement>(null);
 
   useHeaderAnimation({
     containerRef: securityRef,
@@ -54,36 +53,3 @@ function Security() {
 }
 
 export default Security;
-
-// const featureRefs = useRef<Array<HTMLDivElement | null>>([]);
-
-{
-  /* <div className="grid grid-cols sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-2.5 m:gap-5 lg:gap-10 max-w-283">
-  {securityFeatures.map((feature, index) => (
-    <SecurityFeature
-      key={feature.title}
-      data={feature}
-      index={index}
-      refs={featureRefs.current}
-      ref={(el) => {
-        featureRefs.current[index] = el;
-      }}
-    />
-  ))}
-
-  {securityFeatures.slice(0, 1).map((feature, index) => (
-    <SecurityFeature key={feature.title} data={feature} index={index} />
-  ))}
-  <div className="col-span-1 row-span-2 items-center justify-center hidden lg:flex">
-    <img
-      src={mockUp}
-      alt="Login mockup image"
-      className="w-full object-cover"
-    />
-  </div>
-
-  {securityFeatures.slice(1).map((feature, index) => (
-    <SecurityFeature key={feature.title} data={feature} index={index} />
-  ))}
-</div>; */
-}

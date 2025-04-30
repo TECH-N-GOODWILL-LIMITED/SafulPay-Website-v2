@@ -1,22 +1,24 @@
+import { useRef } from "react";
 import { companyData } from "../data/companyData";
 import DownloadItem from "../components/DownloadItem";
-import mockUpImage from "../assets/mockup-home-page.png";
-import { useRef } from "react";
-import { useAnimateText } from "../hooks/animations/useAnimateText";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
+import { useAnimateText } from "../hooks/animations/useAnimateText";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
+import mockUpImage from "../assets/mockup-home-page.png";
 // import Partners from "../components/Partners";
 
 function Hero() {
-  const { company } = companyData;
-
   const heroRef = useRef<HTMLDivElement | null>(null);
   const companyNameRef = useRef<HTMLSpanElement | null>(null);
   const mockupImageRef = useRef<HTMLImageElement | null>(null);
+  const { company } = companyData;
 
   useAnimateText({
     containerRef: companyNameRef,
-    text: company.name,
+    text: company.alias,
+    finalText: company.name,
+    repeat: 1,
+    yoyo: true,
   });
 
   useHeaderAnimation({ containerRef: heroRef });
@@ -42,7 +44,7 @@ function Hero() {
             ref={companyNameRef}
             className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent"
           >
-            {/* {company.name} */}
+            Saful{/* {company.name} */}
           </span>
         </h1>
         <p className="text-[clamp(16px,3.721vw,30px)] font-normal tracking-[-0.9px] max-m:tracking-normal p-2.5 max-w-250 max-m:max-w-80">

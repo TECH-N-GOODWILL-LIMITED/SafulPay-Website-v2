@@ -1,27 +1,32 @@
 import { NavLink, useNavigate } from "react-router";
 import { companyData } from "../data/companyData";
 import { featuresData, footerData } from "../data/appContent";
+import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import DownloadItem from "./DownloadItem";
-import { useSmoothScroll } from "../context/SmoothScrollProvider";
 import bgIcon from "../assets/bg-logo-illustration.svg";
 
 function Footer() {
   const navigate = useNavigate();
+  const { activeSection, scrollToSection, isHomePage } =
+    useSmoothScrollContext();
   const { company, socials, regulated } = companyData;
   const { featuresText } = featuresData;
   const { footerLinks, copyright, otherLinks } = footerData;
 
-  const { isHomePage, activeSection, setActiveSection, scrollToSection } =
-    useSmoothScroll();
-
   const handleScrollLink = (url: string) => {
-    if (!isHomePage && url !== "contact-us") {
-      setActiveSection(url);
-      navigate("/", { state: { scrollTo: url }, replace: true });
-    } else {
-      const offset = url === "features" ? 280 : 120;
-      scrollToSection(url, offset);
+    const offset = url === "features" ? 280 : 120;
+
+    if (!isHomePage && (url === "contact-us" || url === "download")) {
+      scrollToSection(url, { offset });
+      return;
     }
+
+    if (isHomePage) {
+      scrollToSection(url, { offset });
+      return;
+    }
+
+    navigate("/", { state: { scrollTo: url }, replace: true });
   };
 
   return (
@@ -63,8 +68,15 @@ function Footer() {
                 <>
                   {link.type === "route" ? (
                     <NavLink
-                      key={`${link.type}-${link.url}`}
                       to={link.url}
+                      end
+                      onClick={(e) => {
+                        if (location.pathname === link.url) {
+                          e.preventDefault();
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                      }}
+                      key={`${link.type}-${link.url}`}
                       className={({ isActive }) =>
                         `small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-all cursor-pointer hover:cursor-pointer max-md:text-center ${
                           isActive && "text-secondary-color font-bold"
@@ -145,6 +157,13 @@ function Footer() {
             {otherLinks.map((link, index) => (
               <NavLink
                 to={link.url}
+                end
+                onClick={(e) => {
+                  if (location.pathname === link.url) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
                 key={index}
                 className="py-2.5 px-5 m:px-7.5 font-semibold hover:text-secondary-color transition-all"
                 aria-label={`Navigate to ${link.label} page`}

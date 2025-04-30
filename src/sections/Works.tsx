@@ -1,18 +1,20 @@
 import { useRef } from "react";
 import { worksData } from "../data/appContent";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import Step from "../components/Step";
+import { useViewportWidth } from "../hooks/useViewportWidth";
+import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
 
 function Works() {
-  const { title, intro, instruction, steps } = worksData;
   const worksRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useViewportWidth();
+  const { title, intro, instruction, steps } = worksData;
 
   useScaleFadeIn({
     containerRef: worksRef,
     start: "top bottom",
-    end: "bottom center",
-    scrub: 0.5,
+    end: "80% bottom",
+    scrub: isMobile ? false : 0.5,
   });
 
   useHeaderAnimation({

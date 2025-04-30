@@ -1,4 +1,4 @@
-// PRIVACY
+// PRIVACY & TERMS AND CONDITIONS
 export interface AgreementContent {
   subtitle?: string;
   text?: string;

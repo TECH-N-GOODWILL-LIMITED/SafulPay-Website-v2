@@ -1,19 +1,18 @@
+import { useRef } from "react";
 import { Link } from "react-router";
 import type { AgreementData } from "../data/agreementData";
+import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import arrowBack from "/icon-arrow-back.svg";
 import Download from "../sections/Download";
-import { useRef } from "react";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 
 interface AgreementProps {
   data: AgreementData;
 }
 
 const Agreement: React.FC<AgreementProps> = ({ data }) => {
-  const { title, lastUpdated, sections } = data;
-
   const agreementRef = useRef<HTMLDivElement>(null);
   const agreementHeader = useRef<HTMLDivElement>(null);
+  const { title, lastUpdated, sections } = data;
 
   useHeaderAnimation({
     containerRef: agreementRef,

@@ -1,6 +1,7 @@
 // COMPANY
 export interface Company {
   name: string;
+  alias: string[];
   greenLogo: string;
   lemonLogo: string;
   slogan: string;
@@ -75,6 +76,7 @@ export interface SafulPayData {
 export const companyData: SafulPayData = {
   company: {
     name: "SafulPay",
+    alias: ["SafulGift", "SafulLink"],
     greenLogo: "/safulpay-icon-green.svg",
     lemonLogo: "/safulpay-icon-lemon.svg",
     slogan: "Finance Just Got Better With ",

@@ -1,24 +1,24 @@
 import { useRef } from "react";
+import MoreFeaturesItem from "../components/MoreFeatureItem";
 import { featuresData } from "../data/appContent";
+import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import AnimatedStep from "../hooks/animations/AnimatedStep";
-import MoreFeaturesItem from "../components/MoreFeatureItem";
-import bigRay from "../assets/big-ray-illustration.svg";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
+import bigRay from "../assets/big-ray-illustration.svg";
 
 function MoreFeatures() {
-  const { featuresText, moreFeatures } = featuresData;
-
   const moreFeaturesBgRef = useRef<HTMLDivElement>(null);
   const moreFeaturesTextRef = useRef<HTMLDivElement>(null);
   const bigRayRef = useRef<HTMLImageElement>(null);
+  const { isMobile } = useViewportWidth();
+  const { featuresText, moreFeatures } = featuresData;
 
   useScaleFadeIn({
     containerRef: moreFeaturesBgRef,
     start: "top bottom",
-    end: "bottom bottom",
-    scrub: 0.5,
+    end: "80% bottom",
+    scrub: isMobile ? false : 0.5,
   });
 
   useHeaderAnimation({
@@ -28,7 +28,7 @@ function MoreFeatures() {
   useGsapCustomAnimation({
     containerRef: bigRayRef,
     from: {
-      scale: 0.8,
+      scale: 0.6,
       y: 400,
       opacity: 0,
     },
@@ -74,9 +74,7 @@ function MoreFeatures() {
         className="flex gap-10 z-2 justify-center max-lg:gap-5 max-md:flex-col max-md:gap-2.5"
       >
         {moreFeatures.map((feature, index) => (
-          <AnimatedStep key={index} index={index}>
-            <MoreFeaturesItem index={index} feature={feature} />
-          </AnimatedStep>
+          <MoreFeaturesItem index={index} feature={feature} />
         ))}
       </div>
     </section>

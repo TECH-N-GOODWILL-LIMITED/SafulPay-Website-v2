@@ -1,4 +1,3 @@
-// hooks/useBouncyText.ts
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
@@ -8,76 +7,79 @@ gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
 export function useAnimateText({
   containerRef,
-
   text,
-  duration = 2,
-  delay = 0.3,
-  // ease = "elastic.out(1, 1)",
+  finalText,
+  duration = 1.4,
+  delay = 0.2,
   ease = "power2.out",
-  start = "bottom 80%",
+  start = "top 80%",
+  repeat = 0,
+  yoyo = false,
 }: {
   containerRef: React.RefObject<HTMLElement | null>;
-  text: string;
+  text: string | string[];
+  finalText?: string;
   duration?: number;
   delay?: number;
   ease?: string;
   start?: string;
+  repeat?: number;
+  yoyo?: boolean;
 }) {
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
+
+    const texts = Array.isArray(text) ? [...text] : [text];
+    if (finalText) texts.push(finalText);
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
           start,
-          toggleActions: "play none none reset", // 👈 reset so it re-triggers
+          toggleActions: "play none none reset",
+        },
+        repeat,
+        yoyo,
+        onRepeat: () => {
+          if (repeat % 2 !== 0 && !yoyo) {
+            gsap.to(el, {
+              text: texts[texts.length - 1],
+              duration: 1.6,
+              ease: "power2.out",
+            });
+          }
+        },
+        onComplete: () => {
+          gsap.to(el, {
+            text: texts[texts.length - 1],
+            duration: 1.6,
+            ease: "power2.out",
+          });
         },
       });
 
-      // tl.fromTo(
-      //   el,
-      //   {
-      //     text: "",
-      //     scale: 0.6,
-      //     y: 50,
-      //     opacity: 0,
-      //   },
-      //   {
-      //     text,
-      //     scale: 1,
-      //     y: 0,
-      //     opacity: 1,
-      //     duration,
-      //     ease,
-      //     delay,
-      //   }  // Step 1: From empty to "SafulGift"
-      tl.fromTo(
-        el,
-        {
-          text: "",
-          scale: 0.6,
-          opacity: 0,
-        },
-        {
-          text: "SafulGift",
-          scale: 1.05,
-          opacity: 1,
-          duration: duration,
-          delay,
+      texts.forEach((t, i) => {
+        tl.to(el, {
+          text: t,
+          duration,
           ease,
-        }
-      );
-
-      tl.to(el, {
-        text,
-        scale: 1,
-        duration: duration * 0.5,
-        ease: "power2.out",
+          delay: i === 0 ? delay : 0.1,
+        });
       });
     }, containerRef);
 
     return () => ctx.revert();
-  }, [containerRef, text, duration, delay, ease, start]);
+  }, [
+    containerRef,
+    text,
+    finalText,
+    duration,
+    delay,
+    ease,
+    start,
+    repeat,
+    yoyo,
+  ]);
 }

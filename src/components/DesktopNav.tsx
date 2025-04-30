@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router";
-import { useSmoothScroll } from "../context/SmoothScrollProvider";
+import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import { useViewportHeight } from "../hooks/useViewportHeight";
 import menuIcon from "/icon-menu-green.svg";
 import ray from "../assets/open-app-ray.svg";
@@ -24,23 +24,23 @@ interface DesktopNavProps {
 function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
   const navigate = useNavigate();
   const vh = useViewportHeight();
-
-  const {
-    isHomePage,
-    isHeroSection,
-    activeSection,
-    setActiveSection,
-    scrollToSection,
-  } = useSmoothScroll();
+  const { activeSection, scrollToSection, isHeroSection, isHomePage } =
+    useSmoothScrollContext();
 
   const handleScrollLink = (url: string) => {
-    if (!isHomePage && url !== "contact-us") {
-      setActiveSection(url);
-      navigate("/", { state: { scrollTo: url }, replace: true });
+    const offset = url === "features" ? 280 : 120;
+
+    if (!isHomePage && (url === "contact-us" || url === "download")) {
+      scrollToSection(url, { offset });
+      return;
     }
 
-    const offset = url === "features" ? 280 : 120;
-    scrollToSection(url, offset);
+    if (isHomePage) {
+      scrollToSection(url, { offset });
+      return;
+    }
+
+    navigate("/", { state: { scrollTo: url }, replace: true });
   };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
@@ -55,7 +55,12 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
     >
       <Link
         to="/"
-        onClick={() => handleScrollLink("home")}
+        onClick={(e) => {
+          if (isHomePage) {
+            e.preventDefault();
+            handleScrollLink("home");
+          }
+        }}
         aria-label="Go to homepage"
         className="flex gap-2.5 items-center max-xl:gap-1 cursor-pointer"
       >
@@ -90,14 +95,21 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
 
             {routeLinks.map((link) => (
               <NavLink
-                key={`route-${link.url}`}
                 to={link.url}
+                end
+                onClick={(e) => {
+                  if (location.pathname === link.url) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+                key={`route-${link.url}`}
+                aria-label={`Navigate to ${link.label}`}
                 className={({ isActive }) =>
                   `cursor-pointer py-2.5 px-5 max-xl:px-3 transition-all hover:scale-105 hover:text-secondary-color ${
                     isActive && "text-secondary-color font-bold"
                   }`
                 }
-                aria-label={`Navigate to ${link.label}`}
               >
                 {link.label}
               </NavLink>
@@ -121,7 +133,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
         )}
       </nav>
       <button
-        onClick={() => scrollToSection("download", 120)}
+        onClick={() => handleScrollLink("download")}
         className="cursor-pointer px-7.5 py-4.25 rounded-[10px] bg-secondary-color text-primary-color text-[20px] tracking-[-0.4px] font-semibold max-xl:p-2.75 max-lg:hidden"
         aria-label="Scroll to download section"
       >
