@@ -1,24 +1,24 @@
-import { footerData, navLinks } from "../data/appContent";
-import { companyData } from "../data/companyData";
+import { useState } from "react";
 import MobileNav from "../components/MobileNav";
 import DesktopNav from "../components/DesktopNav";
-import { useState } from "react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { companyData } from "../data/companyData";
+// import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { footerData, navLinks } from "../data/appContent";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [parent] = useAutoAnimate();
+  // const [parent] = useAutoAnimate();
   const { company } = companyData;
   const { otherLinks } = footerData;
 
   return (
     <header
-      ref={parent}
+      // ref={parent}
       role="banner"
       className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-99"
     >
       <a
-        href="#main"
+        href="#features"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-black px-4 py-2 z-50"
       >
         Skip to main content

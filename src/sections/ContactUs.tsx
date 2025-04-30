@@ -1,18 +1,23 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { companyData } from "../data/companyData";
-import bgIcon from "../assets/bg-logo-illustration.svg";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
+import bgIcon from "../assets/bg-logo-illustration.svg";
 
 function ContactUs() {
-  const { company } = companyData;
-
   const contactRef = useRef<HTMLDivElement | null>(null);
+  const [email, setEmail] = useState<string>(" ");
+  const { company } = companyData;
 
   useScaleFadeIn({ containerRef: contactRef });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setEmail(" ");
     console.log("Form submitted successfully");
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   return (
@@ -58,6 +63,8 @@ function ContactUs() {
             id="email"
             name="email"
             type="email"
+            value={email}
+            onChange={handleInputChange}
             placeholder="Enter your email address"
             required
             aria-required="true"

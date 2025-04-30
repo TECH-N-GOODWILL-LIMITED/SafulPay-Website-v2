@@ -1,8 +1,23 @@
-import { useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGsapCustomAnimation } from "./useGsapCustomAnimation"; // adjust path as needed
 
-gsap.registerPlugin(ScrollTrigger);
+type SlideFadeInOptions = {
+  containerRef: React.RefObject<HTMLElement | null>;
+  targetSelector?: string;
+  fromX?: number;
+  toX?: number;
+  fromY?: number;
+  toY?: number;
+  fromOpacity?: number;
+  toOpacity?: number;
+  duration?: number;
+  delay?: number;
+  ease?: string;
+  start?: string;
+  end?: string;
+  scrub?: boolean | number;
+  stagger?: number;
+  toggleActions?: string;
+};
 
 export function useSlideFadeIn({
   containerRef,
@@ -14,90 +29,41 @@ export function useSlideFadeIn({
   fromOpacity = 0,
   toOpacity = 1,
   duration = 1,
+  delay = 0,
   ease = "power2.out",
   start = "top 80%",
   end,
-  toggleActions = "play none none reverse",
+  // toggleActions = "play none none reverse",
   scrub = false,
   stagger = 0.1,
-}: {
-  containerRef: React.RefObject<HTMLElement | null>;
-  targetSelector?: string;
-  fromX?: number;
-  toX?: number;
-  fromY?: number;
-  toY?: number;
-  fromOpacity?: number;
-  toOpacity?: number;
-  duration?: number;
-  ease?: string;
-  start?: string;
-  end?: string;
-  toggleActions?: string;
-  scrub?: boolean | number;
-  stagger?: number;
-}) {
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const container = containerRef.current;
-      if (!container) return;
+  toggleActions = "play none none none",
+}: SlideFadeInOptions) {
+  const from: gsap.TweenVars = {
+    x: fromX,
+    y: fromY,
+    opacity: fromOpacity,
+  };
 
-      let targets: Element[] | NodeListOf<Element>;
-
-      if (!targetSelector) {
-        // Animate container itself
-        targets = [container];
-      } else if (targetSelector === "*") {
-        // Animate all direct children
-        targets = container.querySelectorAll(":scope > *");
-      } else {
-        // Animate matching children
-        targets = container.querySelectorAll(targetSelector);
-      }
-
-      if (!targets.length) return;
-
-      gsap.fromTo(
-        targets,
-        {
-          x: fromX,
-          y: fromY,
-          opacity: fromOpacity,
-        },
-        {
-          x: toX,
-          y: toY,
-          opacity: toOpacity,
-          duration,
-          ease,
-          stagger: targets.length > 1 ? stagger : 0,
-          scrollTrigger: {
-            trigger: container,
-            start,
-            end: end || undefined,
-            toggleActions: scrub ? undefined : toggleActions,
-            scrub,
-          },
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [
-    containerRef,
-    targetSelector,
-    fromX,
-    toX,
-    fromY,
-    toY,
-    fromOpacity,
-    toOpacity,
+  const to: gsap.TweenVars = {
+    x: toX,
+    y: toY,
+    opacity: toOpacity,
     duration,
     ease,
-    start,
-    end,
-    toggleActions,
-    scrub,
+    delay,
     stagger,
-  ]);
+  };
+
+  useGsapCustomAnimation({
+    containerRef,
+    targetSelector,
+    from,
+    to,
+    scrollTrigger: {
+      start,
+      end,
+      scrub,
+      toggleActions: scrub ? undefined : toggleActions,
+    },
+  });
 }

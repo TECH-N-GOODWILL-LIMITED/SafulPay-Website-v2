@@ -7,6 +7,7 @@ import { usePageTitle } from "./hooks/usePageTitle";
 
 function App() {
   usePageTitle();
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

@@ -1,10 +1,10 @@
+import { useRef } from "react";
 import type { Step as StepData } from "../data/appContent";
+import { useViewportWidth } from "../hooks/useViewportWidth";
+import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
 import bgIcon from "../assets/bg-logo-illustration.svg";
-import lineImage from "../assets/line-illustration.svg";
 import circleSvg from "../assets/circle-bg.svg";
-import AnimatedStep from "../hooks/animations/AnimatedStep";
-// import { useRef } from "react";
-// import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
+import lineImage from "../assets/line-illustration.svg";
 
 interface StepProps {
   data: StepData;
@@ -12,26 +12,18 @@ interface StepProps {
 }
 
 function Step({ data, index }: StepProps) {
+  const stepRef = useRef<HTMLLIElement | null>(null);
   const { icon, title, description } = data;
+  const { isMobile } = useViewportWidth();
 
-  // const stepRef = useRef<HTMLLIElement>(null);
-
-  // useGsapCustomAnimation({
-  //   containerRef: stepRef,
-  //   from: {
-  //     opacity: 0,
-  //     y: 50,
-  //     scale: 0.9,
-  //   },
-  //   to: {
-  //     opacity: 1,
-  //     y: 0,
-  //     scale: 1,
-  //     duration: 0.6,
-  //     ease: "power2.out",
-  //     delay: index * 0.5,
-  //   },
-  // });
+  useGsapCustomAnimation({
+    containerRef: stepRef,
+    targetSelector: ".step",
+    from: { opacity: 0, y: 40 },
+    to: { opacity: 1, y: 0, duration: 0.6 },
+    index: isMobile ? 0 : index,
+    staggerDelay: isMobile ? 0 : 0.4,
+  });
 
   return (
     <>
@@ -53,12 +45,8 @@ function Step({ data, index }: StepProps) {
           className="w-29 h-29 rotate-180 scale-x-[-1] max-lg:w-16 max-md:w-29 max-md:rotate-270 max-md:scale-y-[-1]"
         />
       )}
-      <AnimatedStep index={index}>
-        <li
-          // ref={stepRef}
-          className="max-w-87.5 flex flex-col gap-2.5 self-start"
-          key={index}
-        >
+      <li ref={stepRef} className="max-w-87.5" key={index}>
+        <div className="step flex flex-col gap-2.5 self-start w-full">
           <div className="flex items-center justify-center relative">
             <img
               src={circleSvg}
@@ -95,8 +83,8 @@ function Step({ data, index }: StepProps) {
               {description}
             </p>
           </div>
-        </li>
-      </AnimatedStep>
+        </div>
+      </li>
     </>
   );
 }

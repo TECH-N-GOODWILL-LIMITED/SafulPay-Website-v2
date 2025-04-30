@@ -85,7 +85,7 @@ export interface AboutUsData {
 
 // TEAM
 export interface TeamMember {
-  img: string;
+  img?: string;
   name: string;
   role: string;
   socials: {

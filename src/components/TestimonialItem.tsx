@@ -1,16 +1,3 @@
-// interface TestimonialItemProps {
-//   name: string;
-//   location: string;
-//   title: string;
-//   text: string;
-// }
-
-// function TestimonialItem({
-//   name,
-//   location,
-//   title,
-//   text,
-// }: TestimonialItemProps) {
 interface TestimonialItemProps {
   name: string;
   location: string;

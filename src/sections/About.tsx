@@ -1,18 +1,18 @@
 import { useRef } from "react";
+import KeyFeatures from "../components/KeyFeatures";
 import { companyData } from "../data/companyData";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import KeyFeatures from "../components/KeyFeatures";
-import bgImage from "/bg-about-icons.png";
-import bgIcon from "../assets/bg-logo-illustration.svg";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
+import bgImage from "/bg-about-icons.png";
+import bgIcon from "../assets/bg-logo-illustration.svg";
 
 function About() {
-  const { aboutus, company } = companyData;
-
   const aboutRef = useRef<HTMLHeadingElement>(null);
   const aboutIntroRef = useRef<HTMLDivElement>(null);
   const aboutBgRef = useRef<HTMLImageElement>(null);
+  const aboutMobileBgRef = useRef<HTMLImageElement>(null);
+  const { aboutus, company } = companyData;
 
   useScaleFadeIn({ containerRef: aboutRef });
 
@@ -21,6 +21,7 @@ function About() {
   });
 
   useSlideFadeIn({ containerRef: aboutBgRef, fromY: 0 });
+  useSlideFadeIn({ containerRef: aboutMobileBgRef, fromY: 0 });
 
   return (
     <section
@@ -48,11 +49,12 @@ function About() {
           className="absolute max-w-460 w-full top-0 max-md:hidden max-lg:max-w-216.5"
         />
         <img
-          className="absolute max-w-400 top-1/3 md:hidden block"
+          ref={aboutMobileBgRef}
           src={bgIcon}
           alt=""
           aria-hidden="true"
           role="presentation"
+          className="absolute max-w-400 top-1/3 md:hidden block"
         />
       </div>
       <div

@@ -6,33 +6,40 @@ export default function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
+    // Handle scroll-to-hash from navigation state
     const scrollTo = (location.state as { scrollTo?: string })?.scrollTo;
 
     if (scrollTo) {
       const timer = setTimeout(() => {
-        // If there's a scroll target, scroll to it
         const element = document.getElementById(scrollTo);
         if (element) {
+          const offset = scrollTo === "features" ? 280 : 120;
+          const targetY =
+            element.getBoundingClientRect().top + window.scrollY - offset;
+
           gsap.to(window, {
             duration: 1,
-            scrollTo: { y: `#${scrollTo}`, offsetY: 100 },
+            scrollTo: targetY,
             ease: "power2.out",
+            onComplete: () => {
+              window.history.replaceState({}, "");
+            },
           });
         }
-        // Clear the state after scrolling
-        window.history.replaceState({}, "");
-      }, 100); // Small delay to ensure DOM is ready
+      }, 100);
 
       return () => clearTimeout(timer);
-    } else {
-      // Scroll to top for route changes
+    }
+
+    // Scroll to top for regular route changes
+    if (!location.hash) {
       gsap.to(window, {
         duration: 0.5,
         scrollTo: 0,
         ease: "power2.out",
       });
     }
-  }, [location.pathname, location.state]);
+  }, [location.pathname, location.state, location.hash]);
 
   return null;
 }

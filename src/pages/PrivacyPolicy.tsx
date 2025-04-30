@@ -1,7 +1,7 @@
-import Agreement from "../components/Agreement";
-import { privacyPolicyData } from "../data/agreementData";
-import MainFooter from "../sections/MainFooter";
 import NavBar from "../sections/NavBar";
+import MainFooter from "../sections/MainFooter";
+import { privacyPolicyData } from "../data/agreementData";
+import Agreement from "../components/Agreement";
 
 function PrivacyPolicy() {
   return (

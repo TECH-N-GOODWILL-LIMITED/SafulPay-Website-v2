@@ -1,7 +1,7 @@
-import Agreement from "../components/Agreement";
-import { termsAndConditionsData } from "../data/agreementData";
-import MainFooter from "../sections/MainFooter";
 import NavBar from "../sections/NavBar";
+import Agreement from "../components/Agreement";
+import MainFooter from "../sections/MainFooter";
+import { termsAndConditionsData } from "../data/agreementData";
 
 function TermsCondition() {
   return (

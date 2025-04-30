@@ -1,15 +1,14 @@
 import { useRef, useState } from "react";
-import { faqsData } from "../data/appContent";
 import FaqItem from "../components/FaqItem";
-import bgIcon from "../assets/bg-logo-illustration.svg";
-import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
+import { faqsData } from "../data/appContent";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
+import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
+import bgIcon from "../assets/bg-logo-illustration.svg";
 
 function Faqs() {
+  const faqsRef = useRef<HTMLUListElement | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const { title, intro, faqs } = faqsData;
-
-  const faqsRef = useRef<HTMLUListElement | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -64,9 +63,6 @@ function Faqs() {
               toggleFAQ={() => toggleFAQ(index)}
             />
           </li>
-          // <li key={index} className=" mx-auto">
-          //   <FaqItem question={faq.question} answer={faq.answer} />
-          // </li>
         ))}
       </ul>
     </section>

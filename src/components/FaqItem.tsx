@@ -2,7 +2,6 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import type { FAQItem } from "../data/appContent";
 import expandIcon from "../assets/expand-icon.svg";
 import collapseIcon from "../assets/collapse-icon.svg";
-// import { useEffect, useRef, useState } from "react";
 
 interface FaqItemProps {
   data: FAQItem;
@@ -11,9 +10,6 @@ interface FaqItemProps {
 }
 
 function FaqItem({ data, isOpen, toggleFAQ }: FaqItemProps) {
-  // const answerRef = useRef<HTMLParagraphElement | null>(null);
-  // const [wasToggledByUser, setWasToggledByUser] = useState(false);
-
   const [parent] = useAutoAnimate();
   const { question, answer } = data;
 
@@ -22,15 +18,7 @@ function FaqItem({ data, isOpen, toggleFAQ }: FaqItemProps) {
     .toLowerCase()
     .replace(/[^\w-]+/g, "")}`;
 
-  // useEffect(() => {
-  //   if (isOpen && wasToggledByUser && answerRef.current) {
-  //     answerRef.current.focus();
-  //     setWasToggledByUser(false); // Reset
-  //   }
-  // }, [isOpen, wasToggledByUser]);
-
   const handleToggle = () => {
-    // setWasToggledByUser(true);
     toggleFAQ();
   };
 

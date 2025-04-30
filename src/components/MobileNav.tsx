@@ -1,13 +1,13 @@
-import { NavLink, useNavigate } from "react-router";
+import { useEffect, useRef } from "react";
+import { NavLink } from "react-router";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
+import { isIOS } from "../utils/iosScroll";
 import { useViewportHeight } from "../hooks/useViewportHeight";
 import menuIconWhite from "/icon-menu-white.svg";
 import safulpayTextIcon from "/safulpay-navbar-text-logo-icon.svg";
 import safulPayLogo from "/safulpay-icon-white.svg";
-import { useEffect, useRef } from "react";
-import { useSmoothScroll } from "../context/SmoothScrollProvider";
-import { iosScrollTo, isIOSChrome } from "../utils/iosScroll";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollToPlugin);
@@ -39,92 +39,33 @@ function MobileNav({
   isMenuOpen,
   setIsMenuOpen,
 }: MobileNavProps) {
-  // Close menu when clicking outside
-
-  // const handleScrollLink = (url: string) => {
-  //   document.body.style.overflow = "";
-  //   document.body.style.touchAction = "";
-  //   setIsMenuOpen(false);
-
-  //   if (!isHomePage && url !== "contact-us") {
-  //     navigate("/", {
-  //       state: { scrollTo: url },
-  //       replace: true,
-  //     });
-  //     return;
-  //   }
-
-  //   const offset = url === "features" ? 280 : 120;
-
-  //   setTimeout(() => {
-  //     scrollToSection(url, offset);
-  //   }, 300);
-  // };
-
   // NEW
-  const vh = useViewportHeight();
-  const { isHomePage, activeSection, scrollToSection } = useSmoothScroll();
-  const navigate = useNavigate();
   const menuRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLButtonElement>(null);
-
-  // Enhanced scroll handler with iOS Chrome detection
-  const handleScrollLink = async (url: string) => {
-    setIsMenuOpen(false);
-
-    // Immediately restore scroll capability
-    document.body.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.touchAction = "";
-
-    if (!isHomePage && url !== "contact-us") {
-      await navigate("/", { replace: true });
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    }
-
-    if (isIOSChrome()) {
-      // Use our custom iOS Chrome scroll implementation
-      await iosScrollTo(url, 140);
-    } else {
-      // Use native smooth scroll for other browsers
-      const element = document.getElementById(url);
-      if (element) {
-        const targetY =
-          element.getBoundingClientRect().top + window.scrollY - 140;
-        window.scrollTo({
-          top: targetY,
-          behavior: "smooth",
-        });
-      }
-    }
-  };
+  const { scrollToSection, activeSection, isHomePage } =
+    useSmoothScrollContext();
+  const vh = useViewportHeight();
 
   // Focus management for accessibility
   useEffect(() => {
     if (isMenuOpen && firstLinkRef.current) {
-      setTimeout(() => firstLinkRef.current?.focus(), 50);
+      firstLinkRef.current.focus();
     }
   }, [isMenuOpen]);
 
-  // Body scroll lock that works with iOS Chrome
+  // iOS-specific body scroll lock
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
       document.body.style.touchAction = "none";
+
+      // Additional iOS fix to prevent background scrolling
+      if (isIOS()) {
+        document.body.style.top = `-${window.scrollY}px`;
+      }
     } else {
       document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
       document.body.style.touchAction = "";
-
-      // iOS Chrome needs this to prevent scroll position jumps
-      if (isIOSChrome()) {
-        setTimeout(() => {
-          window.scrollTo(0, window.scrollY);
-        }, 10);
-      }
     }
   }, [isMenuOpen]);
 
@@ -140,6 +81,28 @@ function MobileNav({
 
     return () => document.removeEventListener("keydown", handleEsc);
   }, [isMenuOpen, setIsMenuOpen]);
+
+  const handleScrollLink = (url: string) => {
+    const mobileOffset = 140;
+
+    if (!isHomePage && (url === "contact-us" || url === "download")) {
+      scrollToSection(url, {
+        offset: mobileOffset,
+        onMenuClose: () => setIsMenuOpen(false),
+      });
+      return;
+    }
+
+    if (isHomePage) {
+      scrollToSection(url, {
+        offset: mobileOffset,
+        onMenuClose: () => setIsMenuOpen(false),
+      });
+      return;
+    }
+
+    // navigate("/", { state: { scrollTo: url }, replace: true });
+  };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
   const scrollLinks = navLinks.filter((link) => link.type === "scroll");
@@ -195,7 +158,6 @@ function MobileNav({
 
               <button
                 onClick={() => setIsMenuOpen(false)}
-                ref={firstLinkRef}
                 aria-label={isMenuOpen && "Close menu"}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
@@ -213,8 +175,9 @@ function MobileNav({
               role="menu"
               className="flex flex-col items-start mb-0 m:mb-11.25 "
             >
-              {scrollLinks.map((link) => (
+              {scrollLinks.map((link, index) => (
                 <button
+                  ref={index === 0 ? firstLinkRef : null}
                   key={`mobile-scroll-${link.url}`}
                   onClick={() => handleScrollLink(link.url)}
                   role="menuitem"
@@ -229,8 +192,16 @@ function MobileNav({
 
               {routeLinks.map((link) => (
                 <NavLink
-                  key={`mobile-route-${link.url}`}
                   to={link.url}
+                  end
+                  onClick={(e) => {
+                    if (location.pathname === link.url) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      setIsMenuOpen(false);
+                    }
+                  }}
+                  key={`mobile-route-${link.url}`}
                   role="menuitem"
                   className={({ isActive }) =>
                     `tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color${
@@ -250,7 +221,7 @@ function MobileNav({
             >
               <button
                 onClick={() => {
-                  scrollToSection("download");
+                  handleScrollLink("download");
                   setIsMenuOpen(false);
                 }}
                 className="px-7.5 py-4.25 rounded-[10px] bg-secondary-color text-primary-color text-[20px] tracking-[-0.4px] font-semibold cursor-pointer"
@@ -260,14 +231,22 @@ function MobileNav({
               <div className="flex justify-between items-center border-t border-white">
                 {otherLinks.map((link, index) => (
                   <NavLink
-                    key={index}
                     to={link.url}
+                    end
+                    onClick={(e) => {
+                      if (location.pathname === link.url) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        setIsMenuOpen(false);
+                      }
+                    }}
+                    key={index}
+                    aria-label={`Navigate to ${link.label}`}
                     className={({ isActive }) =>
                       `py-2.5 px-5 max-xl:px-3 text-[12px] font-extralight hover:text-secondary-color transition-colors cursor-pointer ${
                         isActive && "text-secondary-color font-bold"
                       }`
                     }
-                    aria-label={`Navigate to ${link.label}`}
                   >
                     {link.label}
                   </NavLink>

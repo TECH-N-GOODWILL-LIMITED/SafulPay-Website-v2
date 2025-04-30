@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { testimonialsData } from "../data/appContent";
 import TestimonialItem from "../components/TestimonialItem";
+import { testimonialsData } from "../data/appContent";
+import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
 import testimonialLogo from "../assets/safulpay-testimonial-logo.png";
 import lineImage from "../assets/long-line-illustration.svg";
-import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
 
 function Testimonial() {
-  const [activeIndex, setActiveIndex] = useState(0);
   const firstItemRef = useRef<HTMLDivElement | null>(null);
   const testimonialRef = useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const testimonialItems = document.querySelectorAll(".testimonial-item");
@@ -47,7 +47,7 @@ function Testimonial() {
     },
     scrollTrigger: {
       scrub: true,
-      end: "bottom center",
+      end: "bottom top",
     },
   });
 
