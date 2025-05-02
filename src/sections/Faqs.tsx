@@ -4,10 +4,12 @@ import { faqsData } from "../data/appContent";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
 import bgIcon from "../assets/bg-logo-illustration.svg";
+import { useViewportWidth } from "../hooks/useViewportWidth";
 
 function Faqs() {
   const faqsRef = useRef<HTMLUListElement | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { isMobile } = useViewportWidth();
   const { title, intro, faqs } = faqsData;
 
   const toggleFAQ = (index: number) => {
@@ -27,7 +29,7 @@ function Faqs() {
     fromOpacity: 0.2,
     end: "bottom center",
     ease: "power3.out",
-    scrub: true,
+    scrub: !isMobile,
     stagger: 0.4,
   });
 

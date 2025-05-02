@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
-import { isIOS } from "../utils/iosScroll";
 import { useViewportHeight } from "../hooks/useViewportHeight";
 import menuIconWhite from "/icon-menu-white.svg";
 import safulpayTextIcon from "/safulpay-navbar-text-logo-icon.svg";
@@ -39,34 +38,17 @@ function MobileNav({
   isMenuOpen,
   setIsMenuOpen,
 }: MobileNavProps) {
-  // NEW
   const menuRef = useRef<HTMLDivElement>(null);
-  // const firstLinkRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
   const { scrollToSection, activeSection, isHomePage } =
     useSmoothScrollContext();
   const vh = useViewportHeight();
 
-  // Focus management for accessibility
-  // useEffect(() => {
-  //   if (isMenuOpen && firstLinkRef.current) {
-  //     firstLinkRef.current.focus();
-  //   }
-  // }, [isMenuOpen]);
-
-  // iOS-specific body scroll lock
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
-
-      // Additional iOS fix to prevent background scrolling
-      if (isIOS()) {
-        document.body.style.top = `-${window.scrollY}px`;
-      }
+      document.body.classList.add("scroll-lock");
     } else {
-      document.body.style.overflow = "";
-      document.body.style.touchAction = "";
+      document.body.classList.remove("scroll-lock");
     }
   }, [isMenuOpen]);
 
@@ -85,24 +67,18 @@ function MobileNav({
 
   const handleScrollLink = (url: string) => {
     const mobileOffset = 140;
+    const shouldScroll =
+      isHomePage ||
+      (!isHomePage && (url === "contact-us" || url === "download"));
 
-    if (!isHomePage && (url === "contact-us" || url === "download")) {
+    if (shouldScroll) {
       scrollToSection(url, {
         offset: mobileOffset,
         onMenuClose: () => setIsMenuOpen(false),
       });
-      return;
+    } else {
+      navigate("/", { state: { scrollTo: url }, replace: true });
     }
-
-    if (isHomePage) {
-      scrollToSection(url, {
-        offset: mobileOffset,
-        onMenuClose: () => setIsMenuOpen(false),
-      });
-      return;
-    }
-
-    navigate("/", { state: { scrollTo: url }, replace: true });
   };
 
   const routeLinks = navLinks.filter((link) => link.type === "route");
@@ -184,7 +160,6 @@ function MobileNav({
             >
               {scrollLinks.map((link) => (
                 <button
-                  // ref={index === 0 ? firstLinkRef : null}
                   key={`mobile-scroll-${link.url}`}
                   onClick={() => handleScrollLink(link.url)}
                   role="menuitem"

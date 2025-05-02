@@ -30,12 +30,6 @@ export function useGsapCustomAnimation({
       const container = containerRef.current;
       if (!container) return;
 
-      // const existingTriggers = ScrollTrigger.getAll().filter(
-      //   (trigger) => trigger.trigger === container
-      // );
-
-      // if (existingTriggers.length > 0) return;
-
       let targets: Element[] | NodeListOf<Element>;
 
       if (!targetSelector) {
@@ -65,5 +59,5 @@ export function useGsapCustomAnimation({
     }, containerRef);
 
     return () => ctx.revert();
-  });
+  }, []);
 }
