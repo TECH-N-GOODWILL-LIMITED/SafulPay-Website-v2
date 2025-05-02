@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
 import { iosScrollTo, isIOS } from "../../utils/iosScroll";
 import { gsapScrollTo } from "../../utils/gsapScrollTo";
 
@@ -7,7 +7,6 @@ export const useSmoothScroll = () => {
   const [activeSection, setActiveSection] = useState("");
   const scrollTween = useRef<gsap.core.Tween | null>(null);
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     return () => {
@@ -20,7 +19,7 @@ export const useSmoothScroll = () => {
   const isHeroSection =
     typeof window !== "undefined" &&
     isHomePage &&
-    (window.scrollY < 100 || !activeSection || activeSection === "home");
+    (!activeSection || activeSection === "home");
 
   const scrollToSection = async (
     elementId: string,
@@ -30,7 +29,6 @@ export const useSmoothScroll = () => {
       forceUpdate?: boolean;
       onComplete?: () => void;
       onMenuClose?: () => void;
-      navigateHome?: boolean;
       duration?: number; // Option to control duration
     } = {}
   ) => {
@@ -42,12 +40,6 @@ export const useSmoothScroll = () => {
     if (options.onMenuClose) {
       document.body.style.overflow = "";
       document.body.style.position = "";
-    }
-
-    // Immediate navigation if needed
-    if (options.navigateHome && !isHomePage && elementId !== "contact-us") {
-      navigate("/", { state: { scrollTo: elementId }, replace: true });
-      return;
     }
 
     const element = document.getElementById(elementId);

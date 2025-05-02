@@ -21,7 +21,7 @@ function Hero() {
     yoyo: true,
   });
 
-  useHeaderAnimation({ containerRef: heroRef });
+  useHeaderAnimation({ containerRef: heroRef, start: "top bottom" });
 
   useSlideFadeIn({ containerRef: mockupImageRef, fromX: 0, fromY: -100 });
 
