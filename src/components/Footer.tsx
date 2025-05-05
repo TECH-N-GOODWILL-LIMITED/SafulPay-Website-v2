@@ -15,18 +15,15 @@ function Footer() {
 
   const handleScrollLink = (url: string) => {
     const offset = url === "features" ? 280 : 120;
+    const shouldScroll =
+      isHomePage ||
+      (!isHomePage && (url === "contact-us" || url === "download"));
 
-    if (!isHomePage && (url === "contact-us" || url === "download")) {
+    if (shouldScroll) {
       scrollToSection(url, { offset });
-      return;
+    } else {
+      navigate("/", { state: { scrollTo: url }, replace: true });
     }
-
-    if (isHomePage) {
-      scrollToSection(url, { offset });
-      return;
-    }
-
-    navigate("/", { state: { scrollTo: url }, replace: true });
   };
 
   return (

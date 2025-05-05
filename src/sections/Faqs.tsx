@@ -1,19 +1,20 @@
 import { useRef, useState } from "react";
 import FaqItem from "../components/FaqItem";
 import { faqsData } from "../data/appContent";
+import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
 import bgIcon from "../assets/bg-logo-illustration.svg";
-import { useViewportWidth } from "../hooks/useViewportWidth";
 
 function Faqs() {
   const faqsRef = useRef<HTMLUListElement | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   const { isMobile } = useViewportWidth();
   const { title, intro, faqs } = faqsData;
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+  const handleToggle = (index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
   };
 
   useHeaderAnimation({
@@ -62,7 +63,7 @@ function Faqs() {
             <FaqItem
               data={faq}
               isOpen={openIndex === index}
-              toggleFAQ={() => toggleFAQ(index)}
+              toggle={() => handleToggle(index)}
             />
           </li>
         ))}
