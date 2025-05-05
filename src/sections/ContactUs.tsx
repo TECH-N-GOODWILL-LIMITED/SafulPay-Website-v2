@@ -5,19 +5,50 @@ import bgIcon from "../assets/bg-logo-illustration.svg";
 
 function ContactUs() {
   const contactRef = useRef<HTMLDivElement | null>(null);
-  const [email, setEmail] = useState<string>(" ");
+  const [email, setEmail] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const { company } = companyData;
 
   useScaleFadeIn({ containerRef: contactRef });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setEmail(" ");
-    console.log("Form submitted successfully");
+
+    if (!email.trim()) {
+      setError("Email address is required");
+
+      const timeout = setTimeout(() => setError(""), 3000);
+      return () => clearTimeout(timeout);
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Enter a valid email address");
+      return;
+    }
+
+    setError("");
+    setEmail("");
+    console.log("Form submitted successfully with email:", email);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+
+    if (!newEmail.trim()) {
+      setError("Email address is required");
+
+      const timeout = setTimeout(() => setError(""), 3000);
+      return () => clearTimeout(timeout);
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newEmail)) {
+      setError("Enter a valid email address");
+      return;
+    }
+
+    setError("");
   };
 
   return (
@@ -70,10 +101,20 @@ function ContactUs() {
             aria-required="true"
             className="focus:outline-none focus:ring-0 focus:shadow-none title-text font-extralight text-primary-color placeholder:text-[#67967b] block border-none bg-none w-full mr-2.5 caret-primary-color max-sm:p-2.5"
           />
+          {error && (
+            <div className="absolute -top-3.5 left-0 bg-error-color text-sm p-1 px-4 text-white rounded-md">
+              {error}
+            </div>
+          )}
           <button
             type="submit"
+            disabled={!!error || !email.trim()}
             aria-label={`Submit your email address to ${company.name} so we can contact you`}
-            className="small-text font-semibold text-white bg-gradient-to-r from-primary-color to-[#67967B] px-10 py-6.25 rounded-[20px] max-sm:py-2.5 max-sm:rounded-[10px] cursor-pointer"
+            className={`small-text font-semibold text-white bg-gradient-to-r from-primary-color to-[#67967B] px-10 py-6.25 rounded-[20px] max-sm:py-2.5 max-sm:rounded-[10px] ${
+              !!error || !email.trim()
+                ? "opacity-50 cursor-not-allowed"
+                : "cursor-pointer"
+            }`}
           >
             Send
           </button>

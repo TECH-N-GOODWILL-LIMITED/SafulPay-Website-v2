@@ -31,16 +31,12 @@
   --color-error-color: #ff8181;
   --color-offwhite: #ececec;
   --color-text-color: #121212;
-  /* --color-text-shade-40: rgba(27, 27, 27, 0.2); */
 
   --breakpoint-m: 444px;
   --container-container-width: 1500px;
 }
 
 @layer base {
-  html {
-  }
-
   body {
     font-optical-sizing: auto;
     font-style: normal;
@@ -50,7 +46,7 @@
   }
 
   body.scroll-lock {
-    @apply overflow-hidden touch-none fixed w-full;
+    @apply overflow-hidden touch-none w-full;
   }
 
   main {
