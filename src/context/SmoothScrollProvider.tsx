@@ -1,7 +1,7 @@
 import { createContext, useContext, ReactNode, useEffect } from "react";
 import { useLocation } from "react-router";
-import { useSmoothScroll } from "../hooks/animations/useSmoothScroll";
-import { useScrollTriggers } from "../hooks/animations/useScrollTriggers";
+import { useSmoothScroll } from "../hooks/scroll/useSmoothScroll";
+import { useScrollTriggers } from "../hooks/scroll/useScrollTriggers";
 
 interface SmoothScrollContextType extends ReturnType<typeof useSmoothScroll> {
   isHeroSection: boolean;

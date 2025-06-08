@@ -42,12 +42,12 @@ const MobileNav = React.forwardRef(
     }: MobileNavProps,
     ref: React.Ref<HTMLDivElement>
   ) => {
+    const [overlayVisible, setOverlayVisible] = useState(false);
+
     const navigate = useNavigate();
     const { scrollToSection, activeSection, isHomePage } =
       useSmoothScrollContext();
     const vh = useViewportHeight();
-
-    const [overlayVisible, setOverlayVisible] = useState(false);
 
     useEffect(() => {
       if (isMenuOpen) {
