@@ -167,7 +167,7 @@ export const companyData: SafulPayData = {
     // },
     {
       name: "TikTok",
-      url: "https://www.tiktok.com/safulpay",
+      url: "https://www.tiktok.com/@safulpay?_t=ZM-8wNCWIrp8hr&_r=1",
       icon: "/icon-tik-tok.svg",
     },
     {
@@ -177,7 +177,7 @@ export const companyData: SafulPayData = {
     },
     {
       name: "LinkedIn",
-      url: "https://www.linkedin.com/company/105177286/admin/dashboard/",
+      url: "https://www.linkedin.com/company/safulpay",
       icon: "/icon-linkedin.svg",
     },
   ],

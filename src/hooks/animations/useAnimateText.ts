@@ -9,7 +9,7 @@ export function useAnimateText({
   containerRef,
   text,
   finalText,
-  duration = 1.4,
+  duration = 1.8,
   delay = 0.2,
   ease = "power2.out",
   start = "top 80%",
@@ -46,7 +46,7 @@ export function useAnimateText({
           if (repeat % 2 !== 0 && !yoyo) {
             gsap.to(el, {
               text: texts[texts.length - 1],
-              duration: 1.6,
+              duration: 1.8,
               ease: "power2.out",
             });
           }
@@ -54,7 +54,7 @@ export function useAnimateText({
         onComplete: () => {
           gsap.to(el, {
             text: texts[texts.length - 1],
-            duration: 1.6,
+            duration: 1.4,
             ease: "power2.out",
           });
         },

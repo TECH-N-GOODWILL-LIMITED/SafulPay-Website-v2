@@ -78,7 +78,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
               <button
                 key={`scroll-${link.url}`}
                 onClick={() => handleScrollLink(link.url)}
-                className={`cursor-pointer py-2.5 px-5 max-xl:px-3 transition-all hover:cursor-pointer hover:scale-103 hover:text-secondary-color ${
+                className={`cursor-pointer py-2.5 px-5 max-xl:px-3 transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color ${
                   activeSection === link.url && "text-secondary-color font-bold"
                 }`}
                 aria-label={`Scroll to ${link.label} section`}
@@ -116,7 +116,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           <button
             onClick={() => handleScrollLink("features")}
             aria-label="Open Application"
-            className="cursor-pointer hover:cursor-pointer"
+            className="cursor-pointer transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color"
           >
             <span>Open App</span>
             <img

@@ -44,7 +44,7 @@ function Hero() {
             ref={companyNameRef}
             className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent"
           >
-            Saful{/* {company.name} */}
+            Saful
           </span>
         </h1>
         <p className="text-[clamp(16px,3.721vw,30px)] font-normal tracking-[-0.9px] max-m:tracking-normal p-2.5 max-w-250 max-m:max-w-80">
