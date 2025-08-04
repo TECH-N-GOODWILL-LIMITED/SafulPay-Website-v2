@@ -5,6 +5,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsCondition from "./pages/TermsCondition";
 import { usePageTitle } from "./hooks/usePageTitle";
 import NotFound from "./pages/NotFound";
+import DownloadPage from "./pages/DownloadPage";
 
 function App() {
   usePageTitle();
@@ -15,6 +16,7 @@ function App() {
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms-and-condition" element={<TermsCondition />} />
+      <Route path="/download" element={<DownloadPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
