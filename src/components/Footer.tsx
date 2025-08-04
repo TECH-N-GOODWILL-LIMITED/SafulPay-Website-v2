@@ -4,12 +4,13 @@ import { featuresData, footerData } from "../data/appContent";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import DownloadItem from "./DownloadItem";
 import bgIcon from "../assets/bg-logo-illustration.svg";
+import Socials from "./Socials";
 
 function Footer() {
   const navigate = useNavigate();
   const { activeSection, scrollToSection, isHomePage } =
     useSmoothScrollContext();
-  const { company, socials, regulated } = companyData;
+  const { company, regulated } = companyData;
   const { featuresText } = featuresData;
   const { footerLinks, copyright, otherLinks } = footerData;
 
@@ -105,28 +106,7 @@ function Footer() {
           <DownloadItem />
         </div>
         <div className="flex justify-between items-center col-span-full mx-5 max-md:mx-10 max-md:flex-col-reverse">
-          <div className="flex flex-col w-fit gap-2.5 p-2.5">
-            <p className="p-2.5 title-text text-white">Connect With Us</p>
-            <div className="flex items-center gap-1.25">
-              {socials.map((social, index) => (
-                <a
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={index}
-                  aria-label={`Visit SafulPay's ${social.name} page`}
-                  className="w-full p-3 md:p-4 lg:p-5 bg-primary-shade-10 rounded-full transition-all hover:bg-primary-color max-md:bg-secondary-shade-10"
-                >
-                  <img
-                    src={social.icon}
-                    alt={`${social.name} icon`}
-                    aria-hidden="true"
-                    className="w-7.5"
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
+          <Socials />
           <div className="relative flex gap-5 w-79 rounded-[30px] py-5 px-7.5 items-center justify-center overflow-hidden bg-primary-shade-10">
             <img
               className="max-w-147.5 absolute opacity-40 rotate-[133.24deg]"

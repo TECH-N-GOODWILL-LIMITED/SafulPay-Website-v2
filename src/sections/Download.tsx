@@ -6,6 +6,7 @@ import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
 import DownloadItem from "../components/DownloadItem";
 import mockupImage from "../assets/mockup-login-signup.png";
 import { useViewportWidth } from "../hooks/useViewportWidth";
+import Socials from "../components/Socials";
 
 function Download() {
   const downloadRef = useRef<HTMLHeadingElement | null>(null);
@@ -49,6 +50,7 @@ function Download() {
         <h3 className="secondary-heading py-2.5">{subtitle}</h3>
         <p className="py-2.5">{text}</p>
         <DownloadItem />
+        <Socials className="mt-12" />
       </div>
       <img
         ref={mockupSlide}
@@ -57,6 +59,7 @@ function Download() {
         className="show max-w-1/2 max-md:max-w-89"
       />
       <DownloadItem />
+      <Socials />
     </section>
   );
 }
