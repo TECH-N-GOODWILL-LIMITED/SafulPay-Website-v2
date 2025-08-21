@@ -245,8 +245,8 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "/team/kai-marketing.jpg",
-        name: "Kai Pengusaquee",
+        img: "/team/elijah-marketing.jpg",
+        name: "Elijah Mensan",
         role: "Marketing Lead",
         socials: {
           twitter: "https://twitter.com/emilyjohnson",
