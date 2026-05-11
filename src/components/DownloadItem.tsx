@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { companyData } from "../data/companyData";
 
