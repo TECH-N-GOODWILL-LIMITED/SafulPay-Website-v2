@@ -1,9 +1,12 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
-import SecurityFeature from "../components/SecurityFeature";
 import { companyData } from "../data/companyData";
 import { securityData } from "../data/appContent";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import bgIcon from "../assets/bg-logo-illustration.svg";
+import SecurityFeature from "../components/SecurityFeature";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
 
 function Security() {
   const securityRef = useRef<HTMLDivElement>(null);
@@ -26,13 +29,13 @@ function Security() {
       </h2>
       <p className="py-2.5 max-w-275 mx-2.5">{intro}</p>
       <figure className="max-w-250 w-full flex flex-col gap-2.5 px-7.5 py-5 bg-primary-shade-10 rounded-[30px] items-center justify-center relative overflow-hidden">
-        <img
+        <Image
           className="max-w-147.5 absolute opacity-40 rotate-[133.24deg]"
           src={bgIcon}
           alt=""
           role="presentation"
         />
-        <img src={regulated?.icon} alt="Bank icon" className="w-15" />
+        <Image src={regulated?.icon} alt="Bank icon" className="w-15" />
         <figcaption className="max-w-90 py-2.5 mx-2.5">
           {regulated?.text}
         </figcaption>
@@ -42,7 +45,7 @@ function Security() {
           <SecurityFeature key={feature.title} data={feature} index={index} />
         ))}
       </div>
-      <img
+      <Image
         className="max-w-147.5 absolute bottom-[-2%] right-[-28%] opacity-80  max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         alt=""

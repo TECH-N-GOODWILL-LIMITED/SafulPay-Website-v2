@@ -1,3 +1,5 @@
+"use client";
+
 import { companyData } from "../data/companyData";
 import PartnerItem from "./PartnerItem";
 

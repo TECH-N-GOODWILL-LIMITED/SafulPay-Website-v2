@@ -1,9 +1,11 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import MobileNav from "../components/MobileNav";
-import DesktopNav from "../components/DesktopNav";
 import { companyData } from "../data/companyData";
 import { footerData, navLinks } from "../data/appContent";
+import MobileNav from "../components/MobileNav";
+import DesktopNav from "../components/DesktopNav";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

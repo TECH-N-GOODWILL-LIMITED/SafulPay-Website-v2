@@ -1,3 +1,4 @@
+"use client";
 export const isIOS = (): boolean => {
   return (
     /iPad|iPhone|iPod/i.test(navigator.userAgent) ||

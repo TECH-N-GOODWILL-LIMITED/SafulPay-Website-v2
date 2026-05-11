@@ -1,3 +1,5 @@
+"use client";
+
 import { useGsapCustomAnimation } from "./useGsapCustomAnimation"; // adjust path as needed
 
 type SlideFadeInOptions = {

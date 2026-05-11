@@ -1,11 +1,14 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
-import MoreFeaturesItem from "../components/MoreFeatureItem";
 import { featuresData } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import bigRay from "../assets/big-ray-illustration.svg";
+import MoreFeaturesItem from "../components/MoreFeatureItem";
+import bigRay from "../assets/images/big-ray-illustration.svg";
 
 function MoreFeatures() {
   const moreFeaturesBgRef = useRef<HTMLDivElement>(null);
@@ -51,7 +54,7 @@ function MoreFeatures() {
         aria-hidden="true"
         className="absolute w-full h-[67%] max-md:h-full rounded-t-[30px] rounded-b-[60px] bg-primary-color top-0"
       ></div>
-      <img
+      <Image
         ref={bigRayRef}
         src={bigRay}
         alt=""

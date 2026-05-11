@@ -1,8 +1,10 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 const useViewportWidth = () => {
   const [width, setWidth] = useState<number>(
-    typeof window !== "undefined" ? window.innerWidth : 700
+    typeof window !== "undefined" ? window.innerWidth : 700,
   );
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+"use client";
+
 import { useScaleFadeIn } from "./useScaleFadeIn";
 import { useSlideFadeIn } from "./useSlideFadeIn";
 

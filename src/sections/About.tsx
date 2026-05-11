@@ -1,11 +1,15 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
-import KeyFeatures from "../components/KeyFeatures";
 import { companyData } from "../data/companyData";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
-import bgImage from "/bg-about-icons.png";
-import bgIcon from "../assets/bg-logo-illustration.svg";
+import KeyFeatures from "../components/KeyFeatures";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
+
+import bgImage from "../assets/images/bg-about-icons.png";
 
 function About() {
   const aboutRef = useRef<HTMLHeadingElement>(null);
@@ -40,17 +44,21 @@ function About() {
             {company.name}
           </span>
         </h1>
-        <img
+        <Image
           ref={aboutBgRef}
           src={bgImage}
           alt=""
           aria-hidden="true"
           role="presentation"
           className="absolute max-w-460 w-full top-0 max-md:hidden max-lg:max-w-216.5"
+          width={1840}
+          height={1840}
         />
-        <img
+        <Image
           ref={aboutMobileBgRef}
           src={bgIcon}
+          width={1000}
+          height={1000}
           alt=""
           aria-hidden="true"
           role="presentation"

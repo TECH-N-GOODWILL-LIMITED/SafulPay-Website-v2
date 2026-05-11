@@ -1,9 +1,12 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
-import { Link } from "react-router";
 import type { AgreementData } from "../data/agreementData";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import arrowBack from "/icon-arrow-back.svg";
 import Download from "../sections/Download";
+import arrowBack from "../assets/images/icon-arrow-back.svg";
 
 interface AgreementProps {
   data: AgreementData;
@@ -29,12 +32,14 @@ const Agreement: React.FC<AgreementProps> = ({ data }) => {
       >
         <div className="max-w-285 w-full text-left px-7.5">
           <Link
-            to="/"
+            href="/"
             className="flex gap-7.5"
             aria-label="Go back to homepage"
           >
-            <img
+            <Image
               src={arrowBack}
+              width={24}
+              height={24}
               alt="Back"
               className="max-[600px]:w-6.75 w-15.5"
             />

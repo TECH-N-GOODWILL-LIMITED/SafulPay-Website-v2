@@ -1,4 +1,5 @@
-// hooks/useArrowKeyNavigation.ts
+"use client";
+
 import { useCallback } from "react";
 
 export type NavigationDirection = "horizontal" | "vertical" | "both";
@@ -41,7 +42,7 @@ export function useArrowKeyNavigation({
       const nextRef = refs[nextIndex];
       nextRef?.focus();
     },
-    [refs, index, direction, wrap]
+    [refs, index, direction, wrap],
   );
 
   return { handleKeyDown };

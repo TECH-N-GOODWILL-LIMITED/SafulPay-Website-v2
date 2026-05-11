@@ -1,10 +1,13 @@
+"use client";
+
+import Image from "next/image";
 import { useRef, useState } from "react";
-import FaqItem from "../components/FaqItem";
 import { faqsData } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
-import bgIcon from "../assets/bg-logo-illustration.svg";
+import FaqItem from "../components/FaqItem";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
 
 function Faqs() {
   const faqsRef = useRef<HTMLUListElement | null>(null);
@@ -43,7 +46,7 @@ function Faqs() {
       className="section py-2.5 px-5 gap-2.5 relative mb-50"
       data-section
     >
-      <img
+      <Image
         src={bgIcon}
         alt=""
         aria-hidden="true"

@@ -1,10 +1,13 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
-import KeyFeatures from "../components/KeyFeatures";
 import { featuresData } from "../data/appContent";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import bgIcon from "../assets/bg-logo-illustration.svg";
-import illustrationImage from "../assets/illustration-image.png";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
+import KeyFeatures from "../components/KeyFeatures";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
+import illustrationImage from "../assets/images/illustration-image.png";
 
 function Features() {
   const featuresTextRef = useRef<HTMLDivElement>(null);
@@ -26,7 +29,7 @@ function Features() {
       className="section gap-12.5 max-md:gap-2.5"
       data-section
     >
-      <img
+      <Image
         src={bgIcon}
         alt=""
         aria-hidden="true"
@@ -51,7 +54,7 @@ function Features() {
           {featuresText[0]}
         </p>
       </div>
-      <img
+      <Image
         src={illustrationImage}
         alt=""
         aria-hidden="true"
@@ -63,10 +66,12 @@ function Features() {
         className="max-w-90 p-7.5 hidden max-md:flex-center flex-col gap-2.5"
       >
         {featuresIllustration.map((illustration, index) => (
-          <img
+          <Image
             src={illustration}
             alt="Illustration Image for SafulPay Features"
             key={index}
+            width={500}
+            height={500}
             className="feature-images"
           />
         ))}

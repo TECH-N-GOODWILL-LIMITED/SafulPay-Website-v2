@@ -1,7 +1,10 @@
+"use client";
+
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { companyData } from "../data/companyData";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import bgIcon from "../assets/bg-logo-illustration.svg";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
 
 function ContactUs() {
   const contactRef = useRef<HTMLDivElement | null>(null);
@@ -65,7 +68,7 @@ function ContactUs() {
         aria-labelledby="contact-us-heading"
         className="relative max-m:w-87.5 max-w-250 w-full mx-5 z-2 bg-white px-10 py-20 rounded-[20px] flex flex-col gap-7.5 items-center justify-center overflow-hidden shadow-[0_0_30px_0_rgba(11,70,80,0.4)] md:mb-[-80px] mb-[-36px]"
       >
-        <img
+        <Image
           src={bgIcon}
           alt=""
           aria-hidden="true"
@@ -77,7 +80,7 @@ function ContactUs() {
         </h2>
 
         <div className="flex sm:gap-2.5 gap-0 items-center">
-          <img
+          <Image
             src={company.greenLogo}
             alt={`${company.name} logo`}
             className="w-15 py-1.25 px-3.25 max-sm:w-10 max-sm:py-[3.33px] max-sm:px-2"
