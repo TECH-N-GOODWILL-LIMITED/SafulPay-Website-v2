@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { companyData } from "../data/companyData";
 
@@ -14,7 +12,7 @@ function DownloadItem() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Download SafulPay from Google Play Store"
-        className="transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:animate-pulse active:-translate-y-0"
+        className="transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:animate-pulse active:translate-y-0"
       >
         <Image
           src={playStore.image}
@@ -27,7 +25,7 @@ function DownloadItem() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Download SafulPay from Apple App Store"
-        className="transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:animate-pulse active:-translate-y-0"
+        className="transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:animate-pulse active:translate-y-0"
       >
         <Image
           src={appStore.image}

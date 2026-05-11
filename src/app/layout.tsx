@@ -8,9 +8,18 @@ const outfit = Outfit({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "SafulPay | Finance just got better",
   description: "Finance just got better",
-  icons: {
-    icon: "/safulpay-icon.svg",
-  },
+  icons: [
+    {
+      media: "(prefers-color-scheme: light)",
+      url: "/safulpay-icon-green.svg",
+      href: "/safulpay-icon-green.svg",
+    },
+    {
+      media: "(prefers-color-scheme: dark)",
+      url: "/safulpay-icon-lemon.svg",
+      href: "/safulpay-icon-lemon.svg",
+    },
+  ],
 };
 
 export default function RootLayout({
