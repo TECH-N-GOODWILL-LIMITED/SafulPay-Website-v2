@@ -1,8 +1,13 @@
-import { Link, NavLink, useNavigate } from "react-router";
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { StaticImageData } from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import { useViewportHeight } from "../hooks/useViewportHeight";
-import menuIcon from "/icon-menu-green.svg";
-import ray from "../assets/open-app-ray.svg";
+import ray from "../assets/images/open-app-ray.svg";
+import menuIcon from "../assets/images/icon-menu-green.svg";
 
 interface NavLink {
   url: string;
@@ -12,7 +17,7 @@ interface NavLink {
 
 interface CompanyData {
   name: string;
-  greenLogo: string;
+  greenLogo: string | StaticImageData;
 }
 
 interface DesktopNavProps {
@@ -22,7 +27,8 @@ interface DesktopNavProps {
 }
 
 function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const pathname = usePathname();
   const vh = useViewportHeight();
   const { activeSection, scrollToSection, isHeroSection, isHomePage } =
     useSmoothScrollContext();
@@ -36,7 +42,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
     if (shouldScroll) {
       scrollToSection(url, { offset });
     } else {
-      navigate("/", { state: { scrollTo: url }, replace: true });
+      router.replace("/#" + url);
     }
   };
 
@@ -51,7 +57,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
       }}
     >
       <Link
-        to="/"
+        href="/"
         onClick={(e) => {
           if (isHomePage) {
             e.preventDefault();
@@ -61,7 +67,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
         aria-label="Go to homepage"
         className="flex gap-2.5 items-center max-xl:gap-1 cursor-pointer"
       >
-        <img
+        <Image
           src={company.greenLogo}
           alt={`${company.name} logo`}
           aria-hidden="true"
@@ -90,27 +96,27 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
               </button>
             ))}
 
-            {routeLinks.map((link) => (
-              <NavLink
-                to={link.url}
-                end
-                onClick={(e) => {
-                  if (location.pathname === link.url) {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }
-                }}
-                key={`route-${link.url}`}
-                aria-label={`Navigate to ${link.label}`}
-                className={({ isActive }) =>
-                  `cursor-pointer py-2.5 px-5 max-xl:px-3 transition-all hover:scale-105 hover:text-secondary-color ${
+            {routeLinks.map((link) => {
+              const isActive = pathname === link.url;
+              return (
+                <Link
+                  href={link.url}
+                  onClick={(e) => {
+                    if (pathname === link.url) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                  key={`route-${link.url}`}
+                  aria-label={`Navigate to ${link.label}`}
+                  className={`cursor-pointer py-2.5 px-5 max-xl:px-3 transition-all hover:scale-105 hover:text-secondary-color ${
                     isActive && "text-secondary-color font-bold"
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </>
         ) : (
           <button
@@ -119,7 +125,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
             className="cursor-pointer transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color"
           >
             <span>Open App</span>
-            <img
+            <Image
               src={ray}
               alt=""
               aria-hidden="true"
@@ -145,10 +151,12 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
         aria-expanded="false"
         aria-haspopup="true"
       >
-        <img
+        <Image
           src={menuIcon}
           alt={`${company.name} menu`}
           className="w-7.5 max-md:w-6"
+          width={24}
+          height={24}
           aria-hidden="true"
         />
       </button>

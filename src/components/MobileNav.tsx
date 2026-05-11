@@ -1,12 +1,16 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import { useViewportHeight } from "../hooks/useViewportHeight";
-import menuIconWhite from "/icon-menu-white.svg";
-import safulpayTextIcon from "/safulpay-navbar-text-logo-icon.svg";
-import safulPayLogo from "/safulpay-icon-white.svg";
+import menuIconWhite from "../assets/images/icon-menu-white.svg";
+import safulpayTextIcon from "../assets/images/safulpay-navbar-text-logo-icon.svg";
+import safulPayLogo from "../assets/images/safulpay-icon-white.svg";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollToPlugin);
@@ -40,11 +44,12 @@ const MobileNav = React.forwardRef(
       isMenuOpen,
       setIsMenuOpen,
     }: MobileNavProps,
-    ref: React.Ref<HTMLDivElement>
+    ref: React.Ref<HTMLDivElement>,
   ) => {
     const [overlayVisible, setOverlayVisible] = useState(false);
 
-    const navigate = useNavigate();
+    const router = useRouter();
+    const pathname = usePathname();
     const { scrollToSection, activeSection, isHomePage } =
       useSmoothScrollContext();
     const vh = useViewportHeight();
@@ -85,7 +90,7 @@ const MobileNav = React.forwardRef(
           onMenuClose: () => setIsMenuOpen(false),
         });
       } else {
-        navigate("/", { state: { scrollTo: url }, replace: true });
+        router.replace("/#" + url);
       }
     };
 
@@ -112,12 +117,14 @@ const MobileNav = React.forwardRef(
           }}
         >
           <div className="flex justify-between items-start">
-            <img
+            <Image
               onClick={() => {
                 setIsMenuOpen(false);
                 handleScrollLink("home");
               }}
               src={safulpayTextIcon}
+              width={100}
+              height={30}
               alt={`${companyName} text logo`}
               className="h-42.5 px-3.25 py-1.25 cursor-pointer max-md:h-auto"
               style={{
@@ -137,8 +144,10 @@ const MobileNav = React.forwardRef(
                 handleScrollLink("home");
               }}
             >
-              <img
+              <Image
                 src={safulPayLogo}
+                width={90}
+                height={90}
                 alt={`${companyName} logo`}
                 aria-hidden="true"
                 className="w-15 px-3.25 py-1.25 max-xl:w-9 max-xl:px-1 max-lg:w-12.5 max-lg:px-2.5"
@@ -158,8 +167,10 @@ const MobileNav = React.forwardRef(
               aria-controls="mobile-menu"
               className="cursor-pointer"
             >
-              <img
+              <Image
                 src={menuIconWhite}
+                width={30}
+                height={30}
                 alt="Close menu icon"
                 className="w-7.5"
               />
@@ -183,28 +194,28 @@ const MobileNav = React.forwardRef(
               </button>
             ))}
 
-            {routeLinks.map((link) => (
-              <NavLink
-                to={link.url}
-                end
-                onClick={(e) => {
-                  if (location.pathname === link.url) {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                    setIsMenuOpen(false);
-                  }
-                }}
-                key={`mobile-route-${link.url}`}
-                role="menuitem"
-                className={({ isActive }) =>
-                  `tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color${
-                    isActive ? "text-secondary-color" : ""
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+            {routeLinks.map((link) => {
+              const isActive = pathname === link.url;
+              return (
+                <Link
+                  href={link.url}
+                  onClick={(e) => {
+                    if (pathname === link.url) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      setIsMenuOpen(false);
+                    }
+                  }}
+                  key={`mobile-route-${link.url}`}
+                  role="menuitem"
+                  className={`tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color${
+                    isActive ? " text-secondary-color" : ""
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
           <div
             className="flex flex-col items-start gap-7.5"
@@ -222,34 +233,34 @@ const MobileNav = React.forwardRef(
               Download App
             </button>
             <div className="flex justify-between items-center border-t border-white">
-              {otherLinks.map((link, index) => (
-                <NavLink
-                  to={link.url}
-                  end
-                  onClick={(e) => {
-                    if (location.pathname === link.url) {
-                      e.preventDefault();
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                      setIsMenuOpen(false);
-                    }
-                  }}
-                  key={index}
-                  aria-label={`Navigate to ${link.label}`}
-                  className={({ isActive }) =>
-                    `py-2.5 px-5 max-xl:px-3 text-[12px] font-extralight hover:text-secondary-color transition-colors cursor-pointer ${
+              {otherLinks.map((link, index) => {
+                const isActive = pathname === link.url;
+                return (
+                  <Link
+                    href={link.url}
+                    onClick={(e) => {
+                      if (pathname === link.url) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        setIsMenuOpen(false);
+                      }
+                    }}
+                    key={index}
+                    aria-label={`Navigate to ${link.label}`}
+                    className={`py-2.5 px-5 max-xl:px-3 text-[12px] font-extralight hover:text-secondary-color transition-colors cursor-pointer ${
                       isActive && "text-secondary-color font-bold"
-                    }`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              ))}
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
       </>
     );
-  }
+  },
 );
 
 export default MobileNav;

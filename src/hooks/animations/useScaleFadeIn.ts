@@ -1,3 +1,5 @@
+"use client";
+
 import { useGsapCustomAnimation } from "./useGsapCustomAnimation";
 
 type ScaleFadeOptions = {

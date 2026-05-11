@@ -1,3 +1,6 @@
+"use client";
+
+import Image from "next/image";
 import { companyData } from "../data/companyData";
 
 interface SocialsProp {
@@ -20,7 +23,7 @@ function Socials({ className }: SocialsProp) {
             aria-label={`Visit SafulPay's ${social.name} page`}
             className="w-full p-3 md:p-4 lg:p-5 bg-primary-shade-10 rounded-full transition-all hover:bg-primary-color max-md:bg-secondary-shade-10"
           >
-            <img
+            <Image
               src={social.icon}
               alt={`${social.name} icon`}
               aria-hidden="true"

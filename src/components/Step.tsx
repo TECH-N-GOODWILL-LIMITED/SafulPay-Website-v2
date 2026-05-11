@@ -1,10 +1,13 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
 import type { Step as StepData } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import bgIcon from "../assets/bg-logo-illustration.svg";
-import circleSvg from "../assets/circle-bg.svg";
-import lineImage from "../assets/line-illustration.svg";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
+import circleSvg from "../assets/images/circle-bg.svg";
+import lineImage from "../assets/images/line-illustration.svg";
 
 interface StepProps {
   data: StepData;
@@ -28,7 +31,7 @@ function Step({ data, index }: StepProps) {
   return (
     <>
       {index === 1 && (
-        <img
+        <Image
           src={lineImage}
           alt=""
           role="presentation"
@@ -37,7 +40,7 @@ function Step({ data, index }: StepProps) {
         />
       )}
       {index === 2 && (
-        <img
+        <Image
           src={lineImage}
           alt=""
           role="presentation"
@@ -48,7 +51,7 @@ function Step({ data, index }: StepProps) {
       <li ref={stepRef} className="max-w-87.5" key={index}>
         <div className="step flex flex-col gap-2.5 self-start w-full">
           <div className="flex items-center justify-center relative">
-            <img
+            <Image
               src={circleSvg}
               alt=""
               role="presentation"
@@ -64,14 +67,14 @@ function Step({ data, index }: StepProps) {
             aria-describedby={`step-desc-${index}`}
             className="flex relative flex-col justify-center px-7.5 items-center pt-10 pb-5 gap-2.5 bg-primary-shade-10 rounded-[30px]"
           >
-            <img
+            <Image
               src={bgIcon}
               alt=""
               role="presentation"
               aria-hidden="true"
               className="max-w-147.5 absolute rotate-[133.24deg]"
             />
-            <img src={icon} alt={`${title} icon`} className="w-15 h-15" />
+            <Image src={icon} alt={`${title} icon`} className="w-15 h-15" />
 
             <h4
               id={`step-title-${index}`}

@@ -1,8 +1,11 @@
+"use client";
+
+import Image from "next/image";
 import { useEffect, useRef } from "react";
-import type { FAQItem } from "../data/appContent";
 import { gsap } from "gsap";
-import expandIcon from "../assets/expand-icon.svg";
-import collapseIcon from "../assets/collapse-icon.svg";
+import type { FAQItem } from "../data/appContent";
+import expandIcon from "../assets/images/expand-icon.svg";
+import collapseIcon from "../assets/images/collapse-icon.svg";
 
 interface FaqItemProps {
   data: FAQItem;
@@ -74,7 +77,7 @@ function FaqItem({ data, isOpen, toggle }: FaqItemProps) {
         aria-label={`${isOpen ? "Collapse" : "Expand"} FAQ ${question}`}
         className="cursor-pointer rounded-[50px] bg-[#c3f02c33] p-5 max-md:p-3"
       >
-        <img
+        <Image
           ref={iconRef}
           src={isOpen ? expandIcon : collapseIcon}
           alt={isOpen ? "Collapse FAQ" : "Expand FAQ"}

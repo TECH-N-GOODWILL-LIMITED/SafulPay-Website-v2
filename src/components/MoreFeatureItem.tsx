@@ -1,8 +1,11 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
 import type { MoreFeature } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import absoluteImage from "../assets/ray-illustration.svg";
+import absoluteImage from "../assets/images/ray-illustration.svg";
 
 interface MoreFeatureProps {
   feature: MoreFeature;
@@ -33,7 +36,7 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
           index === 1 && "pt-0"
         }`}
       >
-        <img
+        <Image
           src={absoluteImage}
           alt=""
           role="presentation"
@@ -48,7 +51,13 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
           </p>
         )}
 
-        <img src={image} alt={`${title} illustration`} className="w-75 z-1" />
+        {image && (
+          <Image
+            src={image}
+            alt={`${title} illustration`}
+            className="w-75 z-1"
+          />
+        )}
 
         {index === 1 && (
           <p tabIndex={-1} className="title-text p-2.5">

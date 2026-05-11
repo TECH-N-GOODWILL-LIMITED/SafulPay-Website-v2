@@ -1,10 +1,13 @@
+"use client";
+
 import { useRef } from "react";
+import Image from "next/image";
 import { companyData } from "../data/companyData";
-import DownloadItem from "../components/DownloadItem";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useAnimateText } from "../hooks/animations/useAnimateText";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
-import mockUpImage from "../assets/mockup-home-page.png";
+import DownloadItem from "../components/DownloadItem";
+import mockUpImage from "../assets/images/mockup-home-page.png";
 // import Partners from "../components/Partners";
 
 function Hero() {
@@ -55,7 +58,11 @@ function Hero() {
         </div>
       </div>
       <div className="cursor-pointer max-w-[min(63.49vw,444px)] relative">
-        <img ref={mockupImageRef} src={mockUpImage} alt="App homepage mockup" />
+        <Image
+          ref={mockupImageRef}
+          src={mockUpImage}
+          alt="App homepage mockup"
+        />
         {/* <div className="absolute top-[16%] left-[-900%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[8.29deg] w-max z-[-1] max-md:hidden">
           <Partners />
         </div> */}

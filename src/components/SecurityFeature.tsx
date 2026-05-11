@@ -1,8 +1,11 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
 import type { SecurityFeature } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import mockUp from "../assets/mockup-login.png";
+import mockUp from "../assets/images/mockup-login.png";
 
 interface FeatureProps {
   data: SecurityFeature;
@@ -27,7 +30,7 @@ function SecurityFeature({ data, index }: FeatureProps) {
     <>
       {index === 1 && (
         <div className="col-span-1 row-span-2 items-center justify-center hidden lg:flex">
-          <img
+          <Image
             src={mockUp}
             alt="Login mockup image"
             className="w-full object-cover"
@@ -43,7 +46,7 @@ function SecurityFeature({ data, index }: FeatureProps) {
           className="security-step max-w-75 p-2.5 flex flex-col gap-x-2.5 lg:w-75"
         >
           <div className="py-5 px-7.5 bg-primary-shade-10 rounded-[30px] flex justify-center">
-            <img src={icon} alt={`${title} icon`} className="w-10 md:w-15" />
+            <Image src={icon} alt={`${title} icon`} className="w-10 md:w-15" />
           </div>
           <h3 className="secondary-heading py-2.5">{title}</h3>
           <p className="py-2.5">{description}</p>

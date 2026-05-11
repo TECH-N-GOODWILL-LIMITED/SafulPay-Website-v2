@@ -1,13 +1,18 @@
-import { NavLink, useNavigate } from "react-router";
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { companyData } from "../data/companyData";
 import { featuresData, footerData } from "../data/appContent";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import DownloadItem from "./DownloadItem";
-import bgIcon from "../assets/bg-logo-illustration.svg";
 import Socials from "./Socials";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
 
 function Footer() {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const pathname = usePathname();
   const { activeSection, scrollToSection, isHomePage } =
     useSmoothScrollContext();
   const { company, regulated } = companyData;
@@ -23,7 +28,7 @@ function Footer() {
     if (shouldScroll) {
       scrollToSection(url, { offset });
     } else {
-      navigate("/", { state: { scrollTo: url }, replace: true });
+      router.replace("/#" + url);
     }
   };
 
@@ -35,7 +40,7 @@ function Footer() {
       <div className="grid grid-cols-1 justify-between items-center max-w-300.5 mx-auto px-2.5 pt-25 pb-12.5 gap-x-10 md:pb-25 md:pt-37.5 md:grid-cols-[1fr_auto] max-md:place-items-center max-md:text-center max-md:gap-y-10">
         <div className="max-w-175 flex flex-col gap-2.5 items-start max-md:items-center z-20 mx-5 max-md:mx-10">
           <div className="flex gap-2.5 items-center">
-            <img
+            <Image
               src={company.lemonLogo}
               alt={`${company.name} logo`}
               className="w-7 m:w-12.5 px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
@@ -65,25 +70,27 @@ function Footer() {
               {links.links.map((link) => (
                 <>
                   {link.type === "route" ? (
-                    <NavLink
-                      to={link.url}
-                      end
-                      onClick={(e) => {
-                        if (location.pathname === link.url) {
-                          e.preventDefault();
-                          window.scrollTo({ top: 0, behavior: "smooth" });
-                        }
-                      }}
-                      key={`${link.type}-${link.url}`}
-                      className={({ isActive }) =>
-                        `small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-all cursor-pointer hover:cursor-pointer max-md:text-center ${
-                          isActive && "text-secondary-color font-bold"
-                        }`
-                      }
-                      aria-label={`Navigate to ${link.label} page`}
-                    >
-                      {link.label}
-                    </NavLink>
+                    (() => {
+                      const isActive = pathname === link.url;
+                      return (
+                        <Link
+                          href={link.url}
+                          onClick={(e) => {
+                            if (pathname === link.url) {
+                              e.preventDefault();
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }
+                          }}
+                          key={`${link.type}-${link.url}`}
+                          className={`small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-all cursor-pointer hover:cursor-pointer max-md:text-center ${
+                            isActive && "text-secondary-color font-bold"
+                          }`}
+                          aria-label={`Navigate to ${link.label} page`}
+                        >
+                          {link.label}
+                        </Link>
+                      );
+                    })()
                   ) : (
                     <button
                       key={`route-${link.url}`}
@@ -108,14 +115,14 @@ function Footer() {
         <div className="flex justify-between items-center col-span-full mx-5 max-md:mx-10 max-md:flex-col-reverse">
           <Socials />
           <div className="relative flex gap-5 w-79 rounded-[30px] py-5 px-7.5 items-center justify-center overflow-hidden bg-primary-shade-10">
-            <img
+            <Image
               className="max-w-147.5 absolute opacity-40 rotate-[133.24deg]"
               src={bgIcon}
               alt=""
               aria-hidden="true"
               role="presentation"
             />
-            <img
+            <Image
               src={regulated.icon}
               alt="Regulated by Bank of Sierra Leone"
               className="w-8 md:w-10 filter grayscale invert"
@@ -132,11 +139,10 @@ function Footer() {
           </p>
           <div>
             {otherLinks.map((link, index) => (
-              <NavLink
-                to={link.url}
-                end
+              <Link
+                href={link.url}
                 onClick={(e) => {
-                  if (location.pathname === link.url) {
+                  if (pathname === link.url) {
                     e.preventDefault();
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }
@@ -146,7 +152,7 @@ function Footer() {
                 aria-label={`Navigate to ${link.label} page`}
               >
                 {link.label}
-              </NavLink>
+              </Link>
             ))}
           </div>
         </div>

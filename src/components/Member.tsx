@@ -1,4 +1,6 @@
-// import { useRef } from "react";
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
 import type { TeamMember } from "../data/appContent";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
@@ -30,11 +32,13 @@ function Member({ data, index }: MemberProps) {
         className="member min-w-[260px] h-full shrink-0 bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
       >
         <div className="bg-red-200 h-3/4">
-          <img
-            src={img}
-            alt={`${name}'s photo`}
-            className="w-full h-full object-cover"
-          />
+          {img && (
+            <Image
+              src={img}
+              alt={`${name}'s photo`}
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
         <div className="p-6.75">
           <p className="title-text">{name}</p>

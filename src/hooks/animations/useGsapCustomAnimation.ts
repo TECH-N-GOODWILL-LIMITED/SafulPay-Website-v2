@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -54,7 +56,7 @@ export function useGsapCustomAnimation({
             toggleActions: "play none none none",
             ...scrollTrigger, // allow full customization
           },
-        }
+        },
       );
     }, containerRef);
 

@@ -1,8 +1,11 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
 import { companyData } from "../data/companyData";
-import Member from "../components/Member";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import bgIcon from "../assets/bg-logo-illustration.svg";
+import Member from "../components/Member";
+import bgIcon from "../assets/images/bg-logo-illustration.svg";
 
 function Team() {
   const teamRef = useRef<HTMLDivElement>(null);
@@ -20,21 +23,21 @@ function Team() {
       aria-labelledby="team-heading"
       className="section relative"
     >
-      <img
+      <Image
         className="max-w-147.5 absolute top-[-8%] right-[-24%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         alt=""
         aria-hidden="true"
         role="presentation"
       />
-      <img
+      <Image
         className="max-w-147.5 absolute top-[6%] left-[-30%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         alt=""
         aria-hidden="true"
         role="presentation"
       />
-      <img
+      <Image
         className="max-w-147.5 absolute bottom-[-12%] left-[-16%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         alt=""
@@ -57,11 +60,11 @@ function Team() {
           key={index}
           className="bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
           >
-          <img
+          <Image
           src={member.img}
           alt=""
           className="w-full h-3/4 object-cover"
-          />
+           />
           <div className="p-6.75">
           <p className="title-text">{member.name}</p>
           <p className="text-[14px]">{member.role}</p>

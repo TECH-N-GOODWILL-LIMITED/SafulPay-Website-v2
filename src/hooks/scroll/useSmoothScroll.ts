@@ -1,12 +1,14 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router";
 import { iosScrollTo, isIOS } from "../../utils/iosScroll";
 import { gsapScrollTo } from "../../utils/gsapScrollTo";
 
 export const useSmoothScroll = () => {
   const [activeSection, setActiveSection] = useState("");
   const scrollTween = useRef<gsap.core.Tween | null>(null);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     return () => {
@@ -14,7 +16,7 @@ export const useSmoothScroll = () => {
     };
   }, []);
 
-  const isHomePage = location.pathname === "/";
+  const isHomePage = pathname === "/";
 
   const isHeroSection =
     typeof window !== "undefined" &&
@@ -30,7 +32,7 @@ export const useSmoothScroll = () => {
       onComplete?: () => void;
       onMenuClose?: () => void;
       duration?: number; // Option to control duration
-    } = {}
+    } = {},
   ) => {
     // Kill any existing animation immediately
     scrollTween.current?.kill();

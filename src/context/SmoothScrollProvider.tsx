@@ -1,5 +1,13 @@
-import { createContext, useContext, ReactNode, useEffect } from "react";
-import { useLocation } from "react-router";
+"use client";
+
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
+// import { usePathname } from "next/navigation";
 import { useSmoothScroll } from "../hooks/scroll/useSmoothScroll";
 import { useScrollTriggers } from "../hooks/scroll/useScrollTriggers";
 
@@ -8,17 +16,26 @@ interface SmoothScrollContextType extends ReturnType<typeof useSmoothScroll> {
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
-  const location = useLocation();
+  // const pathname = usePathname();
+  const [hashValue, setHashValue] = useState("");
+
+  useEffect(() => {
+    setHashValue(window.location.hash);
+    const handleHashChange = () => setHashValue(window.location.hash);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   const scroll = useSmoothScroll();
 
   useScrollTriggers(scroll.isHomePage, scroll.setActiveSection);
 
   useEffect(() => {
-    const hash = location.hash.replace("#", "");
+    const hash = hashValue.replace("#", "");
     const offset = hash === "features" ? 280 : 120;
 
     if (hash) {
@@ -30,14 +47,14 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
         });
       }, 200);
     }
-  }, [location.hash]);
+  }, [hashValue]);
 
   // Enhanced wheel handler for hero section
   useEffect(() => {
     if (!scroll.isHomePage) return;
 
     let isScrolling = false;
-    let wheelTimeout: number;
+    let wheelTimeout: ReturnType<typeof setTimeout>;
     const handleWheel = (e: WheelEvent) => {
       if (window.scrollY > 300 || isScrolling) return;
       if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
@@ -75,7 +92,7 @@ export const useSmoothScrollContext = () => {
   const context = useContext(SmoothScrollContext);
   if (!context) {
     throw new Error(
-      "useSmoothScrollContext must be used within a SmoothScrollProvider"
+      "useSmoothScrollContext must be used within a SmoothScrollProvider",
     );
   }
   return context;

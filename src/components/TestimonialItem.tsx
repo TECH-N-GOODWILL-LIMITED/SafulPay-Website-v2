@@ -1,3 +1,5 @@
+"use client";
+
 interface TestimonialItemProps {
   name: string;
   location: string;

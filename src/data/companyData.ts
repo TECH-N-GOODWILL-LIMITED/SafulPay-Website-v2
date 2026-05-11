@@ -1,27 +1,61 @@
+import { StaticImageData } from "next/image";
+import safulpayIconGreen from "../assets/images/safulpay-icon-green.svg";
+import safulpayIconLemon from "../assets/images/safulpay-icon-lemon.svg";
+import safulpayIconLemon2 from "../assets/images/safulpay-icon-lemon.svg";
+import safulpayIconLemon3 from "../assets/images/safulpay-icon-lemon.svg";
+import safulpayIconLemon4 from "../assets/images/safulpay-icon-lemon.svg";
+import safulpayIconLemon5 from "../assets/images/safulpay-icon-lemon.svg";
+import safulpayIconLemon6 from "../assets/images/safulpay-icon-lemon.svg";
+import safulpayIconLemon7 from "../assets/images/safulpay-icon-lemon.svg";
+import logoQcell from "../assets/images/partners/logo-qcell.svg";
+import logoOrange from "../assets/images/partners/logo-orange.svg";
+import logoAfricell from "../assets/images/partners/logo-africell.svg";
+import logoWu from "../assets/images/partners/logo-wu.svg";
+import logoRia from "../assets/images/partners/logo-ria.svg";
+import logoMoneygram from "../assets/images/partners/logo-moneygram.svg";
+import logoBankcard from "../assets/images/partners/logo-bankcard.svg";
+import logoDstv from "../assets/images/partners/logo-dstv.svg";
+import logoEdsa from "../assets/images/partners/logo-edsa.svg";
+import iconBank from "../assets/images/icon-bank.svg";
+import iconTwitter from "../assets/images/icon-twitter.svg";
+import iconFacebook from "../assets/images/icon-facebook.svg";
+import iconWhatsapp from "../assets/images/icon-whatsapp.svg";
+import iconTikTok from "../assets/images/icon-tik-tok.svg";
+import iconInstagram from "../assets/images/icon-instagram.svg";
+import iconLinkedin from "../assets/images/icon-linkedin.svg";
+import downloadAppstoreIcon from "../assets/images/download-appstore-icon.svg";
+import downloadPlaystoreIcon from "../assets/images/download-playstore-icon.svg";
+import teamWale from "../assets/images/team/wale-ceo.png";
+import teamTolu from "../assets/images/team/tolu-cto.png";
+import teamAdama from "../assets/images/team/adama-pro.png";
+import teamOyinn from "../assets/images/team/oyinn-tech.png";
+import teamElijah from "../assets/images/team/elijah-marketing.jpg";
+import teamTimi from "../assets/images/team/timi-design.png";
+
 // COMPANY
 export interface Company {
   name: string;
   alias: string[];
-  greenLogo: string;
-  lemonLogo: string;
+  greenLogo: string | StaticImageData;
+  lemonLogo: string | StaticImageData;
   slogan: string;
   description: string;
 }
 
 export interface Partner {
   name: string;
-  image: string;
+  image: string | StaticImageData;
 }
 
 export interface Regulated {
   text: string;
-  icon: string;
+  icon: string | StaticImageData;
 }
 
 export interface Social {
   name: string;
   url: string;
-  icon: string;
+  icon: string | StaticImageData;
 }
 
 export interface DownloadLinks {
@@ -30,11 +64,11 @@ export interface DownloadLinks {
   text: string;
   appStore: {
     link: string;
-    image: string;
+    image: string | StaticImageData;
   };
   playStore: {
     link: string;
-    image: string;
+    image: string | StaticImageData;
   };
 }
 
@@ -44,7 +78,7 @@ export interface About {
 }
 
 export interface Member {
-  img?: string;
+  img?: string | StaticImageData;
   name: string;
   role: string;
   socials: {
@@ -77,8 +111,8 @@ export const companyData: SafulPayData = {
   company: {
     name: "SafulPay",
     alias: ["SafulGift", "SafulLink"],
-    greenLogo: "/safulpay-icon-green.svg",
-    lemonLogo: "/safulpay-icon-lemon.svg",
+    greenLogo: safulpayIconGreen,
+    lemonLogo: safulpayIconLemon,
     slogan: "Finance Just Got Better With ",
     description:
       "Our mission is to provide seamless and secure mobile money solutions, empowering users to manage their finances with ease.",
@@ -86,99 +120,99 @@ export const companyData: SafulPayData = {
   partners: [
     {
       name: "V2 is Coming!",
-      image: "/safulpay-icon-lemon.svg",
+      image: safulpayIconLemon2,
     },
     {
       name: "V2 is Coming!!",
-      image: "/safulpay-icon-lemon.svg",
+      image: safulpayIconLemon3,
     },
     {
       name: "V2 is Coming!!!",
-      image: "/safulpay-icon-lemon.svg",
+      image: safulpayIconLemon4,
     },
     {
       name: "V2 is Coming!",
-      image: "/safulpay-icon-lemon.svg",
+      image: safulpayIconLemon5,
     },
     {
       name: "V2 is Coming!!",
-      image: "/safulpay-icon-lemon.svg",
+      image: safulpayIconLemon6,
     },
     {
       name: "V2 is Coming!!!",
-      image: "/safulpay-icon-lemon.svg",
+      image: safulpayIconLemon7,
     },
     // {
     //   name: "QCell",
-    //   image: "/partners/logo-qcell.svg",
+    //   image: logoQcell,
     // },
     // {
     //   name: "Orange",
-    //   image: "/partners/logo-orange.svg",
+    //   image: logoOrange,
     // },
     // {
     //   name: "Africell",
-    //   image: "/partners/logo-africell.svg",
+    //   image: logoAfricell,
     // },
     // {
     //   name: "Western Union",
-    //   image: "/partners/logo-wu.svg",
+    //   image: logoWu,
     // },
     // {
     //   name: "Ria Money",
-    //   image: "/partners/logo-ria.svg",
+    //   image: logoRia,
     // },
     // {
     //   name: "MoneyGram",
-    //   image: "/partners/logo-moneygram.svg",
+    //   image: logoMoneygram,
     // },
     // {
     //   name: "VISA & Master Card",
-    //   image: "/partners/logo-bankcard.svg",
+    //   image: logoBankcard,
     // },
     // {
     //   name: "DSTV Subscriptions",
-    //   image: "/partners/logo-dstv.svg",
+    //   image: logoDstv,
     // },
     // {
     //   name: "EDSA Meter",
-    //   image: "/partners/logo-edsa.svg",
+    //   image: logoEdsa,
     // },
   ],
   regulated: {
     text: "Licensed and Regulated by the Bank of Sierra Leone",
-    icon: "/icon-bank.svg",
+    icon: iconBank,
   },
   socials: [
     {
       name: "Twitter",
       url: "https://x.com/safulpay?s=21&t=C8AmSZA0skcAWJ-gYIUjFg",
-      icon: "/icon-twitter.svg",
+      icon: iconTwitter,
     },
     {
       name: "Facebook",
       url: "https://www.facebook.com/share/18X8Vz9tuQ/",
-      icon: "/icon-facebook.svg",
+      icon: iconFacebook,
     },
     // {
     //   name: "Whatsapp",
     //   url: "https://www.whatsapp.com/safulpay",
-    //   icon: "/icon-whatsapp.svg",
+    //   icon: iconWhatsapp,
     // },
     {
       name: "TikTok",
       url: "https://www.tiktok.com/@safulpay?_t=ZM-8wNCWIrp8hr&_r=1",
-      icon: "/icon-tik-tok.svg",
+      icon: iconTikTok,
     },
     {
       name: "Instagram",
       url: "https://www.instagram.com/safulpay?igsh=eWl4YjFtOW5rcGQ=",
-      icon: "/icon-instagram.svg",
+      icon: iconInstagram,
     },
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/company/safulpay",
-      icon: "/icon-linkedin.svg",
+      icon: iconLinkedin,
     },
   ],
   downloads: {
@@ -187,11 +221,11 @@ export const companyData: SafulPayData = {
     text: "Get started with SafulPay by downloading the app on your device. Manage your money, make payments, and access all the powerful features from anywhere, anytime. Experience the convenience and security SafulPay brings to your financial life—download now!",
     appStore: {
       link: "https://apps.apple.com/ng/app/safulpay/id6480344064",
-      image: "/download-appstore-icon.svg",
+      image: downloadAppstoreIcon,
     },
     playStore: {
       link: "https://play.google.com/store/apps/details?id=com.techengood.safulpay",
-      image: "/download-playstore-icon.svg",
+      image: downloadPlaystoreIcon,
     },
   },
   aboutus: {
@@ -207,7 +241,7 @@ export const companyData: SafulPayData = {
       "At SafulPay, our team is composed of dedicated professionals with deep expertise in their respective fields. From visionary leadership to technical brilliance, every member brings a wealth of experience and passion to the table. Our CEO, COO, and Founder drive strategic growth and operational excellence, while our DevOps, UI/UX, and Full Stack Developer ensure seamless, secure, and user-friendly experiences. Together, we are united by a common goal: to revolutionize the way you manage your finances, delivering cutting-edge solutions with trust, transparency, and innovation at the core.",
     members: [
       {
-        img: "/team/wale-ceo.png",
+        img: teamWale,
         name: "Adewale Olukoya",
         role: "Co-Founder & CEO",
         socials: {
@@ -216,7 +250,7 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "/team/tolu-cto.png",
+        img: teamTolu,
         name: "Toluwani Adepoju",
         role: "Co-Founder & COO",
         socials: {
@@ -226,7 +260,7 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "/team/adama-pro.png",
+        img: teamAdama,
         name: "Adama Jalloh",
         role: "Customer Relations Officer",
         socials: {
@@ -235,7 +269,7 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "/team/oyinn-tech.png",
+        img: teamOyinn,
         name: "Oyinlola Lawal",
         role: "Lead Software Engineer",
         socials: {
@@ -245,7 +279,7 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "/team/elijah-marketing.jpg",
+        img: teamElijah,
         name: "Elijah Mensan",
         role: "Marketing Lead",
         socials: {
@@ -254,7 +288,7 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "/team/timi-design.png",
+        img: teamTimi,
         name: "Oluwatimileyin Bamise",
         role: "Product Design Engineer",
         socials: {

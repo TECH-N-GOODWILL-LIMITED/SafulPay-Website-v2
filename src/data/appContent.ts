@@ -1,3 +1,23 @@
+import { StaticImageData } from "next/image";
+import mockupFeatures1 from '../assets/images/mockup-features1.png';
+import mockupFeatures2 from '../assets/images/mockup-features2.png';
+import mockupFeatures3 from '../assets/images/mockup-features3.png';
+import iconArrowDown from '../assets/images/icon-arrow-down.svg';
+import iconAdmin from '../assets/images/icon-admin.svg';
+import iconWallet from '../assets/images/icon-wallet.svg';
+import createWalletIllustration from '../assets/images/create-wallet-illustration.png';
+import sendIllustration from '../assets/images/send-illustration.png';
+import paymentIllustration from '../assets/images/payment-illustration.png';
+import iconCurrency from '../assets/images/icon-currency.svg';
+import iconEncrypt from '../assets/images/icon-encrypt.svg';
+import iconShield from '../assets/images/icon-shield.svg';
+import iconPadlock from '../assets/images/icon-padlock.svg';
+import testimonialLady2 from '../assets/images/testimonial/lady2.png';
+import testimonialThomas from '../assets/images/testimonial/thomas.png';
+import testimonialChrislin from '../assets/images/testimonial/chrislin.png';
+import testimonialLady from '../assets/images/testimonial/lady.png';
+import testimonialLady3 from '../assets/images/testimonial/lady3.png';
+
 const currentYear = new Date().getFullYear();
 
 // NAV
@@ -32,21 +52,21 @@ export interface FooterData {
 // FEATURES
 export interface MoreFeature {
   title: string;
-  image?: string;
+  image?: string | StaticImageData;
 }
 
 export interface FeaturesProp {
   keyFeatures: string[];
   featuresText: string[];
   moreFeatures: MoreFeature[];
-  featuresIllustration: string[];
+  featuresIllustration: (string | StaticImageData)[];
 }
 
 // SECURITY
 export interface SecurityFeature {
   title: string;
   description: string;
-  icon: string;
+  icon: string | StaticImageData;
 }
 
 export interface SecurityData {
@@ -61,7 +81,7 @@ export interface Testimonial {
   location: string;
   title: string;
   text: string;
-  image?: string;
+  image?: string | StaticImageData;
 }
 
 // FAQ
@@ -85,7 +105,7 @@ export interface AboutUsData {
 
 // TEAM
 export interface TeamMember {
-  img?: string;
+  img?: string | StaticImageData;
   name: string;
   role: string;
   socials: {
@@ -106,7 +126,7 @@ export interface TeamData {
 export interface Step {
   title: string;
   description: string;
-  icon: string;
+  icon: string | StaticImageData;
 }
 export interface HowItWorks {
   title: string;
@@ -165,22 +185,22 @@ export const featuresData: FeaturesProp = {
     "SafulPay simplifies how you manage and move your money, offering a secure, fast, and user-friendly platform for all your financial needs. From handling transactions and paying bills to managing virtual cards and requesting money, SafulPay is designed to keep you in control while ensuring your data and funds are protected. Our commitment to transparency, security, and convenience makes SafulPay the ideal choice for modern financial management.",
   ],
   featuresIllustration: [
-    "/create-wallet-illustration.png",
-    "/send-illustration.png",
-    "./payment-illustration.png",
+    createWalletIllustration,
+    sendIllustration,
+    paymentIllustration,
   ],
   moreFeatures: [
     {
       title: "Send personalized gift cards in seconds",
-      image: "/mockup-features1.png",
+      image: mockupFeatures1,
     },
     {
       title: "Secure online shopping with virtual cards",
-      image: "/mockup-features2.png",
+      image: mockupFeatures2,
     },
     {
       title: "Instant payment with a simple scan",
-      image: "/mockup-features3.png",
+      image: mockupFeatures3,
     },
   ],
 };
@@ -195,25 +215,25 @@ export const securityData: SecurityData = {
       title: "No Hidden Fees",
       description:
         "At SafulPay, transparency is key. We guarantee no hidden fees, so you always know exactly what you're paying for, with clear and upfront pricing for every transaction.",
-      icon: "icon-currency.svg",
+      icon: iconCurrency,
     },
     {
       title: "Advanced Encryption",
       description:
         "Your personal and financial data is protected with industry-leading encryption technology. Every transaction is securely encrypted to keep your sensitive information safe from unauthorized access.",
-      icon: "icon-encrypt.svg",
+      icon: iconEncrypt,
     },
     {
       title: "Fraud Detection and Monitoring",
       description:
         "We continuously monitor your transactions with cutting-edge fraud detection systems, instantly flagging any suspicious activity to protect your funds from potential threats.",
-      icon: "icon-shield.svg",
+      icon: iconShield,
     },
     {
       title: "Two-Factor Authentication",
       description:
         "SafulPay adds an extra layer of protection with two-factor authentication, ensuring that only you can access your account, even if your password is compromised.",
-      icon: "icon-padlock.svg",
+      icon: iconPadlock,
     },
   ],
 };
@@ -225,35 +245,35 @@ export const testimonialsData: Testimonial[] = [
     location: "Bo, Sierra Leone",
     title: "Small Business Owner",
     text: "SafulPay has been a game-changer for my small business. The ease of using their services has increased our sales and customer satisfaction.",
-    image: "testimonial/lady2.png",
+    image: testimonialLady2,
   },
   {
     name: "Thomas Massaquoi",
     location: "Freetown, Sierra Leone",
     title: "Excellent Customer Service",
     text: "I had a query regarding a transaction, and the support team was quick to respond and resolve my issue. It's reassuring to know they have such responsive and helpful customer service.",
-    image: "testimonial/thomas.png",
+    image: testimonialThomas,
   },
   {
     name: "Chrislin Johnson",
     location: "Lungi, Sierra Leone",
     title: "Impressive Features",
     text: "The app's digital wallet is a game-changer. I can store multiple cards, make contactless payments, and even track my spending habits. It's like having a personal finance assistant right in my pocket.",
-    image: "testimonial/chrislin.png",
+    image: testimonialChrislin,
   },
   {
     name: "Mariam Jalloh",
     location: "Freetown, Sierra Leone",
     title: "I love SafulPay",
     text: "Great agency services with good management, transparency  and commission",
-    image: "testimonial/lady.png",
+    image: testimonialLady,
   },
   {
     name: "Josephine Kabba",
     location: "Freetown, Sierra Leone",
     title: "Saves Me Time and Effort",
     text: "I love how easy it is to manage my money with this app. I can check my balance, pay for purchases, and send money to family in just a few taps. It's made my financial life so much simpler!",
-    image: "testimonial/lady3.png",
+    image: testimonialLady3,
   },
 ];
 
@@ -316,19 +336,19 @@ export const worksData: HowItWorks = {
       title: "Download and Install Our App",
       description:
         "Find SalfulPay on your App Store or Google Play Store. Tap 'Install' and you'll have our app ready to use on your device.",
-      icon: "/icon-arrow-down.svg",
+      icon: iconArrowDown,
     },
     {
       title: "Set Up Your Account",
       description:
         "Open the app, sign up, and verify your details. Complete your profile, and you're ready to start using the app!",
-      icon: "/icon-admin.svg",
+      icon: iconAdmin,
     },
     {
       title: "Send & Receive Money",
       description:
         "Send and receive money seamlessly with our secure platform, simplifying your financial transactions instantly.",
-      icon: "/icon-wallet.svg",
+      icon: iconWallet,
     },
   ],
 };

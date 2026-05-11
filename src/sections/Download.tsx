@@ -1,12 +1,15 @@
+"use client";
+
+import Image from "next/image";
 import { useRef } from "react";
 import { companyData } from "../data/companyData";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
 import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
-import DownloadItem from "../components/DownloadItem";
-import mockupImage from "../assets/mockup-login-signup.png";
 import { useViewportWidth } from "../hooks/useViewportWidth";
+import DownloadItem from "../components/DownloadItem";
 import Socials from "../components/Socials";
+import mockupImage from "../assets/images/mockup-login-signup.png";
 
 function Download() {
   const downloadRef = useRef<HTMLHeadingElement | null>(null);
@@ -52,7 +55,7 @@ function Download() {
         <DownloadItem />
         <Socials className="mt-12" />
       </div>
-      <img
+      <Image
         ref={mockupSlide}
         src={mockupImage}
         alt="SafulPay mobile app login and signup screen mockup"

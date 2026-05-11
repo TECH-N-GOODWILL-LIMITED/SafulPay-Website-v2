@@ -1,9 +1,11 @@
+"use client";
+
 import { useRef } from "react";
 import { worksData } from "../data/appContent";
-import Step from "../components/Step";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
+import Step from "../components/Step";
 
 function Works() {
   const worksRef = useRef<HTMLDivElement>(null);
