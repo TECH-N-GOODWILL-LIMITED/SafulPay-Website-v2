@@ -1,5 +1,3 @@
-"use client";
-
 import { featuresData } from "../data/appContent";
 
 function KeyFeatures() {
