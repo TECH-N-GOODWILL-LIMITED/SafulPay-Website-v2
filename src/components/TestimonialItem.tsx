@@ -22,7 +22,7 @@ function TestimonialItem({
         isActive ? "scale-105 shadow-lg" : "scale-100 opacity-90"
       }`}
     >
-      <span className="text-[128px] font-extralight p-2.5 absolute tracking-[-2.56px] right-7.5 top-[-21px] bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
+      <span className="text-[128px] font-extralight p-2.5 absolute tracking-[-2.56px] right-7.5 top-[-21px] bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
         “
       </span>
       <h3 className="py-1.25 text-[18px] font-semibold tracking-[-0.18px]">
