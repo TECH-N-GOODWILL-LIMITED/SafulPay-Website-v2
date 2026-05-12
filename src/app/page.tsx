@@ -3,17 +3,17 @@
 import { useRef } from "react";
 import { useViewportHeight } from "../hooks/useViewportHeight";
 import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import Hero from "../sections/Hero";
-import Features from "../sections/Features";
-import MoreFeatures from "../sections/MoreFeatures";
-import Security from "../sections/Security";
-import Works from "../sections/Works";
-import Testimonial from "../sections/Testimonial";
-import Partners from "../components/Partners";
-import Download from "../sections/Download";
-import Faqs from "../sections/Faqs";
-import MainFooter from "@/sections/MainFooter";
-import NavBar from "@/sections/NavBar";
+import NavBar from "@/components/sections/NavBar";
+import Hero from "@/components/sections/Hero";
+import Features from "@/components/sections/Features";
+import MoreFeatures from "@/components/sections/MoreFeatures";
+import Security from "@/components/sections/Security";
+import Works from "@/components/sections/Works";
+import Testimonial from "@/components/sections/Testimonial";
+import Partners from "@/components/Partners";
+import Download from "@/components/sections/Download";
+import Faqs from "@/components/sections/Faqs";
+import MainFooter from "@/components/sections/MainFooter";
 
 export default function HomePage() {
   const mainRef = useRef<HTMLDivElement | null>(null);
