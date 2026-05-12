@@ -70,8 +70,11 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
         <Image
           src={company.greenLogo}
           alt={`${company.name} logo`}
-          aria-hidden="true"
+          width={40}
+          height={40}
+          unoptimized
           className="w-10 px-2 py-1 max-md:w-10 max-xl:w-9 max-lg:w-11"
+          aria-hidden="true"
         />
         <p className="secondary-heading bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
           {company.name}
@@ -130,6 +133,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
               alt=""
               aria-hidden="true"
               role="presentation"
+              unoptimized
               className="cursor-pointer animate-ping absolute h-full transform top-0 left-1/2 -translate-x-1/2"
             />
           </button>
@@ -158,6 +162,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           width={24}
           height={24}
           aria-hidden="true"
+          unoptimized
         />
       </button>
     </div>
