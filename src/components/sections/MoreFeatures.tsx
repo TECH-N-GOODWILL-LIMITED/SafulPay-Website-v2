@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { featuresData } from "../data/appContent";
-import { useViewportWidth } from "../hooks/useViewportWidth";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import MoreFeaturesItem from "../components/MoreFeatureItem";
-import bigRay from "../assets/images/big-ray-illustration.svg";
+import { featuresData } from "@/data/appContent";
+import { useViewportWidth } from "@/hooks/useViewportWidth";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
+import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
+import MoreFeaturesItem from "@/components/MoreFeatureItem";
+import bigRay from "@/assets/images/big-ray-illustration.svg";
 
 function MoreFeatures() {
   const moreFeaturesBgRef = useRef<HTMLDivElement>(null);
@@ -47,7 +47,7 @@ function MoreFeatures() {
     <section
       role="region"
       aria-labelledby="more-features-heading"
-      className="section pt-25 max-md:pt-15 pb-50 max-md:pb-5 px-5 flex rounded-t-[30px] gap-25 max-md:gap-12.5 overflow-hidden relative flex-col items-center text-white"
+      className="section pt-16 pb-50 max-md:pb-5 px-5 flex rounded-t-[30px] gap-25 max-md:gap-12.5 overflow-hidden relative flex-col items-center text-white"
     >
       <div
         ref={moreFeaturesBgRef}
@@ -70,16 +70,13 @@ function MoreFeatures() {
         >
           Explore Even More Powerful Features
         </h2>
-        <p className="z-2 max-w-[1200px] px-12.5">{featuresText[1]}</p>
+        <p className="z-2 max-w-5xl px-12.5">{featuresText[1]}</p>
       </div>
-      <div
-        role="list"
-        className="flex gap-10 z-2 justify-center max-lg:gap-5 max-md:flex-col max-md:gap-2.5"
-      >
+      <ul className="flex gap-10 z-2 justify-center max-lg:gap-5 max-md:flex-col max-md:gap-2.5">
         {moreFeatures.map((feature, index) => (
-          <MoreFeaturesItem index={index} feature={feature} />
+          <MoreFeaturesItem index={index} feature={feature} key={index} />
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
