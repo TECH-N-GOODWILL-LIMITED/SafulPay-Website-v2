@@ -113,71 +113,71 @@ export const companyData: SafulPayData = {
     alias: ["SafulGift", "SafulLink"],
     greenLogo: safulpayIconGreen,
     lemonLogo: safulpayIconLemon,
-    slogan: "Finance Just Got Better With ",
+    slogan: "Finance Just Got Better",
     description:
       "Our mission is to provide seamless and secure mobile money solutions, empowering users to manage their finances with ease.",
   },
   partners: [
+    // {
+    //   name: "V2 is Coming!",
+    //   image: safulpayIconLemon2,
+    // },
+    // {
+    //   name: "V2 is Coming!!",
+    //   image: safulpayIconLemon3,
+    // },
+    // {
+    //   name: "V2 is Coming!!!",
+    //   image: safulpayIconLemon4,
+    // },
+    // {
+    //   name: "V2 is Coming!",
+    //   image: safulpayIconLemon5,
+    // },
+    // {
+    //   name: "V2 is Coming!!",
+    //   image: safulpayIconLemon6,
+    // },
+    // {
+    //   name: "V2 is Coming!!!",
+    //   image: safulpayIconLemon7,
+    // },
     {
-      name: "V2 is Coming!",
-      image: safulpayIconLemon2,
+      name: "QCell",
+      image: logoQcell,
     },
     {
-      name: "V2 is Coming!!",
-      image: safulpayIconLemon3,
+      name: "Orange",
+      image: logoOrange,
     },
     {
-      name: "V2 is Coming!!!",
-      image: safulpayIconLemon4,
+      name: "Africell",
+      image: logoAfricell,
     },
     {
-      name: "V2 is Coming!",
-      image: safulpayIconLemon5,
+      name: "Western Union",
+      image: logoWu,
     },
     {
-      name: "V2 is Coming!!",
-      image: safulpayIconLemon6,
+      name: "Ria Money",
+      image: logoRia,
     },
     {
-      name: "V2 is Coming!!!",
-      image: safulpayIconLemon7,
+      name: "MoneyGram",
+      image: logoMoneygram,
     },
-    // {
-    //   name: "QCell",
-    //   image: logoQcell,
-    // },
-    // {
-    //   name: "Orange",
-    //   image: logoOrange,
-    // },
-    // {
-    //   name: "Africell",
-    //   image: logoAfricell,
-    // },
-    // {
-    //   name: "Western Union",
-    //   image: logoWu,
-    // },
-    // {
-    //   name: "Ria Money",
-    //   image: logoRia,
-    // },
-    // {
-    //   name: "MoneyGram",
-    //   image: logoMoneygram,
-    // },
-    // {
-    //   name: "VISA & Master Card",
-    //   image: logoBankcard,
-    // },
-    // {
-    //   name: "DSTV Subscriptions",
-    //   image: logoDstv,
-    // },
-    // {
-    //   name: "EDSA Meter",
-    //   image: logoEdsa,
-    // },
+    {
+      name: "VISA & Master Card",
+      image: logoBankcard,
+    },
+    {
+      name: "DSTV Subscriptions",
+      image: logoDstv,
+    },
+    {
+      name: "EDSA Meter",
+      image: logoEdsa,
+    },
   ],
   regulated: {
     text: "Licensed and Regulated by the Bank of Sierra Leone",
