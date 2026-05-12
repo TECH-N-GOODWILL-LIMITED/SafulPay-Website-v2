@@ -12,12 +12,10 @@ export const metadata: Metadata = {
     {
       media: "(prefers-color-scheme: light)",
       url: "/safulpay-icon-green.svg",
-      href: "/safulpay-icon-green.svg",
     },
     {
       media: "(prefers-color-scheme: dark)",
       url: "/safulpay-icon-lemon.svg",
-      href: "/safulpay-icon-lemon.svg",
     },
   ],
 };
