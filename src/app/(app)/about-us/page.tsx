@@ -1,6 +1,6 @@
-import About from "@/sections/About";
-import Team from "@/sections/Team";
-import Download from "@/sections/Download";
+import About from "@/components/sections/About";
+import Team from "@/components/sections/Team";
+import Download from "@/components/sections/Download";
 
 export default function AboutUs() {
   return (
