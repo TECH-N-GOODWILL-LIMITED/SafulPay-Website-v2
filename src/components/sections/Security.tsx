@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { companyData } from "../data/companyData";
-import { securityData } from "../data/appContent";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import SecurityFeature from "../components/SecurityFeature";
-import bgIcon from "../assets/images/bg-logo-illustration.svg";
+import { companyData } from "@/data/companyData";
+import { securityData } from "@/data/appContent";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import SecurityFeature from "@/components/SecurityFeature";
+import bgIcon from "@/assets/images/bg-logo-illustration.svg";
 
 function Security() {
   const securityRef = useRef<HTMLDivElement>(null);
@@ -22,12 +22,12 @@ function Security() {
       ref={securityRef}
       role="region"
       aria-label={title}
-      className="section pt-50 max-md:pt-0 gap-10 px-10 relative"
+      className="section pt-50 max-md:pt-0 gap-6 px-10 relative"
     >
       <h2 className="animateheader primary-heading py-2.5 px-10 tracking-[-2.1px]">
         {title}
       </h2>
-      <p className="py-2.5 max-w-275 mx-2.5">{intro}</p>
+      <p className="py-2.5 max-w-5xl mx-2.5">{intro}</p>
       <figure className="max-w-250 w-full flex flex-col gap-2.5 px-7.5 py-5 bg-primary-shade-10 rounded-[30px] items-center justify-center relative overflow-hidden">
         <Image
           className="max-w-147.5 absolute opacity-40 rotate-[133.24deg]"
