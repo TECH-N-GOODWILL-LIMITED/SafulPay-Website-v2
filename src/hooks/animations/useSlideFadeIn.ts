@@ -19,6 +19,7 @@ type SlideFadeInOptions = {
   scrub?: boolean | number;
   stagger?: number;
   toggleActions?: string;
+  each?: boolean;
 };
 
 export function useSlideFadeIn({
@@ -39,6 +40,7 @@ export function useSlideFadeIn({
   scrub = false,
   stagger = 0.1,
   toggleActions = "play none none none",
+  each = false,
 }: SlideFadeInOptions) {
   const from: gsap.TweenVars = {
     x: fromX,
@@ -67,5 +69,6 @@ export function useSlideFadeIn({
       scrub,
       toggleActions: scrub ? undefined : toggleActions,
     },
+    each,
   });
 }
