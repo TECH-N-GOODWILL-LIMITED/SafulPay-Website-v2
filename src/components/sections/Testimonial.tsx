@@ -9,19 +9,23 @@ import testimonialLogo from "@/assets/images/safulpay-testimonial-logo.png";
 import lineImage from "@/assets/images/long-line-illustration.svg";
 
 function Testimonial() {
-  const firstItemRef = useRef<HTMLDivElement | null>(null);
   const testimonialRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const testimonialItems = document.querySelectorAll(".testimonial-item");
+    const container = testimonialRef.current;
+    if (!container) return;
+
+    const testimonialItems = container.querySelectorAll(".testimonial-item");
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = Array.from(testimonialItems).indexOf(entry.target);
-            setActiveIndex(index);
+            if (index !== -1) {
+              setActiveIndex(index);
+            }
           }
         });
       },
@@ -34,7 +38,7 @@ function Testimonial() {
     testimonialItems.forEach((item) => observer.observe(item));
 
     return () => observer.disconnect();
-  }, []);
+  }, [testimonialsData]);
 
   useGsapCustomAnimation({
     containerRef: testimonialRef,
@@ -64,12 +68,12 @@ function Testimonial() {
       data-section
     >
       <Image
-        src={lineImage}
+        src={lineImage} unoptimized
         alt=""
         className="lineimage absolute h-[1000px] left-0 bottom-[-24%] max-xl:hidden"
       />
       <Image
-        src={lineImage}
+        src={lineImage} unoptimized
         alt=""
         className="lineimage absolute h-[1000px] right-0 bottom-[-24%] scale-x-[-1] max-xl:hidden"
       />
@@ -112,7 +116,7 @@ function Testimonial() {
                 }`}
                />
             ))}
-            <Image src={testimonialLogo} alt="" className="w-37.5"  />
+            <Image src={testimonialLogo} unoptimized alt="" className="w-37.5"  />
           </div>
         </div>
       </div> */}
@@ -120,11 +124,7 @@ function Testimonial() {
         <div className="pt-2.5 px-2.5 flex flex-col gap-2.5 text-left max-w-105 overflow-y-auto h-102.5 max-md:h-full max-md:max-w-full max-md:mx-5">
           {testimonialsData?.length > 0 ? (
             testimonialsData.map((testimony, index) => (
-              <div
-                key={index}
-                className="testimonial-item"
-                ref={index === 0 ? firstItemRef : null}
-              >
+              <div key={index} className="testimonial-item">
                 <TestimonialItem
                   name={testimony.name}
                   location={testimony.location}
@@ -151,7 +151,7 @@ function Testimonial() {
                 <Image
                   key={index}
                   src={testimonial.image}
-                  alt=""
+                  alt={`${testimonial.name}'s profile photo`}
                   className={`absolute z-1 rounded-full w-15 h-15 object-cover transition-all duration-500 ${
                     positionIndex === 0
                       ? `bottom-[-22%] left-6 w-25 h-25 z-10`
@@ -166,7 +166,11 @@ function Testimonial() {
                 />
               ) : null;
             })}
-            <Image src={testimonialLogo} alt="" className="w-37.5" />
+            <Image
+              src={testimonialLogo} unoptimized
+              alt="SafulPay logo"
+              className="w-37.5"
+            />
           </div>
         </div>
       </div>
