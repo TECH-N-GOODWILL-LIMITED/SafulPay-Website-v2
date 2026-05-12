@@ -51,7 +51,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
 
   return (
     <div
-      className="mx-2.25 max-lg:mx-5 p-4 max-md:p-3 mt-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-[10px] rounded-[20px] flex justify-between items-center small-text font-semibold text-white"
+      className="mx-2.5 md:mx-10 p-3 max-md:p-3 mt-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-md rounded-[20px] flex justify-between items-center text-sm font-semibold text-white transition-colors duration-500"
       style={{
         marginTop: vh < 600 ? "12px" : "",
       }}
@@ -71,20 +71,20 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           src={company.greenLogo}
           alt={`${company.name} logo`}
           aria-hidden="true"
-          className="w-15 px-3 py-1.25 max-md:w-10 max-md:py-0 max-xl:w-9 max-xl:px-1 max-lg:w-12.5 max-lg:px-2.5"
+          className="w-10 px-2 py-1 max-md:w-10 max-xl:w-9 max-lg:w-11"
         />
-        <p className="secondary-heading bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
+        <p className="secondary-heading bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
           {company.name}
         </p>
       </Link>
-      <nav className={`max-lg:hidden`} aria-label="Main navigation">
+      <nav className="max-lg:hidden text-base" aria-label="Main navigation">
         {!isHeroSection ? (
           <>
             {scrollLinks.map((link) => (
               <button
                 key={`scroll-${link.url}`}
                 onClick={() => handleScrollLink(link.url)}
-                className={`cursor-pointer py-2.5 px-5 max-xl:px-3 transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color ${
+                className={`cursor-pointer py-1.5 px-4 max-xl:px-3 transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color ${
                   activeSection === link.url && "text-secondary-color font-bold"
                 }`}
                 aria-label={`Scroll to ${link.label} section`}
@@ -109,7 +109,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
                   }}
                   key={`route-${link.url}`}
                   aria-label={`Navigate to ${link.label}`}
-                  className={`cursor-pointer py-2.5 px-5 max-xl:px-3 transition-all hover:scale-105 hover:text-secondary-color ${
+                  className={`cursor-pointer py-1.5 px-4 max-xl:px-3 transition-all hover:scale-105 hover:text-secondary-color ${
                     isActive && "text-secondary-color font-bold"
                   }`}
                 >
@@ -137,7 +137,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
       </nav>
       <button
         onClick={() => handleScrollLink("download")}
-        className="cursor-pointer px-7.5 py-4.25 rounded-[10px] bg-secondary-color text-primary-color text-[20px] tracking-[-0.4px] font-semibold max-xl:p-2.75 max-lg:hidden"
+        className="cursor-pointer px-5 py-2.5 rounded-[10px] bg-secondary-color text-primary-color text-base tracking-[-0.4px] font-semibold max-lg:hidden"
         aria-label="Scroll to download section"
       >
         Download App
