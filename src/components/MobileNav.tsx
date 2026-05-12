@@ -122,7 +122,7 @@ const MobileNav = React.forwardRef(
                 setIsMenuOpen(false);
                 handleScrollLink("home");
               }}
-              src={safulpayTextIcon}
+              src={safulpayTextIcon} unoptimized
               width={100}
               height={30}
               alt={`${companyName} text logo`}
@@ -145,7 +145,7 @@ const MobileNav = React.forwardRef(
               }}
             >
               <Image
-                src={safulPayLogo}
+                src={safulPayLogo} unoptimized
                 width={90}
                 height={90}
                 alt={`${companyName} logo`}
@@ -168,7 +168,7 @@ const MobileNav = React.forwardRef(
               className="cursor-pointer"
             >
               <Image
-                src={menuIconWhite}
+                src={menuIconWhite} unoptimized
                 width={30}
                 height={30}
                 alt="Close menu icon"
