@@ -10,7 +10,7 @@ import FaqItem from "@/components/FaqItem";
 import bgIcon from "@/assets/images/bg-logo-illustration.svg";
 
 function Faqs() {
-  const faqsRef = useRef<HTMLUListElement | null>(null);
+  const faqsRef = useRef<HTMLElement | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const { isMobile } = useViewportWidth();
@@ -48,7 +48,7 @@ function Faqs() {
       data-section
     >
       <Image
-        src={bgIcon}
+        src={bgIcon} unoptimized
         alt=""
         aria-hidden="true"
         role="presentation"
