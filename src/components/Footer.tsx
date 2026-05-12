@@ -42,7 +42,10 @@ function Footer() {
           <Image
             src={company.lemonLogo}
             alt={`${company.name} logo`}
-            className="w-7 m:w-12.5 px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
+            width={120}
+            height={120}
+            unoptimized
+            className="w-7 m:w-12.5 h-auto px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
           />
           <h1 className=" text-secondary-color tracking-[-1.92px] max-m:tracking-[-1.36px]">
             {company.name}
@@ -52,9 +55,6 @@ function Footer() {
         <div className="-mt-10 max-w-175 flex flex-col gap-2.5 items-start max-md:items-center z-20 mx-5 max-md:mx-10">
           <h1 className="max-w-275 pt-0 p-2.5 text-[clamp(16px,5.117vw,34px)] max-m:tracking-[-0.44px] font-semibold tracking-[-1.36px] leading-none max-md:mx-10 max-m:mx-1!">
             {company.slogan}
-            {/* <span className="bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
-              {company.name}
-            </span> */}
           </h1>
           <p className="small-text p-2.5">{featuresText[2]}</p>
         </div>
@@ -69,17 +69,21 @@ function Footer() {
               </h2>
 
               {links.links.map((link) => {
-                const isActive = pathname === link.url;
+                const isRoute = link.type === "route";
+                const isActive = isRoute
+                  ? pathname === link.url
+                  : activeSection === link.url;
+
                 const commonClasses = `small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-all cursor-pointer max-md:text-center ${
                   isActive ? "text-secondary-color font-bold" : ""
                 }`;
 
-                return link.type === "route" ? (
+                return isRoute ? (
                   <Link
                     key={`footer-route-${link.url}`}
                     href={link.url}
                     onClick={(e) => {
-                      if (isActive) {
+                      if (pathname === link.url) {
                         e.preventDefault();
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }
@@ -95,9 +99,7 @@ function Footer() {
                     onClick={() => handleScrollLink(link.url)}
                     className={commonClasses}
                     aria-label={`Scroll to ${link.label} section`}
-                    aria-current={
-                      activeSection === link.url ? "location" : undefined
-                    }
+                    aria-current={isActive ? "location" : undefined}
                   >
                     {link.label}
                   </button>
@@ -113,16 +115,22 @@ function Footer() {
           <Socials />
           <div className="relative flex gap-5 max-w-79 rounded-[30px] py-2.5 px-6 items-center justify-center overflow-hidden bg-primary-shade-10">
             <Image
-              className="max-w-147.5 absolute opacity-40 rotate-[133.24deg] z-99"
+              className="max-w-147.5 h-auto absolute opacity-40 rotate-[133.24deg] z-99"
               src={bgIcon}
               alt=""
+              width={590}
+              height={590}
               aria-hidden="true"
               role="presentation"
+              unoptimized
             />
             <Image
               src={regulated.icon}
               alt="Regulated by Bank of Sierra Leone"
-              className="w-8 md:w-10 filter grayscale invert"
+              width={40}
+              height={40}
+              unoptimized
+              className="w-8 md:w-10 h-auto filter grayscale invert"
             />
             <span className="small-text font-normal py-2.5">
               {regulated.text}
