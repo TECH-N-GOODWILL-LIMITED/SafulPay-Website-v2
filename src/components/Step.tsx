@@ -72,7 +72,7 @@ function Step({ data, index }: StepProps) {
               alt=""
               role="presentation"
               aria-hidden="true"
-              className="absolute top-0 max-w-147.5 rotate-[133.24deg] z-9999!"
+              className="absolute top-0 max-w-147.5 rotate-[133.24deg] z-10"
             />
             <Image src={icon} alt={`${title} icon`} className="w-15 h-15" />
 
