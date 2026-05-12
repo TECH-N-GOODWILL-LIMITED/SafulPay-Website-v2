@@ -7,13 +7,13 @@ import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
-import MoreFeaturesItem from "@/components/MoreFeatureItem";
+import MoreFeatureItem from "@/components/MoreFeatureItem";
 import bigRay from "@/assets/images/big-ray-illustration.svg";
 
 function MoreFeatures() {
   const moreFeaturesBgRef = useRef<HTMLDivElement>(null);
   const moreFeaturesTextRef = useRef<HTMLDivElement>(null);
-  const bigRayRef = useRef<HTMLImageElement>(null);
+  const bigRayRef = useRef<HTMLDivElement>(null);
   const { isMobile } = useViewportWidth();
   const { featuresText, moreFeatures } = featuresData;
 
@@ -54,14 +54,18 @@ function MoreFeatures() {
         aria-hidden="true"
         className="absolute w-full h-[67%] max-md:h-full rounded-t-[30px] rounded-b-[60px] bg-primary-color top-0"
       ></div>
-      <Image
+      <div
         ref={bigRayRef}
-        src={bigRay}
-        alt=""
-        aria-hidden="true"
-        role="presentation"
         className="w-185 absolute top-[-120px] max-m:top-[-6%]"
-      />
+      >
+        <Image
+          src={bigRay}
+          alt=""
+          aria-hidden="true"
+          role="presentation"
+          unoptimized
+        />
+      </div>
 
       <div ref={moreFeaturesTextRef} className="z-2 flex flex-col gap-5">
         <h2
@@ -74,7 +78,7 @@ function MoreFeatures() {
       </div>
       <ul className="flex gap-10 z-2 justify-center max-lg:gap-5 max-md:flex-col max-md:gap-2.5">
         {moreFeatures.map((feature, index) => (
-          <MoreFeaturesItem index={index} feature={feature} key={index} />
+          <MoreFeatureItem index={index} feature={feature} key={index} />
         ))}
       </ul>
     </section>
