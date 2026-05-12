@@ -1,7 +1,6 @@
 import Link from "next/link";
-
-import errorImage from "../assets/images/404_image.svg";
 import Image from "next/image";
+import errorImage from "../assets/images/404_image.svg";
 
 export default function NotFound() {
   return (
@@ -16,7 +15,7 @@ export default function NotFound() {
               src={errorImage}
               alt="error image"
               className="h-[clamp(24px,24vw,200px)] w-auto"
-             />
+            />
             <span className="font-semibold text-[clamp(24px,36vw,300px)]">
               4
             </span>
