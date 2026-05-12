@@ -13,8 +13,17 @@ function NavBar() {
   const { company } = companyData;
   const { otherLinks } = footerData;
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
     if (mobileNavRef.current) {
+      if (isFirstRender.current) {
+        // Set initial state without animation
+        gsap.set(mobileNavRef.current, { x: isMenuOpen ? 0 : "100%" });
+        isFirstRender.current = false;
+        return;
+      }
+
       if (isMenuOpen) {
         // Animate slide in from right
         gsap.to(mobileNavRef.current, {
@@ -36,7 +45,7 @@ function NavBar() {
   return (
     <header
       role="banner"
-      className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-99"
+      className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-50"
     >
       <a
         href="#features"
