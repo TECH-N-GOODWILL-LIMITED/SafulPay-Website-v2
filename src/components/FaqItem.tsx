@@ -21,7 +21,7 @@ function FaqItem({ data, isOpen, toggle }: FaqItemProps) {
 
   // Animate on open/close
   useEffect(() => {
-    if (answerRef.current) {
+    if (answerRef.current && iconRef.current) {
       if (isOpen) {
         gsap.to(answerRef.current, {
           height: "auto",
@@ -30,27 +30,25 @@ function FaqItem({ data, isOpen, toggle }: FaqItemProps) {
           duration: 0.4,
           ease: "power2.out",
         });
+        gsap.to(iconRef.current, {
+          rotation: 180,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       } else {
         gsap.to(answerRef.current, {
           height: 0,
           opacity: 0,
-          y: -20,
-          duration: 0.4,
+          y: -10,
+          duration: 0.3,
           ease: "power2.in",
         });
+        gsap.to(iconRef.current, {
+          rotation: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       }
-    }
-  }, [isOpen]);
-
-  // Animate icon rotation
-  useEffect(() => {
-    if (iconRef.current) {
-      gsap.to(iconRef.current, {
-        rotation: isOpen ? 180 : 0,
-        transformOrigin: "50% 50%",
-        duration: 0.6,
-        ease: "power2.out",
-      });
     }
   }, [isOpen]);
 
@@ -60,7 +58,7 @@ function FaqItem({ data, isOpen, toggle }: FaqItemProps) {
     .replace(/[^\w-]+/g, "")}`;
 
   return (
-    <div className="grid grid-cols-[1fr_auto] text-left max-w-277.5 w-full mx-auto p-2.5 items-center bg-[#ffffff0d] rounded-[50px]">
+    <div className="grid grid-cols-[1fr_auto] text-left max-w-5xl w-full mx-auto p-2.5 items-center bg-[#ffffff0d] rounded-[50px]">
       <button
         onClick={toggle}
         aria-expanded={isOpen}
@@ -75,14 +73,14 @@ function FaqItem({ data, isOpen, toggle }: FaqItemProps) {
         aria-expanded={isOpen}
         aria-controls={faqId}
         aria-label={`${isOpen ? "Collapse" : "Expand"} FAQ ${question}`}
-        className="cursor-pointer rounded-[50px] bg-[#c3f02c33] p-5 max-md:p-3"
+        className="cursor-pointer rounded-[50px] bg-[#c3f02c33] p-5 max-md:p-3 relative"
       >
         <Image
           ref={iconRef}
-          src={isOpen ? expandIcon : collapseIcon}
-          alt={isOpen ? "Collapse FAQ" : "Expand FAQ"}
+          src={isOpen ? collapseIcon : expandIcon}
+          alt=""
           className="w-3 h-3 md:h-5 md:w-5"
-          aria-hidden="false"
+          aria-hidden="true"
         />
       </button>
 
