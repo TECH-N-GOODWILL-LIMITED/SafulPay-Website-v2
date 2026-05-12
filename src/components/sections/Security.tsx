@@ -32,15 +32,27 @@ function Security() {
         <Image
           className="max-w-147.5 absolute opacity-40 rotate-[133.24deg]"
           src={bgIcon}
+          width={590}
+          height={590}
           alt=""
           role="presentation"
+          unoptimized
         />
-        <Image src={regulated?.icon} alt="Bank icon" className="w-15" />
+        {regulated?.icon && (
+          <Image
+            src={regulated.icon}
+            alt="Bank icon"
+            className="w-15"
+            width={60}
+            height={60}
+            unoptimized
+          />
+        )}
         <figcaption className="max-w-90 py-2.5 mx-2.5">
           {regulated?.text}
         </figcaption>
       </figure>
-      <div className="grid grid-cols sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-2.5 m:gap-5 lg:gap-10 max-w-283">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-2.5 m:gap-5 lg:gap-10 max-w-283">
         {securityFeatures.map((feature, index) => (
           <SecurityFeature key={feature.title} data={feature} index={index} />
         ))}
@@ -48,8 +60,11 @@ function Security() {
       <Image
         className="max-w-147.5 absolute bottom-[-2%] right-[-28%] opacity-80  max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
+        width={590}
+        height={590}
         alt=""
         role="presentation"
+        unoptimized
       />
     </section>
   );
