@@ -53,10 +53,12 @@ export function useGsapCustomAnimation({
             { ...from },
             {
               ...to,
-              delay: (to.delay as number || 0) + i * staggerDelay,
+              delay:
+                (typeof to.delay === "number" ? to.delay : 0) +
+                i * staggerDelay,
               scrollTrigger: {
                 trigger: target,
-                start: "top bottom",
+                start: "top 80%",
                 toggleActions: "play none none none",
                 ...scrollTrigger,
               },
