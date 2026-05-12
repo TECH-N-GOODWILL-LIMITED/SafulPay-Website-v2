@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { companyData } from "@/data/companyData";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
@@ -12,9 +12,9 @@ import Socials from "@/components/Socials";
 import mockupImage from "@/assets/images/mockup-login-signup.png";
 
 function Download() {
-  const downloadRef = useRef<HTMLHeadingElement | null>(null);
+  const downloadRef = useRef<HTMLElement | null>(null);
   const downloadTextRef = useRef<HTMLDivElement>(null);
-  const mockupSlide = useRef<HTMLImageElement>(null);
+  const mockupSlide = useRef<React.ElementRef<typeof Image>>(null);
   const { isMobile } = useViewportWidth();
   const { downloads } = companyData;
   const { title, subtitle, text } = downloads;
