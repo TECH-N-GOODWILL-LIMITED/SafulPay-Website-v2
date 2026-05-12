@@ -7,7 +7,7 @@ export default function NotFound() {
     <>
       <main className="h-screen bg-transparent text-white p-10 gap-35 max-md:gap-20">
         <div>
-          <h1 className="flex-center gap-10 max-md:gap-5 max-m:gap-2!">
+          <h1 className="flex-center gap-10 max-md:gap-5 max-sm:gap-2!">
             <span className="font-semibold text-[clamp(24px,36vw,300px)]">
               4
             </span>
