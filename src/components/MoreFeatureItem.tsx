@@ -12,7 +12,7 @@ interface MoreFeatureProps {
   index: number;
 }
 
-function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
+function MoreFeatureItem({ feature, index }: MoreFeatureProps) {
   const itemRef = useRef<HTMLLIElement | null>(null);
   const { title, image } = feature;
   const { isMobile } = useViewportWidth();
@@ -69,4 +69,4 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
   );
 }
 
-export default MoreFeaturesItem;
+export default MoreFeatureItem;
