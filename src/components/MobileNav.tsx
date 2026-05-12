@@ -111,7 +111,7 @@ const MobileNav = React.forwardRef(
         )}
         <div
           ref={ref}
-          className="fixed right-0 top-0 max-w-75 w-full h-[100dvh] p-5 pt-19.5 max-md:pt-11 rounded-l-[20px] bg-primary-color font-outfit flex flex-col justify-between text-white lg:hidden z-10 transform translate-x-full"
+          className="fixed right-0 top-0 max-w-75 w-full h-dvh p-5 pt-19.5 max-md:pt-11 rounded-l-[20px] bg-primary-color font-outfit flex flex-col justify-between text-white lg:hidden z-10 transform translate-x-full"
           style={{
             paddingTop: vh < 600 ? "40px" : "",
           }}
@@ -126,7 +126,7 @@ const MobileNav = React.forwardRef(
               width={100}
               height={30}
               alt={`${companyName} text logo`}
-              className="h-42.5 px-3.25 py-1.25 cursor-pointer max-md:h-auto"
+              className="h-42.5 px-3.25 cursor-pointer max-md:h-auto"
               style={{
                 maxHeight: vh < 760 ? "100px" : "",
                 height: "100%",
@@ -150,7 +150,7 @@ const MobileNav = React.forwardRef(
                 height={90}
                 alt={`${companyName} logo`}
                 aria-hidden="true"
-                className="w-15 px-3.25 py-1.25 max-xl:w-9 max-xl:px-1 max-lg:w-12.5 max-lg:px-2.5"
+                className="w-15 px-3.25 max-xl:w-9 max-xl:px-1 max-lg:w-12.5 max-lg:px-2.5"
                 style={{
                   width: vh < 600 ? "44px" : "",
                 }}
