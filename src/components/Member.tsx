@@ -42,11 +42,12 @@ function Member({ data, index }: MemberProps) {
         aria-label={`Team member: ${name}, ${role}`}
         className="member min-w-[260px] h-full shrink-0 bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
       >
-        <div className="bg-primary-shade-5 h-3/4">
+        <div className="relative bg-primary-shade-5 h-3/4">
           {img && (
             <Image
               src={img}
               alt={`${name}'s photo`}
+              fill
               className="w-full h-full object-cover"
             />
           )}
