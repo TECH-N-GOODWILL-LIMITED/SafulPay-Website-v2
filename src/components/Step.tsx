@@ -65,14 +65,14 @@ function Step({ data, index }: StepProps) {
             tabIndex={0}
             aria-labelledby={`step-title-${index}`}
             aria-describedby={`step-desc-${index}`}
-            className="flex relative flex-col justify-center px-7.5 items-center pt-10 pb-5 gap-2.5 bg-primary-shade-10 rounded-[30px]"
+            className="flex relative flex-col justify-center px-7.5 items-center pt-10 pb-5 gap-2.5 bg-primary-shade-10 rounded-[30px] overflow-hidden"
           >
             <Image
               src={bgIcon}
               alt=""
               role="presentation"
               aria-hidden="true"
-              className="max-w-147.5 absolute rotate-[133.24deg]"
+              className="absolute top-0 max-w-147.5 rotate-[133.24deg] z-9999!"
             />
             <Image src={icon} alt={`${title} icon`} className="w-15 h-15" />
 

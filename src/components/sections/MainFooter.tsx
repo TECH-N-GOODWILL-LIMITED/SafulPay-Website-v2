@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ContactUs from "./ContactUs";
-import Footer from "../components/Footer";
-import bgIcon from "../assets/images/bg-logo-illustration.svg";
+import Footer from "@/components/Footer";
+import bgIcon from "@/assets/images/bg-logo-illustration.svg";
 
 function MainFooter() {
   return (

@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { featuresData } from "../data/appContent";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import KeyFeatures from "../components/KeyFeatures";
-import bgIcon from "../assets/images/bg-logo-illustration.svg";
-import illustrationImage from "../assets/images/illustration-image.png";
+import { featuresData } from "@/data/appContent";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
+import KeyFeatures from "@/components/KeyFeatures";
+import bgIcon from "@/assets/images/bg-logo-illustration.svg";
+import illustrationImage from "@/assets/images/illustration-image.png";
 
 function Features() {
   const featuresTextRef = useRef<HTMLDivElement>(null);
@@ -47,10 +47,7 @@ function Features() {
           Features You Will Get
         </h2>
         <KeyFeatures />
-        <p
-          aria-describedby="features-heading"
-          className="p-2.5 mx-12.5 text-[clamp(12px,3.256vw,24px)]!"
-        >
+        <p aria-describedby="features-heading" className="p-2.5 mx-12.5">
           {featuresText[0]}
         </p>
       </div>

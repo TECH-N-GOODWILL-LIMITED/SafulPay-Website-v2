@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { worksData } from "../data/appContent";
-import { useViewportWidth } from "../hooks/useViewportWidth";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import Step from "../components/Step";
+import { worksData } from "@/data/appContent";
+import { useViewportWidth } from "@/hooks/useViewportWidth";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
+import Step from "@/components/Step";
 
 function Works() {
   const worksRef = useRef<HTMLDivElement>(null);
@@ -30,13 +30,13 @@ function Works() {
       role="region"
       aria-label={title}
       aria-description={instruction}
-      className="section max-w-400 py-25 px-5 gap-5 md:gap-10 bg-text-color text-white rounded-[50px]"
+      className="section py-16 px-5 gap-6 bg-text-color text-white rounded-[50px]"
       data-section
     >
       <h2 className="animateheader primary-heading font-bold p-2.5 tracking-[-2.1px]">
         {title}
       </h2>
-      <p className="p-2.5 mx-2.5 max-w-300">{intro}</p>
+      <p className="p-2.5 mx-2.5 max-w-5xl">{intro}</p>
       <h3 className="p-2.5 secondary-heading">{instruction}</h3>
       <ul className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-2.5 place-items-center justify-center">
         {steps.map((step, index) => (

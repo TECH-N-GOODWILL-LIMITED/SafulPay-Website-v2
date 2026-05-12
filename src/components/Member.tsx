@@ -19,10 +19,21 @@ function Member({ data, index }: MemberProps) {
   useGsapCustomAnimation({
     containerRef: memberRef,
     targetSelector: ".member",
-    from: { opacity: 0, y: 40 },
-    to: { opacity: 1, y: 0, duration: 0.6 },
-    index: isMobile ? 0 : index,
-    staggerDelay: isMobile ? 0 : 0.4,
+    from: { opacity: 0, y: 60, x: -20, scale: 0.9 },
+    to: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      duration: 0.8,
+      ease: "power2.out",
+    },
+    each: true,
+    scrollTrigger: {
+      start: "top bottom-=50",
+      end: "top center+=100",
+      scrub: !isMobile ? 1 : false,
+    },
   });
 
   return (
@@ -31,7 +42,7 @@ function Member({ data, index }: MemberProps) {
         aria-label={`Team member: ${name}, ${role}`}
         className="member min-w-[260px] h-full shrink-0 bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
       >
-        <div className="bg-red-200 h-3/4">
+        <div className="bg-primary-shade-5 h-3/4">
           {img && (
             <Image
               src={img}

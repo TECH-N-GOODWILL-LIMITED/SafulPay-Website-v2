@@ -37,23 +37,24 @@ function Footer() {
       role="contentinfo"
       className="rounded-t-[50px] max-md:rounded-t-[30px] bg-[#1B1B1B] text-white text-start w-full"
     >
-      <div className="grid grid-cols-1 justify-between items-center max-w-300.5 mx-auto px-2.5 pt-25 pb-12.5 gap-x-10 md:pb-25 md:pt-37.5 md:grid-cols-[1fr_auto] max-md:place-items-center max-md:text-center max-md:gap-y-10">
-        <div className="max-w-175 flex flex-col gap-2.5 items-start max-md:items-center z-20 mx-5 max-md:mx-10">
-          <div className="flex gap-2.5 items-center">
-            <Image
-              src={company.lemonLogo}
-              alt={`${company.name} logo`}
-              className="w-7 m:w-12.5 px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
-            />
-            <span className="text-[clamp(20px,7.907vw,64px)] font-semibold text-secondary-color tracking-[-1.92px] max-m:tracking-[-1.36px]">
-              {company.name}
-            </span>
-          </div>
-          <h1 className="max-w-275 p-2.5 text-[clamp(16px,5.117vw,34px)] max-m:tracking-[-0.44px] font-semibold tracking-[-1.36px] leading-none max-md:mx-10 max-m:mx-1!">
+      <div className="grid grid-cols-1 justify-between items-center max-w-300.5 mx-auto px-2.5 pt-25 pb-12.5 gap-x-10 md:pt-37.5 md:grid-cols-[1fr_auto] max-md:place-items-center max-md:text-center max-md:gap-y-10">
+        <div className="flex gap-2.5 items-center col-span-full">
+          <Image
+            src={company.lemonLogo}
+            alt={`${company.name} logo`}
+            className="w-7 m:w-12.5 px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
+          />
+          <h1 className=" text-secondary-color tracking-[-1.92px] max-m:tracking-[-1.36px]">
+            {company.name}
+          </h1>
+        </div>
+
+        <div className="-mt-10 max-w-175 flex flex-col gap-2.5 items-start max-md:items-center z-20 mx-5 max-md:mx-10">
+          <h1 className="max-w-275 pt-0 p-2.5 text-[clamp(16px,5.117vw,34px)] max-m:tracking-[-0.44px] font-semibold tracking-[-1.36px] leading-none max-md:mx-10 max-m:mx-1!">
             {company.slogan}
-            <span className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
+            {/* <span className="bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
               {company.name}
-            </span>
+            </span> */}
           </h1>
           <p className="small-text p-2.5">{featuresText[2]}</p>
         </div>
@@ -67,56 +68,52 @@ function Footer() {
                 {links.category}
               </h2>
 
-              {links.links.map((link) => (
-                <>
-                  {link.type === "route" ? (
-                    (() => {
-                      const isActive = pathname === link.url;
-                      return (
-                        <Link
-                          href={link.url}
-                          onClick={(e) => {
-                            if (pathname === link.url) {
-                              e.preventDefault();
-                              window.scrollTo({ top: 0, behavior: "smooth" });
-                            }
-                          }}
-                          key={`${link.type}-${link.url}`}
-                          className={`small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-all cursor-pointer hover:cursor-pointer max-md:text-center ${
-                            isActive && "text-secondary-color font-bold"
-                          }`}
-                          aria-label={`Navigate to ${link.label} page`}
-                        >
-                          {link.label}
-                        </Link>
-                      );
-                    })()
-                  ) : (
-                    <button
-                      key={`route-${link.url}`}
-                      onClick={() => handleScrollLink(link.url)}
-                      className={`small-text text-left py-1.25 px-2.5 cursor-pointer hover:cursor-pointer hover:text-secondary-color transition-all max-md:text-center`}
-                      aria-label={`Scroll to ${link.label} section`}
-                      aria-current={
-                        activeSection === link.url ? "location" : undefined
+              {links.links.map((link) => {
+                const isActive = pathname === link.url;
+                const commonClasses = `small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-all cursor-pointer max-md:text-center ${
+                  isActive ? "text-secondary-color font-bold" : ""
+                }`;
+
+                return link.type === "route" ? (
+                  <Link
+                    key={`footer-route-${link.url}`}
+                    href={link.url}
+                    onClick={(e) => {
+                      if (isActive) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
                       }
-                    >
-                      {link.label}
-                    </button>
-                  )}
-                </>
-              ))}
+                    }}
+                    className={commonClasses}
+                    aria-label={`Navigate to ${link.label} page`}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={`footer-scroll-${link.url}`}
+                    onClick={() => handleScrollLink(link.url)}
+                    className={commonClasses}
+                    aria-label={`Scroll to ${link.label} section`}
+                    aria-current={
+                      activeSection === link.url ? "location" : undefined
+                    }
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
             </div>
           ))}
         </div>
-        <div className="col-span-full mx-5 max-md:mx-10 max-md:row-[2]">
+        <div className="col-span-full mx-5 max-md:mx-10 max-md:row-2">
           <DownloadItem />
         </div>
         <div className="flex justify-between items-center col-span-full mx-5 max-md:mx-10 max-md:flex-col-reverse">
           <Socials />
-          <div className="relative flex gap-5 w-79 rounded-[30px] py-5 px-7.5 items-center justify-center overflow-hidden bg-primary-shade-10">
+          <div className="relative flex gap-5 max-w-79 rounded-[30px] py-2.5 px-6 items-center justify-center overflow-hidden bg-primary-shade-10">
             <Image
-              className="max-w-147.5 absolute opacity-40 rotate-[133.24deg]"
+              className="max-w-147.5 absolute opacity-40 rotate-[133.24deg] z-99"
               src={bgIcon}
               alt=""
               aria-hidden="true"
@@ -127,7 +124,7 @@ function Footer() {
               alt="Regulated by Bank of Sierra Leone"
               className="w-8 md:w-10 filter grayscale invert"
             />
-            <span className="text-[clamp(12px,3.721vw,16px)] font-semibold py-2.5">
+            <span className="small-text font-normal py-2.5">
               {regulated.text}
             </span>
           </div>
@@ -148,7 +145,7 @@ function Footer() {
                   }
                 }}
                 key={index}
-                className="py-2.5 px-5 m:px-7.5 font-semibold hover:text-secondary-color transition-all"
+                className="py-4 px-5 m:px-7.5 font-semibold hover:text-secondary-color transition-all"
                 aria-label={`Navigate to ${link.label} page`}
               >
                 {link.label}

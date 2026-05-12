@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { companyData } from "../data/companyData";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import Member from "../components/Member";
-import bgIcon from "../assets/images/bg-logo-illustration.svg";
+import { companyData } from "@/data/companyData";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import Member from "@/components/Member";
+import bgIcon from "@/assets/images/bg-logo-illustration.svg";
 
 function Team() {
   const teamRef = useRef<HTMLDivElement>(null);

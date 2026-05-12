@@ -2,12 +2,12 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { companyData } from "../data/companyData";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import { useAnimateText } from "../hooks/animations/useAnimateText";
-import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
-import DownloadItem from "../components/DownloadItem";
-import mockUpImage from "../assets/images/mockup-home-page.png";
+import { companyData } from "@/data/companyData";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import { useAnimateText } from "@/hooks/animations/useAnimateText";
+import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
+import DownloadItem from "@/components/DownloadItem";
+import mockUpImage from "@/assets/images/mockup-home-page.png";
 // import Partners from "../components/Partners";
 
 function Hero() {
@@ -42,15 +42,15 @@ function Hero() {
         className="flex-center flex-col gap-2.5 max-m:gap-7.5 mt-50 py-2.5 text-white"
       >
         <h1 id="hero-heading" className="animateheader max-w-275 p-2.5">
-          {company.slogan}
+          {company.slogan} With{" "}
           <span
             ref={companyNameRef}
-            className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent"
+            className="bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent"
           >
             Saful
           </span>
         </h1>
-        <p className="text-[clamp(16px,3.721vw,30px)] font-normal tracking-[-0.9px] max-m:tracking-normal p-2.5 max-w-250 max-m:max-w-80">
+        <p className="text-[clamp(16px,3.721vw,24px)] font-normal tracking-[-0.9px] max-m:tracking-normal p-2.5 max-w-3xl max-m:max-w-80">
           {company.description}
         </p>
         <div className="max-w-3/4">

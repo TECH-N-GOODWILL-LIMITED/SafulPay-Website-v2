@@ -2,14 +2,13 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { companyData } from "../data/companyData";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import { useSlideFadeIn } from "../hooks/animations/useSlideFadeIn";
-import KeyFeatures from "../components/KeyFeatures";
-import bgIcon from "../assets/images/bg-logo-illustration.svg";
-
-import bgImage from "../assets/images/bg-about-icons.png";
+import { companyData } from "@/data/companyData";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
+import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
+import KeyFeatures from "@/components/KeyFeatures";
+import bgIcon from "@/assets/images/bg-logo-illustration.svg";
+import bgImage from "@/assets/images/bg-about-icons.png";
 
 function About() {
   const aboutRef = useRef<HTMLHeadingElement>(null);
@@ -37,10 +36,10 @@ function About() {
         <h1
           ref={aboutRef}
           id="about-heading"
-          className="px-2.5 py-50 max-lg:py-40 max-md:pb-0"
+          className="px-2.5 py-50 max-lg:py-40 max-md:pb-0 z-2"
         >
           About{" "}
-          <span className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent  ">
+          <span className="bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent  ">
             {company.name}
           </span>
         </h1>

@@ -11,7 +11,7 @@
   --primary-opacity-fade: rgba(58, 86, 70, 0.1);
 
   --text-color: #121212;
-  --container-width: 93.75rem; /* 1500px */
+  --container-width: 90rem; /* 1440px */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -119,23 +119,23 @@
 
 @layer components {
   .section {
-    @apply max-w-container-width w-full mx-auto flex-center justify-start flex-col;
+    @apply max-w-360 w-full mx-auto flex-center justify-start flex-col;
   }
 
   .primary-heading {
-    @apply text-[clamp(20px,7.907vw,70px)] font-bold tracking-[-2.8px] max-m:tracking-[-1.36px];
+    @apply text-[clamp(20px,7.907vw,60px)] font-bold tracking-[-2.8px] max-m:tracking-[-1.36px];
   }
 
   .secondary-heading {
-    @apply text-[clamp(16px,5.117vw,30px)] font-bold tracking-[-0.9px] max-m:tracking-[-0.44px];
+    @apply text-[clamp(16px,5.117vw,22px)] font-bold tracking-[-0.9px] max-m:tracking-[-0.44px];
   }
 
   .title-text {
-    @apply text-[clamp(14px,4.652vw,22px)] text-text-color font-bold tracking-[-0.44px] max-md:tracking-[-0.4px];
+    @apply text-[clamp(14px,4.652vw,20px)] text-text-color font-bold tracking-[-0.44px] max-md:tracking-[-0.4px];
   }
 
   .small-text {
-    @apply text-[clamp(12px,3.721vw,20px)] font-extralight tracking-[-0.4px] max-md:tracking-normal;
+    @apply text-[clamp(12px,3.721vw,16px)] font-extralight tracking-[-0.4px] max-md:tracking-normal;
   }
 
   .marquee {

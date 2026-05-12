@@ -6,7 +6,7 @@ function DownloadItem() {
   const { appStore, playStore } = downloads;
 
   return (
-    <div className="hide flex gap-2.5 max-w-96 py-5 mx-2.5 max-m:gap-1.25">
+    <div className="hide flex gap-2.5 max-w-85 py-5 mx-2.5 max-m:gap-1.25">
       <a
         href={playStore.link}
         target="_blank"

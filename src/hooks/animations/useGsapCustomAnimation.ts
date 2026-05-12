@@ -15,7 +15,8 @@ type UseGsapScrollAnimationProps = {
   staggerDelay?: number;
   from?: GsapTweenVars;
   to?: GsapTweenVars;
-  scrollTrigger?: Partial<ScrollTrigger.Vars>; // Allow full ScrollTrigger control
+  scrollTrigger?: Partial<ScrollTrigger.Vars>;
+  each?: boolean; // New property to trigger items individually
 };
 
 export function useGsapCustomAnimation({
@@ -26,6 +27,7 @@ export function useGsapCustomAnimation({
   index = 0,
   staggerDelay = 0,
   scrollTrigger = {},
+  each = false,
 }: UseGsapScrollAnimationProps) {
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -44,20 +46,39 @@ export function useGsapCustomAnimation({
 
       if (!targets.length) return;
 
-      gsap.fromTo(
-        targets,
-        { ...from },
-        {
-          ...to,
-          delay: index * staggerDelay,
-          scrollTrigger: {
-            trigger: container,
-            start: "top 80%",
-            toggleActions: "play none none none",
-            ...scrollTrigger, // allow full customization
+      if (each) {
+        targets.forEach((target, i) => {
+          gsap.fromTo(
+            target,
+            { ...from },
+            {
+              ...to,
+              delay: (to.delay as number || 0) + i * staggerDelay,
+              scrollTrigger: {
+                trigger: target,
+                start: "top bottom",
+                toggleActions: "play none none none",
+                ...scrollTrigger,
+              },
+            },
+          );
+        });
+      } else {
+        gsap.fromTo(
+          targets,
+          { ...from },
+          {
+            ...to,
+            delay: index * staggerDelay,
+            scrollTrigger: {
+              trigger: container,
+              start: "top 80%",
+              toggleActions: "play none none none",
+              ...scrollTrigger,
+            },
           },
-        },
-      );
+        );
+      }
     }, containerRef);
 
     return () => ctx.revert();

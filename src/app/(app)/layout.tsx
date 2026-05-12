@@ -1,5 +1,5 @@
-import MainFooter from "@/sections/MainFooter";
-import NavBar from "@/sections/NavBar";
+import MainFooter from "@/components/sections/MainFooter";
+import NavBar from "@/components/sections/NavBar";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (

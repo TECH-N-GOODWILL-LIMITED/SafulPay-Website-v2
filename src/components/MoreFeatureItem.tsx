@@ -13,7 +13,7 @@ interface MoreFeatureProps {
 }
 
 function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
-  const itemRef = useRef<HTMLDivElement | null>(null);
+  const itemRef = useRef<HTMLLIElement | null>(null);
   const { title, image } = feature;
   const { isMobile } = useViewportWidth();
 
@@ -27,7 +27,7 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
   });
 
   return (
-    <div ref={itemRef} className="max-w-[387px]">
+    <li ref={itemRef} className="max-w-[387px]">
       <div
         tabIndex={0}
         role="group"
@@ -65,7 +65,7 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
           </p>
         )}
       </div>
-    </div>
+    </li>
   );
 }
 
