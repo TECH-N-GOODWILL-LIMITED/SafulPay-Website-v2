@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
+import React, { useRef } from "react";
 import { companyData } from "@/data/companyData";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useAnimateText } from "@/hooks/animations/useAnimateText";
@@ -13,7 +13,7 @@ import mockUpImage from "@/assets/images/mockup-home-page.png";
 function Hero() {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const companyNameRef = useRef<HTMLSpanElement | null>(null);
-  const mockupImageRef = useRef<HTMLImageElement | null>(null);
+  const mockupImageRef = useRef<React.ElementRef<typeof Image>>(null);
   const { company } = companyData;
 
   useAnimateText({
@@ -46,9 +46,7 @@ function Hero() {
           <span
             ref={companyNameRef}
             className="bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent"
-          >
-            Saful
-          </span>
+          ></span>
         </h1>
         <p className="text-[clamp(16px,3.721vw,24px)] font-normal tracking-[-0.9px] max-m:tracking-normal p-2.5 max-w-3xl max-m:max-w-80">
           {company.description}
