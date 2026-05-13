@@ -3,11 +3,10 @@
 import { useEffect, useState } from "react";
 
 const useViewportWidth = () => {
-  const [width, setWidth] = useState<number>(
-    typeof window !== "undefined" ? window.innerWidth : 700,
-  );
+  const [width, setWidth] = useState<number>(700);
 
   useEffect(() => {
+    setWidth(window.innerWidth || 700);
     const handleResize = () => {
       setWidth(window.innerWidth || 700);
     };
