@@ -15,7 +15,7 @@ function PartnerItem({ partner }: PartnerItemProps) {
         alt={`${name} logo`}
         width={40}
         height={40}
-        className="w-10 h-10"
+        className="w-10 h-auto"
       />
       <span className="title-text text-white">{name}</span>
     </div>
