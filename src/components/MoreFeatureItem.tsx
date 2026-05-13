@@ -40,7 +40,7 @@ function MoreFeatureItem({ feature, index }: MoreFeatureProps) {
           src={absoluteImage}
           alt=""
           role="presentation"
-          className={`absolute w-85.25 ${
+          className={`absolute w-85.25 h-auto ${
             index === 1 ? "top-[46%]" : "top-[28%]"
           }`}
         />
@@ -55,7 +55,7 @@ function MoreFeatureItem({ feature, index }: MoreFeatureProps) {
           <Image
             src={image}
             alt={`${title} illustration`}
-            className="w-75 z-1"
+            className="w-75 h-auto z-1"
           />
         )}
 
