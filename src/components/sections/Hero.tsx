@@ -60,6 +60,8 @@ function Hero() {
           ref={mockupImageRef}
           src={mockUpImage}
           alt="App homepage mockup"
+          unoptimized
+          fetchPriority="high"
         />
         {/* <div className="absolute top-[16%] left-[-900%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[8.29deg] w-max z-[-1] max-md:hidden">
           <Partners />
