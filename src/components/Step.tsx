@@ -36,7 +36,7 @@ function Step({ data, index }: StepProps) {
           alt=""
           role="presentation"
           aria-hidden="true"
-          className="w-29 h-29 max-lg:w-16 max-md:w-29 max-md:rotate-90 max-md:scale-y-[-1]"
+          className="w-29 h-auto max-lg:w-16 max-md:w-29 max-md:rotate-90 max-md:scale-y-[-1]"
         />
       )}
       {index === 2 && (
@@ -45,7 +45,7 @@ function Step({ data, index }: StepProps) {
           alt=""
           role="presentation"
           aria-hidden="true"
-          className="w-29 h-29 rotate-180 scale-x-[-1] max-lg:w-16 max-md:w-29 max-md:rotate-270 max-md:scale-y-[-1]"
+          className="w-29 h-auto rotate-180 scale-x-[-1] max-lg:w-16 max-md:w-29 max-md:rotate-270 max-md:scale-y-[-1]"
         />
       )}
       <li ref={stepRef} className="max-w-87.5" key={index}>
@@ -56,7 +56,7 @@ function Step({ data, index }: StepProps) {
               alt=""
               role="presentation"
               aria-hidden="true"
-              className="w-20 h-20"
+              className="w-20 h-auto"
             />
             <span className="absolute">{index + 1}</span>
           </div>
@@ -72,9 +72,9 @@ function Step({ data, index }: StepProps) {
               alt=""
               role="presentation"
               aria-hidden="true"
-              className="absolute top-0 max-w-147.5 rotate-[133.24deg] z-10"
+              className="absolute top-0 max-w-147.5 h-auto rotate-[133.24deg] z-10"
             />
-            <Image src={icon} alt={`${title} icon`} className="w-15 h-15" />
+            <Image src={icon} alt={`${title} icon`} className="w-15 h-auto" />
 
             <h4
               id={`step-title-${index}`}
