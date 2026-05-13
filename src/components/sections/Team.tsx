@@ -24,8 +24,7 @@ function Team() {
       className="section relative"
     >
       <Image
-        className="max-w-147.5 absolute top-[-8%] right-[-24%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        style={{ height: "auto" }}
+        className="max-w-147.5 h-auto absolute top-[-8%] right-[-24%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         unoptimized
         alt=""
@@ -33,8 +32,7 @@ function Team() {
         role="presentation"
       />
       <Image
-        className="max-w-147.5 absolute top-[6%] left-[-30%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        style={{ height: "auto" }}
+        className="max-w-147.5 h-auto absolute top-[6%] left-[-30%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         unoptimized
         alt=""
@@ -42,8 +40,7 @@ function Team() {
         role="presentation"
       />
       <Image
-        className="max-w-147.5 absolute bottom-[-12%] left-[-16%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        style={{ height: "auto" }}
+        className="max-w-147.5 h-auto absolute bottom-[-12%] left-[-16%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
         unoptimized
         alt=""
