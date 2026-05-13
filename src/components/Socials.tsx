@@ -21,12 +21,12 @@ function Socials({ className }: SocialsProp) {
             aria-label={`Visit SafulPay's ${social.name} page`}
             className="w-full p-2.5 bg-primary-shade-10 rounded-full transition-all hover:bg-primary-color max-md:bg-secondary-shade-10"
           >
-            <Image unoptimized
+            <Image
+              unoptimized
               src={social.icon}
               alt={`${social.name} icon`}
               width={20}
-              height={20}
-              className="w-5 h-5"
+              className="w-5 h-auto"
               aria-hidden="true"
             />
           </a>
