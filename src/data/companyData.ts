@@ -1,12 +1,6 @@
 import { StaticImageData } from "next/image";
 import safulpayIconGreen from "../assets/images/safulpay-icon-green.svg";
 import safulpayIconLemon from "../assets/images/safulpay-icon-lemon.svg";
-import safulpayIconLemon2 from "../assets/images/safulpay-icon-lemon.svg";
-import safulpayIconLemon3 from "../assets/images/safulpay-icon-lemon.svg";
-import safulpayIconLemon4 from "../assets/images/safulpay-icon-lemon.svg";
-import safulpayIconLemon5 from "../assets/images/safulpay-icon-lemon.svg";
-import safulpayIconLemon6 from "../assets/images/safulpay-icon-lemon.svg";
-import safulpayIconLemon7 from "../assets/images/safulpay-icon-lemon.svg";
 import logoQcell from "../assets/images/partners/logo-qcell.svg";
 import logoOrange from "../assets/images/partners/logo-orange.svg";
 import logoAfricell from "../assets/images/partners/logo-africell.svg";
@@ -19,18 +13,17 @@ import logoEdsa from "../assets/images/partners/logo-edsa.svg";
 import iconBank from "../assets/images/icon-bank.svg";
 import iconTwitter from "../assets/images/icon-twitter.svg";
 import iconFacebook from "../assets/images/icon-facebook.svg";
-import iconWhatsapp from "../assets/images/icon-whatsapp.svg";
 import iconTikTok from "../assets/images/icon-tik-tok.svg";
 import iconInstagram from "../assets/images/icon-instagram.svg";
 import iconLinkedin from "../assets/images/icon-linkedin.svg";
 import downloadAppstoreIcon from "../assets/images/download-appstore-icon.svg";
 import downloadPlaystoreIcon from "../assets/images/download-playstore-icon.svg";
-import teamWale from "../assets/images/team/wale-ceo.png";
-import teamTolu from "../assets/images/team/tolu-cto.png";
-import teamAdama from "../assets/images/team/adama-pro.png";
-import teamOyinn from "../assets/images/team/oyinn-tech.png";
-import teamElijah from "../assets/images/team/elijah-marketing.jpg";
-import teamTimi from "../assets/images/team/timi-design.png";
+import teamWale from "../assets/images/team/wale_ceo.jpeg";
+import teamTolu from "../assets/images/team/tolu_coo.jpeg";
+import teamAdama from "../assets/images/team/adama_relations.jpeg";
+import teamOyinn from "../assets/images/team/oyinn_tech_lead.jpeg";
+import teamElijah from "../assets/images/team/elijah_marketing.jpeg";
+import teamTimi from "../assets/images/team/timi-design.jpeg";
 
 // COMPANY
 export interface Company {
@@ -125,22 +118,6 @@ export const companyData: SafulPayData = {
     // {
     //   name: "V2 is Coming!!",
     //   image: safulpayIconLemon3,
-    // },
-    // {
-    //   name: "V2 is Coming!!!",
-    //   image: safulpayIconLemon4,
-    // },
-    // {
-    //   name: "V2 is Coming!",
-    //   image: safulpayIconLemon5,
-    // },
-    // {
-    //   name: "V2 is Coming!!",
-    //   image: safulpayIconLemon6,
-    // },
-    // {
-    //   name: "V2 is Coming!!!",
-    //   image: safulpayIconLemon7,
     // },
     {
       name: "QCell",
@@ -262,7 +239,7 @@ export const companyData: SafulPayData = {
       {
         img: teamAdama,
         name: "Adama Jalloh",
-        role: "Customer Relations Officer",
+        role: "Head of Customer Support",
         socials: {
           twitter: "https://twitter.com/emilyjohnson",
           linkedin: "https://linkedin.com/in/emilyjohnson",
@@ -271,7 +248,7 @@ export const companyData: SafulPayData = {
       {
         img: teamOyinn,
         name: "Oyinlola Lawal",
-        role: "Lead Software Engineer",
+        role: "Chief Technology Officer",
         socials: {
           twitter: "https://twitter.com/janesmith",
           github: "https://github.com/michaelbrown",
@@ -280,8 +257,8 @@ export const companyData: SafulPayData = {
       },
       {
         img: teamElijah,
-        name: "Elijah Mensan",
-        role: "Marketing Lead",
+        name: "Elijah Mensah",
+        role: "Head of Business Development",
         socials: {
           twitter: "https://twitter.com/emilyjohnson",
           linkedin: "https://linkedin.com/in/emilyjohnson",
