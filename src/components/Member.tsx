@@ -48,6 +48,7 @@ function Member({ data, index }: MemberProps) {
               src={img}
               alt={`${name}'s photo`}
               fill
+              sizes="260px"
               className="w-full h-full object-cover"
             />
           )}
