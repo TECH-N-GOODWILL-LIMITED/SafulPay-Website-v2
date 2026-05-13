@@ -82,7 +82,8 @@ function ContactUs() {
         className="relative max-m:w-87.5 max-w-250 w-full mx-5 z-2 bg-white px-10 py-20 rounded-[20px] flex flex-col gap-7.5 items-center justify-center overflow-hidden shadow-[0_0_30px_0_rgba(11,70,80,0.4)] md:mb-[-80px] mb-[-36px]"
       >
         <Image
-          src={bgIcon} unoptimized
+          src={bgIcon}
+          unoptimized
           alt=""
           aria-hidden="true"
           role="presentation"
@@ -94,7 +95,8 @@ function ContactUs() {
 
         <div className="flex sm:gap-2.5 gap-0 items-center">
           <Image
-            src={company.greenLogo} unoptimized
+            src={company.greenLogo}
+            unoptimized
             alt={`${company.name} logo`}
             className="w-15 py-1.25 px-3.25 max-sm:w-10 max-sm:py-[3.33px] max-sm:px-2"
           />
