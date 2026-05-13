@@ -1,59 +1,84 @@
-"use client";
+import type { Metadata } from "next";
+import { companyData } from "@/data/companyData";
+import { faqsData } from "@/data/appContent";
+import JsonLd from "@/components/JsonLd";
+import HomeClient from "./HomeClient";
 
-import { useRef } from "react";
-import { useViewportHeight } from "../hooks/useViewportHeight";
-import { useScaleFadeIn } from "../hooks/animations/useScaleFadeIn";
-import NavBar from "@/components/sections/NavBar";
-import Hero from "@/components/sections/Hero";
-import Features from "@/components/sections/Features";
-import MoreFeatures from "@/components/sections/MoreFeatures";
-import Security from "@/components/sections/Security";
-import Works from "@/components/sections/Works";
-import Testimonial from "@/components/sections/Testimonial";
-import Partners from "@/components/Partners";
-import Download from "@/components/sections/Download";
-import Faqs from "@/components/sections/Faqs";
-import MainFooter from "@/components/sections/MainFooter";
-import SolutionsPreview from "@/components/sections/SolutionsPreview";
+const { company, seo, socials, downloads } = companyData;
+
+export const metadata: Metadata = {
+  title: `${company.name} | ${company.slogan}`,
+  description: seo.fullDescription,
+  alternates: { canonical: seo.siteUrl },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: company.name,
+  url: seo.siteUrl,
+  logo: `${seo.siteUrl}/safulpay-icon-green.svg`,
+  description: seo.fullDescription,
+  foundingLocation: "Sierra Leone",
+  sameAs: socials.map((s) => s.url),
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    email: "info@safulpay.com",
+    availableLanguage: "English",
+  },
+};
+
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: company.name,
+  url: seo.siteUrl,
+  description: seo.shortDescription,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${seo.siteUrl}/?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  name: company.name,
+  operatingSystem: "iOS, Android",
+  applicationCategory: "FinanceApplication",
+  description: seo.fullDescription,
+  url: seo.siteUrl,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  downloadUrl: [downloads.appStore.link, downloads.playStore.link],
+  author: { "@type": "Organization", name: company.name },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqsData.faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
 
 export default function HomePage() {
-  const mainRef = useRef<HTMLDivElement | null>(null);
-  const vh = useViewportHeight();
-
-  useScaleFadeIn({
-    containerRef: mainRef,
-    fromScaleX: 0.8,
-    fromOpacity: 1,
-    scrub: 0.5,
-    end: "top top",
-  });
-
   return (
-    <div className="relative">
-      <NavBar />
-      <Hero />
-
-      <div
-        className={`absolute ${
-          vh < 620 ? "top-[50%]" : "top-[80vh]"
-        } w-screen bg-transparent overflow-auto`}
-      >
-        <div className="h-32 md:h-30 sticky"></div>
-        <main ref={mainRef} className="relative rounded-t-[40px] max-m:pt-15">
-          <Features />
-          <MoreFeatures />
-          <Security />
-          <SolutionsPreview />
-          <Works />
-          <Testimonial />
-          <div className="absolute top-4/15 flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
-            <Partners />
-          </div>
-          <Download />
-          <Faqs />
-        </main>
-        <MainFooter />
-      </div>
-    </div>
+    <>
+      <JsonLd
+        data={[organizationSchema, webSiteSchema, appSchema, faqSchema]}
+      />
+      <HomeClient />
+    </>
   );
 }
