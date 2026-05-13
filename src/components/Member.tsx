@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRef } from "react";
 import type { TeamMember } from "../data/appContent";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import { useViewportWidth } from "../hooks/useViewportWidth";
 
 interface MemberProps {
   data: TeamMember;
@@ -13,7 +12,6 @@ interface MemberProps {
 
 function Member({ data, index }: MemberProps) {
   const memberRef = useRef<HTMLDivElement | null>(null);
-  const { isMobile } = useViewportWidth();
   const { name, role, img } = data;
 
   useGsapCustomAnimation({
@@ -30,9 +28,7 @@ function Member({ data, index }: MemberProps) {
     },
     each: true,
     scrollTrigger: {
-      start: "top bottom-=50",
-      end: "top center+=100",
-      scrub: !isMobile ? 1 : false,
+      start: "top 90%",
     },
   });
 
@@ -42,14 +38,14 @@ function Member({ data, index }: MemberProps) {
         aria-label={`Team member: ${name}, ${role}`}
         className="member min-w-[260px] h-full shrink-0 bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
       >
-        <div className="relative bg-primary-shade-5 h-3/4">
+        <div className="relative bg-primary-shade-5 h-3/4 overflow-hidden">
           {img && (
             <Image
               src={img}
               alt={`${name}'s photo`}
-              fill
-              sizes="260px"
-              className="w-full h-full object-cover"
+              height={300}
+              unoptimized
+              className="w-full h-85 object-cover object-bottom"
             />
           )}
         </div>
