@@ -47,9 +47,7 @@ function Footer() {
             unoptimized
             className="w-7 m:w-12.5 h-auto px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-32"
           />
-          <h1 className="text-8xl font-bold text-secondary-color tracking-wide">
-            {company.name}
-          </h1>
+          <h1 className="text-secondary-color tracking-wide">{company.name}</h1>
         </div>
 
         <div className="-mt-10 max-w-175 flex flex-col gap-2.5 items-start max-md:items-center z-20 mx-5 max-md:mx-10">
