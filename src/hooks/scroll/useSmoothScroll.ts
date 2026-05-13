@@ -18,10 +18,7 @@ export const useSmoothScroll = () => {
 
   const isHomePage = pathname === "/";
 
-  const isHeroSection =
-    typeof window !== "undefined" &&
-    isHomePage &&
-    (!activeSection || activeSection === "home");
+  const isHeroSection = isHomePage && (!activeSection || activeSection === "home");
 
   const scrollToSection = async (
     elementId: string,
