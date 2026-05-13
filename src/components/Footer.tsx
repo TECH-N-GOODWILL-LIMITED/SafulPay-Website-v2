@@ -42,12 +42,12 @@ function Footer() {
           <Image
             src={company.lemonLogo}
             alt={`${company.name} logo`}
-            width={120}
-            height={120}
+            width={128}
+            height={128}
             unoptimized
-            className="w-7 m:w-12.5 h-auto px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-30"
+            className="w-7 m:w-12.5 h-auto px-0 py-1.25 md:px-6.5 sm:py-2.5 md:w-32"
           />
-          <h1 className=" text-secondary-color tracking-[-1.92px] max-m:tracking-[-1.36px]">
+          <h1 className="text-8xl font-bold text-secondary-color tracking-wide">
             {company.name}
           </h1>
         </div>
