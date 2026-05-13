@@ -36,6 +36,7 @@ function Features() {
         role="presentation"
         unoptimized
         className="max-w-147.5 absolute top-[-47px] left-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
+        style={{ height: "auto" }}
       />
       <div
         ref={featuresTextRef}
