@@ -137,8 +137,8 @@ export interface HowItWorks {
 
 // NAVBAR
 export const navLinks: NavLink[] = [
-  { label: "Features", url: "features", type: "scroll" },
   { label: "How it Works", url: "works", type: "scroll" },
+  { label: "Platforms", url: "/platform", type: "route" },
   { label: "Testimonial", url: "testimonials", type: "scroll" },
   { label: "FAQs", url: "faqs", type: "scroll" },
   { label: "Contact Us", url: "contact-us", type: "scroll" },
@@ -159,6 +159,14 @@ export const footerData: FooterData = {
         { label: "Download", url: "download", type: "scroll" },
         { label: "FAQs", url: "faqs", type: "scroll" },
         { label: "Testimonial", url: "testimonials", type: "scroll" },
+      ],
+    },
+    {
+      category: "Platform",
+      links: [
+        { label: "Agency Platform", url: "/platform#agency", type: "route" },
+        { label: "Merchant Tools", url: "/platform#merchant", type: "route" },
+        { label: "Developer API", url: "/platform#developer", type: "route" },
       ],
     },
     {
