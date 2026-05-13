@@ -25,21 +25,27 @@ function Team() {
     >
       <Image
         className="max-w-147.5 absolute top-[-8%] right-[-24%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        src={bgIcon} unoptimized
+        style={{ height: "auto" }}
+        src={bgIcon}
+        unoptimized
         alt=""
         aria-hidden="true"
         role="presentation"
       />
       <Image
         className="max-w-147.5 absolute top-[6%] left-[-30%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        src={bgIcon} unoptimized
+        style={{ height: "auto" }}
+        src={bgIcon}
+        unoptimized
         alt=""
         aria-hidden="true"
         role="presentation"
       />
       <Image
         className="max-w-147.5 absolute bottom-[-12%] left-[-16%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        src={bgIcon} unoptimized
+        style={{ height: "auto" }}
+        src={bgIcon}
+        unoptimized
         alt=""
         aria-hidden="true"
         role="presentation"
