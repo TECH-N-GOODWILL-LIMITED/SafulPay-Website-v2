@@ -89,8 +89,21 @@ export interface Team {
   members: Member[];
 }
 
+export interface SeoConfig {
+  siteUrl: string;
+  twitterHandle: string;
+  themeColor: string;
+  backgroundColor: string;
+  shortDescription: string;
+  fullDescription: string;
+  keywords: string[];
+  ogImagePath: string;
+  appleTouchIconPath: string;
+}
+
 export interface SafulPayData {
   company: Company;
+  seo: SeoConfig;
   partners: Partner[];
   regulated: Regulated;
   socials: Social[];
@@ -109,6 +122,31 @@ export const companyData: SafulPayData = {
     slogan: "Finance Just Got Better",
     description:
       "Our mission is to provide seamless and secure mobile money solutions, empowering users to manage their finances with ease.",
+  },
+  seo: {
+    siteUrl: "https://safulpay.com",
+    twitterHandle: "@safulpay",
+    themeColor: "#3a5646",
+    backgroundColor: "#3a5646",
+    shortDescription:
+      "Sierra Leone's leading mobile money platform. Send, receive, pay bills and accept payments — all in one app.",
+    fullDescription:
+      "SafulPay is Sierra Leone's leading mobile money platform — send money, pay bills, top up airtime, and receive international remittances in seconds. Built for users, agents, merchants, and developers.",
+    keywords: [
+      "mobile money",
+      "Sierra Leone",
+      "fintech",
+      "send money",
+      "pay bills",
+      "remittance",
+      "SafulPay",
+      "digital payments",
+      "agency banking",
+      "merchant payments",
+      "developer API",
+    ],
+    ogImagePath: "/og-image.png",
+    appleTouchIconPath: "/apple-touch-icon.png",
   },
   partners: [
     // {
@@ -250,9 +288,9 @@ export const companyData: SafulPayData = {
         name: "Oyinlola Lawal",
         role: "Chief Technology Officer",
         socials: {
-          twitter: "https://twitter.com/janesmith",
-          github: "https://github.com/michaelbrown",
-          linkedin: "https://linkedin.com/in/michaelbrown",
+          twitter: "https://x.com/honeyzrich?s=21&t=C8AmSZA0skcAWJ-gYIUjFg",
+          github: "https://github.com/lawalOyinlola",
+          linkedin: "https://www.linkedin.com/in/lawaloyinlola",
         },
       },
       {
