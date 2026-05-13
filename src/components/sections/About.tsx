@@ -32,7 +32,7 @@ function About() {
       aria-labelledby="about-heading"
       className="section gap-50 py-2.5 max-lg:gap-25"
     >
-      <div className="relative w-screen flex-center mx-12.5">
+      <div className="relative w-full flex-center px-12.5">
         <h1
           ref={aboutRef}
           id="about-heading"
@@ -45,7 +45,7 @@ function About() {
         </h1>
         <Image
           ref={aboutBgRef}
-          src={bgImage}
+          src={bgImage} unoptimized
           alt=""
           aria-hidden="true"
           role="presentation"
@@ -55,7 +55,7 @@ function About() {
         />
         <Image
           ref={aboutMobileBgRef}
-          src={bgIcon}
+          src={bgIcon} unoptimized
           width={1000}
           height={1000}
           alt=""

@@ -1,3 +1,5 @@
+import React from "react";
+
 import MainFooter from "@/components/sections/MainFooter";
 import NavBar from "@/components/sections/NavBar";
 

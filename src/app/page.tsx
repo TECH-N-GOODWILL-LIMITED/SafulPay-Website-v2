@@ -14,6 +14,7 @@ import Partners from "@/components/Partners";
 import Download from "@/components/sections/Download";
 import Faqs from "@/components/sections/Faqs";
 import MainFooter from "@/components/sections/MainFooter";
+import SolutionsPreview from "@/components/sections/SolutionsPreview";
 
 export default function HomePage() {
   const mainRef = useRef<HTMLDivElement | null>(null);
@@ -42,9 +43,10 @@ export default function HomePage() {
           <Features />
           <MoreFeatures />
           <Security />
+          <SolutionsPreview />
           <Works />
           <Testimonial />
-          <div className="absolute top-[29%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
+          <div className="absolute top-4/15 flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
             <Partners />
           </div>
           <Download />

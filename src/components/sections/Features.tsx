@@ -34,7 +34,9 @@ function Features() {
         alt=""
         aria-hidden="true"
         role="presentation"
+        unoptimized
         className="max-w-147.5 absolute top-[-47px] left-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
+        style={{ height: "auto" }}
       />
       <div
         ref={featuresTextRef}
@@ -47,16 +49,14 @@ function Features() {
           Features You Will Get
         </h2>
         <KeyFeatures />
-        <p aria-describedby="features-heading" className="p-2.5 mx-12.5">
-          {featuresText[0]}
-        </p>
+        <p className="p-2.5 mx-12.5">{featuresText[0]}</p>
       </div>
       <Image
         src={illustrationImage}
         alt=""
-        aria-hidden="true"
         role="presentation"
         className="max-w-[min(90vw,1000px)] max-md:hidden"
+        aria-hidden="true"
       />
       <div
         ref={IllustrationsRef}
@@ -65,11 +65,12 @@ function Features() {
         {featuresIllustration.map((illustration, index) => (
           <Image
             src={illustration}
-            alt="Illustration Image for SafulPay Features"
+            alt=""
             key={index}
             width={500}
             height={500}
             className="feature-images"
+            aria-hidden="true"
           />
         ))}
       </div>

@@ -12,7 +12,7 @@ interface MoreFeatureProps {
   index: number;
 }
 
-function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
+function MoreFeatureItem({ feature, index }: MoreFeatureProps) {
   const itemRef = useRef<HTMLLIElement | null>(null);
   const { title, image } = feature;
   const { isMobile } = useViewportWidth();
@@ -40,7 +40,7 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
           src={absoluteImage}
           alt=""
           role="presentation"
-          className={`absolute w-85.25 ${
+          className={`absolute w-85.25 h-auto ${
             index === 1 ? "top-[46%]" : "top-[28%]"
           }`}
         />
@@ -55,7 +55,7 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
           <Image
             src={image}
             alt={`${title} illustration`}
-            className="w-75 z-1"
+            className="w-75 h-auto z-1"
           />
         )}
 
@@ -69,4 +69,4 @@ function MoreFeaturesItem({ feature, index }: MoreFeatureProps) {
   );
 }
 
-export default MoreFeaturesItem;
+export default MoreFeatureItem;

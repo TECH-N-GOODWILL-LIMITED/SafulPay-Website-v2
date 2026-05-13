@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { companyData } from "@/data/companyData";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import bgIcon from "@/assets/images/bg-logo-illustration.svg";
@@ -10,7 +10,14 @@ function ContactUs() {
   const contactRef = useRef<HTMLDivElement | null>(null);
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { company } = companyData;
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   useScaleFadeIn({ containerRef: contactRef });
 
@@ -19,13 +26,15 @@ function ContactUs() {
 
     if (!email.trim()) {
       setError("Email address is required");
-
-      const timeout = setTimeout(() => setError(""), 3000);
-      return () => clearTimeout(timeout);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setError(""), 3000);
+      return;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError("Enter a valid email address");
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setError(""), 3000);
       return;
     }
 
@@ -35,19 +44,23 @@ function ContactUs() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
+    setEmail(e.target.value);
+    if (error) setError(""); // Clear error while typing
+  };
 
-    if (!newEmail.trim()) {
+  const handleBlur = () => {
+    if (!email.trim()) {
       setError("Email address is required");
-
-      const timeout = setTimeout(() => setError(""), 3000);
-      return () => clearTimeout(timeout);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setError(""), 3000);
+      return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(newEmail)) {
+    if (!emailRegex.test(email)) {
       setError("Enter a valid email address");
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setError(""), 3000);
       return;
     }
 
@@ -70,6 +83,7 @@ function ContactUs() {
       >
         <Image
           src={bgIcon}
+          unoptimized
           alt=""
           aria-hidden="true"
           role="presentation"
@@ -82,6 +96,7 @@ function ContactUs() {
         <div className="flex sm:gap-2.5 gap-0 items-center">
           <Image
             src={company.greenLogo}
+            unoptimized
             alt={`${company.name} logo`}
             className="w-15 py-1.25 px-3.25 max-sm:w-10 max-sm:py-[3.33px] max-sm:px-2"
           />
@@ -99,6 +114,7 @@ function ContactUs() {
             type="email"
             value={email}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             placeholder="Enter your email address"
             required
             aria-required="true"

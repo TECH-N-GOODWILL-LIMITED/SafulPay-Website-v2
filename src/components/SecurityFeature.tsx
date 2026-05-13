@@ -33,7 +33,9 @@ function SecurityFeature({ data, index }: FeatureProps) {
           <Image
             src={mockUp}
             alt="Login mockup image"
-            className="w-full object-cover"
+            className="max-w-113 object-cover"
+            width={452}
+            height={922}
           />
         </div>
       )}
@@ -46,7 +48,7 @@ function SecurityFeature({ data, index }: FeatureProps) {
           className="security-step max-w-75 p-2.5 flex flex-col gap-x-2.5 lg:w-75"
         >
           <div className="py-5 px-7.5 bg-primary-shade-10 rounded-[30px] flex justify-center">
-            <Image src={icon} alt={`${title} icon`} className="w-10 md:w-15" />
+            <Image src={icon} alt={`${title} icon`} width={60} height={60} unoptimized className="w-10 md:w-15 h-auto" />
           </div>
           <h3 className="secondary-heading py-2.5">{title}</h3>
           <p className="py-2.5">{description}</p>

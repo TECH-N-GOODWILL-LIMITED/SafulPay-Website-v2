@@ -2,11 +2,10 @@
 import { useEffect, useState } from "react";
 
 const useViewportHeight = () => {
-  const [height, setHeight] = useState<number>(
-    typeof window !== "undefined" ? window.innerHeight : 800
-  );
+  const [height, setHeight] = useState<number>(800);
 
   useEffect(() => {
+    setHeight(window.innerHeight || 800);
     const handleResize = () => {
       setHeight(window.innerHeight || 800);
     };

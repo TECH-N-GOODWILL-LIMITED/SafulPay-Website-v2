@@ -14,7 +14,7 @@ function DownloadItem() {
         aria-label="Download SafulPay from Google Play Store"
         className="transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:animate-pulse active:translate-y-0"
       >
-        <Image
+        <Image unoptimized
           src={playStore.image}
           alt="SafulPay app available on Google Play Store"
           className="max-w-full"
@@ -27,7 +27,7 @@ function DownloadItem() {
         aria-label="Download SafulPay from Apple App Store"
         className="transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:animate-pulse active:translate-y-0"
       >
-        <Image
+        <Image unoptimized
           src={appStore.image}
           alt="SafulPay app available on the Apple App Store"
           className="max-w-full"

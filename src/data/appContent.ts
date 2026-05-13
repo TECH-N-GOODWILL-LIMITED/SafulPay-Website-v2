@@ -1,22 +1,22 @@
 import { StaticImageData } from "next/image";
-import mockupFeatures1 from '../assets/images/mockup-features1.png';
-import mockupFeatures2 from '../assets/images/mockup-features2.png';
-import mockupFeatures3 from '../assets/images/mockup-features3.png';
-import iconArrowDown from '../assets/images/icon-arrow-down.svg';
-import iconAdmin from '../assets/images/icon-admin.svg';
-import iconWallet from '../assets/images/icon-wallet.svg';
-import createWalletIllustration from '../assets/images/create-wallet-illustration.png';
-import sendIllustration from '../assets/images/send-illustration.png';
-import paymentIllustration from '../assets/images/payment-illustration.png';
-import iconCurrency from '../assets/images/icon-currency.svg';
-import iconEncrypt from '../assets/images/icon-encrypt.svg';
-import iconShield from '../assets/images/icon-shield.svg';
-import iconPadlock from '../assets/images/icon-padlock.svg';
-import testimonialLady2 from '../assets/images/testimonial/lady2.png';
-import testimonialThomas from '../assets/images/testimonial/thomas.png';
-import testimonialChrislin from '../assets/images/testimonial/chrislin.png';
-import testimonialLady from '../assets/images/testimonial/lady.png';
-import testimonialLady3 from '../assets/images/testimonial/lady3.png';
+import mockupFeatures1 from "../assets/images/mockup-features1.png";
+import mockupFeatures2 from "../assets/images/mockup-features2.png";
+import mockupFeatures3 from "../assets/images/mockup-features3.png";
+import iconArrowDown from "../assets/images/icon-arrow-down.svg";
+import iconAdmin from "../assets/images/icon-admin.svg";
+import iconWallet from "../assets/images/icon-wallet.svg";
+import createWalletIllustration from "../assets/images/create-wallet-illustration.png";
+import sendIllustration from "../assets/images/send-illustration.png";
+import paymentIllustration from "../assets/images/payment-illustration.png";
+import iconCurrency from "../assets/images/icon-currency.svg";
+import iconEncrypt from "../assets/images/icon-encrypt.svg";
+import iconShield from "../assets/images/icon-shield.svg";
+import iconPadlock from "../assets/images/icon-padlock.svg";
+import testimonialLady2 from "../assets/images/testimonial/lady2.png";
+import testimonialThomas from "../assets/images/testimonial/thomas.png";
+import testimonialChrislin from "../assets/images/testimonial/chrislin.png";
+import testimonialLady from "../assets/images/testimonial/lady.png";
+import testimonialLady3 from "../assets/images/testimonial/lady3.png";
 
 const currentYear = new Date().getFullYear();
 
@@ -137,8 +137,8 @@ export interface HowItWorks {
 
 // NAVBAR
 export const navLinks: NavLink[] = [
-  { label: "Features", url: "features", type: "scroll" },
   { label: "How it Works", url: "works", type: "scroll" },
+  { label: "Platforms", url: "/platform", type: "route" },
   { label: "Testimonial", url: "testimonials", type: "scroll" },
   { label: "FAQs", url: "faqs", type: "scroll" },
   { label: "Contact Us", url: "contact-us", type: "scroll" },
@@ -159,6 +159,14 @@ export const footerData: FooterData = {
         { label: "Download", url: "download", type: "scroll" },
         { label: "FAQs", url: "faqs", type: "scroll" },
         { label: "Testimonial", url: "testimonials", type: "scroll" },
+      ],
+    },
+    {
+      category: "Platform",
+      links: [
+        { label: "Agency Platform", url: "/platform#agency", type: "route" },
+        { label: "Merchant Tools", url: "/platform#merchant", type: "route" },
+        { label: "Developer API", url: "/platform#developer", type: "route" },
       ],
     },
     {
@@ -335,7 +343,7 @@ export const worksData: HowItWorks = {
     {
       title: "Download and Install Our App",
       description:
-        "Find SalfulPay on your App Store or Google Play Store. Tap 'Install' and you'll have our app ready to use on your device.",
+        "Find SafulPay on your App Store or Google Play Store. Tap 'Install' and you'll have our app ready to use on your device.",
       icon: iconArrowDown,
     },
     {

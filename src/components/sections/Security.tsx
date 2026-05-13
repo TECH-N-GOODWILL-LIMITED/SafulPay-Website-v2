@@ -30,26 +30,41 @@ function Security() {
       <p className="py-2.5 max-w-5xl mx-2.5">{intro}</p>
       <figure className="max-w-250 w-full flex flex-col gap-2.5 px-7.5 py-5 bg-primary-shade-10 rounded-[30px] items-center justify-center relative overflow-hidden">
         <Image
-          className="max-w-147.5 absolute opacity-40 rotate-[133.24deg]"
+          className="max-w-147.5 h-auto absolute opacity-40 rotate-[133.24deg]"
           src={bgIcon}
+          width={590}
+          height={590}
           alt=""
           role="presentation"
+          unoptimized
         />
-        <Image src={regulated?.icon} alt="Bank icon" className="w-15" />
+        {regulated?.icon && (
+          <Image
+            src={regulated.icon}
+            alt="Bank icon"
+            className="w-15 h-auto"
+            width={60}
+            height={60}
+            unoptimized
+          />
+        )}
         <figcaption className="max-w-90 py-2.5 mx-2.5">
           {regulated?.text}
         </figcaption>
       </figure>
-      <div className="grid grid-cols sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-2.5 m:gap-5 lg:gap-10 max-w-283">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-2.5 m:gap-5 lg:gap-10 max-w-283">
         {securityFeatures.map((feature, index) => (
           <SecurityFeature key={feature.title} data={feature} index={index} />
         ))}
       </div>
       <Image
-        className="max-w-147.5 absolute bottom-[-2%] right-[-28%] opacity-80  max-md:max-w-120 max-sm:max-w-100"
+        className="max-w-147.5 h-auto absolute bottom-[-2%] right-[-28%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon}
+        width={590}
+        height={590}
         alt=""
         role="presentation"
+        unoptimized
       />
     </section>
   );

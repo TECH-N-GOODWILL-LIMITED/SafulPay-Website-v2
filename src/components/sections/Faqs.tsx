@@ -3,17 +3,15 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { faqsData } from "@/data/appContent";
-import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import FaqItem from "@/components/FaqItem";
 import bgIcon from "@/assets/images/bg-logo-illustration.svg";
 
 function Faqs() {
-  const faqsRef = useRef<HTMLUListElement | null>(null);
+  const faqsRef = useRef<HTMLElement | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const { isMobile } = useViewportWidth();
   const { title, intro, faqs } = faqsData;
 
   const handleToggle = (index: number) => {
@@ -31,10 +29,9 @@ function Faqs() {
     fromX: -50,
     fromY: 50,
     fromOpacity: 0,
-    start: "top bottom",
-    end: "top 70%",
+    start: "top 85%",
     ease: "power2.out",
-    scrub: !isMobile ? 1 : false,
+    stagger: 0.08,
     each: true,
   });
 
@@ -52,7 +49,10 @@ function Faqs() {
         alt=""
         aria-hidden="true"
         role="presentation"
-        className="max-w-147.5 max-md:max-w-120 absolute left-[-370px] top-[10%] opacity-80"
+        width={590}
+        height={590}
+        unoptimized
+        className="max-w-147.5 h-auto max-md:max-w-120 absolute left-[-370px] top-[10%] opacity-80"
       />
       <h2 className="animateheader max-w-5xl py-2.5 text-primary-color primary-heading font-semibold tracking-[-2.56px] max-m:tracking-[-1.36px] leading-snug">
         {title}

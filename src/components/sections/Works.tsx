@@ -29,7 +29,7 @@ function Works() {
       id="works"
       role="region"
       aria-label={title}
-      aria-description={instruction}
+      aria-describedby="works-instruction"
       className="section py-16 px-5 gap-6 bg-text-color text-white rounded-[50px]"
       data-section
     >
@@ -37,7 +37,9 @@ function Works() {
         {title}
       </h2>
       <p className="p-2.5 mx-2.5 max-w-5xl">{intro}</p>
-      <h3 className="p-2.5 secondary-heading">{instruction}</h3>
+      <h3 id="works-instruction" className="p-2.5 secondary-heading">
+        {instruction}
+      </h3>
       <ul className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-2.5 place-items-center justify-center">
         {steps.map((step, index) => (
           <Step key={step.title} data={step} index={index} />

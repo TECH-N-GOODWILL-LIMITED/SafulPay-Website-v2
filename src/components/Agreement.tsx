@@ -46,7 +46,7 @@ const Agreement: React.FC<AgreementProps> = ({ data }) => {
 
             <span className="py-2.5">Back</span>
           </Link>
-          <h2 className="py-0 md:py-2.5 primary-heading font-semibold text-primary-color uppercase tracking-[-2.562x] max-md:tracking-[-1.36px]">
+          <h2 className="py-0 md:py-2.5 primary-heading font-semibold text-primary-color uppercase tracking-[-2.562px] max-md:tracking-[-1.36px]">
             {title}
           </h2>
           <p className="py-2.5">{lastUpdated}</p>
