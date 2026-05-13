@@ -73,7 +73,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           width={40}
           height={40}
           unoptimized
-          className="w-10 px-2 py-1 max-md:w-10 max-xl:w-9 max-lg:w-11"
+          className="w-10 px-2 py-1 max-md:w-10 max-xl:w-9 max-lg:w-11 h-auto"
           aria-hidden="true"
         />
         <p className="secondary-heading bg-linear-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
@@ -134,14 +134,14 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
               aria-hidden="true"
               role="presentation"
               unoptimized
-              className="cursor-pointer animate-ping absolute h-full transform top-0 left-1/2 -translate-x-1/2"
+              className="cursor-pointer animate-ping absolute h-full w-auto transform top-0 left-1/2 -translate-x-1/2"
             />
           </button>
         )}
       </nav>
       <button
         onClick={() => handleScrollLink("download")}
-        className="cursor-pointer px-5 py-2.5 rounded-[10px] bg-secondary-color text-primary-color text-base tracking-[-0.4px] font-semibold max-lg:hidden"
+        className="cursor-pointer px-5 py-2.5 rounded-[10px] bg-secondary-color text-primary-color text-base tracking-[-0.4px] font-semibold max-lg:hidden hover:brightness-95 hover:text-text-color transition-all"
         aria-label="Scroll to download section"
       >
         Download App
