@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
 import { companyData } from "@/data/companyData";
 import PlatformHero from "@/components/sections/platform/PlatformHero";
 import AgencySection from "@/components/sections/platform/AgencySection";
 import MerchantSection from "@/components/sections/platform/MerchantSection";
 import DeveloperSection from "@/components/sections/platform/DeveloperSection";
 import PlatformCTA from "@/components/sections/platform/PlatformCTA";
-import JsonLd from "@/components/JsonLd";
 
 const { company, seo } = companyData;
 
