@@ -103,7 +103,7 @@ function SolutionsPreview() {
         </div>
 
         {/* Right: stacked solution list */}
-        <div ref={listRef} className="flex flex-col">
+        <div ref={listRef} className="flex flex-col mx-4.5">
           {solutions.map((s, i) => (
             <Link
               key={s.id}
@@ -176,7 +176,6 @@ function SolutionsPreview() {
           </div>
         </div>
       </div>
-      {/* ── CTA below the grid ── matches DownloadItem / other CTA button styles */}
     </section>
   );
 }
