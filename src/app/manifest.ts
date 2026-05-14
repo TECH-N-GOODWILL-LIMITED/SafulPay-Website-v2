@@ -15,13 +15,13 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["finance", "utilities"],
     icons: [
       {
-        src: "/safulpay-icon.svg",
+        src: seo.manifestIcons?.default || "/safulpay-icon.svg",
         sizes: "any",
         type: "image/svg+xml",
         purpose: "any",
       },
       {
-        src: "/safulpay-icon-green.svg",
+        src: seo.manifestIcons?.maskable || "/safulpay-icon-green.svg",
         sizes: "any",
         type: "image/svg+xml",
         purpose: "maskable",
