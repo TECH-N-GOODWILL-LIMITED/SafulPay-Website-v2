@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
-import safulpayIconGreen from "../assets/images/safulpay-icon-green.svg";
-import safulpayIconLemon from "../assets/images/safulpay-icon-lemon.svg";
+import safulpayIconGreen from "../assets/images/brand/safulpay-icon-green.svg";
+import safulpayIconLemon from "../assets/images/brand/safulpay-icon-lemon.svg";
 import logoQcell from "../assets/images/partners/logo-qcell.svg";
 import logoOrange from "../assets/images/partners/logo-orange.svg";
 import logoAfricell from "../assets/images/partners/logo-africell.svg";
@@ -10,9 +10,9 @@ import logoMoneygram from "../assets/images/partners/logo-moneygram.svg";
 import logoBankcard from "../assets/images/partners/logo-bankcard.svg";
 import logoDstv from "../assets/images/partners/logo-dstv.svg";
 import logoEdsa from "../assets/images/partners/logo-edsa.svg";
-import iconBank from "../assets/images/icon-bank.svg";
-import downloadAppstoreIcon from "../assets/images/download-appstore-icon.svg";
-import downloadPlaystoreIcon from "../assets/images/download-playstore-icon.svg";
+import iconBank from "../assets/images/icons/icon-bank.svg";
+import downloadAppstoreIcon from "../assets/images/icons/download-appstore-icon.svg";
+import downloadPlaystoreIcon from "../assets/images/icons/download-playstore-icon.svg";
 import teamWale from "../assets/images/team/wale_ceo.jpeg";
 import teamTolu from "../assets/images/team/tolu_coo.jpeg";
 import teamAdama from "../assets/images/team/adama_relations.jpeg";
@@ -99,6 +99,10 @@ export interface SeoConfig {
   keywords: string[];
   ogImagePath: string;
   appleTouchIconPath: string;
+  manifestIcons?: {
+    default: string;
+    maskable: string;
+  };
 }
 
 export interface SafulPayData {
@@ -147,6 +151,10 @@ export const companyData: SafulPayData = {
     ],
     ogImagePath: "/og-image.png",
     appleTouchIconPath: "/apple-touch-icon.png",
+    manifestIcons: {
+      default: "/safulpay-icon.svg",
+      maskable: "/safulpay-icon-green.svg",
+    },
   },
   partners: [
     // {
@@ -182,7 +190,7 @@ export const companyData: SafulPayData = {
       image: logoMoneygram,
     },
     {
-      name: "VISA & Master Card",
+      name: "Visa & Mastercard",
       image: logoBankcard,
     },
     {
@@ -199,10 +207,19 @@ export const companyData: SafulPayData = {
     icon: iconBank,
   },
   socials: [
-    { name: "Twitter", url: "https://x.com/safulpay?s=21&t=C8AmSZA0skcAWJ-gYIUjFg" },
+    {
+      name: "Twitter",
+      url: "https://x.com/safulpay?s=21&t=C8AmSZA0skcAWJ-gYIUjFg",
+    },
     { name: "Facebook", url: "https://www.facebook.com/share/18X8Vz9tuQ/" },
-    { name: "TikTok", url: "https://www.tiktok.com/@safulpay?_t=ZM-8wNCWIrp8hr&_r=1" },
-    { name: "Instagram", url: "https://www.instagram.com/safulpay?igsh=eWl4YjFtOW5rcGQ=" },
+    {
+      name: "TikTok",
+      url: "https://www.tiktok.com/@safulpay?_t=ZM-8wNCWIrp8hr&_r=1",
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/safulpay?igsh=eWl4YjFtOW5rcGQ=",
+    },
     { name: "LinkedIn", url: "https://www.linkedin.com/company/safulpay" },
   ],
   downloads: {
