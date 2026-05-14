@@ -121,7 +121,7 @@ function Member({ data, index }: MemberProps) {
             style={{ backgroundColor: theme.overlayBg, clipPath: collapsed }}
             aria-hidden="true"
           >
-            <div ref={bioRef} className="opacity-0 translate-y-3">
+            <div ref={bioRef} className="opacity-0 translate-y-3 my-auto">
               <p className={`text-sm leading-relaxed ${theme.text}`}>
                 {bio ??
                   `${role} at SafulPay — committed to financial inclusion across Sierra Leone.`}
