@@ -6,8 +6,8 @@ import { featuresData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import KeyFeatures from "@/components/KeyFeatures";
-import bgIcon from "@/assets/images/bg-logo-illustration.svg";
-import illustrationImage from "@/assets/images/illustration-image.png";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
+import illustrationImage from "@/assets/images/illustrations/illustration-image.png";
 
 function Features() {
   const featuresTextRef = useRef<HTMLDivElement>(null);
@@ -55,6 +55,8 @@ function Features() {
         src={illustrationImage}
         alt=""
         role="presentation"
+        width={1000}
+        height={800}
         className="max-w-[min(90vw,1000px)] max-md:hidden"
         aria-hidden="true"
       />

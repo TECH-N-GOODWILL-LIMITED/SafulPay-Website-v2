@@ -8,7 +8,7 @@ import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
 import MoreFeatureItem from "@/components/MoreFeatureItem";
-import bigRay from "@/assets/images/big-ray-illustration.svg";
+import bigRay from "@/assets/images/illustrations/big-ray-illustration.svg";
 
 function MoreFeatures() {
   const moreFeaturesBgRef = useRef<HTMLDivElement>(null);

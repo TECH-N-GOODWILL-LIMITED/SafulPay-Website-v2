@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
-import mockupImage from "@/assets/images/mockup-new-safulpay-iphone13.png";
+import mockupImage from "@/assets/images/mockups/mockup-new-safulpay-iphone13.png";
 
 const solutions = [
   {
@@ -23,7 +23,7 @@ const solutions = [
     label: "Merchant",
     tagline: "Get paid. Pay people.",
     description:
-      "In-app checkout, QR, payment links, and bulk payouts to staff, suppliers and beneficairies.",
+      "In-app checkout, QR, payment links, and bulk payouts to staff, suppliers and beneficiaries.",
   },
   {
     id: "developer",

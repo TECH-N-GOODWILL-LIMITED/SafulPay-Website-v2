@@ -6,7 +6,7 @@ import { companyData } from "@/data/companyData";
 import { securityData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import SecurityFeature from "@/components/SecurityFeature";
-import bgIcon from "@/assets/images/bg-logo-illustration.svg";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function Security() {
   const securityRef = useRef<HTMLDivElement>(null);
@@ -48,9 +48,11 @@ function Security() {
             unoptimized
           />
         )}
-        <figcaption className="max-w-90 py-2.5 mx-2.5">
-          {regulated?.text}
-        </figcaption>
+        {regulated?.text && (
+          <figcaption className="max-w-90 py-2.5 mx-2.5">
+            {regulated.text}
+          </figcaption>
+        )}
       </figure>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-2.5 m:gap-5 lg:gap-10 max-w-283">
         {securityFeatures.map((feature, index) => (

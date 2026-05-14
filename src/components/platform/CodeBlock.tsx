@@ -24,7 +24,7 @@ function tokenizeLine(line: string): Token[] {
       break;
     }
 
-    const stringMatch = remaining.match(/^('([^']*)'|"([^"]*)")/);
+    const stringMatch = remaining.match(/^('([^'\\]|\\.)*'|"([^"\\]|\\.)*")/);
     if (stringMatch) {
       tokens.push({ text: stringMatch[0], type: "string" });
       remaining = remaining.slice(stringMatch[0].length);
@@ -77,7 +77,7 @@ export function CodeBlock() {
   return (
     <div
       className="w-full rounded-3xl border border-white/10 bg-zinc-950 overflow-hidden shadow-[0_24px_60px_-12px_rgba(0,0,0,0.5)]"
-      role="img"
+      role="region"
       aria-label="SafulPay Node.js SDK code example"
     >
       {/* Window chrome */}

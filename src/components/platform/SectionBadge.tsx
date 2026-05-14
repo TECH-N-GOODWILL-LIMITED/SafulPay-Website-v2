@@ -6,7 +6,7 @@ interface SectionBadgeProps {
 export function SectionBadge({ label, dark = false }: SectionBadgeProps) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase ${
+      className={`inline-flex w-fit items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase ${
         dark
           ? "bg-secondary-color/20 text-secondary-color border border-secondary-color/20"
           : "bg-primary-shade-5 text-primary-color border border-primary-shade-10"

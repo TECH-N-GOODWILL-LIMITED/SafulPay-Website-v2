@@ -9,7 +9,7 @@ import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
 import DownloadItem from "@/components/DownloadItem";
 import Socials from "@/components/Socials";
-import mockupImage from "@/assets/images/mockup-login-signup.png";
+import mockupImage from "@/assets/images/mockups/mockup-login-signup.png";
 
 function Download() {
   const downloadRef = useRef<HTMLElement | null>(null);

@@ -40,6 +40,12 @@ function NavBar() {
         });
       }
     }
+
+    return () => {
+      if (mobileNavRef.current) {
+        gsap.killTweensOf(mobileNavRef.current);
+      }
+    };
   }, [isMenuOpen]);
 
   return (

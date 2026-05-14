@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { testimonialsData } from "@/data/appContent";
 import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
 import TestimonialItem from "@/components/TestimonialItem";
-import testimonialLogo from "@/assets/images/safulpay-testimonial-logo.png";
-import lineImage from "@/assets/images/long-line-illustration.svg";
+import testimonialLogo from "@/assets/images/brand/safulpay-testimonial-logo.png";
+import lineImage from "@/assets/images/illustrations/long-line-illustration.svg";
 
 function Testimonial() {
   const testimonialRef = useRef<HTMLDivElement | null>(null);

@@ -6,7 +6,7 @@ import { useRef } from "react";
 import type { AgreementData } from "../data/agreementData";
 import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
 import Download from "./sections/Download";
-import arrowBack from "../assets/images/icon-arrow-back.svg";
+import arrowBack from "../assets/images/icons/icon-arrow-back.svg";
 
 interface AgreementProps {
   data: AgreementData;
@@ -40,7 +40,7 @@ const Agreement: React.FC<AgreementProps> = ({ data }) => {
               src={arrowBack}
               width={24}
               height={24}
-              alt="Back"
+              alt="Arrow Back Icon"
               className="w-6 md:w-10 group-hover:-translate-x-2 transition-all"
             />
 

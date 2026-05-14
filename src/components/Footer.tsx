@@ -8,7 +8,7 @@ import { featuresData, footerData } from "../data/appContent";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import DownloadItem from "./DownloadItem";
 import Socials from "./Socials";
-import bgIcon from "../assets/images/bg-logo-illustration.svg";
+import bgIcon from "../assets/images/illustrations/bg-logo-illustration.svg";
 
 function Footer() {
   const router = useRouter();

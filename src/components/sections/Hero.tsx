@@ -7,7 +7,7 @@ import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useAnimateText } from "@/hooks/animations/useAnimateText";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import DownloadItem from "@/components/DownloadItem";
-import mockUpImage from "@/assets/images/mockup-home-page.png";
+import mockUpImage from "@/assets/images/mockups/mockup-home-page.png";
 // import Partners from "../components/Partners";
 
 function Hero() {
@@ -55,7 +55,7 @@ function Hero() {
           <DownloadItem />
         </div>
       </div>
-      <div className="cursor-pointer max-w-[min(63.49vw,444px)] relative">
+      <div className="max-w-[min(63.49vw,444px)] relative">
         <Image
           ref={mockupImageRef}
           src={mockUpImage}

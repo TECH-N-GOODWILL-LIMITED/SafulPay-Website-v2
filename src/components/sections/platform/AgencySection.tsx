@@ -1,41 +1,52 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { agencyData } from "@/data/platformContent";
-import { SectionBadge } from "@/components/platform/SectionBadge";
-import { FeatureRow } from "@/components/platform/FeatureRow";
-import { StatBadge } from "@/components/platform/StatBadge";
-import { AgencyDashboard } from "@/components/platform/AgencyDashboard";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
+import { SectionBadge } from "@/components/platform/SectionBadge";
+import { FeatureRow } from "@/components/platform/FeatureRow";
+import mockupImage from "@/assets/images/mockups/mockup_agency_app.png";
+
+// Asymmetric watermark positions and sizing for the 4 stat values
+const WATERMARKS = [
+  {
+    wrapper: "top-[2%] left-[4%] rotate-[-4deg] text-right",
+    value: "text-[clamp(60px,9vw,140px)]",
+  },
+  {
+    wrapper: "bottom-[8%] left-[14%] rotate-[3deg]",
+    value: "text-[clamp(48px,7vw,110px)]",
+  },
+  {
+    wrapper: "bottom-[8%] right-[2%] rotate-[-2deg] text-right",
+    value: "text-[clamp(54px,8vw,120px)]",
+  },
+  {
+    wrapper: "top-[26%] left-[38%] rotate-[5deg]",
+    value: "text-[clamp(80px,10vw,160px)]",
+  },
+];
 
 function AgencySection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const { badge, headline, subheadline, description, features, stats, cta } = agencyData;
+  const { badge, headline, subheadline, description, features, stats, cta } =
+    agencyData;
 
   useSlideFadeIn({
     containerRef: contentRef,
-    fromX: -50,
+    fromX: -40,
     fromY: 0,
-    stagger: 0.08,
-    start: "top 75%",
-  });
-
-  useSlideFadeIn({
-    containerRef: visualRef,
-    fromX: 60,
-    fromY: 0,
+    stagger: 0.06,
     start: "top 75%",
   });
 
   useScaleFadeIn({
-    containerRef: statsRef,
-    targetSelector: ".stat-badge",
-    fromScale: 0.92,
-    stagger: 0.08,
-    start: "top 85%",
+    containerRef: visualRef,
+    fromScale: 0.94,
+    start: "top 80%",
   });
 
   return (
@@ -43,52 +54,87 @@ function AgencySection() {
       id="agency"
       role="region"
       aria-labelledby="agency-heading"
-      className="section py-20 md:py-28 text-left"
+      className="relative w-full overflow-hidden bg-linear-to-br from-secondary-color/10 via-white to-primary-shade-30"
       data-section
     >
-      <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-14 lg:gap-20 items-start">
-        {/* Left: content */}
-        <div ref={contentRef} className="flex flex-col gap-5">
+      {/* ── Scattered watermark stats (z-10, above mask) ────────── */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none z-10"
+        aria-hidden="true"
+      >
+        {stats.map((stat, i) => (
+          <div key={i} className={`absolute ${WATERMARKS[i].wrapper}`}>
+            <span
+              className={`block font-black tracking-tighter text-primary-color/8 leading-none ${WATERMARKS[i].value}`}
+            >
+              {stat.value}
+            </span>
+            <span className="block mt-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-primary-color/40">
+              {stat.label}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Image bleeding from the right (z-1, lowest) ─────────── */}
+      <div
+        ref={visualRef}
+        className="absolute right-[-8%] top-1/2 -translate-y-1/2 w-[65%] max-w-[840px] pointer-events-none hidden lg:block z-1"
+      >
+        <Image
+          src={mockupImage}
+          alt="SafulPay agency app — analytics, commission tracking and wallet management screens"
+          priority
+          sizes="55vw"
+          className="w-full h-auto drop-shadow-2xl opacity-20"
+        />
+      </div>
+
+      {/* ── Foreground content (z-20, top) ──────────────────────── */}
+      <div className="section relative items-start py-24 md:py-32 px-6 md:px-10 z-20">
+        <div
+          ref={contentRef}
+          className="relative z-10 flex flex-col gap-7 w-full lg:w-[68%] lg:max-w-3xl text-left"
+        >
           <SectionBadge label={badge} />
 
-          <div className="flex flex-col gap-2">
-            <h2
-              id="agency-heading"
-              className="primary-heading text-left"
-            >
-              {headline}
-            </h2>
-            <p className="text-base font-semibold text-primary-color tracking-tight">
-              {subheadline}
-            </p>
-          </div>
+          {/* Massive headline */}
+          <h2
+            id="agency-heading"
+            className="text-[clamp(40px,7.5vw,84px)] font-black leading-[0.95] tracking-[-0.03em] text-text-color"
+          >
+            {headline}
+          </h2>
 
-          <p className="text-zinc-500 text-base leading-relaxed max-w-lg">
+          <p className="text-lg md:text-xl font-semibold text-primary-color tracking-tight">
+            {subheadline}
+          </p>
+
+          <p className="text-zinc-500 text-base leading-relaxed max-w-xl">
             {description}
           </p>
 
-          {/* Feature list */}
-          <div className="mt-2">
+          {/* 2x2 compact feature grid — spans full content width */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 mt-2">
             {features.map((feature, i) => (
               <FeatureRow key={i} feature={feature} />
             ))}
           </div>
 
-          {/* Stats row */}
-          <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
-            {stats.map((stat, i) => (
-              <StatBadge key={i} stat={stat} />
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="mt-2">
+          {/* CTA + inline stats strip */}
+          <div className="flex flex-wrap items-center gap-6 mt-2">
             <a
               href={cta.href}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-color text-white text-sm font-semibold hover:bg-primary-color/90 active:scale-[0.98] transition-all duration-200 shadow-[0_4px_16px_-4px_rgba(58,86,70,0.35)]"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary-color text-white text-sm font-semibold hover:bg-primary-color/90 active:scale-[0.98] transition-all duration-200 shadow-[0_8px_24px_-6px_rgba(58,86,70,0.45)]"
             >
               {cta.label}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                aria-hidden="true"
+              >
                 <path
                   d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
                   stroke="currentColor"
@@ -98,12 +144,16 @@ function AgencySection() {
                 />
               </svg>
             </a>
-          </div>
-        </div>
 
-        {/* Right: dashboard mockup */}
-        <div ref={visualRef} className="flex justify-center lg:justify-end pt-4 lg:pt-10">
-          <AgencyDashboard />
+            <div className="flex items-center gap-2 text-sm">
+              <span className="font-bold text-primary-color">
+                {stats[0].value}
+              </span>
+              <span className="text-zinc-500">
+                {stats[0].label.toLowerCase()} already
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

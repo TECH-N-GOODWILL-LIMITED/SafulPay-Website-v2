@@ -5,9 +5,9 @@ import { useRef } from "react";
 import type { Step as StepData } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import bgIcon from "../assets/images/bg-logo-illustration.svg";
-import circleSvg from "../assets/images/circle-bg.svg";
-import lineImage from "../assets/images/line-illustration.svg";
+import bgIcon from "../assets/images/illustrations/bg-logo-illustration.svg";
+import circleSvg from "../assets/images/illustrations/circle-bg.svg";
+import lineImage from "../assets/images/illustrations/line-illustration.svg";
 
 interface StepProps {
   data: StepData;
@@ -72,7 +72,7 @@ function Step({ data, index }: StepProps) {
               alt=""
               role="presentation"
               aria-hidden="true"
-              className="absolute top-0 max-w-147.5 h-auto rotate-[133.24deg] z-10"
+              className="absolute top-0 max-w-147.5 h-auto rotate-[133.24deg]"
             />
             <Image src={icon} alt={`${title} icon`} className="w-15 h-auto" />
 

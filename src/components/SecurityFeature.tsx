@@ -5,7 +5,7 @@ import { useRef } from "react";
 import type { SecurityFeature } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import mockUp from "../assets/images/mockup-login.png";
+import mockUp from "../assets/images/mockups/mockup-login.png";
 
 interface FeatureProps {
   data: SecurityFeature;
@@ -48,7 +48,15 @@ function SecurityFeature({ data, index }: FeatureProps) {
           className="security-step max-w-75 p-2.5 flex flex-col gap-x-2.5 lg:w-75"
         >
           <div className="py-5 px-7.5 bg-primary-shade-10 rounded-[30px] flex justify-center">
-            <Image src={icon} alt={`${title} icon`} width={60} height={60} unoptimized className="w-10 md:w-15 h-auto" />
+            <div className="w-10 md:w-15 h-10 md:h-15 relative">
+              <Image
+                src={icon}
+                alt={`${title} icon`}
+                fill
+                unoptimized
+                className="object-contain"
+              />
+            </div>
           </div>
           <h3 className="secondary-heading py-2.5">{title}</h3>
           <p className="py-2.5">{description}</p>

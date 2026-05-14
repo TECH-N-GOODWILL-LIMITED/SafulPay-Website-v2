@@ -39,7 +39,7 @@ function Member({ data, index }: MemberProps) {
   const bioRef = useRef<HTMLDivElement | null>(null);
   const socialsRef = useRef<HTMLDivElement | null>(null);
 
-  const { name, role, img, bio, cardTheme = "primary", socials } = data;
+  const { name, role, img, bio, cardTheme = "primary", socials = {} } = data;
   const theme = CARD_THEMES[cardTheme];
 
   // Bubble originates from bottom-left on even cards, bottom-right on odd
@@ -61,16 +61,37 @@ function Member({ data, index }: MemberProps) {
   const handleMouseEnter = () => {
     gsap
       .timeline()
-      .to(overlayRef.current, { clipPath: expanded, duration: 0.55, ease: "power3.out" })
-      .to(bioRef.current, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, "-=0.2")
-      .to(socialsRef.current, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out" }, "-=0.18");
+      .to(overlayRef.current, {
+        clipPath: expanded,
+        duration: 0.55,
+        ease: "power3.out",
+      })
+      .to(
+        bioRef.current,
+        { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" },
+        "-=0.2",
+      )
+      .to(
+        socialsRef.current,
+        { opacity: 1, y: 0, duration: 0.24, ease: "power2.out" },
+        "-=0.18",
+      );
   };
 
   const handleMouseLeave = () => {
     gsap
       .timeline()
-      .to([bioRef.current, socialsRef.current], { opacity: 0, y: 12, duration: 0.16, ease: "power2.in" })
-      .to(overlayRef.current, { clipPath: collapsed, duration: 0.45, ease: "power3.in" }, "-=0.05");
+      .to([bioRef.current, socialsRef.current], {
+        opacity: 0,
+        y: 12,
+        duration: 0.16,
+        ease: "power2.in",
+      })
+      .to(
+        overlayRef.current,
+        { clipPath: collapsed, duration: 0.45, ease: "power3.in" },
+        "-=0.05",
+      );
   };
 
   return (
@@ -102,11 +123,15 @@ function Member({ data, index }: MemberProps) {
           >
             <div ref={bioRef} className="opacity-0 translate-y-3">
               <p className={`text-sm leading-relaxed ${theme.text}`}>
-                {bio ?? `${role} at SafulPay — committed to financial inclusion across Sierra Leone.`}
+                {bio ??
+                  `${role} at SafulPay — committed to financial inclusion across Sierra Leone.`}
               </p>
             </div>
 
-            <div ref={socialsRef} className="flex gap-3 opacity-0 translate-y-3">
+            <div
+              ref={socialsRef}
+              className="flex gap-3 opacity-0 translate-y-3"
+            >
               {Object.entries(socials).map(([platform, url]) =>
                 url ? (
                   <a

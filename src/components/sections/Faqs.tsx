@@ -6,7 +6,7 @@ import { faqsData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import FaqItem from "@/components/FaqItem";
-import bgIcon from "@/assets/images/bg-logo-illustration.svg";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function Faqs() {
   const faqsRef = useRef<HTMLElement | null>(null);
@@ -61,7 +61,7 @@ function Faqs() {
         {intro}
       </p>
 
-      <ul className="w-full">
+      <ul className="w-full" aria-label="Frequently asked questions">
         {faqs.map((faq, index) => (
           <li key={index} className="faq-item mx-auto">
             <FaqItem

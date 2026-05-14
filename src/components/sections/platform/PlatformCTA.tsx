@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 
 const ctaLinks = [
@@ -56,7 +55,10 @@ function PlatformCTA() {
 
         <div className="relative flex flex-col items-center gap-4 max-w-2xl">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase bg-secondary-color/20 text-secondary-color border border-secondary-color/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-secondary-color" aria-hidden="true" />
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-secondary-color"
+              aria-hidden="true"
+            />
             Get Started Today
           </span>
 
@@ -84,13 +86,19 @@ function PlatformCTA() {
                 link.variant === "primary"
                   ? "bg-secondary-color text-primary-color hover:bg-secondary-color/90 shadow-[0_4px_20px_-4px_rgba(195,240,44,0.4)]"
                   : link.variant === "outline"
-                  ? "border border-white/20 text-white hover:bg-white/8 hover:border-white/30"
-                  : "text-white/60 hover:text-white"
+                    ? "border border-white/20 text-white hover:bg-white/8 hover:border-white/30"
+                    : "text-white/60 hover:text-white"
               }`}
             >
               {link.label}
               {link.variant === "primary" && (
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  aria-hidden="true"
+                >
                   <path
                     d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
                     stroke="currentColor"
