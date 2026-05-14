@@ -11,11 +11,6 @@ import logoBankcard from "../assets/images/partners/logo-bankcard.svg";
 import logoDstv from "../assets/images/partners/logo-dstv.svg";
 import logoEdsa from "../assets/images/partners/logo-edsa.svg";
 import iconBank from "../assets/images/icon-bank.svg";
-import iconTwitter from "../assets/images/icon-twitter.svg";
-import iconFacebook from "../assets/images/icon-facebook.svg";
-import iconTikTok from "../assets/images/icon-tik-tok.svg";
-import iconInstagram from "../assets/images/icon-instagram.svg";
-import iconLinkedin from "../assets/images/icon-linkedin.svg";
 import downloadAppstoreIcon from "../assets/images/download-appstore-icon.svg";
 import downloadPlaystoreIcon from "../assets/images/download-playstore-icon.svg";
 import teamWale from "../assets/images/team/wale_ceo.jpeg";
@@ -24,6 +19,9 @@ import teamAdama from "../assets/images/team/adama_relations.jpeg";
 import teamOyinn from "../assets/images/team/oyinn_tech_lead.jpeg";
 import teamElijah from "../assets/images/team/elijah_marketing.jpeg";
 import teamTimi from "../assets/images/team/timi-design.jpeg";
+import teamCharles from "../assets/images/team/charles_finance.jpeg";
+import teamTumi from "../assets/images/team/tumi_compliance.jpeg";
+import teamOsman from "../assets/images/team/osman_it_support.jpeg";
 
 // COMPANY
 export interface Company {
@@ -48,7 +46,6 @@ export interface Regulated {
 export interface Social {
   name: string;
   url: string;
-  icon: string | StaticImageData;
 }
 
 export interface DownloadLinks {
@@ -74,12 +71,15 @@ export interface Member {
   img?: string | StaticImageData;
   name: string;
   role: string;
+  bio?: string;
+  cardTheme?: "primary" | "secondary" | "accent";
   socials: {
-    twitter?: string;
     linkedin?: string;
-    facebook?: string;
     github?: string;
+    twitter?: string;
+    facebook?: string;
     instagram?: string;
+    email?: string;
   };
 }
 
@@ -199,36 +199,11 @@ export const companyData: SafulPayData = {
     icon: iconBank,
   },
   socials: [
-    {
-      name: "Twitter",
-      url: "https://x.com/safulpay?s=21&t=C8AmSZA0skcAWJ-gYIUjFg",
-      icon: iconTwitter,
-    },
-    {
-      name: "Facebook",
-      url: "https://www.facebook.com/share/18X8Vz9tuQ/",
-      icon: iconFacebook,
-    },
-    // {
-    //   name: "Whatsapp",
-    //   url: "https://www.whatsapp.com/safulpay",
-    //   icon: iconWhatsapp,
-    // },
-    {
-      name: "TikTok",
-      url: "https://www.tiktok.com/@safulpay?_t=ZM-8wNCWIrp8hr&_r=1",
-      icon: iconTikTok,
-    },
-    {
-      name: "Instagram",
-      url: "https://www.instagram.com/safulpay?igsh=eWl4YjFtOW5rcGQ=",
-      icon: iconInstagram,
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/company/safulpay",
-      icon: iconLinkedin,
-    },
+    { name: "Twitter", url: "https://x.com/safulpay?s=21&t=C8AmSZA0skcAWJ-gYIUjFg" },
+    { name: "Facebook", url: "https://www.facebook.com/share/18X8Vz9tuQ/" },
+    { name: "TikTok", url: "https://www.tiktok.com/@safulpay?_t=ZM-8wNCWIrp8hr&_r=1" },
+    { name: "Instagram", url: "https://www.instagram.com/safulpay?igsh=eWl4YjFtOW5rcGQ=" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/company/safulpay" },
   ],
   downloads: {
     title: `Download SafulPay Today`,
@@ -251,64 +226,106 @@ export const companyData: SafulPayData = {
     ],
   },
   team: {
-    title: "Innovators Driving Financial Transformation",
+    title: "The People Building Sierra Leone's Financial Future",
     intro:
-      "At SafulPay, our team is composed of dedicated professionals with deep expertise in their respective fields. From visionary leadership to technical brilliance, every member brings a wealth of experience and passion to the table. Our CEO, COO, and Founder drive strategic growth and operational excellence, while our DevOps, UI/UX, and Full Stack Developer ensure seamless, secure, and user-friendly experiences. Together, we are united by a common goal: to revolutionize the way you manage your finances, delivering cutting-edge solutions with trust, transparency, and innovation at the core.",
+      "SafulPay is built by a team of specialists spanning finance, technology, compliance, and customer experience. Our founders set the strategic direction; our CFO and Compliance lead keep us sound and regulated; our CTO and IT team keep the platform fast and secure; and our product, design, marketing, and customer support experts ensure every user interaction is seamless. One shared mission — financial inclusion for all.",
     members: [
       {
         img: teamWale,
         name: "Adewale Olukoya",
         role: "Co-Founder & CEO",
+        bio: "Driving SafulPay's vision of accessible finance for every Sierra Leonean through bold leadership and strategic growth.",
+        cardTheme: "accent",
         socials: {
-          twitter: "https://twitter.com/johndoe",
-          linkedin: "https://linkedin.com/in/johndoe",
+          // twitter: "https://twitter.com/johndoe",
+          // linkedin: "https://linkedin.com/in/johndoe",
         },
       },
       {
         img: teamTolu,
         name: "Toluwani Adepoju",
         role: "Co-Founder & COO",
+        bio: "Turning strategy into execution — Toluwani ensures SafulPay's operations run with precision and every team delivers.",
+        cardTheme: "secondary",
         socials: {
-          twitter: "https://twitter.com/janesmith",
-          linkedin: "https://linkedin.com/in/janesmith",
-          github: "https://github.com/janesmith",
+          linkedin: "https://www.linkedin.com/in/toluwani-adepoju-45763a182/",
+          github: "https://github.com/medal007",
+          // twitter: "https://twitter.com/janesmith",
         },
       },
       {
         img: teamAdama,
-        name: "Adama Jalloh",
+        name: "Adama Barrie",
         role: "Head of Customer Support",
+        bio: "The voice of SafulPay's users — Adama ensures every customer interaction is handled with empathy, speed, and care.",
+        cardTheme: "primary",
         socials: {
-          twitter: "https://twitter.com/emilyjohnson",
-          linkedin: "https://linkedin.com/in/emilyjohnson",
+          // twitter: "https://twitter.com/emilyjohnson",
+          // linkedin: "https://linkedin.com/in/emilyjohnson",
         },
       },
       {
         img: teamOyinn,
         name: "Oyinlola Lawal",
         role: "Chief Technology Officer",
+        bio: "Architecting the infrastructure that powers SafulPay — secure, scalable, and built for Sierra Leone's digital future.",
+        cardTheme: "secondary",
         socials: {
-          twitter: "https://x.com/honeyzrich?s=21&t=C8AmSZA0skcAWJ-gYIUjFg",
-          github: "https://github.com/lawalOyinlola",
           linkedin: "https://www.linkedin.com/in/lawaloyinlola",
+          github: "https://github.com/lawalOyinlola",
+          twitter: "https://x.com/honeyzrich?s=21&t=C8AmSZA0skcAWJ-gYIUjFg",
         },
       },
       {
         img: teamElijah,
         name: "Elijah Mensah",
         role: "Head of Business Development",
+        bio: "Expanding SafulPay's reach through strategic partnerships, market insights, and relentless business development.",
+        cardTheme: "accent",
         socials: {
-          twitter: "https://twitter.com/emilyjohnson",
-          linkedin: "https://linkedin.com/in/emilyjohnson",
+          // linkedin: "https://linkedin.com/in/emilyjohnson",
+          // twitter: "https://twitter.com/emilyjohnson",
+        },
+      },
+      {
+        img: teamCharles,
+        name: "Charles Lamin",
+        role: "Chief Finance Officer",
+        bio: "Keeping SafulPay financially sound — Charles oversees fiscal strategy, budgeting, and financial transparency.",
+        cardTheme: "primary",
+        socials: {
+          // linkedin: "https://linkedin.com/in/charleslamin",
+        },
+      },
+      {
+        img: teamTumi,
+        name: "Tumilara Akingbade",
+        role: "Head of Compliance",
+        bio: "Ensuring SafulPay stays fully regulated and compliant, protecting users and the platform at every turn.",
+        cardTheme: "primary",
+        socials: {
+          // linkedin: "https://linkedin.com/in/tumilaraakingbade",
+        },
+      },
+      {
+        img: teamOsman,
+        name: "Osman Kamara",
+        role: "Head of IT Support",
+        bio: "Keeping SafulPay's systems running 24/7 — Osman leads IT infrastructure and technical support operations.",
+        cardTheme: "accent",
+        socials: {
+          // linkedin: "https://linkedin.com/in/osmankamara",
         },
       },
       {
         img: teamTimi,
         name: "Oluwatimileyin Bamise",
         role: "Product Design Engineer",
+        bio: "Crafting SafulPay's visual language — from UI systems to product experiences that feel intuitive and effortless.",
+        cardTheme: "primary",
         socials: {
-          github: "https://github.com/michaelbrown",
-          linkedin: "https://linkedin.com/in/michaelbrown",
+          linkedin: "https://www.linkedin.com/in/yusuf-oluwatimileyin/",
+          // email: "Yusuf.oluwatimileyin94@gmail.com",
         },
       },
     ],

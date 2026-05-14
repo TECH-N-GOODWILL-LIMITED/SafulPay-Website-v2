@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { companyData } from "../data/companyData";
+import SocialIcon from "./SocialIcon";
 
 interface SocialsProp {
   className?: string;
@@ -19,16 +19,9 @@ function Socials({ className }: SocialsProp) {
             rel="noopener noreferrer"
             key={index}
             aria-label={`Visit SafulPay's ${social.name} page`}
-            className="w-full p-2.5 bg-primary-shade-10 rounded-full transition-all hover:bg-primary-color max-md:bg-secondary-shade-10"
+            className="p-2.5 bg-primary-shade-10 rounded-full transition-colors hover:bg-primary-color text-white max-md:bg-secondary-shade-10"
           >
-            <Image
-              unoptimized
-              src={social.icon}
-              alt={`${social.name} icon`}
-              width={20}
-              className="w-5 h-auto"
-              aria-hidden="true"
-            />
+            <SocialIcon platform={social.name} className="w-5 h-5" />
           </a>
         ))}
       </div>

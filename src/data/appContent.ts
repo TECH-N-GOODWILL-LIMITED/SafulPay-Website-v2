@@ -103,25 +103,6 @@ export interface AboutUsData {
   text: string;
 }
 
-// TEAM
-export interface TeamMember {
-  img?: string | StaticImageData;
-  name: string;
-  role: string;
-  socials: {
-    twitter?: string;
-    linkedin?: string;
-    github?: string;
-  };
-}
-
-export interface TeamData {
-  title: string;
-  subtitle: string;
-  text: string;
-  members: TeamMember[];
-}
-
 // HOW IT WORKS
 export interface Step {
   title: string;
