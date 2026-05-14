@@ -47,42 +47,13 @@ function Team() {
         aria-hidden="true"
         role="presentation"
       />
-      {/* <div className="max-w-250 flex-center flex-col gap-7.5 py-2.5 mx-12.5">
-        <h1 className="p-2.5">
-        Meet Our Team of <span className="text-primary-color">Experts</span>
-        </h1>
-        <h2 className="p-2.5 text-[clamp(16px,5.117vw,34px)] font-semibold tracking-[-1.36px] max-m:tracking-[-0.44px]">
-        {title}
-        </h2>
-        
-        <p className="p-2.5 w-full!">{intro}</p>
-        
-        <div className="w-fit grid grid-cols-3 gap-7.5 max-lg:grid-cols-2 max-md:flex max-md:overflow-x-scroll">
-        {members.map((member, index) => (
-          <div
-          key={index}
-          className="bg-[#f1f1f1] rounded-tr-[50px] rounded-bl-[50px] overflow-hidden"
-          >
-          <Image
-          src={member.img}
-          alt=""
-          className="w-full h-3/4 object-cover"
-           />
-          <div className="p-6.75">
-          <p className="title-text">{member.name}</p>
-          <p className="text-[14px]">{member.role}</p>
-          </div>
-          </div>
-          ))}
-          </div>
-          </div> */}
       <div
         ref={teamRef}
         className="max-w-250 flex-center flex-col gap-7.5 py-2.5 mx-12.5 max-md:mx-5"
       >
         <h1 id="team-heading" className="animateheader p-2.5">
-          Meet Our Team of
-          <span className="text-primary-color">&nbsp; Experts</span>
+          Meet the Team Behind
+          <span className="text-primary-color">&nbsp;SafulPay</span>
         </h1>
         <h2 className="animatebody p-2.5 text-[clamp(16px,5.117vw,34px)] font-semibold tracking-[-1.36px] max-m:tracking-[-0.44px]">
           {title}
