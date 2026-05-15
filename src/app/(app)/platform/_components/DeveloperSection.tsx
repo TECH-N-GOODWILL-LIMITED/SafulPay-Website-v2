@@ -2,10 +2,10 @@
 
 import { useRef } from "react";
 import { developerData } from "@/data/platformContent";
-import { SectionBadge } from "@/components/platform/SectionBadge";
-import { FeatureRow } from "@/components/platform/FeatureRow";
-import { StatBadge } from "@/components/platform/StatBadge";
-import { CodeBlock } from "@/components/platform/CodeBlock";
+import { SectionBadge } from "@/app/(app)/platform/_components/SectionBadge";
+import { FeatureRow } from "@/app/(app)/platform/_components/FeatureRow";
+import { StatBadge } from "@/app/(app)/platform/_components/StatBadge";
+import { CodeBlock } from "@/app/(app)/platform/_components/CodeBlock";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
