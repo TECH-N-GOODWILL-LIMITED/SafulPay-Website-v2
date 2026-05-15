@@ -6,9 +6,9 @@ import { companyData } from "@/data/companyData";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useAnimateText } from "@/hooks/animations/useAnimateText";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
-import DownloadItem from "@/components/DownloadItem";
+import DownloadItem from "@/components/shared/DownloadItem";
 import mockUpImage from "@/assets/images/mockups/mockup-home-page.png";
-// import Partners from "../components/Partners";
+// import Partners from "@/components/components/Partners";
 
 function Hero() {
   const heroRef = useRef<HTMLDivElement | null>(null);
