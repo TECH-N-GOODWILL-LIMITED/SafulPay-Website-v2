@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { faqsData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
-import FaqItem from "@/components/FaqItem";
+import FaqItem from "@/app/_components/FaqItem";
 import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function Faqs() {
