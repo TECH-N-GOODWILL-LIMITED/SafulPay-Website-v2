@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { companyData } from "@/data/companyData";
 import { securityData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
-import SecurityFeature from "@/components/SecurityFeature";
+import SecurityFeature from "@/app/_components/SecurityFeature";
 import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function Security() {
