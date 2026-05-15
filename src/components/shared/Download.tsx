@@ -6,32 +6,27 @@ import { companyData } from "@/data/companyData";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
-import { useViewportWidth } from "@/hooks/useViewportWidth";
-import DownloadItem from "@/components/DownloadItem";
-import Socials from "@/components/Socials";
+import DownloadItem from "@/components/shared/DownloadItem";
+import Socials from "@/components/shared/Socials";
 import mockupImage from "@/assets/images/mockups/mockup-login-signup.png";
 
 function Download() {
   const downloadRef = useRef<HTMLElement | null>(null);
   const downloadTextRef = useRef<HTMLDivElement>(null);
   const mockupSlide = useRef<React.ElementRef<typeof Image>>(null);
-  const { isMobile } = useViewportWidth();
   const { downloads } = companyData;
   const { title, subtitle, text } = downloads;
 
   useScaleFadeIn({
     containerRef: downloadRef,
-    start: "top bottom",
-    end: "bottom bottom",
-    scrub: isMobile ? false : 0.5,
+    start: "top 80%",
   });
 
   useHeaderAnimation({ containerRef: downloadTextRef });
 
   useSlideFadeIn({
     containerRef: mockupSlide,
-    scrub: 0.5,
-    end: "bottom 80%",
+    start: "top 80%",
   });
 
   return (
