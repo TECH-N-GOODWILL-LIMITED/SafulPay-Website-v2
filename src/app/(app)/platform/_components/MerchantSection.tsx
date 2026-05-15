@@ -2,10 +2,10 @@
 
 import { useRef } from "react";
 import { merchantData } from "@/data/platformContent";
-import { SectionBadge } from "@/components/platform/SectionBadge";
-import { FeatureRow } from "@/components/platform/FeatureRow";
-import { StatBadge } from "@/components/platform/StatBadge";
-import { MerchantTerminal } from "@/components/platform/MerchantTerminal";
+import { SectionBadge } from "@/app/(app)/platform/_components/SectionBadge";
+import { FeatureRow } from "@/app/(app)/platform/_components/FeatureRow";
+import { StatBadge } from "@/app/(app)/platform/_components/StatBadge";
+import { MerchantTerminal } from "@/app/(app)/platform/_components/MerchantTerminal";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 
