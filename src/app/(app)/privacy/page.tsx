@@ -8,7 +8,7 @@ const { company, seo } = companyData;
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `Read the ${company.name} Privacy Policy to understand how we collect, use, and protect your personal data and financial information.`,
-  alternates: { canonical: `${seo.siteUrl}/privacy` },
+  alternates: { canonical: `${seo.siteUrl.replace(/\/$/, "")}/privacy` },
   robots: { index: true, follow: true },
 };
 

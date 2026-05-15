@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import errorImage from "../assets/images/404_image.svg";
+import errorImage from "../assets/images/illustrations/404_image.svg";
 
 export default function NotFound() {
   return (

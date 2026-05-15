@@ -71,7 +71,9 @@ export function useGsapCustomAnimation({
           { ...from },
           {
             ...to,
-            delay: index * staggerDelay,
+            delay:
+              (typeof to.delay === "number" ? to.delay : 0) +
+              index * staggerDelay,
             scrollTrigger: {
               trigger: container,
               start: "top 80%",

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import mockupImage from "@/assets/images/mockup-home-page.png";
+import mockupImage from "@/assets/images/mockups/mockup-home-page.png";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 
 const PERSONAS = [
@@ -89,6 +89,9 @@ function PlatformHero() {
   const [activePersona, setActivePersona] = useState<PersonaId>("agent");
   const contentInnerRef = useRef<HTMLDivElement>(null);
   const mockupRef = useRef<HTMLDivElement>(null);
+  const currentTweenRef = useRef<gsap.core.Tween | null>(null);
+  const isAnimatingRef = useRef(false);
+  const isMountedRef = useRef(true);
 
   useSlideFadeIn({
     containerRef: mockupRef,
@@ -97,22 +100,49 @@ function PlatformHero() {
     start: "top 90%",
   });
 
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      currentTweenRef.current?.kill();
+    };
+  }, []);
+
   const handlePersonaChange = useCallback(
     (id: PersonaId) => {
-      if (id === activePersona || !contentInnerRef.current) return;
-      gsap.to(contentInnerRef.current, {
+      if (
+        id === activePersona ||
+        !contentInnerRef.current ||
+        isAnimatingRef.current
+      )
+        return;
+
+      isAnimatingRef.current = true;
+
+      currentTweenRef.current = gsap.to(contentInnerRef.current, {
         opacity: 0,
         y: -10,
         duration: 0.14,
         ease: "power2.in",
         onComplete: () => {
+          if (!isMountedRef.current) return;
           setActivePersona(id);
+
           if (contentInnerRef.current) {
-            gsap.fromTo(
+            currentTweenRef.current = gsap.fromTo(
               contentInnerRef.current,
               { opacity: 0, y: 14 },
-              { opacity: 1, y: 0, duration: 0.24, ease: "power2.out" },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.24,
+                ease: "power2.out",
+                onComplete: () => {
+                  isAnimatingRef.current = false;
+                },
+              },
             );
+          } else {
+            isAnimatingRef.current = false;
           }
         },
       });
@@ -273,7 +303,6 @@ function PlatformHero() {
             alt="SafulPay app preview"
             className="relative max-w-[340px] h-auto drop-shadow-[0_40px_70px_rgba(0,0,0,0.45)]"
             priority
-            loading="eager"
           />
         </div>
       </div>

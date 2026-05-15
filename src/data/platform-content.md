@@ -16,18 +16,21 @@
 ### Solution Cards
 
 #### Agent
+
 - **Label:** Agent
 - **Tagline:** Earn from every transaction.
-- **Description:** Offer cash-in, cash-out, bill payments and remittance pickup to your community. Earn transparent commission on every transaction.
+- **Description:** Offer cash-in, cash-out, bill payments, and remittance pickup to your community. Earn transparent commission on every transaction.
 - **Link:** Explore for agents →
 
 #### Merchant
+
 - **Label:** Merchant
 - **Tagline:** Get paid. Pay people.
 - **Description:** In-app checkout, QR, payment links, and bulk payouts to staff and suppliers.
 - **Link:** Explore for business →
 
 #### Developer
+
 - **Label:** Developer
 - **Tagline:** Embed money rails.
 - **Description:** REST + websocket APIs for wallets, bills and remittance flows. Sandbox today.
@@ -42,6 +45,7 @@
 **Eyebrow (per persona):** For You / For Agents / For Business / For Developers
 
 **Stats:**
+
 - 500K+ — Users moving money
 - 15+ — Network partners
 - 99.9% — Uptime SLA
@@ -65,12 +69,12 @@
 
 **Sub-heading:** One agent app. Four revenue streams.
 
-| Service | Description |
-|---|---|
+| Service            | Description                                                                 |
+| ------------------ | --------------------------------------------------------------------------- |
 | Cash-in & cash-out | Customers deposit and withdraw at your shop. You earn on every transaction. |
-| Bill collection | Collect EDSA, WAEC and Sealine payments on behalf of customers. |
-| Remittance pickup | Pay out Western Union, MoneyGram and RIA from your float. |
-| Airtime resale | Sell top-ups across all networks at a margin. |
+| Bill collection    | Collect EDSA, WAEC and Sealine payments on behalf of customers.             |
+| Remittance pickup  | Pay out Western Union, MoneyGram and RIA from your float.                   |
+| Airtime resale     | Sell top-ups across all networks at a margin.                               |
 
 **Tag:** Offer cash-in, cash-out, bill payments and remittance pickup to your community. Earn transparent commission on every transaction.
 
@@ -93,23 +97,23 @@
 
 **Sub-heading:** Every way your customers want to pay.
 
-| Method | Description |
-|---|---|
-| In-app checkout | Customers pay you from inside SafulPay — no card terminal needed. |
+| Method            | Description                                                         |
+| ----------------- | ------------------------------------------------------------------- |
+| In-app checkout   | Customers pay you from inside SafulPay — no card terminal needed.   |
 | QR at the counter | Print a static QR or generate one per sale. Funds arrive instantly. |
-| Payment links | Share a link by SMS or WhatsApp and get paid online. |
-| POS device | Accept tap-to-pay and chip transactions in-store. |
+| Payment links     | Share a link by SMS or WhatsApp and get paid online.                |
+| POS device        | Accept tap-to-pay and chip transactions in-store.                   |
 
 ### Pay Out
 
 **Sub-heading:** Run the business side, end-to-end.
 
-| Feature | Description |
-|---|---|
-| Bulk payroll | Pay your whole team in one upload. CSV-in, instant out. |
-| Supplier payouts | Schedule recurring payments and settle invoices on time. |
+| Feature          | Description                                                   |
+| ---------------- | ------------------------------------------------------------- |
+| Bulk payroll     | Pay your whole team in one upload. CSV-in, instant out.       |
+| Supplier payouts | Schedule recurring payments and settle invoices on time.      |
 | Multi-user roles | Give finance, ops and managers the access they actually need. |
-| Reconciliation | Every transaction tagged and exportable for your accountant. |
+| Reconciliation   | Every transaction tagged and exportable for your accountant.  |
 
 ### Who It's For
 
@@ -138,25 +142,25 @@ Restaurants · Retail shops · Hotels · Offices · Schools · NGOs · Pharmacie
 
 **Sub-heading:** Six APIs. Every flow in Sierra Leone.
 
-| Endpoint | Name | Description |
-|---|---|---|
-| POST /v1/wallets | Wallets API | Create accounts, hold balances and move money between users. |
-| POST /v1/payouts | Payouts API | Send to any mobile money or bank — same endpoint for both. |
-| POST /v1/collections | Collections API | Accept money via QR, link, USSD or in-app deep links. |
-| POST /v1/bills | Bills API | Programmatically pay EDSA, WAEC, Sealine and other billers. |
-| POST /v1/airtime | Airtime API | Top up any network with one call. |
-| POST /v1/remittance | Remittance API | Receive Western Union, MoneyGram and RIA flows. |
+| Endpoint             | Name            | Description                                                  |
+| -------------------- | --------------- | ------------------------------------------------------------ |
+| POST /v1/wallets     | Wallets API     | Create accounts, hold balances and move money between users. |
+| POST /v1/remittances | Remittance API  | Receive Western Union, MoneyGram, and RIA flows.             |
+| POST /v1/collections | Collections API | Accept money via QR, link, USSD or in-app deep links.        |
+| POST /v1/bills       | Bills API       | Programmatically pay EDSA, WAEC, Sealine and other billers.  |
+| POST /v1/airtime     | Airtime API     | Top up any network with one call.                            |
+| POST /v1/remittance  | Remittance API  | Receive Western Union, MoneyGram and RIA flows.              |
 
 ### Built Right
 
 **Sub-heading:** What you'd want, if you were building this yourself.
 
-| Feature | Description |
-|---|---|
-| Idempotent by default | Replay any request safely with an idempotency key. |
+| Feature               | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| Idempotent by default | Replay any request safely with an idempotency key.       |
 | Webhooks + websockets | Push or stream — your call. Signed payloads. Auto retry. |
-| Sandbox in 30 seconds | Test keys, fake mobile money, simulated webhooks. |
-| Honest pricing | Volume-based, public, no surprise interchange. |
+| Sandbox in 30 seconds | Test keys, fake mobile money, simulated webhooks.        |
+| Honest pricing        | Volume-based, public, no surprise interchange.           |
 
 **CTA Section:** Get started today — Sign up, get sandbox keys, ship in production by end of week.
 
@@ -166,7 +170,8 @@ Restaurants · Retail shops · Hotels · Offices · Schools · NGOs · Pharmacie
 
 **Headline:** One app for every way you move money.
 
-**Body:** Send to any mobile money or bank, pay EDSA, WAEC, Sealine, top up airtime, gift in seconds, and receive money from anywhere in the world.
+**Body:** Send to any mobile money or bank, pay EDSA, WAEC, and Sea Coach, top up airtime, gift in seconds, and receive money from anywhere in the world.
+airtime, gift in seconds, and receive money from anywhere in the world.
 
 **CTA Primary:** Get the app
 **CTA Secondary:** See what you can do
@@ -177,14 +182,14 @@ Restaurants · Retail shops · Hotels · Offices · Schools · NGOs · Pharmacie
 
 **Heading:** The features that matter, all in one app.
 
-| Feature | Description |
-|---|---|
+| Feature                    | Description                                                                  |
+| -------------------------- | ---------------------------------------------------------------------------- |
 | Send to any wallet or bank | Orange, Africell, Qmoney, SLCB, UBA, Rokel, EcoBank — one flow, no friction. |
-| Bill payments | EDSA, WAEC, Sealine and more, with receipts and reminders. |
-| Airtime & data | Top up any network in seconds. |
-| Gifting | Send personalised gift cards instantly for any occasion. |
-| Receive remittances | Western Union, RIA, MoneyGram — paid straight to your wallet. |
-| Virtual cards | Shop securely online with disposable virtual cards. |
+| Bill payments              | EDSA, WAEC, Sealine and more, with receipts and reminders.                   |
+| Airtime & data             | Top up any network in seconds.                                               |
+| Gifting                    | Send personalised gift cards instantly for any occasion.                     |
+| Receive remittances        | Western Union, RIA, MoneyGram — paid straight to your wallet.                |
+| Virtual cards              | Shop securely online with disposable virtual cards.                          |
 
 ---
 

@@ -8,9 +8,9 @@ import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import { useViewportHeight } from "../hooks/useViewportHeight";
-import menuIconWhite from "../assets/images/icon-menu-white.svg";
-import safulpayTextIcon from "../assets/images/safulpay-navbar-text-logo-icon.svg";
-import safulPayLogo from "../assets/images/safulpay-icon-white.svg";
+import menuIconWhite from "../assets/images/icons/icon-menu-white.svg";
+import safulpayTextIcon from "../assets/images/brand/safulpay-navbar-text-logo-icon.svg";
+import safulPayLogo from "../assets/images/brand/safulpay-icon-white.svg";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollToPlugin);
@@ -122,7 +122,8 @@ const MobileNav = React.forwardRef(
                 setIsMenuOpen(false);
                 handleScrollLink("home");
               }}
-              src={safulpayTextIcon} unoptimized
+              src={safulpayTextIcon}
+              unoptimized
               width={100}
               height={30}
               alt={`${companyName} text logo`}
@@ -145,7 +146,8 @@ const MobileNav = React.forwardRef(
               }}
             >
               <Image
-                src={safulPayLogo} unoptimized
+                src={safulPayLogo}
+                unoptimized
                 width={90}
                 height={90}
                 alt={`${companyName} logo`}
@@ -168,7 +170,8 @@ const MobileNav = React.forwardRef(
               className="cursor-pointer"
             >
               <Image
-                src={menuIconWhite} unoptimized
+                src={menuIconWhite}
+                unoptimized
                 width={30}
                 height={30}
                 alt="Close menu icon"

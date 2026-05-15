@@ -6,6 +6,7 @@ export interface UseCaseStat {
 export interface UseCaseFeature {
   title: string;
   description: string;
+  icon?: string;
 }
 
 export interface UseCaseData {
@@ -24,7 +25,7 @@ export const platformHeroData = {
   headline: "Built for Agents, Merchants & Developers",
   body: "One infrastructure layer. Three purpose-built products. Whether you run an agent network, accept merchant payments, or build fintech applications — SafulPay has the right toolset.",
   anchors: [
-    { label: "Agency Platform", href: "#agency" },
+    { label: "Agency App", href: "#agency" },
     { label: "Merchant Tools", href: "#merchant" },
     { label: "Developer API", href: "#developer" },
   ],
@@ -38,45 +39,44 @@ export const platformHeroData = {
 
 export const agencyData: UseCaseData = {
   id: "agency",
-  badge: "Agency Platform",
-  headline: "Built for Agents Who Move Money",
-  subheadline: "Complete operational control for your network.",
+  badge: "Agency App",
+  headline: "One App. More Ways to Earn.",
+  subheadline: "Every transaction you process puts money in your pocket.",
   description:
-    "The SafulPay Agency Platform gives licensed agents a dedicated portal — sub-wallet creation, real-time commission tracking, and role-based team access, all in one place.",
+    "Join thousands of SafulPay agents across Sierra Leone. Get licensed, download the app, and earn real-time commission on every cash-in, bill payment, remittance and airtime top-up you process.",
   features: [
     {
-      title: "Sub-wallet Management",
+      icon: "cash",
+      title: "Cash-in & Cash-out",
       description:
-        "Create, fund, and monitor individual wallets for every client in your network.",
+        "Customers deposit and withdraw at your shop. You earn commission on every transaction.",
     },
     {
-      title: "Real-time Commission Dashboard",
+      icon: "bill",
+      title: "Bill Collection",
       description:
-        "Track earnings instantly as transactions settle. No reconciliation lag.",
+        "Collect EDSA electricity, WAEC, DSTV Nigeria and Sea Coach payments and more on behalf of customers.",
     },
     {
-      title: "Role-based Team Access",
+      icon: "globe",
+      title: "Remittance Pickup",
       description:
-        "Assign cashiers, supervisors, and admins with granular permission controls.",
+        "Pay out Western Union, MoneyGram and RIA remittances directly from your float.",
     },
     {
-      title: "Transaction Reporting",
+      icon: "phone",
+      title: "Airtime/Top up Resale",
       description:
-        "Daily, weekly, and monthly exports in CSV or PDF with full audit trails.",
-    },
-    {
-      title: "Instant Float Requests",
-      description:
-        "Request liquidity directly from your portal without contacting support.",
+        "Sell Africell, Orange and QCell top-ups across all networks at a margin.",
     },
   ],
   stats: [
-    { value: "12,847", label: "Active Agents" },
-    { value: "SLL 4.2B", label: "Monthly Volume" },
-    { value: "98.6%", label: "Uptime SLA" },
-    { value: "< 800ms", label: "Avg Settlement" },
+    { value: "1,047+", label: "Agents earning" },
+    { value: "SLL 4.2B", label: "Processed monthly" },
+    { value: "Real-time", label: "Commission payouts" },
+    { value: "4+", label: "Revenue streams" },
   ],
-  cta: { label: "Apply as Agent", href: "mailto:agents@safulpay.com" },
+  cta: { label: "Become an Agent", href: "mailto:agents@safulpay.com" },
 };
 
 export const merchantData: UseCaseData = {

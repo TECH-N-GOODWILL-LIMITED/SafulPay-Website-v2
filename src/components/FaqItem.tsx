@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import type { FAQItem } from "../data/appContent";
-import expandIcon from "../assets/images/expand-icon.svg";
-import collapseIcon from "../assets/images/collapse-icon.svg";
+import expandIcon from "../assets/images/icons/expand-icon.svg";
+import collapseIcon from "../assets/images/icons/collapse-icon.svg";
 
 interface FaqItemProps {
   data: FAQItem;

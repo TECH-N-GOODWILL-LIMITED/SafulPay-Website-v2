@@ -6,8 +6,8 @@ import { StaticImageData } from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
 import { useViewportHeight } from "../hooks/useViewportHeight";
-import ray from "../assets/images/open-app-ray.svg";
-import menuIcon from "../assets/images/icon-menu-green.svg";
+import ray from "../assets/images/illustrations/open-app-ray.svg";
+import menuIcon from "../assets/images/icons/icon-menu-green.svg";
 
 interface NavLink {
   url: string;
@@ -131,6 +131,8 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
             <Image
               src={ray}
               alt=""
+              width={300}
+              height={100}
               aria-hidden="true"
               role="presentation"
               unoptimized

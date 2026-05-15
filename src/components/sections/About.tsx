@@ -7,8 +7,8 @@ import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import KeyFeatures from "@/components/KeyFeatures";
-import bgIcon from "@/assets/images/bg-logo-illustration.svg";
-import bgImage from "@/assets/images/bg-about-icons.png";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
+import bgImage from "@/assets/images/illustrations/bg-about-icons.png";
 
 function About() {
   const aboutRef = useRef<HTMLHeadingElement>(null);

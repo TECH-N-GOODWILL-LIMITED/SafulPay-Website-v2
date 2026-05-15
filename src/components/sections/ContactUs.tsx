@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { companyData } from "@/data/companyData";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
-import bgIcon from "@/assets/images/bg-logo-illustration.svg";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function ContactUs() {
   const contactRef = useRef<HTMLDivElement | null>(null);
@@ -40,7 +40,7 @@ function ContactUs() {
 
     setError("");
     setEmail("");
-    console.log("Form submitted successfully with email:", email);
+    // TODO: Submit email to backend or analytics service
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,12 +111,11 @@ function ContactUs() {
           <input
             id="email"
             name="email"
-            type="email"
+            type="text"
             value={email}
             onChange={handleInputChange}
             onBlur={handleBlur}
             placeholder="Enter your email address"
-            required
             aria-required="true"
             className="focus:outline-none focus:ring-0 focus:shadow-none title-text font-extralight text-primary-color placeholder:text-[#67967b] block border-none bg-none w-full px-2.5 caret-primary-color"
           />

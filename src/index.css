@@ -33,7 +33,7 @@
   --color-text-color: #121212;
 
   --breakpoint-m: 444px;
-  --container-container-width: 1500px;
+  --container-container-width: 1440px;
 }
 
 @layer base {

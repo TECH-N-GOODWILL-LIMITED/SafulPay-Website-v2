@@ -5,7 +5,7 @@ import { useRef } from "react";
 import type { MoreFeature } from "../data/appContent";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import absoluteImage from "../assets/images/ray-illustration.svg";
+import absoluteImage from "../assets/images/illustrations/ray-illustration.svg";
 
 interface MoreFeatureProps {
   feature: MoreFeature;
@@ -55,6 +55,8 @@ function MoreFeatureItem({ feature, index }: MoreFeatureProps) {
           <Image
             src={image}
             alt={`${title} illustration`}
+            width={300}
+            height={300}
             className="w-75 h-auto z-1"
           />
         )}

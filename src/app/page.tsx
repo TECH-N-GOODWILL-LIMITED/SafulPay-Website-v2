@@ -58,7 +58,9 @@ const appSchema = {
     price: "0",
     priceCurrency: "USD",
   },
-  downloadUrl: [downloads.appStore.link, downloads.playStore.link],
+  downloadUrl: [downloads.appStore?.link, downloads.playStore?.link].filter(
+    Boolean,
+  ),
   author: { "@type": "Organization", name: company.name },
 };
 
