@@ -3,12 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { companyData } from "../data/companyData";
-import { featuresData, footerData } from "../data/appContent";
-import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
-import DownloadItem from "./DownloadItem";
-import Socials from "./Socials";
-import bgIcon from "../assets/images/illustrations/bg-logo-illustration.svg";
+import { companyData } from "@/data/companyData";
+import { featuresData, footerData } from "@/data/appContent";
+import { useSmoothScrollContext } from "@/context/SmoothScrollProvider";
+import DownloadItem from "@/components/shared/DownloadItem";
+import Socials from "@/components/shared/Socials";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function Footer() {
   const router = useRouter();
@@ -20,15 +20,13 @@ function Footer() {
   const { footerLinks, copyright, otherLinks } = footerData;
 
   const handleScrollLink = (url: string) => {
-    const offset = url === "features" ? 280 : 120;
-    const shouldScroll =
-      isHomePage ||
-      (!isHomePage && (url === "contact-us" || url === "download"));
+    const offset = url === "bridge" ? 280 : 120;
 
-    if (shouldScroll) {
+    if (isHomePage) {
       scrollToSection(url, { offset });
     } else {
-      router.replace("/#" + url);
+      sessionStorage.setItem("pendingScroll", url);
+      router.push("/");
     }
   };
 
