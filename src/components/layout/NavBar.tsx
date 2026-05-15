@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { companyData } from "@/data/companyData";
 import { footerData, navLinks } from "@/data/appContent";
-import MobileNav from "@/components/MobileNav";
-import DesktopNav from "@/components/DesktopNav";
+import MobileNav from "@/components/layout/MobileNav";
+import DesktopNav from "@/components/layout/DesktopNav";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,7 +54,7 @@ function NavBar() {
       className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-50"
     >
       <a
-        href="#features"
+        href="#bridge"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-black px-4 py-2 z-50"
       >
         Skip to main content
