@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import type { AgreementData } from "../data/agreementData";
-import { useHeaderAnimation } from "../hooks/animations/useHeaderAnimation";
-import Download from "./sections/Download";
-import arrowBack from "../assets/images/icons/icon-arrow-back.svg";
+import type { AgreementData } from "@/data/agreementData";
+import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
+import Download from "@/components/shared/Download";
+import arrowBack from "@/assets/images/icons/icon-arrow-back.svg";
 
 interface AgreementProps {
   data: AgreementData;
