@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { featuresData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
-import KeyFeatures from "@/components/KeyFeatures";
+import KeyFeatures from "@/components/shared/KeyFeatures";
 import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 import illustrationImage from "@/assets/images/illustrations/illustration-image.png";
 
@@ -26,7 +26,7 @@ function Features() {
       id="features"
       role="region"
       aria-labelledby="features-heading"
-      className="section gap-12.5 max-md:gap-2.5"
+      className="relative section gap-12.5 max-md:gap-2.5 pt-20"
       data-section
     >
       <Image
@@ -34,9 +34,7 @@ function Features() {
         alt=""
         aria-hidden="true"
         role="presentation"
-        unoptimized
-        className="max-w-147.5 absolute top-[-47px] left-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
-        style={{ height: "auto" }}
+        className="max-w-147.5 h-auto absolute -top-26 left-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
       />
       <div
         ref={featuresTextRef}
