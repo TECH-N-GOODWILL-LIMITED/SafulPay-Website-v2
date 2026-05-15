@@ -4,10 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 import { useRouter, usePathname } from "next/navigation";
-import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
-import { useViewportHeight } from "../hooks/useViewportHeight";
-import ray from "../assets/images/illustrations/open-app-ray.svg";
-import menuIcon from "../assets/images/icons/icon-menu-green.svg";
+import { useSmoothScrollContext } from "@/context/SmoothScrollProvider";
+import { getOffset } from "@/hooks/scroll/useSmoothScroll";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
+import ray from "@/assets/images/illustrations/open-app-ray.svg";
+import menuIcon from "@/assets/images/icons/icon-menu-green.svg";
 
 interface NavLink {
   url: string;
@@ -30,19 +31,21 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
   const router = useRouter();
   const pathname = usePathname();
   const vh = useViewportHeight();
-  const { activeSection, scrollToSection, isHeroSection, isHomePage } =
+  const { scrollToSection, isHeroSection, isHomePage } =
     useSmoothScrollContext();
 
   const handleScrollLink = (url: string) => {
-    const offset = url === "features" ? 280 : 120;
-    const shouldScroll =
-      isHomePage ||
-      (!isHomePage && (url === "contact-us" || url === "download"));
+    if (url === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
 
-    if (shouldScroll) {
-      scrollToSection(url, { offset });
+    if (isHomePage) {
+      scrollToSection(url, { offset: getOffset(url) });
     } else {
-      router.replace("/#" + url);
+      // Store target and navigate cleanly — no hash in URL
+      sessionStorage.setItem("pendingScroll", url);
+      router.push("/");
     }
   };
 
@@ -80,6 +83,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           {company.name}
         </p>
       </Link>
+
       <nav className="max-lg:hidden text-base" aria-label="Main navigation">
         {!isHeroSection ? (
           <>
@@ -87,45 +91,35 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
               <button
                 key={`scroll-${link.url}`}
                 onClick={() => handleScrollLink(link.url)}
-                className={`cursor-pointer py-1.5 px-4 max-xl:px-3 transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color ${
-                  activeSection === link.url && "text-secondary-color font-bold"
-                }`}
+                className="cursor-pointer py-1.5 px-4 max-xl:px-3 transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color"
                 aria-label={`Scroll to ${link.label} section`}
-                aria-current={
-                  activeSection === link.url ? "location" : undefined
-                }
               >
                 {link.label}
               </button>
             ))}
 
-            {routeLinks.map((link) => {
-              const isActive = pathname === link.url;
-              return (
-                <Link
-                  href={link.url}
-                  onClick={(e) => {
-                    if (pathname === link.url) {
-                      e.preventDefault();
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }
-                  }}
-                  key={`route-${link.url}`}
-                  aria-label={`Navigate to ${link.label}`}
-                  className={`cursor-pointer py-1.5 px-4 max-xl:px-3 transition-all hover:scale-105 hover:text-secondary-color ${
-                    isActive && "text-secondary-color font-bold"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {routeLinks.map((link) => (
+              <Link
+                href={link.url}
+                onClick={(e) => {
+                  if (pathname === link.url) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+                key={`route-${link.url}`}
+                aria-label={`Navigate to ${link.label}`}
+                className="cursor-pointer py-1.5 px-4 max-xl:px-3 transition-all hover:scale-105 hover:text-secondary-color"
+              >
+                {link.label}
+              </Link>
+            ))}
           </>
         ) : (
           <button
-            onClick={() => handleScrollLink("features")}
+            onClick={() => handleScrollLink("bridge")}
             aria-label="Open Application"
-            className="cursor-pointer transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color"
+            className="relative cursor-pointer transition-all hover:cursor-pointer hover:scale-105 hover:text-secondary-color"
           >
             <span>Open App</span>
             <Image
@@ -141,6 +135,7 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
           </button>
         )}
       </nav>
+
       <button
         onClick={() => handleScrollLink("download")}
         className="cursor-pointer px-5 py-2.5 rounded-[10px] bg-secondary-color text-primary-color text-base tracking-[-0.4px] font-semibold max-lg:hidden hover:brightness-95 hover:text-text-color transition-all"
@@ -149,7 +144,6 @@ function DesktopNav({ company, navLinks, setIsMenuOpen }: DesktopNavProps) {
         Download App
       </button>
 
-      {/* MENU BUTTON */}
       <button
         onClick={() => setIsMenuOpen(true)}
         className="cursor-pointer bg-none border-none hidden max-lg:block"
