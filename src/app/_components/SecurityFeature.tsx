@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import type { SecurityFeature } from "../data/appContent";
-import { useViewportWidth } from "../hooks/useViewportWidth";
-import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import mockUp from "../assets/images/mockups/mockup-login.png";
+import type { SecurityFeature } from "@/data/appContent";
+import { useViewportWidth } from "@/hooks/useViewportWidth";
+import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
+import mockUp from "@/assets/images/mockups/mockup-login.png";
 
 interface FeatureProps {
   data: SecurityFeature;
