@@ -1,27 +1,27 @@
 import { StaticImageData } from "next/image";
-import safulpayIconGreen from "../assets/images/brand/safulpay-icon-green.svg";
-import safulpayIconLemon from "../assets/images/brand/safulpay-icon-lemon.svg";
-import logoQcell from "../assets/images/partners/logo-qcell.svg";
-import logoOrange from "../assets/images/partners/logo-orange.svg";
-import logoAfricell from "../assets/images/partners/logo-africell.svg";
-import logoWu from "../assets/images/partners/logo-wu.svg";
-import logoRia from "../assets/images/partners/logo-ria.svg";
-import logoMoneygram from "../assets/images/partners/logo-moneygram.svg";
-import logoBankcard from "../assets/images/partners/logo-bankcard.svg";
-import logoDstv from "../assets/images/partners/logo-dstv.svg";
-import logoEdsa from "../assets/images/partners/logo-edsa.svg";
-import iconBank from "../assets/images/icons/icon-bank.svg";
-import downloadAppstoreIcon from "../assets/images/icons/download-appstore-icon.svg";
-import downloadPlaystoreIcon from "../assets/images/icons/download-playstore-icon.svg";
-import teamWale from "../assets/images/team/wale_ceo.jpeg";
-import teamTolu from "../assets/images/team/tolu_coo.jpeg";
-import teamAdama from "../assets/images/team/adama_relations.jpeg";
-import teamOyinn from "../assets/images/team/oyinn_tech_lead.jpeg";
-import teamElijah from "../assets/images/team/elijah_marketing.jpeg";
-import teamTimi from "../assets/images/team/timi-design.jpeg";
-import teamCharles from "../assets/images/team/charles_finance.jpeg";
-import teamTumi from "../assets/images/team/tumi_compliance.jpeg";
-import teamOsman from "../assets/images/team/osman_it_support.jpeg";
+import safulpayIconGreen from "@/assets/images/brand/safulpay-icon-green.svg";
+import safulpayIconLemon from "@/assets/images/brand/safulpay-icon-lemon.svg";
+import logoQcell from "@/assets/images/partners/logo-qcell.svg";
+import logoOrange from "@/assets/images/partners/logo-orange.svg";
+import logoAfricell from "@/assets/images/partners/logo-africell.svg";
+import logoWu from "@/assets/images/partners/logo-wu.svg";
+import logoRia from "@/assets/images/partners/logo-ria.svg";
+import logoMoneygram from "@/assets/images/partners/logo-moneygram.svg";
+import logoBankcard from "@/assets/images/partners/logo-bankcard.svg";
+import logoDstv from "@/assets/images/partners/logo-dstv.svg";
+import logoEdsa from "@/assets/images/partners/logo-edsa.svg";
+import iconBank from "@/assets/images/icons/icon-bank.svg";
+import downloadAppstoreIcon from "@/assets/images/icons/download-appstore-icon.svg";
+import downloadPlaystoreIcon from "@/assets/images/icons/download-playstore-icon.svg";
+import teamWale from "@/assets/images/team/wale_ceo.jpeg";
+import teamTolu from "@/assets/images/team/tolu_coo.jpeg";
+import teamAdama from "@/assets/images/team/adama_relations.jpeg";
+import teamOyinn from "@/assets/images/team/oyinn_tech_lead.jpeg";
+import teamElijah from "@/assets/images/team/elijah_marketing.jpeg";
+import teamTimi from "@/assets/images/team/timi-design.jpeg";
+import teamCharles from "@/assets/images/team/charles_finance.jpeg";
+import teamTumi from "@/assets/images/team/tumi_compliance.jpeg";
+import teamOsman from "@/assets/images/team/osman_it_support.jpeg";
 
 // COMPANY
 export interface Company {
@@ -267,7 +267,6 @@ export const companyData: SafulPayData = {
         socials: {
           linkedin: "https://www.linkedin.com/in/toluwani-adepoju-45763a182/",
           github: "https://github.com/medal007",
-          // twitter: "https://twitter.com/janesmith",
         },
       },
       {
@@ -277,8 +276,7 @@ export const companyData: SafulPayData = {
         bio: "The voice of SafulPay's users — Adama ensures every customer interaction is handled with empathy, speed, and care.",
         cardTheme: "primary",
         socials: {
-          // twitter: "https://twitter.com/emilyjohnson",
-          // linkedin: "https://linkedin.com/in/emilyjohnson",
+          linkedin: "https://www.linkedin.com/in/adama-jalloh-493354272/",
         },
       },
       {
@@ -331,7 +329,7 @@ export const companyData: SafulPayData = {
         bio: "Keeping SafulPay's systems running 24/7 — Osman leads IT infrastructure and technical support operations.",
         cardTheme: "accent",
         socials: {
-          // linkedin: "https://linkedin.com/in/osmankamara",
+          linkedin: "https://www.linkedin.com/in/osman-chernor-kamara",
         },
       },
       {
@@ -341,7 +339,7 @@ export const companyData: SafulPayData = {
         bio: "Crafting SafulPay's visual language — from UI systems to product experiences that feel intuitive and effortless.",
         cardTheme: "primary",
         socials: {
-          linkedin: "https://www.linkedin.com/in/yusuf-oluwatimileyin/",
+          linkedin: "https://www.linkedin.com/in/yusuf-oluwatimileyin",
           // email: "Yusuf.oluwatimileyin94@gmail.com",
         },
       },
