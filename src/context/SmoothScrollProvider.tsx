@@ -7,9 +7,8 @@ import {
   useEffect,
   useState,
 } from "react";
-// import { usePathname } from "next/navigation";
-import { useSmoothScroll } from "../hooks/scroll/useSmoothScroll";
-import { useScrollTriggers } from "../hooks/scroll/useScrollTriggers";
+import { useSmoothScroll, getOffset } from "@/hooks/scroll/useSmoothScroll";
+import { useScrollTriggers } from "@/hooks/scroll/useScrollTriggers";
 
 interface SmoothScrollContextType extends ReturnType<typeof useSmoothScroll> {
   isHeroSection: boolean;
@@ -20,41 +19,68 @@ const SmoothScrollContext = createContext<SmoothScrollContextType | undefined>(
 );
 
 export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
-  // const pathname = usePathname();
   const [hashValue, setHashValue] = useState("");
-
-  useEffect(() => {
-    setHashValue(window.location.hash);
-    const handleHashChange = () => setHashValue(window.location.hash);
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
-
   const scroll = useSmoothScroll();
 
   useScrollTriggers(scroll.isHomePage, scroll.setActiveSection);
 
+  // Handle URL hashes on mount and change — clean hash from URL after scroll
   useEffect(() => {
-    const hash = hashValue.replace("#", "");
-    const offset = hash === "features" ? 280 : 120;
-
+    const hash = window.location.hash.replace("#", "");
     if (hash) {
-      setTimeout(() => {
-        scroll.scrollToSection(hash, {
-          offset,
-          forceUpdate: true,
-          duration: 1.5, // Slower for hash navigation
-        });
-      }, 200);
+      setHashValue(hash);
+      // Remove hash from URL immediately so it never lingers
+      window.history.replaceState({}, "", window.location.pathname);
     }
+
+    const handleHashChange = () => {
+      const h = window.location.hash.replace("#", "");
+      if (h) {
+        window.history.replaceState({}, "", window.location.pathname);
+        setHashValue(h);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  // Scroll to captured hash section
+  useEffect(() => {
+    if (!hashValue) return;
+    const id = hashValue;
+    setHashValue("");
+
+    setTimeout(() => {
+      scroll.scrollToSection(id, {
+        offset: getOffset(id),
+        duration: 1.5,
+      });
+    }, 300);
   }, [hashValue]);
 
-  // Enhanced wheel handler for hero section
+  // Handle cross-page scroll requests stored in sessionStorage
+  useEffect(() => {
+    if (!scroll.isHomePage) return;
+    const pending = sessionStorage.getItem("pendingScroll");
+    if (!pending) return;
+    sessionStorage.removeItem("pendingScroll");
+
+    setTimeout(() => {
+      scroll.scrollToSection(pending, {
+        offset: getOffset(pending),
+        duration: 1.5,
+      });
+    }, 600);
+  }, [scroll.isHomePage]);
+
+  // Wheel-to-bridge from hero
   useEffect(() => {
     if (!scroll.isHomePage) return;
 
     let isScrolling = false;
     let wheelTimeout: ReturnType<typeof setTimeout>;
+
     const handleWheel = (e: WheelEvent) => {
       if (window.scrollY > 300 || isScrolling) return;
       if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
@@ -63,15 +89,12 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
       isScrolling = true;
 
       if (e.deltaY > 0) {
-        scroll.scrollToSection("features", {
-          offset: 280,
-          duration: 1.8, // Slower scroll from hero
-        });
+        scroll.scrollToSection("bridge", { offset: 280, duration: 1.8 });
       }
 
       wheelTimeout = setTimeout(() => {
         isScrolling = false;
-      }, 1800); // Longer cooldown
+      }, 1800);
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
