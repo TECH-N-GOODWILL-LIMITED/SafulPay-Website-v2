@@ -1,4 +1,4 @@
-import { featuresData } from "../data/appContent";
+import { featuresData } from "@/data/appContent";
 
 function KeyFeatures() {
   const { keyFeatures } = featuresData;
