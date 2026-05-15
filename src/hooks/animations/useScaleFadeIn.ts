@@ -1,6 +1,6 @@
 "use client";
 
-import { useGsapCustomAnimation } from "./useGsapCustomAnimation";
+import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
 
 type ScaleFadeOptions = {
   containerRef: React.RefObject<HTMLElement | null>;
