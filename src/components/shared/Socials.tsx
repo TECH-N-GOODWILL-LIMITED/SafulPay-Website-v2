@@ -1,5 +1,5 @@
-import { companyData } from "../data/companyData";
-import SocialIcon from "./SocialIcon";
+import { companyData } from "@/data/companyData";
+import SocialIcon from "@/components/ui/SocialIcon";
 
 interface SocialsProp {
   className?: string;
