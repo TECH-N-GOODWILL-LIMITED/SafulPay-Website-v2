@@ -1,7 +1,7 @@
 "use client";
 
-import { useScaleFadeIn } from "./useScaleFadeIn";
-import { useSlideFadeIn } from "./useSlideFadeIn";
+import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
+import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 
 export function useHeaderAnimation({
   containerRef,
