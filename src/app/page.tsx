@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { companyData } from "@/data/companyData";
 import { faqsData } from "@/data/appContent";
-import JsonLd from "@/components/JsonLd";
-import HomeClient from "./HomeClient";
+import JsonLd from "@/components/shared/JsonLd";
+import HomeClient from "@/app/HomeClient";
 
 const { company, seo, socials, downloads } = companyData;
 
