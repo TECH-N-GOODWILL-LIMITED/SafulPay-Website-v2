@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { Partner } from "../data/companyData";
+import type { Partner } from "@/data/companyData";
 
 interface PartnerItemProps {
   partner: Partner;
