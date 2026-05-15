@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { companyData } from "../data/companyData";
+import { companyData } from "@/data/companyData";
 
 function DownloadItem() {
   const { downloads } = companyData;
