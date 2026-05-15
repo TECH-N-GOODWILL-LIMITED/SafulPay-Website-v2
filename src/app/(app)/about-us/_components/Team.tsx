@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { companyData } from "@/data/companyData";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
-import Member from "@/components/Member";
+import Member from "@/app/(app)/about-us/_components/Member";
 import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function Team() {
