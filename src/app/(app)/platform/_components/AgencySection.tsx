@@ -5,8 +5,8 @@ import { useRef } from "react";
 import { agencyData } from "@/data/platformContent";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
-import { SectionBadge } from "@/components/platform/SectionBadge";
-import { FeatureRow } from "@/components/platform/FeatureRow";
+import { SectionBadge } from "@/app/(app)/platform/_components/SectionBadge";
+import { FeatureRow } from "@/app/(app)/platform/_components/FeatureRow";
 import mockupImage from "@/assets/images/mockups/mockup_agency_app.png";
 
 // Asymmetric watermark positions and sizing for the 4 stat values
@@ -16,15 +16,16 @@ const WATERMARKS = [
     value: "text-[clamp(60px,9vw,140px)]",
   },
   {
-    wrapper: "bottom-[8%] left-[14%] rotate-[3deg]",
+    wrapper: "bottom-[17%] sm:bottom-[8%] left-[14%] rotate-[3deg]",
     value: "text-[clamp(48px,7vw,110px)]",
   },
   {
-    wrapper: "bottom-[8%] right-[2%] rotate-[-2deg] text-right",
+    wrapper:
+      "bottom-[2%] right-[6%] sm:bottom-[8%] sm:right-[2%] rotate-[-2deg] text-right",
     value: "text-[clamp(54px,8vw,120px)]",
   },
   {
-    wrapper: "top-[26%] left-[38%] rotate-[5deg]",
+    wrapper: "top-[26%] left-[64%] lg:left-[38%] rotate-[5deg]",
     value: "text-[clamp(80px,10vw,160px)]",
   },
 ];
@@ -59,7 +60,7 @@ function AgencySection() {
     >
       {/* ── Scattered watermark stats (z-10, above mask) ────────── */}
       <div
-        className="absolute inset-0 pointer-events-none select-none z-10"
+        className="absolute inset-0 pointer-events-none select-none z-21"
         aria-hidden="true"
       >
         {stats.map((stat, i) => (
@@ -91,7 +92,8 @@ function AgencySection() {
       </div>
 
       {/* ── Foreground content (z-20, top) ──────────────────────── */}
-      <div className="section relative items-start py-24 md:py-32 px-6 md:px-10 z-20">
+      <div className="section relative items-start py-24 md:py-32 px-10 z-20">
+        <div className="absolute bg-background/15 h-[150vh] w-full rounded-full -bottom-1/2 right-1/3 backdrop-blur-[2px]" />
         <div
           ref={contentRef}
           className="relative z-10 flex flex-col gap-7 w-full lg:w-[68%] lg:max-w-3xl text-left"
