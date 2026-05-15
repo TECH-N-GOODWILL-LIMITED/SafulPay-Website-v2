@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { testimonialsData } from "@/data/appContent";
 import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
-import TestimonialItem from "@/components/TestimonialItem";
+import TestimonialItem from "@/app/_components/TestimonialItem";
 import testimonialLogo from "@/assets/images/brand/safulpay-testimonial-logo.png";
 import lineImage from "@/assets/images/illustrations/long-line-illustration.svg";
 
