@@ -20,20 +20,92 @@ export interface UseCaseData {
   cta: { label: string; href: string };
 }
 
-export const platformHeroData = {
-  eyebrow: "SafulPay Platform",
-  headline: "Built for Agents, Merchants & Developers",
-  body: "One infrastructure layer. Three purpose-built products. Whether you run an agent network, accept merchant payments, or build fintech applications — SafulPay has the right toolset.",
-  anchors: [
-    { label: "Agency App", href: "#agency" },
-    { label: "Merchant Tools", href: "#merchant" },
-    { label: "Developer API", href: "#developer" },
+export type PlatformPersonaId = "user" | "agent" | "merchant" | "developer";
+
+export interface PlatformPersonaCta {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+export interface PlatformPersona {
+  id: PlatformPersonaId;
+  label: string;
+  eyebrow: string;
+  headline: string;
+  accentPhrase: string;
+  lede: string;
+  cta: PlatformPersonaCta;
+  cta2: { label: string; href: string };
+}
+
+export interface PlatformHeroStat {
+  value: string;
+  label: string;
+}
+
+export interface PlatformHeroData {
+  defaultPersona: PlatformPersonaId;
+  personas: PlatformPersona[];
+  stats: PlatformHeroStat[];
+}
+
+export const platformHeroData: PlatformHeroData = {
+  defaultPersona: "agent",
+  personas: [
+    {
+      id: "user",
+      label: "User",
+      eyebrow: "For You",
+      headline: "One app for every way you move money.",
+      accentPhrase: "every way",
+      lede: "Send to any mobile money or bank, pay EDSA, top up airtime, gift in seconds, and receive money from anywhere in the world.",
+      cta: { label: "Get the app", href: "/download" },
+      cta2: { label: "See what you can do", href: "/#bridge" },
+    },
+    {
+      id: "agent",
+      label: "Agent",
+      eyebrow: "For Agents",
+      headline: "Run an agent business that scales.",
+      accentPhrase: "that scales",
+      lede: "Offer cash-in, cash-out, bill payments and remittance pickup to your community. Earn transparent commission on every transaction.",
+      cta: { label: "Apply as Agent", href: "mailto:agents@safulpay.com" },
+      cta2: { label: "See agent tools", href: "#agency" },
+    },
+    {
+      id: "merchant",
+      label: "Merchant",
+      eyebrow: "For Business",
+      headline: "Accept payments. Pay out at scale.",
+      accentPhrase: "Pay out",
+      lede: "Receive QR, link and in-app payments. Pay salaries and suppliers in bulk. Built for restaurants, retailers, offices and NGOs.",
+      cta: {
+        label: "Get a business account",
+        href: "mailto:merchants@safulpay.com",
+      },
+      cta2: { label: "Explore merchant tools", href: "#merchant" },
+    },
+    {
+      id: "developer",
+      label: "Developer",
+      eyebrow: "For Developers",
+      headline: "Money rails for any product.",
+      accentPhrase: "any product",
+      lede: "A single REST API for mobile money, banks, bills and remittances across Sierra Leone. Sandbox, webhooks, idempotency, built right.",
+      cta: {
+        label: "Read the docs",
+        href: "https://docs.safulpay.com",
+        external: true,
+      },
+      cta2: { label: "Get API keys", href: "#developer" },
+    },
   ],
   stats: [
-    { value: "12,847", label: "Active Agents" },
     { value: "SLL 4.2B", label: "Monthly Volume" },
-    { value: "99.6%", label: "Platform Uptime" },
-    { value: "3,412", label: "Merchant Partners" },
+    { value: "10K+", label: "Users moving money" },
+    { value: "1K+", label: "Agent points" },
+    { value: "15+", label: "Network partners" },
   ],
 };
 
@@ -76,7 +148,7 @@ export const agencyData: UseCaseData = {
     { value: "Real-time", label: "Commission payouts" },
     { value: "4+", label: "Revenue streams" },
   ],
-  cta: { label: "Become an Agent", href: "mailto:agents@safulpay.com" },
+  cta: { label: "Become an Agent", href: "mailto:info@safulpay.com" },
 };
 
 export const merchantData: UseCaseData = {
@@ -114,12 +186,12 @@ export const merchantData: UseCaseData = {
     },
   ],
   stats: [
-    { value: "3,412", label: "Active Merchants" },
+    { value: "42", label: "Active Merchants" },
     { value: "47ms", label: "Avg Payment Time" },
     { value: "Zero", label: "Double-charges" },
     { value: "24hr", label: "Settlement Window" },
   ],
-  cta: { label: "Become a Merchant", href: "mailto:merchants@safulpay.com" },
+  cta: { label: "Become a Merchant", href: "mailto:info@safulpay.com" },
 };
 
 export const developerData: UseCaseData = {
