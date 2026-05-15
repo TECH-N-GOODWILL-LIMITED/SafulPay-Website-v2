@@ -1,22 +1,22 @@
 import { StaticImageData } from "next/image";
-import mockupFeatures1 from "../assets/images/mockups/mockup-features1.png";
-import mockupFeatures2 from "../assets/images/mockups/mockup-features2.png";
-import mockupFeatures3 from "../assets/images/mockups/mockup-features3.png";
-import iconArrowDown from "../assets/images/icons/icon-arrow-down.svg";
-import iconAdmin from "../assets/images/icons/icon-admin.svg";
-import iconWallet from "../assets/images/icons/icon-wallet.svg";
-import createWalletIllustration from "../assets/images/illustrations/create-wallet-illustration.png";
-import sendIllustration from "../assets/images/illustrations/send-illustration.png";
-import paymentIllustration from "../assets/images/illustrations/payment-illustration.png";
-import iconCurrency from "../assets/images/icons/icon-currency.svg";
-import iconEncrypt from "../assets/images/icons/icon-encrypt.svg";
-import iconShield from "../assets/images/icons/icon-shield.svg";
-import iconPadlock from "../assets/images/icons/icon-padlock.svg";
-import testimonialLady2 from "../assets/images/testimonial/lady2.png";
-import testimonialThomas from "../assets/images/testimonial/thomas.png";
-import testimonialChrislin from "../assets/images/testimonial/chrislin.png";
-import testimonialLady from "../assets/images/testimonial/lady.png";
-import testimonialLady3 from "../assets/images/testimonial/lady3.png";
+import mockupFeatures1 from "@/assets/images/mockups/mockup-features1.png";
+import mockupFeatures2 from "@/assets/images/mockups/mockup-features2.png";
+import mockupFeatures3 from "@/assets/images/mockups/mockup-features3.png";
+import iconArrowDown from "@/assets/images/icons/icon-arrow-down.svg";
+import iconAdmin from "@/assets/images/icons/icon-admin.svg";
+import iconWallet from "@/assets/images/icons/icon-wallet.svg";
+import createWalletIllustration from "@/assets/images/illustrations/create-wallet-illustration.png";
+import sendIllustration from "@/assets/images/illustrations/send-illustration.png";
+import paymentIllustration from "@/assets/images/illustrations/payment-illustration.png";
+import iconCurrency from "@/assets/images/icons/icon-currency.svg";
+import iconEncrypt from "@/assets/images/icons/icon-encrypt.svg";
+import iconShield from "@/assets/images/icons/icon-shield.svg";
+import iconPadlock from "@/assets/images/icons/icon-padlock.svg";
+import testimonialLady2 from "@/assets/images/testimonial/lady2.png";
+import testimonialThomas from "@/assets/images/testimonial/thomas.png";
+import testimonialChrislin from "@/assets/images/testimonial/chrislin.png";
+import testimonialLady from "@/assets/images/testimonial/lady.png";
+import testimonialLady3 from "@/assets/images/testimonial/lady3.png";
 
 const currentYear = new Date().getFullYear();
 
@@ -103,6 +103,20 @@ export interface AboutUsData {
   text: string;
 }
 
+// THE BRIDGE
+export interface BridgeFlowGroup {
+  title: string;
+  items: string[];
+}
+
+export interface BridgeData {
+  tag: string;
+  title: string;
+  description: string;
+  sources: BridgeFlowGroup;
+  destinations: BridgeFlowGroup;
+}
+
 // HOW IT WORKS
 export interface Step {
   title: string;
@@ -118,11 +132,11 @@ export interface HowItWorks {
 
 // NAVBAR
 export const navLinks: NavLink[] = [
+  { label: "Bridge", url: "bridge", type: "scroll" },
   { label: "How it Works", url: "works", type: "scroll" },
-  { label: "Platforms", url: "/platform", type: "route" },
-  { label: "Testimonial", url: "testimonials", type: "scroll" },
   { label: "FAQs", url: "faqs", type: "scroll" },
   { label: "Contact Us", url: "contact-us", type: "scroll" },
+  { label: "For You", url: "/platform", type: "route" },
   { label: "About Us", url: "/about-us", type: "route" },
 ];
 
@@ -135,11 +149,12 @@ export const footerData: FooterData = {
       category: "Quick links",
       links: [
         { label: "Home", url: "/", type: "route" },
+        { label: "Bridge", url: "bridge", type: "scroll" },
+        { label: "For You", url: "platform", type: "route" },
         { label: "How it Works", url: "works", type: "scroll" },
         { label: "Features", url: "features", type: "scroll" },
         { label: "Download", url: "download", type: "scroll" },
         { label: "FAQs", url: "faqs", type: "scroll" },
-        { label: "Testimonial", url: "testimonials", type: "scroll" },
       ],
     },
     {
@@ -313,6 +328,45 @@ export const faqsData: FAQData = {
         'To request money, go to the "Request" section in the app, select a wallet, and enter an optional amount and a note. A QR code and a request link will be generated — simply share the link with anyone to fulfill your request. It’s an easy way to get the funds you need.',
     },
   ],
+};
+
+export const bridgeData: BridgeData = {
+  tag: "The Bridge",
+  title: "One app sits in the middle of every wallet, bank and bill.",
+  description:
+    "Move money from any wallet, bank, or remittance to wherever it needs to go in Sierra Leone, all in seconds.",
+  sources: {
+    title: "Money comes from",
+    items: [
+      "Orange Money",
+      "Afri Money",
+      "Qmoney",
+      "Debit Card",
+      "BSL",
+      "SLCB",
+      "Rokel Bank",
+      "UBA",
+      "GTCO",
+      "Western Union",
+      "MoneyGram",
+      "RIA",
+    ],
+  },
+  destinations: {
+    title: "Money goes to",
+    items: [
+      "Any mobile wallet",
+      "Any bank account",
+      "EDSA bills",
+      "DSTV Nigeria",
+      "WAEC fees",
+      "Sea Coach",
+      "Airtime & data",
+      "Gift cards",
+      "Cash via agent",
+      "Merchants & POS",
+    ],
+  },
 };
 
 export const worksData: HowItWorks = {
