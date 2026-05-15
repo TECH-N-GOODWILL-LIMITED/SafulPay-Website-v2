@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import type { MoreFeature } from "../data/appContent";
-import { useViewportWidth } from "../hooks/useViewportWidth";
-import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import absoluteImage from "../assets/images/illustrations/ray-illustration.svg";
+import type { MoreFeature } from "@/data/appContent";
+import { useViewportWidth } from "@/hooks/useViewportWidth";
+import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
+import absoluteImage from "@/assets/images/illustrations/ray-illustration.svg";
 
 interface MoreFeatureProps {
   feature: MoreFeature;
