@@ -1,6 +1,6 @@
 import Image from "next/image";
-import ContactUs from "./ContactUs";
-import Footer from "@/components/Footer";
+import ContactUs from "@/components/layout/ContactUs";
+import Footer from "@/components/layout/Footer";
 import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 function MainFooter() {
