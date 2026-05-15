@@ -1,5 +1,5 @@
-import { companyData } from "../data/companyData";
-import PartnerItem from "./PartnerItem";
+import { companyData } from "@/data/companyData";
+import PartnerItem from "@/app/_components/PartnerItem";
 
 function Partners() {
   const { partners } = companyData;
