@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useRef } from "react";
 import gsap from "gsap";
-import type { Member } from "../data/companyData";
-import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import SocialIcon from "./SocialIcon";
+import type { Member } from "@/data/companyData";
+import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
+import SocialIcon from "@/components/ui/SocialIcon";
 
 // ── Theme map (driven by cardTheme from data) ─────────────────────────────────
 const CARD_THEMES = {
