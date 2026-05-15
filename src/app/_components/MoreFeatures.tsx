@@ -3,25 +3,21 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { featuresData } from "@/data/appContent";
-import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
-import MoreFeatureItem from "@/components/MoreFeatureItem";
+import MoreFeatureItem from "@/app/_components/MoreFeatureItem";
 import bigRay from "@/assets/images/illustrations/big-ray-illustration.svg";
 
 function MoreFeatures() {
   const moreFeaturesBgRef = useRef<HTMLDivElement>(null);
   const moreFeaturesTextRef = useRef<HTMLDivElement>(null);
   const bigRayRef = useRef<HTMLDivElement>(null);
-  const { isMobile } = useViewportWidth();
   const { featuresText, moreFeatures } = featuresData;
 
   useScaleFadeIn({
     containerRef: moreFeaturesBgRef,
-    start: "top bottom",
-    end: "80% bottom",
-    scrub: isMobile ? false : 0.5,
+    start: "top 80%",
   });
 
   useHeaderAnimation({
@@ -47,7 +43,7 @@ function MoreFeatures() {
     <section
       role="region"
       aria-labelledby="more-features-heading"
-      className="section pt-16 pb-50 max-md:pb-5 px-5 flex rounded-t-[30px] gap-25 max-md:gap-12.5 overflow-hidden relative flex-col items-center text-white"
+      className="section pt-20 pb-50 max-md:pb-5 px-5 flex rounded-t-[30px] gap-25 max-md:gap-12.5 overflow-hidden relative flex-col items-center text-white"
     >
       <div
         ref={moreFeaturesBgRef}
@@ -56,7 +52,7 @@ function MoreFeatures() {
       ></div>
       <div
         ref={bigRayRef}
-        className="w-185 absolute top-[-120px] max-m:top-[-6%]"
+        className="w-100 sm:w-120 md:w-185 absolute top-[-3%] sm:top-[-4%] md:top-[-120px]"
       >
         <Image
           src={bigRay}
