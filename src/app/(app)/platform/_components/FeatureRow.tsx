@@ -91,7 +91,7 @@ export function FeatureRow({ feature, dark = false }: FeatureRowProps) {
           {feature.title}
         </span>
         <span
-          className={`text-sm leading-relaxed ${
+          className={`text-sm leading-relaxed text-shadow-xs ${
             dark ? "text-white/55" : "text-zinc-500"
           }`}
         >
