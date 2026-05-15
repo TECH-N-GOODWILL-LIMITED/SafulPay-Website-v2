@@ -2,21 +2,17 @@
 
 import { useRef } from "react";
 import { worksData } from "@/data/appContent";
-import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
-import Step from "@/components/Step";
+import Step from "@/app/_components/Step";
 
 function Works() {
   const worksRef = useRef<HTMLDivElement>(null);
-  const { isMobile } = useViewportWidth();
   const { title, intro, instruction, steps } = worksData;
 
   useScaleFadeIn({
     containerRef: worksRef,
-    start: "top bottom",
-    end: "80% bottom",
-    scrub: isMobile ? false : 0.5,
+    start: "top 80%",
   });
 
   useHeaderAnimation({
@@ -30,7 +26,7 @@ function Works() {
       role="region"
       aria-label={title}
       aria-describedby="works-instruction"
-      className="section py-16 px-5 gap-6 bg-text-color text-white rounded-[50px]"
+      className="section py-16 px-5 gap-6 bg-text-color text-white rounded-[50px] my-20"
       data-section
     >
       <h2 className="animateheader primary-heading font-bold p-2.5 tracking-[-2.1px]">
