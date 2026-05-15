@@ -1,77 +1,14 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import mockupImage from "@/assets/images/mockups/mockup-home-page.png";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
-
-const PERSONAS = [
-  { id: "user" as const, label: "User" },
-  { id: "agent" as const, label: "Agent" },
-  { id: "merchant" as const, label: "Merchant" },
-  { id: "developer" as const, label: "Developer" },
-] as const;
-
-type PersonaId = (typeof PERSONAS)[number]["id"];
-
-interface PersonaContent {
-  eyebrow: string;
-  headline: string;
-  accentPhrase: string;
-  lede: string;
-  cta: { label: string; href: string; external?: boolean };
-  cta2: { label: string; href: string };
-}
-
-const CONTENT: Record<PersonaId, PersonaContent> = {
-  user: {
-    eyebrow: "For You",
-    headline: "One app for every way you move money.",
-    accentPhrase: "every way",
-    lede: "Send to any mobile money or bank, pay EDSA, top up airtime, gift in seconds, and receive money from anywhere in the world.",
-    cta: { label: "Get the app", href: "/download" },
-    cta2: { label: "See what you can do", href: "/#features" },
-  },
-  agent: {
-    eyebrow: "For Agents",
-    headline: "Run an agent business that scales.",
-    accentPhrase: "that scales",
-    lede: "Offer cash-in, cash-out, bill payments and remittance pickup to your community. Earn transparent commission on every transaction.",
-    cta: { label: "Apply as Agent", href: "mailto:agents@safulpay.com" },
-    cta2: { label: "See agent tools", href: "#agency" },
-  },
-  merchant: {
-    eyebrow: "For Business",
-    headline: "Accept payments. Pay out at scale.",
-    accentPhrase: "Pay out",
-    lede: "Receive QR, link and in-app payments. Pay salaries and suppliers in bulk. Built for restaurants, retailers, offices and NGOs.",
-    cta: {
-      label: "Get a business account",
-      href: "mailto:merchants@safulpay.com",
-    },
-    cta2: { label: "Explore merchant tools", href: "#merchant" },
-  },
-  developer: {
-    eyebrow: "For Developers",
-    headline: "Money rails for any product.",
-    accentPhrase: "any product",
-    lede: "A single REST API for mobile money, banks, bills and remittances across Sierra Leone. Sandbox, webhooks, idempotency — built right.",
-    cta: {
-      label: "Read the docs",
-      href: "https://docs.safulpay.com",
-      external: true,
-    },
-    cta2: { label: "Get API keys", href: "#developer" },
-  },
-};
-
-const STATS = [
-  { value: "10K+", label: "Users moving money" },
-  { value: "1K+", label: "Agent points" },
-  { value: "15+", label: "Network partners" },
-  { value: "99.9%", label: "Uptime SLA" },
-];
+import {
+  platformHeroData,
+  type PlatformPersonaId,
+} from "@/data/platformContent";
 
 function renderHeadline(headline: string, accentPhrase: string) {
   const idx = headline.indexOf(accentPhrase);
@@ -86,12 +23,28 @@ function renderHeadline(headline: string, accentPhrase: string) {
 }
 
 function PlatformHero() {
-  const [activePersona, setActivePersona] = useState<PersonaId>("agent");
+  const { personas, defaultPersona, stats } = platformHeroData;
+
+  // O(1) lookup map from persona id to persona record
+  const personaMap = useMemo(
+    () => Object.fromEntries(personas.map((p) => [p.id, p])),
+    [personas],
+  ) as Record<PlatformPersonaId, (typeof personas)[number]>;
+
+  const [activePersona, setActivePersona] =
+    useState<PlatformPersonaId>(defaultPersona);
   const contentInnerRef = useRef<HTMLDivElement>(null);
+  const heroLeftRef = useRef<HTMLDivElement>(null);
   const mockupRef = useRef<HTMLDivElement>(null);
   const currentTweenRef = useRef<gsap.core.Tween | null>(null);
   const isAnimatingRef = useRef(false);
-  const isMountedRef = useRef(true);
+
+  useSlideFadeIn({
+    containerRef: heroLeftRef,
+    fromX: 0,
+    fromY: 40,
+    start: "top 90%",
+  });
 
   useSlideFadeIn({
     containerRef: mockupRef,
@@ -102,13 +55,12 @@ function PlatformHero() {
 
   useEffect(() => {
     return () => {
-      isMountedRef.current = false;
       currentTweenRef.current?.kill();
     };
   }, []);
 
   const handlePersonaChange = useCallback(
-    (id: PersonaId) => {
+    (id: PlatformPersonaId) => {
       if (
         id === activePersona ||
         !contentInnerRef.current ||
@@ -124,33 +76,33 @@ function PlatformHero() {
         duration: 0.14,
         ease: "power2.in",
         onComplete: () => {
-          if (!isMountedRef.current) return;
           setActivePersona(id);
 
-          if (contentInnerRef.current) {
-            currentTweenRef.current = gsap.fromTo(
-              contentInnerRef.current,
-              { opacity: 0, y: 14 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.24,
-                ease: "power2.out",
-                onComplete: () => {
-                  isAnimatingRef.current = false;
-                },
-              },
-            );
-          } else {
+          if (!contentInnerRef.current) {
             isAnimatingRef.current = false;
+            return;
           }
+
+          currentTweenRef.current = gsap.fromTo(
+            contentInnerRef.current,
+            { opacity: 0, y: 14 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.24,
+              ease: "power2.out",
+              onComplete: () => {
+                isAnimatingRef.current = false;
+              },
+            },
+          );
         },
       });
     },
     [activePersona],
   );
 
-  const PersonaContent = CONTENT[activePersona];
+  const persona = personaMap[activePersona];
 
   return (
     <section
@@ -162,7 +114,7 @@ function PlatformHero() {
     >
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_440px] gap-12 lg:gap-15 items-center">
         {/* Left: content */}
-        <div className="flex flex-col gap-7">
+        <div ref={heroLeftRef} className="flex flex-col gap-7">
           {/* Persona tabs */}
           <div className="relative w-fit">
             {/* Hand-sketch annotation */}
@@ -201,19 +153,19 @@ function PlatformHero() {
               role="tablist"
               aria-label="Select your audience"
             >
-              {PERSONAS.map((persona) => (
+              {personas.map((p) => (
                 <button
-                  key={persona.id}
+                  key={p.id}
                   role="tab"
-                  aria-selected={activePersona === persona.id}
-                  onClick={() => handlePersonaChange(persona.id)}
+                  aria-selected={activePersona === p.id}
+                  onClick={() => handlePersonaChange(p.id)}
                   className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                    activePersona === persona.id
+                    activePersona === p.id
                       ? "bg-secondary-color text-primary-color shadow-[0_2px_14px_-2px_rgba(195,240,44,0.45)]"
                       : "text-offwhite hover:text-white bg-transparent"
                   }`}
                 >
-                  {persona.label}
+                  {p.label}
                 </button>
               ))}
             </div>
@@ -222,33 +174,30 @@ function PlatformHero() {
           {/* Animated content */}
           <div ref={contentInnerRef} className="flex flex-col gap-5">
             <p className="text-xs font-semibold tracking-[0.15em] uppercase text-secondary-color">
-              {PersonaContent.eyebrow}
+              {persona.eyebrow}
             </p>
 
             <h1
               id="platform-heading"
               className="text-white text-left leading-[1.05] tracking-tight"
             >
-              {renderHeadline(
-                PersonaContent.headline,
-                PersonaContent.accentPhrase,
-              )}
+              {renderHeadline(persona.headline, persona.accentPhrase)}
             </h1>
 
             <p className="text-offwhite/80 text-base md:text-lg leading-relaxed max-w-[520px]">
-              {PersonaContent.lede}
+              {persona.lede}
             </p>
 
             {/* CTA buttons */}
             <div className="flex flex-wrap gap-3 pt-1">
               <a
-                href={PersonaContent.cta.href}
-                {...(PersonaContent.cta.external
+                href={persona.cta.href}
+                {...(persona.cta.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary-color text-primary-color text-sm font-bold hover:bg-secondary-color/90 active:scale-[0.98] transition-all duration-200"
               >
-                {PersonaContent.cta.label}
+                {persona.cta.label}
                 <svg
                   width="14"
                   height="14"
@@ -266,17 +215,17 @@ function PlatformHero() {
                 </svg>
               </a>
               <a
-                href={PersonaContent.cta2.href}
+                href={persona.cta2.href}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/15 text-white/75 text-sm font-medium hover:bg-white/8 hover:border-white/30 hover:text-white active:scale-[0.98] transition-all duration-200"
               >
-                {PersonaContent.cta2.label}
+                {persona.cta2.label}
               </a>
             </div>
           </div>
 
           {/* Stats */}
           <div className="flex flex-wrap gap-8 pt-4">
-            {STATS.map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col gap-1">
                 <span className="text-2xl md:text-3xl font-bold text-secondary-color tracking-tight leading-none">
                   {stat.value}
