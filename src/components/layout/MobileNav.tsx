@@ -6,11 +6,11 @@ import { useRouter, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { useSmoothScrollContext } from "../context/SmoothScrollProvider";
-import { useViewportHeight } from "../hooks/useViewportHeight";
-import menuIconWhite from "../assets/images/icons/icon-menu-white.svg";
-import safulpayTextIcon from "../assets/images/brand/safulpay-navbar-text-logo-icon.svg";
-import safulPayLogo from "../assets/images/brand/safulpay-icon-white.svg";
+import { useSmoothScrollContext } from "@/context/SmoothScrollProvider";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
+import menuIconWhite from "@/assets/images/icons/icon-menu-white.svg";
+import safulpayTextIcon from "@/assets/images/brand/safulpay-navbar-text-logo-icon.svg";
+import safulPayLogo from "@/assets/images/brand/safulpay-icon-white.svg";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollToPlugin);
@@ -50,8 +50,7 @@ const MobileNav = React.forwardRef(
 
     const router = useRouter();
     const pathname = usePathname();
-    const { scrollToSection, activeSection, isHomePage } =
-      useSmoothScrollContext();
+    const { scrollToSection, isHomePage } = useSmoothScrollContext();
     const vh = useViewportHeight();
 
     useEffect(() => {
@@ -79,18 +78,21 @@ const MobileNav = React.forwardRef(
     }, [isMenuOpen, setIsMenuOpen]);
 
     const handleScrollLink = (url: string) => {
-      const mobileOffset = 140;
-      const shouldScroll =
-        isHomePage ||
-        (!isHomePage && (url === "contact-us" || url === "download"));
+      if (url === "home") {
+        setIsMenuOpen(false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
 
-      if (shouldScroll) {
+      if (isHomePage) {
         scrollToSection(url, {
-          offset: mobileOffset,
+          offset: 140,
           onMenuClose: () => setIsMenuOpen(false),
         });
       } else {
-        router.replace("/#" + url);
+        setIsMenuOpen(false);
+        sessionStorage.setItem("pendingScroll", url);
+        router.push("/");
       }
     };
 
@@ -189,36 +191,29 @@ const MobileNav = React.forwardRef(
                 key={`mobile-scroll-${link.url}`}
                 onClick={() => handleScrollLink(link.url)}
                 role="menuitem"
-                className={`px-5 py-3 text-lg font-semibold tracking-[-0.28px] cursor-pointer hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color transition-colors ${
-                  activeSection === link.url && "text-secondary-color font-bold"
-                }`}
+                className="px-5 py-3 text-lg font-semibold tracking-[-0.28px] cursor-pointer hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color transition-colors"
               >
                 {link.label}
               </button>
             ))}
 
-            {routeLinks.map((link) => {
-              const isActive = pathname === link.url;
-              return (
-                <Link
-                  href={link.url}
-                  onClick={(e) => {
-                    if (pathname === link.url) {
-                      e.preventDefault();
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                      setIsMenuOpen(false);
-                    }
-                  }}
-                  key={`mobile-route-${link.url}`}
-                  role="menuitem"
-                  className={`tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color${
-                    isActive ? " text-secondary-color" : ""
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {routeLinks.map((link) => (
+              <Link
+                href={link.url}
+                onClick={(e) => {
+                  if (pathname === link.url) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    setIsMenuOpen(false);
+                  }
+                }}
+                key={`mobile-route-${link.url}`}
+                role="menuitem"
+                className="tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
           <div
             className="flex flex-col items-start gap-7.5"
