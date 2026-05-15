@@ -6,7 +6,7 @@ import { companyData } from "@/data/companyData";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
-import KeyFeatures from "@/components/KeyFeatures";
+import KeyFeatures from "@/components/shared/KeyFeatures";
 import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 import bgImage from "@/assets/images/illustrations/bg-about-icons.png";
 
