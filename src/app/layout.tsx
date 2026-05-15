@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
-import { SmoothScrollProvider } from "../context/SmoothScrollProvider";
+import { SmoothScrollProvider } from "@/context/SmoothScrollProvider";
 import { companyData } from "@/data/companyData";
-import "../index.css";
+import "@/index.css";
 
 const outfit = Outfit({ subsets: ["latin"], display: "swap" });
 
