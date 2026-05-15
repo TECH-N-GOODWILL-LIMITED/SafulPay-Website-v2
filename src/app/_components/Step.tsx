@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import type { Step as StepData } from "../data/appContent";
-import { useViewportWidth } from "../hooks/useViewportWidth";
-import { useGsapCustomAnimation } from "../hooks/animations/useGsapCustomAnimation";
-import bgIcon from "../assets/images/illustrations/bg-logo-illustration.svg";
-import circleSvg from "../assets/images/illustrations/circle-bg.svg";
-import lineImage from "../assets/images/illustrations/line-illustration.svg";
+import type { Step as StepData } from "@/data/appContent";
+import { useViewportWidth } from "@/hooks/useViewportWidth";
+import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
+import circleSvg from "@/assets/images/illustrations/circle-bg.svg";
+import lineImage from "@/assets/images/illustrations/line-illustration.svg";
 
 interface StepProps {
   data: StepData;
