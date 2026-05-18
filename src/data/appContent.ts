@@ -381,7 +381,7 @@ export const bridgeData: BridgeData = {
       "WAEC fees",
       "Sea Coach",
       "Airtime & data",
-      "Gift cards",
+      "Gift links",
       "Cash via agent",
       "Merchants & POS",
     ],
