@@ -109,9 +109,14 @@ function PlatformHero() {
       id="platform-hero"
       role="region"
       aria-labelledby="platform-heading"
-      className="section pb-16 pt-40 text-left px-6 m:px-10 flex-center min-h-screen"
+      className="relative section pb-16 pt-40 text-left px-6 m:px-10 flex-center min-h-screen"
       data-section
     >
+      {/* Bottom fade into next section */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-primary-color/60 to-transparent pointer-events-none"
+      />
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_440px] gap-12 lg:gap-15 items-center">
         {/* Left: content */}
         <div ref={heroLeftRef} className="flex flex-col gap-7">
@@ -173,7 +178,14 @@ function PlatformHero() {
 
           {/* Animated content */}
           <div ref={contentInnerRef} className="flex flex-col gap-5">
-            <p className="text-xs font-semibold tracking-[0.15em] uppercase text-secondary-color">
+            <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.15em] uppercase text-secondary-color">
+              <span
+                className="relative flex h-1.5 w-1.5 shrink-0"
+                aria-hidden="true"
+              >
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-color opacity-60" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-secondary-color" />
+              </span>
               {persona.eyebrow}
             </p>
 
@@ -245,12 +257,12 @@ function PlatformHero() {
           aria-hidden="true"
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-72 h-72 rounded-full bg-secondary-color/10 blur-3xl" />
+            <div className="w-96 h-96 rounded-full bg-secondary-color/15 blur-3xl" />
           </div>
           <Image
             src={mockupImage}
             alt="SafulPay app preview"
-            className="relative max-w-[340px] h-auto drop-shadow-[0_40px_70px_rgba(0,0,0,0.45)]"
+            className="relative max-w-[340px] h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.55)]"
             priority
           />
         </div>
