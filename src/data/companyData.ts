@@ -313,15 +313,17 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: teamTumi,
-        name: "Tumilara Akingbade",
-        role: "Head of Compliance",
-        bio: "Ensuring SafulPay stays fully regulated and compliant, protecting users and the platform at every turn.",
+        img: teamTimi,
+        name: "Oluwatimileyin Bamise",
+        role: "Product Design Engineer",
+        bio: "Crafting SafulPay's visual language — from UI systems to product experiences that feel intuitive and effortless.",
         cardTheme: "primary",
         socials: {
-          linkedin: "https://www.linkedin.com/in/tumilara-akingbade-25036a40a",
+          linkedin: "https://www.linkedin.com/in/yusuf-oluwatimileyin",
+          // email: "Yusuf.oluwatimileyin94@gmail.com",
         },
       },
+
       {
         img: teamOsman,
         name: "Osman Kamara",
@@ -333,14 +335,13 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: teamTimi,
-        name: "Oluwatimileyin Bamise",
-        role: "Product Design Engineer",
-        bio: "Crafting SafulPay's visual language — from UI systems to product experiences that feel intuitive and effortless.",
+        img: teamTumi,
+        name: "Tumilara Akingbade",
+        role: "Head of Compliance",
+        bio: "Ensuring SafulPay stays fully regulated and compliant, protecting users and the platform at every turn.",
         cardTheme: "primary",
         socials: {
-          linkedin: "https://www.linkedin.com/in/yusuf-oluwatimileyin",
-          // email: "Yusuf.oluwatimileyin94@gmail.com",
+          linkedin: "https://www.linkedin.com/in/tumilara-akingbade-25036a40a",
         },
       },
     ],
