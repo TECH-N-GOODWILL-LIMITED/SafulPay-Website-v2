@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { companyData } from "@/data/companyData";
 import { termsAndConditionsData } from "@/data/agreementData";
-import Agreement from "@/components/Agreement";
+import Agreement from "@/components/shared/Agreement";
 
 const { company, seo } = companyData;
 

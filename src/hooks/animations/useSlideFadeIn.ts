@@ -1,6 +1,6 @@
 "use client";
 
-import { useGsapCustomAnimation } from "./useGsapCustomAnimation"; // adjust path as needed
+import { useGsapCustomAnimation } from "@/hooks/animations/useGsapCustomAnimation"; // adjust path as needed
 
 type SlideFadeInOptions = {
   containerRef: React.RefObject<HTMLElement | null>;

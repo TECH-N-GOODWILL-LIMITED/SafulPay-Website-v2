@@ -1,20 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { useViewportHeight } from "@/hooks/useViewportHeight";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
-import NavBar from "@/components/sections/NavBar";
-import Hero from "@/components/sections/Hero";
-import Features from "@/components/sections/Features";
-import MoreFeatures from "@/components/sections/MoreFeatures";
-import Security from "@/components/sections/Security";
-import Works from "@/components/sections/Works";
-import Testimonial from "@/components/sections/Testimonial";
-import Partners from "@/components/Partners";
-import Download from "@/components/sections/Download";
-import Faqs from "@/components/sections/Faqs";
-import MainFooter from "@/components/sections/MainFooter";
-import SolutionsPreview from "@/components/sections/SolutionsPreview";
+import NavBar from "@/components/layout/NavBar";
+import Hero from "@/app/_components/Hero";
+import Features from "@/app/_components/Features";
+import MoreFeatures from "@/app/_components/MoreFeatures";
+import Security from "@/app/_components/Security";
+import Works from "@/app/_components/Works";
+import Testimonial from "@/app/_components/Testimonial";
+import Partners from "@/app/_components/Partners";
+import Download from "@/components/shared/Download";
+import Faqs from "@/app/_components/Faqs";
+import MainFooter from "@/components/layout/MainFooter";
+import SolutionsPreview from "@/app/_components/SolutionsPreview";
+import BridgeSection from "@/components/shared/BridgeSection";
+import bgIcon from "@/assets/images/illustrations/bg-logo-illustration.svg";
 
 export default function HomeClient() {
   const mainRef = useRef<HTMLDivElement | null>(null);
@@ -40,15 +43,23 @@ export default function HomeClient() {
       >
         <div className="h-32 md:h-30 sticky"></div>
         <main ref={mainRef} className="relative rounded-t-[40px] max-m:pt-15">
+          <Image
+            src={bgIcon}
+            alt=""
+            aria-hidden="true"
+            role="presentation"
+            className="max-w-147.5 h-auto absolute top-[-47px] right-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
+          />
+          <BridgeSection />
           <Features />
           <MoreFeatures />
+          <div className="absolute top-[32.5%] max-[780px]:top-[31%] max-[858px]:top-[32%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
+            <Partners />
+          </div>
           <Security />
           <SolutionsPreview />
           <Works />
           <Testimonial />
-          <div className="absolute top-4/15 flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
-            <Partners />
-          </div>
           <Download />
           <Faqs />
         </main>

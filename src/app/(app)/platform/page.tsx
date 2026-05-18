@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import JsonLd from "@/components/JsonLd";
+import JsonLd from "@/components/shared/JsonLd";
 import { companyData } from "@/data/companyData";
-import PlatformHero from "@/components/sections/platform/PlatformHero";
-import AgencySection from "@/components/sections/platform/AgencySection";
-import MerchantSection from "@/components/sections/platform/MerchantSection";
-import DeveloperSection from "@/components/sections/platform/DeveloperSection";
-import PlatformCTA from "@/components/sections/platform/PlatformCTA";
+import PlatformHero from "@/app/(app)/platform/_components/PlatformHero";
+import BridgeSection from "@/components/shared/BridgeSection";
+import AgencySection from "@/app/(app)/platform/_components/AgencySection";
+import MerchantSection from "@/app/(app)/platform/_components/MerchantSection";
+import DeveloperSection from "@/app/(app)/platform/_components/DeveloperSection";
+import PlatformCTA from "@/app/(app)/platform/_components/PlatformCTA";
 
 const { company, seo } = companyData;
 
@@ -61,6 +62,9 @@ export default function PlatformPage() {
       <main className="pt-0 gap-0">
         <div className="w-full bg-primary-color">
           <PlatformHero />
+        </div>
+        <div className="w-full bg-linear-to-bl from-primary-shade-30 via-background to-secondary-color/10 py-30 pt-36">
+          <BridgeSection />
         </div>
         <AgencySection />
         <div className="w-full bg-zinc-50">

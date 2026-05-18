@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { companyData } from "@/data/companyData";
-import Download from "@/components/sections/Download";
-import JsonLd from "@/components/JsonLd";
+import Download from "@/components/shared/Download";
+import JsonLd from "@/components/shared/JsonLd";
 
 const { company, seo, downloads } = companyData;
 

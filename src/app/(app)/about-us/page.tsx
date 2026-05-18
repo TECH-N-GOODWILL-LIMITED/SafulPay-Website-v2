@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { companyData } from "@/data/companyData";
-import About from "@/components/sections/About";
-import Team from "@/components/sections/Team";
-import Download from "@/components/sections/Download";
-import JsonLd from "@/components/JsonLd";
+import About from "@/app/(app)/about-us/_components/About";
+import Team from "@/app/(app)/about-us/_components/Team";
+import Download from "@/components/shared/Download";
+import JsonLd from "@/components/shared/JsonLd";
 
 const { company, seo, socials, team } = companyData;
 
