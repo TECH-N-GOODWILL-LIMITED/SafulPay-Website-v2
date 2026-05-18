@@ -292,6 +292,16 @@ export const companyData: SafulPayData = {
         },
       },
       {
+        img: teamCharles,
+        name: "Charles Lamin",
+        role: "Chief Finance Officer",
+        bio: "Keeping SafulPay financially sound — Charles oversees fiscal strategy, budgeting, and financial transparency.",
+        cardTheme: "primary",
+        socials: {
+          // linkedin: "https://linkedin.com/in/charleslamin",
+        },
+      },
+      {
         img: teamElijah,
         name: "Elijah Mensah",
         role: "Head of Business Development",
@@ -302,16 +312,7 @@ export const companyData: SafulPayData = {
           // twitter: "https://twitter.com/emilyjohnson",
         },
       },
-      {
-        img: teamCharles,
-        name: "Charles Lamin",
-        role: "Chief Finance Officer",
-        bio: "Keeping SafulPay financially sound — Charles oversees fiscal strategy, budgeting, and financial transparency.",
-        cardTheme: "primary",
-        socials: {
-          // linkedin: "https://linkedin.com/in/charleslamin",
-        },
-      },
+
       {
         img: teamTimi,
         name: "Oluwatimileyin Bamise",
