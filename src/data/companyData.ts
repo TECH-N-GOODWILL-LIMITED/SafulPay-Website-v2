@@ -319,7 +319,7 @@ export const companyData: SafulPayData = {
         bio: "Ensuring SafulPay stays fully regulated and compliant, protecting users and the platform at every turn.",
         cardTheme: "primary",
         socials: {
-          // linkedin: "https://linkedin.com/in/tumilaraakingbade",
+          linkedin: "https://www.linkedin.com/in/tumilara-akingbade-25036a40a",
         },
       },
       {

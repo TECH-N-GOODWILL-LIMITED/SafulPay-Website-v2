@@ -55,7 +55,7 @@ function AgencySection() {
       id="agency"
       role="region"
       aria-labelledby="agency-heading"
-      className="relative w-full overflow-hidden bg-linear-to-br from-secondary-color/10 via-white to-primary-shade-30"
+      className="relative w-full overflow-hidden bg-linear-to-br from-secondary-color/10 via-background to-primary-shade-30"
       data-section
     >
       {/* ── Scattered watermark stats (z-10, above mask) ────────── */}
@@ -92,7 +92,7 @@ function AgencySection() {
       </div>
 
       {/* ── Foreground content (z-20, top) ──────────────────────── */}
-      <div className="section relative items-start py-24 md:py-32 px-10 z-20">
+      <div className="section relative items-start py-24 md:py-36 px-10 z-20">
         <div className="absolute bg-background/15 h-[150vh] w-full rounded-full -bottom-1/2 right-1/3 backdrop-blur-[2px]" />
         <div
           ref={contentRef}

@@ -43,8 +43,28 @@
     font-optical-sizing: auto;
     font-style: normal;
     @apply font-outfit text-[clamp(14px,3.721vw,24px)] text-text-color font-normal leading-normal
-      text-center bg-[url("/background.png")] bg-top
-      bg-no-repeat bg-cover overflow-x-hidden relative;
+      text-center bg-top bg-no-repeat bg-cover overflow-x-hidden relative;
+
+    /* Fallback gradient shown while background.png loads.
+       Matches the near-black base + rose glow (top-left) + olive-lime glow (top-center-right). */
+    background-color: #0d0d0d;
+    background-image:
+      url("/background.png"),
+      radial-gradient(
+        ellipse 42% 22% at 16% 2%,
+        rgba(110, 45, 48, 0.55) 0%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse 30% 18% at 52% 1.5%,
+        rgba(58, 86, 70, 0.7) 0%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse 22% 14% at 65% 1.5%,
+        rgba(195, 240, 44, 0.2) 0%,
+        transparent 100%
+      );
   }
 
   body.scroll-lock {

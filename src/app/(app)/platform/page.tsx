@@ -67,7 +67,7 @@ export default function PlatformPage() {
           <BridgeSection />
         </div>
         <AgencySection />
-        <div className="w-full bg-zinc-50">
+        <div className="w-full bg-linear-to-br from-background via-primary-shade-30 to-secondary-color/10">
           <MerchantSection />
         </div>
         <div className="w-full bg-primary-color">

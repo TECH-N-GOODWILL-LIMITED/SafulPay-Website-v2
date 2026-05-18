@@ -54,7 +54,7 @@ export function FeatureRow({ feature, dark = false }: FeatureRowProps) {
   return (
     <div
       className={`feature-item flex items-start gap-4 py-4 border-b last:border-0 group transition-colors duration-200 ${
-        dark ? "border-white/10" : "border-zinc-100"
+        dark ? "border-white/10" : "border-primary-color/10"
       }`}
     >
       <div

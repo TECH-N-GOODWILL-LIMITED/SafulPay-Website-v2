@@ -160,6 +160,16 @@ export const merchantData: UseCaseData = {
     "From QR code checkouts to bulk disbursements, the SafulPay Merchant Platform handles every transaction type so you stay focused on selling.",
   features: [
     {
+      title: "Bulk Disbursements",
+      description:
+        "Pay vendors, suppliers, and staff from a single batch upload.",
+    },
+    {
+      title: "Collections and Payment Links",
+      description:
+        "Generate a shareable link or QR code and collect payments from anyone, anywhere.",
+    },
+    {
       title: "QR Code Payments",
       description:
         "Customers scan a dynamic code — no card terminals, no hardware costs.",
@@ -168,16 +178,6 @@ export const merchantData: UseCaseData = {
       title: "Instant Settlements",
       description:
         "Funds arrive in your wallet within 24 hours of each confirmed transaction.",
-    },
-    {
-      title: "POS Integration",
-      description:
-        "Connect existing point-of-sale hardware via our lightweight bridge API.",
-    },
-    {
-      title: "Bulk Disbursements",
-      description:
-        "Pay vendors, suppliers, and staff from a single batch upload.",
     },
     {
       title: "Customer Insights",
@@ -230,8 +230,8 @@ export const developerData: UseCaseData = {
   ],
   stats: [
     { value: "99.97%", label: "API Uptime" },
-    { value: "200+", label: "Integrations" },
-    { value: "< 120ms", label: "P95 Latency" },
+    { value: "5+", label: "Integrations" },
+    { value: "<120ms", label: "P95 Latency" },
     { value: "OAuth2", label: "Auth Standard" },
   ],
   cta: { label: "Read the Docs", href: "https://docs.safulpay.com" },

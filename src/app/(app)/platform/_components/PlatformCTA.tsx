@@ -44,21 +44,29 @@ function PlatformCTA() {
         ref={ctaRef}
         className="w-full rounded-[2rem] bg-primary-color overflow-hidden relative px-8 py-14 md:px-16 md:py-20 flex flex-col items-center text-center gap-8"
       >
-        {/* Background decoration */}
+        {/* Dot grid texture */}
         <div
-          className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
-        >
-          <div className="absolute top-[-30%] right-[-10%] w-96 h-96 rounded-full bg-secondary-color/8 blur-3xl" />
-          <div className="absolute bottom-[-20%] left-[-5%] w-72 h-72 rounded-full bg-secondary-color/5 blur-3xl" />
+          className="absolute inset-0 pointer-events-none opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        {/* Glow blobs */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-[-20%] right-[-8%] w-[28rem] h-[28rem] rounded-full bg-secondary-color/12 blur-3xl" />
+          <div className="absolute bottom-[-15%] left-[-4%] w-80 h-80 rounded-full bg-secondary-color/8 blur-3xl" />
         </div>
 
         <div className="relative flex flex-col items-center gap-4 max-w-2xl">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase bg-secondary-color/20 text-secondary-color border border-secondary-color/20">
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-secondary-color"
-              aria-hidden="true"
-            />
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase bg-secondary-color/20 text-secondary-color border border-secondary-color/20">
+            <span className="relative flex h-1.5 w-1.5 shrink-0" aria-hidden="true">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-color opacity-60" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-secondary-color" />
+            </span>
             Get Started Today
           </span>
 
@@ -84,10 +92,10 @@ function PlatformCTA() {
                 : {})}
               className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold active:scale-[0.98] transition-all duration-200 ${
                 link.variant === "primary"
-                  ? "bg-secondary-color text-primary-color hover:bg-secondary-color/90 shadow-[0_4px_20px_-4px_rgba(195,240,44,0.4)]"
+                  ? "bg-secondary-color text-primary-color hover:bg-secondary-color/90 shadow-[0_8px_28px_-6px_rgba(195,240,44,0.5)]"
                   : link.variant === "outline"
                     ? "border border-white/20 text-white hover:bg-white/8 hover:border-white/30"
-                    : "text-white/60 hover:text-white"
+                    : "text-white/50 hover:text-white"
               }`}
             >
               {link.label}
@@ -113,9 +121,12 @@ function PlatformCTA() {
         </div>
 
         {/* Trust line */}
-        <p className="relative text-white/30 text-xs font-medium tracking-wide">
-          Licensed and regulated by the Bank of Sierra Leone
-        </p>
+        <div className="relative flex flex-col items-center gap-3">
+          <div className="w-16 h-px bg-white/15" />
+          <p className="text-white/30 text-xs font-medium tracking-wide">
+            Licensed and regulated by the Bank of Sierra Leone
+          </p>
+        </div>
       </div>
     </section>
   );

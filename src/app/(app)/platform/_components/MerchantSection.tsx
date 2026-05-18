@@ -1,33 +1,46 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { merchantData } from "@/data/platformContent";
-import { SectionBadge } from "@/app/(app)/platform/_components/SectionBadge";
-import { FeatureRow } from "@/app/(app)/platform/_components/FeatureRow";
-import { StatBadge } from "@/app/(app)/platform/_components/StatBadge";
-import { MerchantTerminal } from "@/app/(app)/platform/_components/MerchantTerminal";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
+import { FeatureRow } from "@/app/(app)/platform/_components/FeatureRow";
+import { StatsRow } from "@/app/(app)/platform/_components/StatsRow";
+import mockupImage from "@/assets/images/mockups/mockup_merchant_app.png";
 
 function MerchantSection() {
-  const contentRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const { badge, headline, subheadline, description, features, stats, cta } = merchantData;
+  const { badge, headline, subheadline, description, features, stats, cta } =
+    merchantData;
 
   useSlideFadeIn({
-    containerRef: contentRef,
-    fromX: 50,
-    fromY: 0,
-    stagger: 0.08,
-    start: "top 75%",
+    containerRef: headerRef,
+    targetSelector: "*",
+    fromX: 0,
+    fromY: 30,
+    stagger: 0.1,
+    start: "top 85%",
+    each: true,
+  });
+
+  useScaleFadeIn({
+    containerRef: visualRef,
+    fromScale: 0.96,
+    start: "top 80%",
   });
 
   useSlideFadeIn({
-    containerRef: visualRef,
-    fromX: -60,
-    fromY: 0,
-    start: "top 75%",
+    containerRef: bodyRef,
+    targetSelector: "*",
+    fromX: 0,
+    fromY: 30,
+    stagger: 0.08,
+    start: "top 80%",
+    each: true,
   });
 
   useScaleFadeIn({
@@ -43,68 +56,93 @@ function MerchantSection() {
       id="merchant"
       role="region"
       aria-labelledby="merchant-heading"
-      className="section py-20 md:py-28 text-left"
+      className="section py-24 md:py-36 px-6 md:px-10"
       data-section
     >
-      <div className="w-full grid grid-cols-1 lg:grid-cols-[480px_1fr] gap-14 lg:gap-20 items-start">
-        {/* Left: terminal mockup (reversed on mobile) */}
-        <div
-          ref={visualRef}
-          className="flex justify-center lg:justify-start pt-4 lg:pt-10 order-last lg:order-first"
+      {/* Header */}
+      <div
+        ref={headerRef}
+        className="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto"
+      >
+        <span className="text-xs font-bold tracking-[0.3em] uppercase text-primary-color/70">
+          {badge}
+        </span>
+        <h2
+          id="merchant-heading"
+          className="text-[clamp(40px,7.5vw,84px)] font-black leading-[0.95] tracking-tight text-text-color"
         >
-          <MerchantTerminal />
+          {headline}
+        </h2>
+        <p className="text-base md:text-lg font-semibold text-primary-color tracking-tight">
+          {subheadline}
+        </p>
+      </div>
+
+      {/* Hero mockup */}
+      <div ref={visualRef} className="relative w-full mt-14 md:mt-20">
+        {/* Soft secondary-color glow */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
+          <div className="w-[75%] h-[60%] rounded-full bg-secondary-color/25 blur-[120px]" />
         </div>
 
-        {/* Right: content */}
-        <div ref={contentRef} className="flex flex-col gap-5">
-          <SectionBadge label={badge} />
+        {/* Mockup card */}
+        <div className="relative mx-auto max-w-5xl overflow-hidden">
+          <Image
+            src={mockupImage}
+            alt="SafulPay merchant app — payment dashboard and transaction views"
+            priority
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
 
-          <div className="flex flex-col gap-2">
-            <h2 id="merchant-heading" className="primary-heading text-left">
-              {headline}
-            </h2>
-            <p className="text-base font-semibold text-primary-color tracking-tight">
-              {subheadline}
-            </p>
-          </div>
-
-          <p className="text-zinc-500 text-base leading-relaxed max-w-lg">
+      {/* Body: description + features */}
+      <div
+        ref={bodyRef}
+        className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 mt-16 md:mt-24 max-w-6xl mx-auto w-full text-left"
+      >
+        <div className="flex flex-col items-start justify-between gap-20">
+          <p className="text-zinc-600 text-base md:text-lg leading-relaxed">
             {description}
           </p>
 
-          {/* Feature list */}
-          <div className="mt-2">
-            {features.map((feature, i) => (
-              <FeatureRow key={i} feature={feature} />
-            ))}
-          </div>
-
-          {/* Stats row */}
-          <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
-            {stats.map((stat, i) => (
-              <StatBadge key={i} stat={stat} />
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="mt-2">
-            <a
-              href={cta.href}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-color text-white text-sm font-semibold hover:bg-primary-color/90 active:scale-[0.98] transition-all duration-200 shadow-[0_4px_16px_-4px_rgba(58,86,70,0.35)]"
+          <a
+            href={cta.href}
+            className="self-start lg:self-auto inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary-color text-white text-sm font-semibold hover:bg-primary-color/90 active:scale-[0.98] transition-all duration-200 shadow-[0_8px_24px_-6px_rgba(58,86,70,0.45)] whitespace-nowrap"
+          >
+            {cta.label}
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              aria-hidden="true"
             >
-              {cta.label}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path
-                  d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
+              <path
+                d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
         </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+          {features.map((feature, i) => (
+            <FeatureRow key={i} feature={feature} />
+          ))}
+        </div>
+      </div>
+
+      {/* Stats strip */}
+      <div ref={statsRef} className="mt-16 md:mt-24 max-w-6xl mx-auto w-full">
+        <StatsRow stats={stats} />
       </div>
     </section>
   );
