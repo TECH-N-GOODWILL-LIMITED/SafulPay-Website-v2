@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { featuresData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
@@ -12,6 +12,9 @@ import illustrationImage from "@/assets/images/illustrations/illustration-image.
 function Features() {
   const featuresTextRef = useRef<HTMLDivElement>(null);
   const IllustrationsRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [allowMotion, setAllowMotion] = useState(true);
   const { featuresText, featuresIllustration } = featuresData;
 
   useHeaderAnimation({ containerRef: featuresTextRef });
@@ -20,6 +23,15 @@ function Features() {
     containerRef: IllustrationsRef,
     targetSelector: ".feature-images",
   });
+
+  // Honor prefers-reduced-motion — keep the static image for these users
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setAllowMotion(!mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setAllowMotion(!e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <section
@@ -49,15 +61,44 @@ function Features() {
         <KeyFeatures />
         <p className="p-2.5 mx-12.5">{featuresText[0]}</p>
       </div>
-      <Image
-        src={illustrationImage}
-        alt=""
-        role="presentation"
-        width={1000}
-        height={800}
-        className="max-w-[min(90vw,1000px)] max-md:hidden"
+      <div
+        className="relative w-full max-w-[min(90vw,1000px)] aspect-5/4 max-md:hidden bg-none!"
         aria-hidden="true"
-      />
+      >
+        <Image
+          src={illustrationImage}
+          alt=""
+          role="presentation"
+          fill
+          sizes="(max-width: 768px) 0px, 1000px"
+          priority
+          className={`object-contain transition-opacity duration-500 ${
+            allowMotion && videoReady ? "opacity-0" : "opacity-100"
+          }`}
+        />
+
+        {allowMotion && (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            tabIndex={-1}
+            aria-hidden="true"
+            onCanPlay={() => setVideoReady(true)}
+            onContextMenu={(e) => e.preventDefault()}
+            className={`absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-500 ${
+              videoReady ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <source src="/features_vid.mp4" type="video/mp4" />
+          </video>
+        )}
+      </div>
       <div
         ref={IllustrationsRef}
         className="max-w-90 p-7.5 hidden max-md:flex-center flex-col gap-2.5"

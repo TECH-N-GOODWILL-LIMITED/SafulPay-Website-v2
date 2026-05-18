@@ -42,7 +42,7 @@ function PlatformCTA() {
     >
       <div
         ref={ctaRef}
-        className="w-full rounded-[2rem] bg-primary-color overflow-hidden relative px-8 py-14 md:px-16 md:py-20 flex flex-col items-center text-center gap-8"
+        className="w-full rounded-4xl bg-primary-color overflow-hidden relative px-8 py-14 md:px-16 md:py-20 flex flex-col items-center text-center gap-8"
       >
         {/* Dot grid texture */}
         <div
@@ -56,14 +56,20 @@ function PlatformCTA() {
         />
 
         {/* Glow blobs */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-[-20%] right-[-8%] w-[28rem] h-[28rem] rounded-full bg-secondary-color/12 blur-3xl" />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+        >
+          <div className="absolute top-[-20%] right-[-8%] w-md h-112 rounded-full bg-secondary-color/12 blur-3xl" />
           <div className="absolute bottom-[-15%] left-[-4%] w-80 h-80 rounded-full bg-secondary-color/8 blur-3xl" />
         </div>
 
         <div className="relative flex flex-col items-center gap-4 max-w-2xl">
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase bg-secondary-color/20 text-secondary-color border border-secondary-color/20">
-            <span className="relative flex h-1.5 w-1.5 shrink-0" aria-hidden="true">
+            <span
+              className="relative flex h-1.5 w-1.5 shrink-0"
+              aria-hidden="true"
+            >
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-color opacity-60" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-secondary-color" />
             </span>
