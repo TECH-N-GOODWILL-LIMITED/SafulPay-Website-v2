@@ -30,6 +30,17 @@ function Footer() {
     }
   };
 
+  // Route + scroll: navigate to a page, then scroll to a section once it mounts.
+  // sessionStorage hand-off keeps the URL clean (no `#hash` lingers).
+  const handleRouteSectionLink = (url: string, section: string) => {
+    if (pathname === url) {
+      scrollToSection(section, { offset: 120 });
+    } else {
+      sessionStorage.setItem("pendingScroll", section);
+      router.push(url);
+    }
+  };
+
   return (
     <footer
       role="contentinfo"
@@ -66,13 +77,32 @@ function Footer() {
 
               {links.links.map((link) => {
                 const isRoute = link.type === "route";
+                const isRouteSection = isRoute && !!link.section;
                 const isActive = isRoute
-                  ? pathname === link.url
+                  ? pathname === link.url &&
+                    (link.section ? activeSection === link.section : true)
                   : activeSection === link.url;
 
                 const commonClasses = `small-text text-left py-1.25 px-2.5 hover:text-secondary-color transition-all cursor-pointer max-md:text-center ${
                   isActive ? "text-secondary-color font-bold" : ""
                 }`;
+
+                if (isRouteSection) {
+                  return (
+                    <Link
+                      key={`footer-route-section-${link.url}-${link.section}`}
+                      href={link.url}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleRouteSectionLink(link.url, link.section!);
+                      }}
+                      className={commonClasses}
+                      aria-label={`Navigate to ${link.label} section`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                }
 
                 return isRoute ? (
                   <Link
