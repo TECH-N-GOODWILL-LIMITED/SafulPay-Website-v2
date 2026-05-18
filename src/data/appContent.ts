@@ -32,6 +32,9 @@ export interface FooterLinkItem {
   label: string;
   url: string;
   type: "route" | "scroll";
+  // For "route" links, an optional section to scroll to after the route loads.
+  // Hand-off uses sessionStorage so the URL never carries a `#hash`.
+  section?: string;
 }
 export interface FooterLink {
   category: string;
@@ -160,9 +163,24 @@ export const footerData: FooterData = {
     {
       category: "Platform",
       links: [
-        { label: "Agency Platform", url: "/platform#agency", type: "route" },
-        { label: "Merchant Tools", url: "/platform#merchant", type: "route" },
-        { label: "Developer API", url: "/platform#developer", type: "route" },
+        {
+          label: "Agency Platform",
+          url: "/platform",
+          type: "route",
+          section: "agency",
+        },
+        {
+          label: "Merchant Tools",
+          url: "/platform",
+          type: "route",
+          section: "merchant",
+        },
+        {
+          label: "Developer API",
+          url: "/platform",
+          type: "route",
+          section: "developer",
+        },
       ],
     },
     {
