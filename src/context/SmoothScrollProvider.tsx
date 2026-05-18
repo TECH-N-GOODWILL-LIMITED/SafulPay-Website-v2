@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { usePathname } from "next/navigation";
 import { useSmoothScroll, getOffset } from "@/hooks/scroll/useSmoothScroll";
 import { useScrollTriggers } from "@/hooks/scroll/useScrollTriggers";
 
@@ -20,6 +21,7 @@ const SmoothScrollContext = createContext<SmoothScrollContextType | undefined>(
 
 export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
   const [hashValue, setHashValue] = useState("");
+  const pathname = usePathname();
   const scroll = useSmoothScroll();
 
   useScrollTriggers(scroll.isHomePage, scroll.setActiveSection);
@@ -59,20 +61,30 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
     }, 300);
   }, [hashValue]);
 
-  // Handle cross-page scroll requests stored in sessionStorage
+  // Handle cross-page scroll requests stored in sessionStorage.
+  // Fires on any route change so footer links into /platform sections work
+  // without exposing a `#hash` in the URL.
   useEffect(() => {
-    if (!scroll.isHomePage) return;
     const pending = sessionStorage.getItem("pendingScroll");
     if (!pending) return;
     sessionStorage.removeItem("pendingScroll");
 
-    setTimeout(() => {
-      scroll.scrollToSection(pending, {
-        offset: getOffset(pending),
-        duration: 1.5,
-      });
-    }, 600);
-  }, [scroll.isHomePage]);
+    // Wait for the target section to mount before measuring.
+    const attemptScroll = (attemptsLeft: number) => {
+      if (document.getElementById(pending)) {
+        scroll.scrollToSection(pending, {
+          offset: getOffset(pending),
+          duration: 1.5,
+        });
+        return;
+      }
+      if (attemptsLeft > 0) {
+        setTimeout(() => attemptScroll(attemptsLeft - 1), 150);
+      }
+    };
+
+    setTimeout(() => attemptScroll(8), 300);
+  }, [pathname]);
 
   // Wheel-to-bridge from hero
   useEffect(() => {
