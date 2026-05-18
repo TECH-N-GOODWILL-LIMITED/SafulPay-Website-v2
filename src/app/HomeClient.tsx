@@ -37,9 +37,9 @@ export default function HomeClient() {
       <Hero />
 
       <div
-        className={`absolute ${
+        className={`absolute w-screen bg-transparent overflow-auto ${
           vh < 620 ? "top-[50%]" : "top-[80vh]"
-        } w-screen bg-transparent overflow-auto`}
+        }`}
       >
         <div className="h-32 md:h-30 sticky"></div>
         <main ref={mainRef} className="relative rounded-t-[40px] max-m:pt-15">
