@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import { companyData } from "@/data/companyData";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
@@ -23,29 +22,32 @@ function Team() {
       aria-labelledby="team-heading"
       className="section relative"
     >
-      <Image
+      <img
         className="max-w-147.5 h-auto absolute top-[-8%] right-[-24%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        src={bgIcon}
-        unoptimized
+        src={bgIcon.src}
         alt=""
         aria-hidden="true"
         role="presentation"
+        loading="lazy"
+        decoding="async"
       />
-      <Image
+      <img
         className="max-w-147.5 h-auto absolute top-[6%] left-[-30%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        src={bgIcon}
-        unoptimized
+        src={bgIcon.src}
         alt=""
         aria-hidden="true"
         role="presentation"
+        loading="lazy"
+        decoding="async"
       />
-      <Image
+      <img
         className="max-w-147.5 h-auto absolute bottom-[-12%] left-[-16%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        src={bgIcon}
-        unoptimized
+        src={bgIcon.src}
         alt=""
         aria-hidden="true"
         role="presentation"
+        loading="lazy"
+        decoding="async"
       />
       <div
         ref={teamRef}
