@@ -7,7 +7,7 @@ import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { SectionBadge } from "@/app/(app)/platform/_components/SectionBadge";
 import { FeatureRow } from "@/app/(app)/platform/_components/FeatureRow";
-import mockupImage from "@/assets/images/mockups/mockup_agency_app.png";
+import mockupImage from "@/assets/images/mockups/mockup_agency_app.webp";
 
 // Asymmetric watermark positions and sizing for the 4 stat values
 const WATERMARKS = [
