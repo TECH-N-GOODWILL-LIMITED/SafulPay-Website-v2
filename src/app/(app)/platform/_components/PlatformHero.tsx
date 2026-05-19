@@ -3,7 +3,7 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import mockupImage from "@/assets/images/mockups/mockup-home-page.png";
+import mockupImage from "@/assets/images/mockups/mockup-home-page.webp";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import {
   platformHeroData,
