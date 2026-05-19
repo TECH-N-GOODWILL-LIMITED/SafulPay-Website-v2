@@ -9,6 +9,8 @@ function MainFooter() {
       <img
         className="max-w-147.5 absolute right-[-14%] top-[-9%] max-md:max-w-120 max-sm:max-w-100 opacity-80 -z-10"
         src={bgIcon.src}
+        width={590}
+        height={187}
         alt=""
         aria-hidden="true"
         loading="lazy"
