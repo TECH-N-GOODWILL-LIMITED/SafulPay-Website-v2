@@ -69,6 +69,8 @@ function Step({ data, index }: StepProps) {
           >
             <img
               src={bgIcon.src}
+              width={590}
+              height={187}
               alt=""
               role="presentation"
               aria-hidden="true"
