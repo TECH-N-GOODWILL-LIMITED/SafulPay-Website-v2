@@ -25,6 +25,8 @@ function Team() {
       <img
         className="max-w-147.5 h-auto absolute top-[-8%] right-[-24%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon.src}
+        width={590}
+        height={187}
         alt=""
         aria-hidden="true"
         role="presentation"
@@ -34,6 +36,8 @@ function Team() {
       <img
         className="max-w-147.5 h-auto absolute top-[6%] left-[-30%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon.src}
+        width={590}
+        height={187}
         alt=""
         aria-hidden="true"
         role="presentation"
@@ -43,6 +47,8 @@ function Team() {
       <img
         className="max-w-147.5 h-auto absolute bottom-[-12%] left-[-16%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
         src={bgIcon.src}
+        width={590}
+        height={187}
         alt=""
         aria-hidden="true"
         role="presentation"
