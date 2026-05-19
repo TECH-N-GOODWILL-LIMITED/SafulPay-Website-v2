@@ -41,11 +41,13 @@ function Features() {
       className="relative section gap-12.5 max-md:gap-2.5 pt-20"
       data-section
     >
-      <Image
-        src={bgIcon}
+      <img
+        src={bgIcon.src}
         alt=""
         aria-hidden="true"
         role="presentation"
+        loading="lazy"
+        decoding="async"
         className="max-w-147.5 h-auto absolute -top-26 left-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
       />
       <div
