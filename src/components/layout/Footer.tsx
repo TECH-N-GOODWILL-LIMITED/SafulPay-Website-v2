@@ -140,22 +140,28 @@ function Footer() {
         <div className="flex justify-between items-center col-span-full mx-5 max-md:mx-10 max-md:flex-col-reverse">
           <Socials />
           <div className="relative flex gap-5 max-w-79 rounded-[30px] py-2.5 px-6 items-center justify-center overflow-hidden bg-primary-shade-10">
-            <Image
+            <img
               className="max-w-147.5 h-auto absolute opacity-40 rotate-[133.24deg] z-99"
-              src={bgIcon}
+              src={bgIcon.src}
               alt=""
               width={590}
               height={590}
               aria-hidden="true"
               role="presentation"
-              unoptimized
+              loading="lazy"
+              decoding="async"
             />
-            <Image
-              src={regulated.icon}
+            <img
+              src={
+                typeof regulated.icon === "string"
+                  ? regulated.icon
+                  : regulated.icon.src
+              }
               alt="Regulated by Bank of Sierra Leone"
               width={40}
               height={40}
-              unoptimized
+              loading="lazy"
+              decoding="async"
               className="w-8 md:w-10 h-auto filter grayscale invert"
             />
             <span className="small-text font-normal py-2.5">
