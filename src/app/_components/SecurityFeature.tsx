@@ -17,6 +17,11 @@ function SecurityFeature({ data, index }: FeatureProps) {
   const { icon, title, description } = data;
   const { isMobile } = useViewportWidth();
 
+  const descId = `security-feature-desc-${title
+    .replace(/\s+/g, "-")
+    .toLowerCase()
+    .replace(/[^\w-]+/g, "")}`;
+
   useGsapCustomAnimation({
     containerRef: securityFeatureRef,
     targetSelector: ".security-step",
@@ -44,7 +49,7 @@ function SecurityFeature({ data, index }: FeatureProps) {
           tabIndex={0}
           role="group"
           aria-label={title}
-          aria-description={description}
+          aria-describedby={descId}
           className="security-step max-w-75 p-2.5 flex flex-col gap-x-2.5 lg:w-75"
         >
           <div className="py-5 px-7.5 bg-primary-shade-10 rounded-[30px] flex justify-center">
@@ -59,7 +64,9 @@ function SecurityFeature({ data, index }: FeatureProps) {
             </div>
           </div>
           <h3 className="secondary-heading py-2.5">{title}</h3>
-          <p className="py-2.5">{description}</p>
+          <p id={descId} className="py-2.5">
+            {description}
+          </p>
         </div>
       </div>
     </>
