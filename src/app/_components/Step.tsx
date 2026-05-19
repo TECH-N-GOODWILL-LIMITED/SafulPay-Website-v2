@@ -67,11 +67,15 @@ function Step({ data, index }: StepProps) {
             aria-describedby={`step-desc-${index}`}
             className="flex relative flex-col justify-center px-7.5 items-center pt-10 pb-5 gap-2.5 bg-primary-shade-10 rounded-[30px] overflow-hidden"
           >
-            <Image
-              src={bgIcon}
+            <img
+              src={bgIcon.src}
+              width={590}
+              height={187}
               alt=""
               role="presentation"
               aria-hidden="true"
+              loading="lazy"
+              decoding="async"
               className="absolute top-0 max-w-147.5 h-auto rotate-[133.24deg]"
             />
             <Image src={icon} alt={`${title} icon`} className="w-15 h-auto" />

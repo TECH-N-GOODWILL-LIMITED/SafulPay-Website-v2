@@ -7,7 +7,7 @@ import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
 import { FeatureRow } from "@/app/(app)/platform/_components/FeatureRow";
 import { StatsRow } from "@/app/(app)/platform/_components/StatsRow";
-import mockupImage from "@/assets/images/mockups/mockup_merchant_app.png";
+import mockupImage from "@/assets/images/mockups/mockup_merchant_app.webp";
 
 function MerchantSection() {
   const headerRef = useRef<HTMLDivElement>(null);

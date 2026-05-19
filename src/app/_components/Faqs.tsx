@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { faqsData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
@@ -44,14 +43,15 @@ function Faqs() {
       className="section py-2.5 px-5 gap-2.5 relative mb-50"
       data-section
     >
-      <Image
-        src={bgIcon}
+      <img
+        src={bgIcon.src}
         alt=""
         aria-hidden="true"
         role="presentation"
         width={590}
         height={590}
-        unoptimized
+        loading="lazy"
+        decoding="async"
         className="max-w-147.5 h-auto max-md:max-w-120 absolute left-[-370px] top-[10%] opacity-80"
       />
       <h2 className="animateheader max-w-5xl py-2.5 text-primary-color primary-heading font-semibold tracking-[-2.56px] max-m:tracking-[-1.36px] leading-snug">

@@ -167,7 +167,7 @@ function Testimonial() {
               ) : null;
             })}
             <Image
-              src={testimonialLogo} unoptimized
+              src={testimonialLogo}
               alt="SafulPay logo"
               className="w-37.5"
             />

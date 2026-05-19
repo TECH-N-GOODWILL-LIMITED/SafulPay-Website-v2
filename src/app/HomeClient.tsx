@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import { useViewportHeight } from "@/hooks/useViewportHeight";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
@@ -43,17 +42,21 @@ export default function HomeClient() {
       >
         <div className="h-32 md:h-30 sticky"></div>
         <main ref={mainRef} className="relative rounded-t-[40px] max-m:pt-15">
-          <Image
-            src={bgIcon}
+          <img
+            src={bgIcon.src}
+            width={590}
+            height={187}
             alt=""
             aria-hidden="true"
             role="presentation"
+            loading="lazy"
+            decoding="async"
             className="max-w-147.5 h-auto absolute top-[-47px] right-[-68px] opacity-80 max-m:max-w-80! max-md:max-w-120 max-sm:max-w-100"
           />
           <BridgeSection />
           <Features />
           <MoreFeatures />
-          <div className="absolute top-[32.5%] max-[780px]:top-[31%] max-[858px]:top-[32%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
+          <div className="absolute top-[34.4%] max-[780px]:top-[31%] max-[858px]:top-[32%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
             <Partners />
           </div>
           <Security />
