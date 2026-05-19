@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import { companyData } from "@/data/companyData";
 import { securityData } from "@/data/appContent";
@@ -29,23 +28,30 @@ function Security() {
       </h2>
       <p className="py-2.5 max-w-5xl mx-2.5">{intro}</p>
       <figure className="max-w-250 w-full flex flex-col gap-2.5 px-7.5 py-5 bg-primary-shade-10 rounded-[30px] items-center justify-center relative overflow-hidden">
-        <Image
+        <img
           className="max-w-147.5 h-auto absolute opacity-40 rotate-[133.24deg]"
-          src={bgIcon}
+          src={bgIcon.src}
           width={590}
           height={590}
           alt=""
           role="presentation"
-          unoptimized
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
         />
         {regulated?.icon && (
-          <Image
-            src={regulated.icon}
+          <img
+            src={
+              typeof regulated.icon === "string"
+                ? regulated.icon
+                : regulated.icon.src
+            }
             alt="Bank icon"
             className="w-15 h-auto"
             width={60}
             height={60}
-            unoptimized
+            loading="lazy"
+            decoding="async"
           />
         )}
         {regulated?.text && (
@@ -59,14 +65,16 @@ function Security() {
           <SecurityFeature key={feature.title} data={feature} index={index} />
         ))}
       </div>
-      <Image
+      <img
         className="max-w-147.5 h-auto absolute bottom-[-2%] right-[-28%] opacity-80 max-md:max-w-120 max-sm:max-w-100"
-        src={bgIcon}
+        src={bgIcon.src}
         width={590}
         height={590}
         alt=""
         role="presentation"
-        unoptimized
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
       />
     </section>
   );
