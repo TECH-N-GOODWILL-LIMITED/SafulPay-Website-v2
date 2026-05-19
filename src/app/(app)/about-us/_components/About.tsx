@@ -45,22 +45,25 @@ function About() {
         </h1>
         <Image
           ref={aboutBgRef}
-          src={bgImage} unoptimized
+          src={bgImage}
           alt=""
           aria-hidden="true"
           role="presentation"
           className="absolute max-w-460 w-full top-0 max-md:hidden max-lg:max-w-216.5"
           width={1840}
           height={1840}
+          sizes="(max-width: 1024px) 0px, 100vw"
         />
-        <Image
+        <img
           ref={aboutMobileBgRef}
-          src={bgIcon} unoptimized
+          src={bgIcon.src}
           width={1000}
           height={1000}
           alt=""
           aria-hidden="true"
           role="presentation"
+          loading="lazy"
+          decoding="async"
           className="absolute max-w-400 top-1/3 md:hidden block"
         />
       </div>
