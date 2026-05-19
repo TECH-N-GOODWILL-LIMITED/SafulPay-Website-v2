@@ -43,6 +43,8 @@ function Features() {
     >
       <img
         src={bgIcon.src}
+        width={590}
+        height={187}
         alt=""
         aria-hidden="true"
         role="presentation"
