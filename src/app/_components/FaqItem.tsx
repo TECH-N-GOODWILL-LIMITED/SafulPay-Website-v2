@@ -64,7 +64,7 @@ function FaqItem({ data, isOpen, toggle }: FaqItemProps) {
         aria-expanded={isOpen}
         aria-controls={faqId}
         tabIndex={0}
-        className="cursor-pointer small-text text-left font-semibold py-2.5 px-7.5"
+        className="cursor-pointer small-text text-left font-semibold py-3.5 px-7.5 min-h-12"
       >
         {question}
       </button>
@@ -73,7 +73,7 @@ function FaqItem({ data, isOpen, toggle }: FaqItemProps) {
         aria-expanded={isOpen}
         aria-controls={faqId}
         aria-label={`${isOpen ? "Collapse" : "Expand"} FAQ ${question}`}
-        className="cursor-pointer rounded-[50px] bg-[#c3f02c33] p-5 max-md:p-3 relative"
+        className="cursor-pointer rounded-[50px] bg-[#c2f02c33] p-5 max-md:p-3 relative min-w-12 min-h-12 flex items-center justify-center"
       >
         <Image
           ref={iconRef}
