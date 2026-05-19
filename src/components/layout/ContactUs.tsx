@@ -83,6 +83,8 @@ function ContactUs() {
       >
         <img
           src={bgIcon.src}
+          width={590}
+          height={187}
           alt=""
           aria-hidden="true"
           role="presentation"
@@ -118,7 +120,7 @@ function ContactUs() {
             onBlur={handleBlur}
             placeholder="Enter your email address"
             aria-required="true"
-            className="focus:outline-none focus:ring-0 focus:shadow-none title-text font-extralight text-primary-color placeholder:text-[#67967b] block border-none bg-none w-full px-2.5 caret-primary-color"
+            className="focus:outline-none focus:ring-0 focus:shadow-none title-text font-extralight text-primary-color placeholder:text-[#67967b] block border-none bg-none w-full px-2.5 py-3 min-h-12 caret-primary-color"
           />
           {error && (
             <div className="absolute -bottom-3.5 left-0 bg-error-color text-sm p-1 px-4 text-white rounded-md z-99">
@@ -129,7 +131,7 @@ function ContactUs() {
             type="submit"
             disabled={!!error || !email.trim()}
             aria-label={`Submit your email address to ${company.name} so we can contact you`}
-            className={`small-text font-semibold text-white bg-linear-to-r from-primary-color to-[#67967B] px-4.5 py-2.5 rounded-2xl ${
+            className={`small-text font-semibold text-white bg-linear-to-r from-primary-color to-[#67967B] px-6 py-3 min-h-12 rounded-2xl ${
               !!error || !email.trim()
                 ? "opacity-50 cursor-not-allowed"
                 : "cursor-pointer"
