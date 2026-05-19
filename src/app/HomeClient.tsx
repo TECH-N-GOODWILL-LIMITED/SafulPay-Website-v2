@@ -44,6 +44,8 @@ export default function HomeClient() {
         <main ref={mainRef} className="relative rounded-t-[40px] max-m:pt-15">
           <img
             src={bgIcon.src}
+            width={590}
+            height={187}
             alt=""
             aria-hidden="true"
             role="presentation"
