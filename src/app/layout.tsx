@@ -4,7 +4,11 @@ import { SmoothScrollProvider } from "@/context/SmoothScrollProvider";
 import { companyData } from "@/data/companyData";
 import "@/index.css";
 
-const outfit = Outfit({ subsets: ["latin"], display: "swap" });
+const outfit = Outfit({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["200", "300", "400", "500", "600", "700", "900"],
+});
 
 const { company, seo } = companyData;
 
