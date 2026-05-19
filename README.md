@@ -17,7 +17,7 @@ The marketing site for **SafulPay** — Sierra Leone's financial bridge that con
 ## What the site covers
 
 <p align="center">
-  <img src="src/assets/images/mockups/mockup-home-page.png" alt="SafulPay home page preview" height="400" width="auto" />
+  <img src="src/assets/images/mockups/mockup-home-page.webp" alt="SafulPay home page preview" height="400" width="auto" />
 </p>
 
 | Section                  | What it sells                                                                                                             |
@@ -31,9 +31,9 @@ The marketing site for **SafulPay** — Sierra Leone's financial bridge that con
 | **Download**             | Direct links to the SafulPay mobile app.                                                                                  |
 
 <p align="center">
-  <img src="src/assets/images/mockups/mockup_agency_app.png" alt="Agency app — cash-in, cash-out, commissions" width="46%" />
+  <img src="src/assets/images/mockups/mockup_agency_app.webp" alt="Agency app — cash-in, cash-out, commissions" width="46%" />
   &nbsp;
-  <img src="src/assets/images/mockups/mockup_merchant_app.png" alt="Merchant app — QR payments, payment links, disbursements" width="46%" />
+  <img src="src/assets/images/mockups/mockup_merchant_app.webp" alt="Merchant app — QR payments, payment links, disbursements" width="46%" />
 </p>
 
 ---
@@ -145,7 +145,7 @@ Shades like `bg-primary-shade-5/10/30` already exist for translucent overlays.
 
 ## Performance notes
 
-- **Background fallback** — `body` has a `background-color: #0d0d0d` and three layered radial gradients matching the rose / green / lime glows of `background.png`, so users see the right colors instantly while the PNG loads.
+- **Background fallback** — `body` has a `background-color: #0d0d0d` and three layered radial gradients matching the rose / green / lime glows of `background.webp`, so users see the right colors instantly while the asset loads.
 - **Video illustration** in the Features section uses a static `<Image>` placeholder that crossfades to a muted, looping `<video>` only when `canPlay` fires. Respects `prefers-reduced-motion`.
 - **Page videos** live in `public/` (not bundled through webpack), with `playsInline`, `pointer-events: none`, `disablePictureInPicture`, and `controlsList` set so they read as illustrations, not media players.
 
