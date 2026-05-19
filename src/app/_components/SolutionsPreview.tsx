@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import { useScaleFadeIn } from "@/hooks/animations/useScaleFadeIn";
-import mockupImage from "@/assets/images/mockups/mockup-new-safulpay-iphone13.png";
+import mockupImage from "@/assets/images/mockups/mockup-new-safulpay-iphone13.webp";
 
 const solutions = [
   {
