@@ -7,7 +7,7 @@ import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
 import { useAnimateText } from "@/hooks/animations/useAnimateText";
 import { useSlideFadeIn } from "@/hooks/animations/useSlideFadeIn";
 import DownloadItem from "@/components/shared/DownloadItem";
-import mockUpImage from "@/assets/images/mockups/mockup-home-page.png";
+import mockUpImage from "@/assets/images/mockups/mockup-home-page.webp";
 // import Partners from "@/components/components/Partners";
 
 function Hero() {
@@ -60,8 +60,9 @@ function Hero() {
           ref={mockupImageRef}
           src={mockUpImage}
           alt="App homepage mockup"
-          unoptimized
+          priority
           fetchPriority="high"
+          sizes="(max-width: 768px) 64vw, 444px"
         />
         {/* <div className="absolute top-[16%] left-[-900%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[8.29deg] w-max z-[-1] max-md:hidden">
           <Partners />
