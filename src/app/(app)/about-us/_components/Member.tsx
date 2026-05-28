@@ -124,7 +124,7 @@ function Member({ data, index }: MemberProps) {
             <div ref={bioRef} className="opacity-0 translate-y-3 my-auto">
               <p className={`text-sm leading-relaxed ${theme.text}`}>
                 {bio ??
-                  `${role} at SafulPay — committed to financial inclusion across Sierra Leone.`}
+                  `${role} at SafulPay, committed to financial inclusion across Sierra Leone.`}
               </p>
             </div>
 

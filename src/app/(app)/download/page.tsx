@@ -7,7 +7,7 @@ const { company, seo, downloads } = companyData;
 
 export const metadata: Metadata = {
   title: `Download ${company.name}`,
-  description: `Download the ${company.name} app for iOS and Android. Sierra Leone's fastest mobile money app — send money, pay bills, and top up airtime in seconds.`,
+  description: `Download the ${company.name} app for iOS and Android. Sierra Leone's fastest mobile money app. Send money, pay bills, and top up airtime in seconds.`,
   alternates: { canonical: `${seo.siteUrl}/download` },
   openGraph: {
     title: `Download ${company.name}`,
