@@ -93,10 +93,26 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface FAQCategory {
+  label: string;
+  faqs: FAQItem[];
+}
+
 export interface FAQData {
   title: string;
   intro: string;
-  faqs: FAQItem[];
+  categories: FAQCategory[];
+}
+
+// CONTACT
+export interface ContactInfo {
+  email: string;
+  supportEmail: string;
+  phone: string;
+  altPhone: string;
+  address: string;
+  city: string;
+  country: string;
 }
 
 // ABOUT US
@@ -138,7 +154,7 @@ export const navLinks: NavLink[] = [
   { label: "Bridge", url: "bridge", type: "scroll" },
   { label: "How it Works", url: "works", type: "scroll" },
   { label: "FAQs", url: "faqs", type: "scroll" },
-  { label: "Contact Us", url: "contact-us", type: "scroll" },
+  { label: "Contact Us", url: "/contact-us", type: "route" },
   { label: "For You", url: "/platform", type: "route" },
   { label: "About Us", url: "/about-us", type: "route" },
 ];
@@ -157,7 +173,6 @@ export const footerData: FooterData = {
         { label: "How it Works", url: "works", type: "scroll" },
         { label: "Features", url: "features", type: "scroll" },
         { label: "Download", url: "download", type: "scroll" },
-        { label: "FAQs", url: "faqs", type: "scroll" },
       ],
     },
     {
@@ -187,7 +202,8 @@ export const footerData: FooterData = {
       category: "Contact",
       links: [
         { label: "About Us", url: "/about-us", type: "route" },
-        { label: "Contact Us", url: "contact-us", type: "scroll" },
+        { label: "Contact Us", url: "/contact-us", type: "route" },
+        { label: "FAQs", url: "/contact-us", type: "route", section: "faqs" },
       ],
     },
   ],
@@ -302,50 +318,159 @@ export const testimonialsData: Testimonial[] = [
 // FAQ
 export const faqsData: FAQData = {
   title: "FAQs: Get Answers to Common Questions",
-  intro:
-    "Find quick answers to frequently asked questions about SafulPay’s security, fees, transaction processes, and support. If you need further assistance, our customer service team is here to help.",
-  faqs: [
+  intro: "Can't find what you need? Our support team is one tap away.",
+  categories: [
     {
-      question: "How does SafulPay ensure transaction security?",
-      answer:
-        "SafulPay employs advanced encryption technology an two factor authentication to ensure your data and transactions are protected. We also have real time fraud detection systems in place to monitor and secure your financial activities",
-    },
-    // {
-    //   question: "Can I use SafulPay for international transfers?",
-    //   answer:
-    //     "Yes, SafulPay supports international money transfers with competitive exchange rates and minimal fees.",
-    // },
-    {
-      question: "How do I add funds to my SafulPay wallet?",
-      answer:
-        'You can add funds to your SafulPay wallet through various methods, including bank transfers, credit/debit cards, mobile money, agents and other supported payment options. Simply go to the "Deposit" section in the app and follow the instructions...',
-    },
-    {
-      question: "Is there a transaction limit on my SafulPay account?",
-      answer:
-        "Yes, transaction limits depend on your account verification level. Upgrade your verification for higher limits.",
-    },
-    {
-      question: "Are there any hidden fees with SafulPay?",
-      answer:
-        "No, SafulPay is committed to transparency. All fees are clearly outlined and there are no hidden charges. You’ll always know exactly what you’re paying for with each transaction.",
-    },
-    {
-      question: "What should I do if I encounter an issue with a transaction?",
-      answer:
-        "If you experience any issues with a transaction, please contact our support team immediately at support@safulpay.com. We offer 24/7 customer support to help resolve any problems you may encounter.",
-    },
-    {
-      question: "What should I do if I forget my pin code?",
-      answer:
-        "You can reset your pin by clicking on 'Forgot PinCode' on the login page and follow the instructions.",
+      label: "General",
+      faqs: [
+        {
+          question: "How does SafulPay ensure transaction security?",
+          answer:
+            "SafulPay uses advanced encryption and two-factor authentication to keep your data and transactions protected. We also run real-time fraud detection systems that monitor activity around the clock.",
+        },
+        {
+          question: "Are there any hidden fees?",
+          answer:
+            "No. SafulPay is committed to transparency. All fees are clearly listed before you confirm any transaction, so you always know exactly what you're paying.",
+        },
+        {
+          question: "What should I do if I forget my pin code?",
+          answer:
+            "Tap 'Forgot PinCode' on the login screen and follow the steps. You'll get a reset link via SMS or email to set a new pin.",
+        },
+        {
+          question: "What should I do if I have a problem with a transaction?",
+          answer:
+            "Reach out to our support team at support@safulpay.com or call +232-77-076235. We're available 24/7 and will work to resolve it as quickly as possible.",
+        },
+        {
+          question: "Is my personal information safe with SafulPay?",
+          answer:
+            "Absolutely. We follow strict data protection standards and never share your personal information with third parties without your consent. All data is encrypted at rest and in transit.",
+        },
+      ],
     },
     {
-      question: "How can I request money from someone using SafulPay?",
-      answer:
-        'To request money, go to the "Request" section in the app, select a wallet, and enter an optional amount and a note. A QR code and a request link will be generated — simply share the link with anyone to fulfill your request. It’s an easy way to get the funds you need.',
+      label: "For Users",
+      faqs: [
+        {
+          question: "How do I add funds to my SafulPay wallet?",
+          answer:
+            'You can fund your wallet through bank transfers, mobile money, debit/credit cards, agents, and other supported methods. Open the app, go to "Deposit", pick your method, and follow the prompts.',
+        },
+        {
+          question: "Is there a transaction limit?",
+          answer:
+            "Yes, limits depend on your account verification level. Complete your KYC verification to unlock higher transaction limits.",
+        },
+        {
+          question: "How do I request money from someone?",
+          answer:
+            'Go to the "Request" section, select a wallet, and enter an amount and note if you like. A QR code and link will be generated. Share the link with anyone to collect your funds.',
+        },
+        {
+          question: "Can I send gift cards through SafulPay?",
+          answer:
+            "Yes! You can create and send personalised gift cards directly from the app. Pick a design, set the amount, add a message, and send it to anyone instantly.",
+        },
+        {
+          question: "How do virtual cards work?",
+          answer:
+            "Virtual cards let you shop online securely without using your main wallet. Create one in seconds from the app. You can fund it, set spending limits, and freeze or delete it anytime.",
+        },
+        {
+          question: "Can I receive international remittances?",
+          answer:
+            "Yes. SafulPay supports Western Union, MoneyGram, and RIA remittances. Funds are paid directly into your SafulPay wallet.",
+        },
+      ],
+    },
+    {
+      label: "For Agents",
+      faqs: [
+        {
+          question: "How do I become a SafulPay agent?",
+          answer:
+            "Apply by emailing info@safulpay.com or visiting any SafulPay office. Once approved, you'll get access to the Agent App and can start earning from day one.",
+        },
+        {
+          question: "How is commission paid?",
+          answer:
+            "Commission is calculated in real time and credited to your agent wallet after each transaction. You can withdraw it or reinvest it into your float.",
+        },
+        {
+          question: "What services can I offer as an agent?",
+          answer:
+            "Agents can offer cash-in, cash-out, bill payments (EDSA, WAEC, DSTV, Sea Coach), airtime top-ups across all networks, and remittance pickup for Western Union, MoneyGram, and RIA.",
+        },
+        {
+          question: "How do I manage my float?",
+          answer:
+            "Your float balance is visible in the Agent App at all times. You can top it up via bank transfer or mobile money. The app also shows real-time transaction history so you can reconcile easily.",
+        },
+      ],
+    },
+    {
+      label: "For Merchants (Businesses)",
+      faqs: [
+        {
+          question: "What does a merchant account give me?",
+          answer:
+            "A SafulPay merchant account lets you accept payments via QR codes, payment links, and in-app checkout. You also get bulk payroll and supplier payout tools, multi-user access, and a reconciliation dashboard.",
+        },
+        // {
+        //   question: "Do you provide POS hardware?",
+        //   answer:
+        //     "Yes. We offer POS terminals that accept tap-to-pay and chip transactions in-store. Contact merchants@safulpay.com to get set up.",
+        // },
+        {
+          question: "How fast are merchant settlements?",
+          answer:
+            "Funds from confirmed transactions arrive in your wallet within 24 hours. There are no hold periods or surprise delays.",
+        },
+        {
+          question: "Can I pay my staff through SafulPay?",
+          answer:
+            "Yes. Upload a CSV of your team, set the amounts, and pay everyone in one go. Each recipient gets an instant notification when the funds land.",
+        },
+      ],
+    },
+    {
+      label: "For Developers",
+      faqs: [
+        {
+          question: "Where can I get API keys?",
+          answer:
+            "Sign up at docs.safulpay.com, create a project, and you'll get sandbox keys immediately. When you're ready to go live, request production keys from the dashboard.",
+        },
+        {
+          question: "Do you support webhooks?",
+          answer:
+            "Yes. SafulPay sends signed, retryable webhook events for every transaction state change. You can also use websockets for real-time streaming.",
+        },
+        {
+          question: "Is there a sandbox environment?",
+          answer:
+            "Absolutely. The sandbox mirrors production with test wallets and simulated transfers. You can be up and running in under 30 seconds.",
+        },
+        // {
+        //   question: "What SDKs are available?",
+        //   answer:
+        //     "We offer official SDKs for Node.js, Python, PHP, and Go, all open-source on GitHub. The REST API also works with any HTTP client.",
+        // },
+      ],
     },
   ],
+};
+
+export const contactInfo: ContactInfo = {
+  email: "info@safulpay.com",
+  supportEmail: "support@safulpay.com",
+  phone: "+232-77-076235",
+  altPhone: "+232-77-076237",
+  address: "37 Upper Brook Street, off Naimbana Street",
+  city: "Freetown",
+  country: "Sierra Leone",
 };
 
 export const bridgeData: BridgeData = {
