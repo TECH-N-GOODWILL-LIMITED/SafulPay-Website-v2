@@ -11,7 +11,7 @@
 
 **Heading:** Built for everyone moving money.
 
-**Body:** Whether you're sending to family, running an agency, accepting business payments, or building the next fintech — there's a SafulPay surface for that.
+**Body:** Whether you're sending to family, running an agency, accepting business payments, or building the next fintech, there's a SafulPay surface for that.
 
 ### Solution Cards
 
@@ -86,9 +86,9 @@
 
 **Headline:** Accept payments. Pay out at scale.
 
-**Sub-heading:** For Business — Get paid. Pay out. All in one place.
+**Sub-heading:** For Business: Get paid. Pay out. All in one place.
 
-**Body:** From restaurants to offices to NGOs — accept payments in every form, and run payroll, supplier payouts and reconciliation from a single dashboard.
+**Body:** From restaurants to offices to NGOs, accept payments in every form and run payroll, supplier payouts, and reconciliation from a single dashboard.
 
 **CTA Primary:** Get a business account
 **CTA Secondary:** Explore merchant tools
@@ -99,7 +99,7 @@
 
 | Method            | Description                                                         |
 | ----------------- | ------------------------------------------------------------------- |
-| In-app checkout   | Customers pay you from inside SafulPay — no card terminal needed.   |
+| In-app checkout   | Customers pay you from inside SafulPay. No card terminal needed.            |
 | QR at the counter | Print a static QR or generate one per sale. Funds arrive instantly. |
 | Payment links     | Share a link by SMS or WhatsApp and get paid online.                |
 | POS device        | Accept tap-to-pay and chip transactions in-store.                   |
@@ -129,7 +129,7 @@ Restaurants · Retail shops · Hotels · Offices · Schools · NGOs · Pharmacie
 
 **Headline:** Money rails for any product.
 
-**Sub-heading:** A single REST + websocket API for mobile money, banks, bills and remittances across Sierra Leone. Sandbox, webhooks, idempotency — built right.
+**Sub-heading:** A single REST + websocket API for mobile money, banks, bills and remittances across Sierra Leone. Sandbox, webhooks, idempotency, built right.
 
 **CTA Primary:** Read the docs
 **CTA Secondary:** Get API keys
@@ -158,11 +158,11 @@ Restaurants · Retail shops · Hotels · Offices · Schools · NGOs · Pharmacie
 | Feature               | Description                                              |
 | --------------------- | -------------------------------------------------------- |
 | Idempotent by default | Replay any request safely with an idempotency key.       |
-| Webhooks + websockets | Push or stream — your call. Signed payloads. Auto retry. |
+| Webhooks + websockets | Push or stream, your call. Signed payloads. Auto retry. |
 | Sandbox in 30 seconds | Test keys, fake mobile money, simulated webhooks.        |
 | Honest pricing        | Volume-based, public, no surprise interchange.           |
 
-**CTA Section:** Get started today — Sign up, get sandbox keys, ship in production by end of week.
+**CTA Section:** Get started today. Sign up, get sandbox keys, and ship to production by end of week.
 
 ---
 
@@ -184,11 +184,11 @@ airtime, gift in seconds, and receive money from anywhere in the world.
 
 | Feature                    | Description                                                                  |
 | -------------------------- | ---------------------------------------------------------------------------- |
-| Send to any wallet or bank | Orange, Africell, Qmoney, SLCB, UBA, Rokel, EcoBank — one flow, no friction. |
+| Send to any wallet or bank | Orange, Africell, Qmoney, SLCB, UBA, Rokel, EcoBank. One flow, no friction. |
 | Bill payments              | EDSA, WAEC, Sealine and more, with receipts and reminders.                   |
 | Airtime & data             | Top up any network in seconds.                                               |
 | Gifting                    | Send personalised gift cards instantly for any occasion.                     |
-| Receive remittances        | Western Union, RIA, MoneyGram — paid straight to your wallet.                |
+| Receive remittances        | Western Union, RIA, MoneyGram. Paid straight to your wallet.                |
 | Virtual cards              | Shop securely online with disposable virtual cards.                          |
 
 ---

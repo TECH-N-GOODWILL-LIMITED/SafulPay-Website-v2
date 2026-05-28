@@ -172,7 +172,7 @@ export const merchantData: UseCaseData = {
     {
       title: "QR Code Payments",
       description:
-        "Customers scan a dynamic code — no card terminals, no hardware costs.",
+        "Customers scan a dynamic code. No card terminals, no hardware costs.",
     },
     {
       title: "Instant Settlements",
@@ -220,7 +220,7 @@ export const developerData: UseCaseData = {
     {
       title: "Multi-language SDKs",
       description:
-        "Official SDKs for Node.js, Python, PHP, and Go — all open-source on GitHub.",
+        "Official SDKs for Node.js, Python, PHP, and Go, all open-source on GitHub.",
     },
     {
       title: "OAuth 2 + HMAC Auth",

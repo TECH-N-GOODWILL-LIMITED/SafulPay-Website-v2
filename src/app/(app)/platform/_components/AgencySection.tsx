@@ -84,7 +84,7 @@ function AgencySection() {
       >
         <Image
           src={mockupImage}
-          alt="SafulPay agency app — analytics, commission tracking and wallet management screens"
+          alt="SafulPay agency app showing analytics, commission tracking and wallet management screens"
           priority
           sizes="55vw"
           className="w-full h-auto drop-shadow-2xl opacity-20"
