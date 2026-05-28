@@ -92,7 +92,7 @@ function MerchantSection() {
         <div className="relative mx-auto max-w-5xl overflow-hidden">
           <Image
             src={mockupImage}
-            alt="SafulPay merchant app — payment dashboard and transaction views"
+            alt="SafulPay merchant app showing payment dashboard and transaction views"
             priority
             sizes="(max-width: 1024px) 100vw, 1024px"
             className="w-full h-auto"

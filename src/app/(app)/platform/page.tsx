@@ -13,12 +13,12 @@ const { company, seo } = companyData;
 export const metadata: Metadata = {
   title: `${company.name} Platform | For Agents, Merchants & Developers`,
   description:
-    "One infrastructure layer. Three purpose-built products. Agency management, merchant payments, and developer APIs — all on the SafulPay platform.",
+    "One infrastructure layer. Three purpose-built products. Agency management, merchant payments, and developer APIs, all on the SafulPay platform.",
   alternates: { canonical: `${seo.siteUrl}/platform` },
   openGraph: {
     title: `${company.name} Platform | For Agents, Merchants & Developers`,
     description:
-      "Agency banking, merchant payment tools, and REST APIs for developers — all built on SafulPay's infrastructure in Sierra Leone.",
+      "Agency banking, merchant payment tools, and REST APIs for developers, all built on SafulPay's infrastructure in Sierra Leone.",
     url: `${seo.siteUrl}/platform`,
   },
 };
@@ -49,7 +49,7 @@ const platformSchema = {
       "@type": "Service",
       name: "Developer API",
       description:
-        "A single REST API for mobile money, banks, bills and remittances across Sierra Leone. Sandbox, webhooks, idempotency — built right.",
+        "A single REST API for mobile money, banks, bills and remittances across Sierra Leone. Sandbox, webhooks, and idempotency, built right.",
       provider: { "@type": "Organization", name: company.name },
     },
   ],

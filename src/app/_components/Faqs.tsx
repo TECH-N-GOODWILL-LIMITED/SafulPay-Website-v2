@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { faqsData } from "@/data/appContent";
 import { useHeaderAnimation } from "@/hooks/animations/useHeaderAnimation";
@@ -11,7 +12,10 @@ function Faqs() {
   const faqsRef = useRef<HTMLElement | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const { title, intro, faqs } = faqsData;
+  const { title, intro, categories } = faqsData;
+
+  // Show the first category (General) as a preview on the homepage
+  const previewFaqs = categories[0]?.faqs ?? [];
 
   const handleToggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -62,7 +66,7 @@ function Faqs() {
       </p>
 
       <ul className="w-full" aria-label="Frequently asked questions">
-        {faqs.map((faq, index) => (
+        {previewFaqs.map((faq, index) => (
           <li key={index} className="faq-item mx-auto">
             <FaqItem
               data={faq}
@@ -72,6 +76,28 @@ function Faqs() {
           </li>
         ))}
       </ul>
+
+      <Link
+        href="/contact-us#faqs"
+        className="faq-item inline-flex items-center gap-2 mt-4 px-7 py-3.5 rounded-xl bg-primary-color text-white text-sm font-semibold hover:bg-primary-color/90 active:scale-[0.98] transition-all duration-200 shadow-[0_8px_24px_-6px_rgba(58,86,70,0.45)]"
+      >
+        View all FAQs
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </Link>
     </section>
   );
 }

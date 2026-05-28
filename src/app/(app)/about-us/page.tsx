@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${seo.siteUrl}/about-us` },
   openGraph: {
     title: `About ${company.name}`,
-    description: `Meet the team and learn the mission behind ${company.name} — Sierra Leone's leading mobile money platform.`,
+    description: `Meet the team and learn the mission behind ${company.name}, Sierra Leone's leading mobile money platform.`,
     url: `${seo.siteUrl}/about-us`,
   },
 };
