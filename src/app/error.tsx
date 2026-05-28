@@ -22,8 +22,8 @@ export default function RootError({
         </p>
         <h1 className="primary-heading">We hit a snag loading this page.</h1>
         <p className="text-background/60 text-base leading-relaxed">
-          The issue has been logged. Try again, or head back home — your money
-          and account are unaffected.
+          The issue has been logged. Try again, or head back home. Your money
+          and account are completely safe.
         </p>
       </div>
 

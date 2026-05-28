@@ -60,8 +60,8 @@ export default function GlobalError({
               marginBottom: "1.5rem",
             }}
           >
-            We hit an unexpected issue. Please reload the page — if it
-            continues, our team has already been notified.
+            We hit an unexpected issue. Please reload the page. If it
+            keeps happening, don&apos;t worry, our team has already been notified.
           </p>
           <button
             type="button"
