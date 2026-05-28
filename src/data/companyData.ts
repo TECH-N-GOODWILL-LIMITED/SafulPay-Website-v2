@@ -133,9 +133,9 @@ export const companyData: SafulPayData = {
     themeColor: "#3a5646",
     backgroundColor: "#3a5646",
     shortDescription:
-      "Sierra Leone's leading mobile money platform. Send, receive, pay bills and accept payments — all in one app.",
+      "Sierra Leone's leading mobile money platform. Send, receive, pay bills and accept payments, all in one app.",
     fullDescription:
-      "SafulPay is Sierra Leone's leading mobile money platform — send money, pay bills, top up airtime, and receive international remittances in seconds. Built for users, agents, merchants, and developers.",
+      "SafulPay is Sierra Leone's leading mobile money platform. Send money, pay bills, top up airtime, and receive international remittances in seconds. Built for users, agents, merchants, and developers.",
     keywords: [
       "mobile money",
       "Sierra Leone",
@@ -225,7 +225,7 @@ export const companyData: SafulPayData = {
   downloads: {
     title: `Download SafulPay Today`,
     subtitle: "Secure, Fast, and Easy Financial Management",
-    text: "Get started with SafulPay by downloading the app on your device. Manage your money, make payments, and access all the powerful features from anywhere, anytime. Experience the convenience and security SafulPay brings to your financial life—download now!",
+    text: "Get started with SafulPay by downloading the app on your device. Manage your money, make payments, and access all the features from anywhere, anytime. Download now and see what better finance feels like.",
     appStore: {
       link: "https://apps.apple.com/ng/app/safulpay/id6480344064",
       image: downloadAppstoreIcon,
@@ -238,14 +238,14 @@ export const companyData: SafulPayData = {
   aboutus: {
     title: "Empowering Financial Inclusion with Innovation",
     intro: [
-      "At SafulPay, we believe in transforming the way people manage, move, and interact with their money. Our mission is to make financial services secure, accessible, and user-friendly for everyone, no matter where they are. With cutting-edge technology, we’ve built a platform that simplifies digital payments, virtual cards, gift cards, and more, ensuring every transaction is seamless and safe.",
-      "Our team of experts—visionaries, designers, and engineers—are committed to innovation. By blending transparency with top-tier security, including encryption and fraud detection, SafulPay delivers a financial experience you can trust. Whether you're sending money, paying bills, or securing gift cards, we put you in control of your financial world.",
+      "At SafulPay, we believe in changing how people manage, move, and interact with their money. Our mission is to make financial services secure, accessible, and easy to use for everyone, wherever they are. We've built a platform that simplifies digital payments, virtual cards, gift cards, and more, so every transaction just works.",
+      "Our team of visionaries, designers, and engineers are committed to pushing things forward. By pairing transparency with strong security, including encryption and fraud detection, SafulPay delivers a financial experience you can trust. Whether you're sending money, paying bills, or buying gift cards, you stay in control.",
     ],
   },
   team: {
     title: "The People Building Sierra Leone's Financial Future",
     intro:
-      "SafulPay is built by a team of specialists spanning finance, technology, compliance, and customer experience. Our founders set the strategic direction; our CFO and Compliance lead keep us sound and regulated; our CTO and IT team keep the platform fast and secure; and our product, design, marketing, and customer support experts ensure every user interaction is seamless. One shared mission — financial inclusion for all.",
+      "SafulPay is built by a team of specialists spanning finance, technology, compliance, and customer experience. Our founders set the strategic direction. Our CFO and Compliance lead keep us sound and regulated. Our CTO and IT team keep the platform fast and secure. And our product, design, marketing, and support experts make sure every interaction feels right. We all share one mission: financial inclusion for everyone.",
     members: [
       {
         img: teamWale,
@@ -262,7 +262,7 @@ export const companyData: SafulPayData = {
         img: teamTolu,
         name: "Toluwani Adepoju",
         role: "Co-Founder & COO",
-        bio: "Turning strategy into execution — Toluwani ensures SafulPay's operations run with precision and every team delivers.",
+        bio: "Toluwani turns strategy into results. He makes sure SafulPay's operations run smoothly and every team delivers on its goals.",
         cardTheme: "secondary",
         socials: {
           linkedin: "https://www.linkedin.com/in/toluwani-adepoju-45763a182/",
@@ -273,7 +273,7 @@ export const companyData: SafulPayData = {
         img: teamAdama,
         name: "Adama Barrie",
         role: "Head of Customer Support",
-        bio: "The voice of SafulPay's users — Adama ensures every customer interaction is handled with empathy, speed, and care.",
+        bio: "Adama is the voice of SafulPay's users. She makes sure every customer interaction is handled with empathy, speed, and care.",
         cardTheme: "primary",
         socials: {
           linkedin: "https://www.linkedin.com/in/adama-jalloh-493354272/",
@@ -283,7 +283,7 @@ export const companyData: SafulPayData = {
         img: teamOyinn,
         name: "Oyinlola Lawal",
         role: "Chief Technology Officer",
-        bio: "Architecting the infrastructure that powers SafulPay — secure, scalable, and built for Sierra Leone's digital future.",
+        bio: "Oyinlola architects the infrastructure that powers SafulPay, keeping it secure, scalable, and ready for Sierra Leone's digital future.",
         cardTheme: "secondary",
         socials: {
           linkedin: "https://www.linkedin.com/in/lawaloyinlola",
@@ -295,7 +295,7 @@ export const companyData: SafulPayData = {
         img: teamCharles,
         name: "Charles Lamin",
         role: "Chief Finance Officer",
-        bio: "Keeping SafulPay financially sound — Charles oversees fiscal strategy, budgeting, and financial transparency.",
+        bio: "Charles keeps SafulPay financially sound. He oversees fiscal strategy, budgeting, and makes sure the numbers always add up.",
         cardTheme: "primary",
         socials: {
           // linkedin: "https://linkedin.com/in/charleslamin",
@@ -317,7 +317,7 @@ export const companyData: SafulPayData = {
         img: teamTimi,
         name: "Oluwatimileyin Bamise",
         role: "Product Design Engineer",
-        bio: "Crafting SafulPay's visual language — from UI systems to product experiences that feel intuitive and effortless.",
+        bio: "Timi shapes SafulPay's visual identity, building UI systems and product experiences that feel intuitive and effortless.",
         cardTheme: "primary",
         socials: {
           linkedin: "https://www.linkedin.com/in/yusuf-oluwatimileyin",
@@ -329,7 +329,7 @@ export const companyData: SafulPayData = {
         img: teamOsman,
         name: "Osman Kamara",
         role: "Head of IT Support",
-        bio: "Keeping SafulPay's systems running 24/7 — Osman leads IT infrastructure and technical support operations.",
+        bio: "Osman keeps SafulPay's systems running around the clock. He leads IT infrastructure and technical support operations.",
         cardTheme: "accent",
         socials: {
           linkedin: "https://www.linkedin.com/in/osman-chernor-kamara",
