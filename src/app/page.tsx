@@ -4,7 +4,7 @@ import { faqsData } from "@/data/appContent";
 import JsonLd from "@/components/shared/JsonLd";
 import HomeClient from "@/app/HomeClient";
 
-const { company, seo, socials, downloads } = companyData;
+const { company, seo, socials, downloads, creator } = companyData;
 
 export const metadata: Metadata = {
   title: `${company.name} | ${company.slogan}`,
@@ -29,12 +29,25 @@ const organizationSchema = {
   },
 };
 
+const creatorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${seo.siteUrl}/#creator`,
+  name: creator.name,
+  alternateName: creator.shortName,
+  url: creator.url,
+  jobTitle: creator.role,
+  worksFor: { "@type": "Organization", name: company.name, url: seo.siteUrl },
+  sameAs: creator.sameAs,
+};
+
 const webSiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: company.name,
   url: seo.siteUrl,
   description: seo.shortDescription,
+  creator: { "@id": `${seo.siteUrl}/#creator` },
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -80,7 +93,13 @@ export default function HomePage() {
   return (
     <>
       <JsonLd
-        data={[organizationSchema, webSiteSchema, appSchema, faqSchema]}
+        data={[
+          organizationSchema,
+          creatorSchema,
+          webSiteSchema,
+          appSchema,
+          faqSchema,
+        ]}
       />
       <HomeClient />
     </>
