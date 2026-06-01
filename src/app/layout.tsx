@@ -10,7 +10,7 @@ const outfit = Outfit({
   weight: ["200", "300", "400", "500", "600", "700", "900"],
 });
 
-const { company, seo } = companyData;
+const { company, seo, creator } = companyData;
 
 export const metadata: Metadata = {
   metadataBase: new URL(seo.siteUrl),
@@ -20,8 +20,11 @@ export const metadata: Metadata = {
   },
   description: seo.fullDescription,
   keywords: seo.keywords,
-  authors: [{ name: company.name, url: seo.siteUrl }],
-  creator: company.name,
+  authors: [
+    { name: company.name, url: seo.siteUrl },
+    { name: creator.name, url: creator.url },
+  ],
+  creator: `${creator.name} (${creator.role}, ${company.name})`,
   publisher: company.name,
   robots: {
     index: true,
@@ -75,6 +78,9 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   alternates: { canonical: seo.siteUrl },
   category: "finance",
+  verification: {
+    google: "4Ndph0rA1_7wDSnv-NYZ5tQdH8iAGjy3NtAmOAv8mZA",
+  },
 };
 
 export const viewport: Viewport = {

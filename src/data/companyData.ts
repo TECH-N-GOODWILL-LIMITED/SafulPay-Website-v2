@@ -105,9 +105,18 @@ export interface SeoConfig {
   };
 }
 
+export interface Creator {
+  name: string;
+  shortName: string;
+  role: string;
+  url: string;
+  sameAs: string[];
+}
+
 export interface SafulPayData {
   company: Company;
   seo: SeoConfig;
+  creator: Creator;
   partners: Partner[];
   regulated: Regulated;
   socials: Social[];
@@ -155,6 +164,20 @@ export const companyData: SafulPayData = {
       default: "/safulpay-icon.svg",
       maskable: "/safulpay-icon-green.svg",
     },
+  },
+  creator: {
+    name: "Oyinlola Lawal",
+    shortName: "LAWAL",
+    role: "Chief Technology Officer",
+    url: "https://www.lawaloyinlola.com",
+    sameAs: [
+      "https://www.lawaloyinlola.com",
+      "https://www.resume.lawaloyinlola.com",
+      "https://www.linkedin.com/in/lawaloyinlola",
+      "https://github.com/lawalOyinlola",
+      "https://x.com/honeyzrich",
+      "https://www.instagram.com/honeyz_rich",
+    ],
   },
   partners: [
     // {
