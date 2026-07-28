@@ -235,3 +235,235 @@
 .auto-scroll-vertical {
   animation: scrollTestimonials 5s linear infinite alternate;
 }
+
+/* ==========================================================================
+   Surface system — the visual language for the audience and company pages.
+
+   Deep green base, electric lime accent, depth built from layered light:
+   drifting aurora blobs, a faint grid, film grain, and glass panels that
+   pick up a lime edge on hover. Every animation here is decorative, so all
+   of it is switched off under `prefers-reduced-motion`.
+   ========================================================================== */
+
+/* --- Aurora mesh ------------------------------------------------------- */
+
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes aurora-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, -8%, 0) scale(1.18);
+  }
+}
+
+@keyframes aurora-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  50% {
+    transform: translate3d(-8%, 6%, 0) scale(0.92);
+  }
+}
+
+.aurora-a {
+  animation: aurora-drift-a 18s ease-in-out infinite;
+}
+
+.aurora-b {
+  animation: aurora-drift-b 22s ease-in-out infinite;
+}
+
+/* --- Grid + grain overlays --------------------------------------------- */
+
+.grid-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 35%,
+    black 20%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 35%,
+    black 20%,
+    transparent 78%
+  );
+}
+
+/* Film grain, inlined so it costs no request. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* --- Glass panels ------------------------------------------------------ */
+
+@utility glass {
+  background-image: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 255, 255, 0.025) 55%,
+    rgba(255, 255, 255, 0.045) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.09),
+    0 24px 60px -32px rgba(0, 0, 0, 0.85);
+}
+
+@utility glass-light {
+  background-image: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(58, 86, 70, 0.12);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    0 24px 60px -34px rgba(58, 86, 70, 0.45);
+}
+
+/* Lime edge + lift on hover — the one interactive flourish. */
+.glass-hover {
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.glass-hover:hover {
+  border-color: rgba(195, 240, 44, 0.42);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba(195, 240, 44, 0.14),
+    0 32px 70px -30px rgba(195, 240, 44, 0.32);
+  transform: translateY(-3px);
+}
+
+/* --- Gradient type ----------------------------------------------------- */
+
+@utility text-gradient-lime {
+  background-image: linear-gradient(
+    104deg,
+    #ffffff 8%,
+    #e7ffa6 42%,
+    #c3f02c 72%,
+    #9bd400 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-green {
+  background-image: linear-gradient(
+    104deg,
+    #3a5646 10%,
+    #67967b 55%,
+    #9bd400 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* --- Accents ----------------------------------------------------------- */
+
+/* Hairline that fades out at both ends — used to separate dark sections. */
+.rule-fade {
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgba(195, 240, 44, 0.35) 22%,
+    rgba(195, 240, 44, 0.35) 78%,
+    transparent
+  );
+}
+
+.glow-lime {
+  box-shadow:
+    0 0 0 1px rgba(195, 240, 44, 0.22),
+    0 18px 44px -14px rgba(195, 240, 44, 0.5);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.shimmer {
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(195, 240, 44, 0.95) 45%,
+    rgba(255, 255, 255, 0.55) 70%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-x 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-a,
+  .aurora-b,
+  .shimmer,
+  .marquee-track,
+  .animate-scroll,
+  .auto-scroll-vertical {
+    animation: none !important;
+  }
+
+  .glass-hover:hover {
+    transform: none;
+  }
+}

@@ -19,12 +19,15 @@ function TrustBar({
   audienceId: string;
 }) {
   const ref = useRef<HTMLUListElement | null>(null);
+  const badgeRef = useRef<HTMLDivElement | null>(null);
+
+  useSlideFadeIn({ containerRef: badgeRef, fromX: 0, fromY: 36, stagger: 0.1 });
   useSlideFadeIn({
     containerRef: ref,
     targetSelector: ".trust-item",
     fromX: 0,
-    fromY: 40,
-    stagger: 0.08,
+    fromY: 26,
+    stagger: 0.07,
   });
 
   const { regulated } = companyData;
@@ -32,24 +35,38 @@ function TrustBar({
   return (
     <section
       id="trust"
-      className="w-full bg-primary-color text-white"
+      className="relative w-full bg-[#0b1310] text-white overflow-hidden"
       aria-labelledby={`${audienceId}-trust-heading`}
       data-section
     >
-      <div className="section px-5 py-20 max-md:py-14 gap-8 text-left items-start">
-        <div className="flex items-center gap-3">
-          <Image
-            src={regulated.icon}
-            alt=""
-            aria-hidden="true"
-            width={32}
-            height={32}
-            unoptimized
-            className="w-8 h-8"
-          />
+      <div className="rule-fade" />
+
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(103,150,123,0.30), transparent 72%)",
+        }}
+      />
+
+      <div className="section relative z-10 px-5 py-24 max-md:py-16 gap-10 items-center text-center">
+        <div ref={badgeRef} className="flex flex-col items-center gap-5">
+          <span className="flex-center w-16 h-16 rounded-2xl glass">
+            {/* The bank mark is a dark glyph — inverted so it reads on glass. */}
+            <Image
+              src={regulated.icon}
+              alt=""
+              aria-hidden="true"
+              width={32}
+              height={32}
+              unoptimized
+              className="w-8 h-8 grayscale invert"
+            />
+          </span>
           <h2
             id={`${audienceId}-trust-heading`}
-            className="secondary-heading text-secondary-color"
+            className="text-[clamp(20px,3vw,32px)] font-semibold tracking-[-0.02em] text-white max-w-2xl"
           >
             {regulated.text}
           </h2>
@@ -57,17 +74,13 @@ function TrustBar({
 
         <ul
           ref={ref}
-          className="w-full grid grid-cols-2 max-md:grid-cols-1 gap-x-10 gap-y-3"
+          className="w-full flex flex-wrap items-center justify-center gap-3"
         >
           {trust.map((item) => (
             <li
               key={item}
-              className="trust-item flex items-start gap-3 small-text text-white/85"
+              className="trust-item glass glass-hover px-5 py-3 rounded-full text-sm font-light text-white/75"
             >
-              <span
-                className="mt-2 w-1.5 h-1.5 rounded-full bg-secondary-color shrink-0"
-                aria-hidden="true"
-              />
               {item}
             </li>
           ))}

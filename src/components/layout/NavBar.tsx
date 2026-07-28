@@ -59,7 +59,12 @@ function NavBar() {
       >
         Skip to main content
       </a>
-      <DesktopNav company={company} setIsMenuOpen={setIsMenuOpen} />
+      {/* The bar always sits on a dark fill, so the nav takes the lemon mark —
+          the green one is near-invisible against it. */}
+      <DesktopNav
+        company={{ name: company.name, greenLogo: company.lemonLogo }}
+        setIsMenuOpen={setIsMenuOpen}
+      />
       <MobileNav
         ref={mobileNavRef}
         companyName={company.name}

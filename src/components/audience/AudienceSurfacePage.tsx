@@ -17,7 +17,7 @@ import AudienceCTA from "@/components/audience/AudienceCTA";
  */
 function AudienceSurfacePage({ surface }: { surface: AudienceSurface }) {
   return (
-    <main id="main-content" className="pt-0 gap-0 bg-background">
+    <main id="main-content" className="pt-0 gap-0 bg-[#0b1310]">
       <AudienceHero surface={surface} />
 
       <CapabilityGrid
@@ -43,6 +43,7 @@ function AudienceSurfacePage({ surface }: { surface: AudienceSurface }) {
       <AudienceCTA
         cta={surface.cta}
         promise={surface.promise}
+        accentPhrase={surface.accentPhrase}
         audienceId={surface.id}
       />
     </main>

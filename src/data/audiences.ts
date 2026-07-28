@@ -40,7 +40,11 @@ export interface AudienceSurface {
   eyebrow: string;
   /** The one-line promise: the job this audience gets done, not the mission. */
   promise: string;
+  /** Substring of `promise` the hero renders in the gradient treatment. */
+  accentPhrase: string;
   lede: string;
+  /** Short, already-confirmed claims shown as chips under the hero. */
+  proof: string[];
   capabilities: Capability[];
   /** Omitted where the sign-up/onboarding path is still an open question. */
   steps?: HowItWorksStep[];
@@ -72,7 +76,9 @@ export const personalSurface: AudienceSurface = {
     "Individuals using the app for their own money — sending, receiving, paying bills, cards, gift links, requesting money and QR payments.",
   eyebrow: "Personal",
   promise: "Your everyday money, in one app.",
+  accentPhrase: "in one app",
   lede: "Send to any wallet or bank, pay your bills, shop online with a virtual card, and receive money from anywhere in the world. All from one app.",
+  proof: ["Regulated by the Bank of Sierra Leone", "Two-factor authentication", "No hidden fees"],
   capabilities: [
     {
       id: "send-receive",
@@ -168,7 +174,9 @@ export const businessSurface: AudienceSurface = {
     "Corporate organizations and registered companies that get paid for their goods or services and pay out to staff, suppliers and beneficiaries.",
   eyebrow: "Business",
   promise: "Get paid. Pay people. All in one place.",
+  accentPhrase: "All in one place",
   lede: "Take payments in person, online and by link, then pay staff, suppliers and beneficiaries in a single batch — from one business account.",
+  proof: ["Regulated by the Bank of Sierra Leone", "24-hour settlement", "Bulk payouts by CSV"],
   capabilities: [
     {
       id: "accept-payments",
@@ -236,7 +244,9 @@ export const agencySurface: AudienceSurface = {
     "People who use the SafulPay app to serve walk-in customers from anywhere — cash-in, cash-out, bill payments such as EDSA and airtime, and remittance pickup — and earn commission on every transaction.",
   eyebrow: "Agency",
   promise: "Serve your community. Earn on every transaction.",
+  accentPhrase: "Earn on every transaction",
   lede: "Handle cash-in, cash-out, bills and remittance pickup for walk-in customers straight from the Agent App, and earn commission on everything you process.",
+  proof: ["Regulated by the Bank of Sierra Leone", "Real-time commission", "Float visible in-app"],
   capabilities: [
     {
       id: "cash-in-out",
@@ -326,7 +336,9 @@ export const developersSurface: AudienceSurface = {
     "Teams and builders who embed SafulPay's money rails into their own products using the APIs and sandbox.",
   eyebrow: "Developers",
   promise: "Embed money rails into your product.",
+  accentPhrase: "money rails",
   lede: "Wallets, bills and remittance flows over REST and websockets, with a sandbox you can build against today.",
+  proof: ["REST + websockets", "Signed, retryable webhooks", "Sandbox available today"],
   capabilities: [
     {
       id: "overview",
