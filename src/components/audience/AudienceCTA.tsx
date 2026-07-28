@@ -9,6 +9,9 @@ import Aurora from "@/components/ui/Aurora";
 /**
  * Block 6 of the shared template: a single primary call to action (guide §4).
  * One action only — competing CTAs are what the focus principle rules out.
+ *
+ * This is the page's second and last dark panel, closing the surface the same
+ * way the hero opened it.
  */
 function AudienceCTA({
   cta,
@@ -22,7 +25,7 @@ function AudienceCTA({
   audienceId: string;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  useScaleFadeIn({ containerRef: ref, fromScale: 0.96 });
+  useScaleFadeIn({ containerRef: ref, fromScale: 0.97 });
 
   const accentAt = promise.indexOf(accentPhrase);
   const before = accentAt >= 0 ? promise.slice(0, accentAt) : promise;
@@ -32,20 +35,20 @@ function AudienceCTA({
   return (
     <section
       id="get-started"
-      className="relative w-full bg-[#0b1310] text-white overflow-hidden isolate"
+      className="w-full bg-background px-5 pt-6 pb-24 max-md:pb-16"
       aria-labelledby={`${audienceId}-cta-heading`}
       data-section
     >
-      <Aurora variant="lime" />
+      <div className="relative max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] overflow-hidden bg-[#0d1613] text-white isolate">
+        <Aurora variant="lime" />
 
-      <div className="section relative z-10 px-5 py-32 max-md:py-24">
         <div
           ref={ref}
-          className="w-full max-w-4xl mx-auto rounded-[32px] glass px-12 py-16 max-md:px-7 max-md:py-12 flex flex-col items-center gap-8 text-center"
+          className="relative z-10 px-14 py-24 max-lg:px-9 max-md:px-6 max-md:py-16 flex flex-col items-center gap-8 text-center"
         >
           <h2
             id={`${audienceId}-cta-heading`}
-            className="text-[clamp(28px,4.6vw,52px)] font-bold tracking-[-0.035em] leading-[1.05] max-w-3xl"
+            className="text-[clamp(28px,4.4vw,52px)] font-bold tracking-[-0.035em] leading-[1.05] max-w-3xl"
           >
             {before}
             {accentAt >= 0 && (
@@ -59,14 +62,14 @@ function AudienceCTA({
               href={cta.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="glow-lime px-9 py-4.5 rounded-2xl bg-secondary-color text-primary-color font-semibold hover:brightness-105 hover:-translate-y-0.5 transition-all duration-300"
+              className="glow-lime px-9 py-4 rounded-2xl bg-secondary-color text-primary-color font-semibold hover:brightness-105 hover:-translate-y-0.5 transition-all duration-300"
             >
               {cta.label}
             </a>
           ) : (
             <Link
               href={cta.href}
-              className="glow-lime px-9 py-4.5 rounded-2xl bg-secondary-color text-primary-color font-semibold hover:brightness-105 hover:-translate-y-0.5 transition-all duration-300"
+              className="glow-lime px-9 py-4 rounded-2xl bg-secondary-color text-primary-color font-semibold hover:brightness-105 hover:-translate-y-0.5 transition-all duration-300"
             >
               {cta.label}
             </Link>

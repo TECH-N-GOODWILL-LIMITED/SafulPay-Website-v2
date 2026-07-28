@@ -43,31 +43,23 @@ function CapabilityGrid({
   return (
     <section
       id="capabilities"
-      className="relative w-full bg-[#0b1310] text-white overflow-hidden"
+      className="w-full bg-background"
       aria-labelledby={`${audienceId}-capabilities-heading`}
       data-section
     >
-      <div
-        className="absolute inset-0 pointer-events-none opacity-70"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 45% at 78% 0%, rgba(195,240,44,0.10), transparent 70%)",
-        }}
-      />
-
-      <div className="section relative z-10 px-5 py-28 max-md:py-20 gap-14 text-left items-start">
-        <div ref={headRef} className="flex flex-col gap-5 max-w-3xl">
-          <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-secondary-color/80">
+      <div className="section px-5 py-24 max-md:py-16 gap-12 text-left items-start">
+        <div ref={headRef} className="flex flex-col gap-4 max-w-3xl">
+          <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-primary-color/60">
             Available today
           </span>
           <h2
             id={`${audienceId}-capabilities-heading`}
-            className="text-[clamp(30px,5vw,58px)] font-bold tracking-[-0.035em] leading-[1.02] text-left"
+            className="text-[clamp(28px,4.6vw,54px)] font-bold tracking-[-0.035em] leading-[1.03] text-left text-primary-color"
           >
-            What you can <span className="text-gradient-lime">do today</span>
+            What you can{" "}
+            <span className="text-gradient-green">do today</span>
           </h2>
-          <p className="text-white/55 font-extralight text-[clamp(15px,1.8vw,19px)]">
+          <p className="text-text-color/60 font-extralight text-[clamp(15px,1.8vw,19px)]">
             Everything listed here is live right now — no waitlists, no
             &ldquo;coming soon&rdquo;.
           </p>
@@ -81,26 +73,26 @@ function CapabilityGrid({
             <article
               key={capability.id}
               id={capability.id}
-              className="capability-card group relative scroll-mt-32 flex flex-col gap-3 p-7 rounded-[22px] glass glass-hover overflow-hidden"
+              className="capability-card group relative scroll-mt-32 flex flex-col gap-3 p-7 rounded-[22px] card-light card-light-hover overflow-hidden"
             >
               <span
-                className="absolute top-6 right-7 text-[13px] font-semibold tabular-nums text-white/20 group-hover:text-secondary-color/70 transition-colors duration-300"
+                className="absolute top-6 right-7 text-[13px] font-semibold tabular-nums text-primary-color/20 group-hover:text-primary-color/45 transition-colors duration-300"
                 aria-hidden="true"
               >
                 {String(index + 1).padStart(2, "0")}
               </span>
 
               <span
-                className="w-9 h-9 rounded-xl flex-center bg-secondary-color/15 border border-secondary-color/25 group-hover:bg-secondary-color/25 transition-colors duration-300"
+                className="w-10 h-10 rounded-xl flex-center bg-linear-to-br from-secondary-color to-[#a8d820] shadow-[0_6px_16px_-6px_rgba(195,240,44,0.9)]"
                 aria-hidden="true"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-secondary-color" />
+                <span className="w-2 h-2 rounded-full bg-primary-color" />
               </span>
 
-              <h3 className="text-[clamp(16px,1.9vw,20px)] font-semibold tracking-[-0.01em] text-white">
+              <h3 className="text-[clamp(16px,1.9vw,20px)] font-semibold tracking-[-0.01em] text-primary-color">
                 {capability.title}
               </h3>
-              <p className="text-sm font-light leading-relaxed text-white/60">
+              <p className="text-sm font-light leading-relaxed text-text-color/65">
                 {capability.description}
               </p>
             </article>

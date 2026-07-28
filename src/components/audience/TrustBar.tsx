@@ -35,56 +35,46 @@ function TrustBar({
   return (
     <section
       id="trust"
-      className="relative w-full bg-[#0b1310] text-white overflow-hidden"
+      className="w-full bg-background px-5 py-6"
       aria-labelledby={`${audienceId}-trust-heading`}
       data-section
     >
-      <div className="rule-fade" />
-
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(103,150,123,0.30), transparent 72%)",
-        }}
-      />
-
-      <div className="section relative z-10 px-5 py-24 max-md:py-16 gap-10 items-center text-center">
-        <div ref={badgeRef} className="flex flex-col items-center gap-5">
-          <span className="flex-center w-16 h-16 rounded-2xl glass">
-            {/* The bank mark is a dark glyph — inverted so it reads on glass. */}
-            <Image
-              src={regulated.icon}
-              alt=""
-              aria-hidden="true"
-              width={32}
-              height={32}
-              unoptimized
-              className="w-8 h-8 grayscale invert"
-            />
-          </span>
-          <h2
-            id={`${audienceId}-trust-heading`}
-            className="text-[clamp(20px,3vw,32px)] font-semibold tracking-[-0.02em] text-white max-w-2xl"
-          >
-            {regulated.text}
-          </h2>
-        </div>
-
-        <ul
-          ref={ref}
-          className="w-full flex flex-wrap items-center justify-center gap-3"
-        >
-          {trust.map((item) => (
-            <li
-              key={item}
-              className="trust-item glass glass-hover px-5 py-3 rounded-full text-sm font-light text-white/75"
+      <div className="max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 overflow-hidden">
+        <div className="px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex flex-col items-center gap-8 text-center">
+          <div ref={badgeRef} className="flex flex-col items-center gap-4">
+            <span className="flex-center w-16 h-16 rounded-2xl bg-white border border-primary-shade-10 shadow-[0_12px_30px_-14px_rgba(58,86,70,0.5)]">
+              <Image
+                src={regulated.icon}
+                alt=""
+                aria-hidden="true"
+                width={32}
+                height={32}
+                unoptimized
+                className="w-8 h-8"
+              />
+            </span>
+            <h2
+              id={`${audienceId}-trust-heading`}
+              className="text-[clamp(20px,3vw,32px)] font-semibold tracking-[-0.02em] text-primary-color max-w-2xl"
             >
-              {item}
-            </li>
-          ))}
-        </ul>
+              {regulated.text}
+            </h2>
+          </div>
+
+          <ul
+            ref={ref}
+            className="w-full flex flex-wrap items-center justify-center gap-3"
+          >
+            {trust.map((item) => (
+              <li
+                key={item}
+                className="trust-item px-5 py-2.5 rounded-full bg-white border border-primary-shade-10 text-sm font-light text-text-color/75 shadow-[0_4px_14px_-8px_rgba(58,86,70,0.4)]"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

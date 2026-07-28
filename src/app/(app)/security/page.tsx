@@ -32,20 +32,12 @@ export default function SecurityPage() {
   return (
     <>
       <JsonLd data={securitySchema} />
-      <main id="main-content" className="pt-0 gap-0 bg-[#0b1310] text-white">
+      <main id="main-content" className="pt-0 gap-0 bg-background">
         <CompanyHero intro={securityPage} />
 
-        <section className="relative w-full overflow-hidden" data-section>
-          <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 50% at 80% 5%, rgba(195,240,44,0.10), transparent 70%)",
-            }}
-          />
-          <div className="section relative z-10 px-5 py-28 max-md:py-20 gap-12 text-left items-start">
-            <p className="text-[clamp(16px,2.1vw,20px)] font-extralight leading-relaxed text-white/65 max-w-3xl">
+        <section className="w-full bg-background" data-section>
+          <div className="section px-5 pb-24 max-md:pb-16 gap-10 text-left items-start">
+            <p className="text-[clamp(16px,2vw,20px)] font-extralight leading-relaxed text-text-color/70 max-w-3xl">
               {securityData.intro}
             </p>
 
@@ -53,9 +45,9 @@ export default function SecurityPage() {
               {securityData.securityFeatures.map((feature) => (
                 <article
                   key={feature.title}
-                  className="group flex flex-col gap-4 p-8 rounded-[22px] glass glass-hover"
+                  className="flex flex-col gap-4 p-8 rounded-[22px] card-light card-light-hover"
                 >
-                  <span className="flex-center w-12 h-12 rounded-2xl bg-secondary-color/15 border border-secondary-color/25">
+                  <span className="flex-center w-12 h-12 rounded-2xl bg-linear-to-br from-primary-color to-[#67967b] shadow-[0_10px_24px_-12px_rgba(58,86,70,0.8)]">
                     <Image
                       src={feature.icon}
                       alt=""
@@ -66,10 +58,10 @@ export default function SecurityPage() {
                       className="w-6 h-6 grayscale invert"
                     />
                   </span>
-                  <h2 className="text-[clamp(17px,2vw,21px)] font-semibold tracking-[-0.01em]">
+                  <h2 className="text-[clamp(17px,2vw,21px)] font-semibold tracking-[-0.01em] text-primary-color">
                     {feature.title}
                   </h2>
-                  <p className="text-sm font-light leading-relaxed text-white/60">
+                  <p className="text-sm font-light leading-relaxed text-text-color/65">
                     {feature.description}
                   </p>
                 </article>
@@ -78,10 +70,9 @@ export default function SecurityPage() {
           </div>
         </section>
 
-        <section className="relative w-full overflow-hidden" data-section>
-          <div className="rule-fade" />
-          <div className="section relative z-10 px-5 py-24 max-md:py-16 gap-5 flex-center flex-col text-center">
-            <span className="flex-center w-16 h-16 rounded-2xl glass">
+        <section className="w-full bg-background px-5 pb-24 max-md:pb-16" data-section>
+          <div className="max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex-center flex-col gap-5 text-center">
+            <span className="flex-center w-16 h-16 rounded-2xl bg-white border border-primary-shade-10 shadow-[0_12px_30px_-14px_rgba(58,86,70,0.5)]">
               <Image
                 src={regulated.icon}
                 alt=""
@@ -89,10 +80,10 @@ export default function SecurityPage() {
                 width={32}
                 height={32}
                 unoptimized
-                className="w-8 h-8 grayscale invert"
+                className="w-8 h-8"
               />
             </span>
-            <p className="text-[clamp(20px,3vw,32px)] font-semibold tracking-[-0.02em] max-w-2xl">
+            <p className="text-[clamp(20px,3vw,32px)] font-semibold tracking-[-0.02em] text-primary-color max-w-2xl">
               {regulated.text}
             </p>
           </div>

@@ -36,28 +36,20 @@ export default function PartnersPage() {
   return (
     <>
       <JsonLd data={partnersSchema} />
-      <main id="main-content" className="pt-0 gap-0 bg-[#0b1310] text-white">
+      <main id="main-content" className="pt-0 gap-0 bg-background">
         <CompanyHero intro={partnersPage} />
 
-        <section className="relative w-full overflow-hidden" data-section>
-          <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 50% at 20% 5%, rgba(103,150,123,0.28), transparent 70%)",
-            }}
-          />
-          <div className="section relative z-10 px-5 py-28 max-md:py-20 gap-12 text-left items-start">
-            <h2 className="text-[clamp(30px,5vw,58px)] font-bold tracking-[-0.035em] leading-[1.02] text-left">
-              Who we <span className="text-gradient-lime">connect</span>
+        <section className="w-full bg-background" data-section>
+          <div className="section px-5 pb-24 max-md:pb-16 gap-10 text-left items-start">
+            <h2 className="text-[clamp(28px,4.6vw,54px)] font-bold tracking-[-0.035em] leading-[1.03] text-left text-primary-color">
+              Who we <span className="text-gradient-green">connect</span>
             </h2>
 
             <div className="w-full grid grid-cols-3 max-md:grid-cols-2 gap-4">
               {partners.map((partner) => (
                 <figure
                   key={partner.name}
-                  className="flex flex-col items-center justify-center gap-4 p-8 rounded-[22px] glass glass-hover"
+                  className="flex flex-col items-center justify-center gap-4 p-8 rounded-[22px] card-light card-light-hover"
                 >
                   <span className="flex-center h-12 w-full">
                     <Image
@@ -69,7 +61,7 @@ export default function PartnersPage() {
                       className="h-10 w-auto object-contain"
                     />
                   </span>
-                  <figcaption className="text-sm font-medium text-white/70 text-center">
+                  <figcaption className="text-sm font-medium text-text-color/70 text-center">
                     {partner.name}
                   </figcaption>
                 </figure>
@@ -78,14 +70,13 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        <section className="relative w-full overflow-hidden" data-section>
-          <div className="rule-fade" />
-          <div className="section relative z-10 px-5 py-28 max-md:py-20 gap-12 text-left items-start">
+        <section className="w-full bg-background px-5 pb-24 max-md:pb-16" data-section>
+          <div className="max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex flex-col gap-10 text-left">
             <div className="flex flex-col gap-4 max-w-3xl">
-              <h2 className="text-[clamp(28px,4.4vw,50px)] font-bold tracking-[-0.035em] leading-[1.05] text-left">
+              <h2 className="text-[clamp(26px,4.2vw,48px)] font-bold tracking-[-0.035em] leading-[1.05] text-left text-primary-color">
                 {bridgeData.title}
               </h2>
-              <p className="text-[clamp(15px,1.9vw,19px)] font-extralight leading-relaxed text-white/60">
+              <p className="text-[clamp(15px,1.9vw,19px)] font-extralight leading-relaxed text-text-color/65">
                 {bridgeData.description}
               </p>
             </div>
@@ -94,16 +85,16 @@ export default function PartnersPage() {
               {[bridgeData.sources, bridgeData.destinations].map((group) => (
                 <div
                   key={group.title}
-                  className="flex flex-col gap-5 p-8 rounded-[22px] glass"
+                  className="flex flex-col gap-5 p-8 rounded-[22px] card-light"
                 >
-                  <h3 className="text-[clamp(16px,1.9vw,20px)] font-semibold text-secondary-color">
+                  <h3 className="text-[clamp(16px,1.9vw,20px)] font-semibold text-primary-color">
                     {group.title}
                   </h3>
                   <ul className="flex flex-wrap gap-2">
                     {group.items.map((item) => (
                       <li
                         key={item}
-                        className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-light text-white/75"
+                        className="px-3.5 py-1.5 rounded-full bg-primary-shade-5 border border-primary-shade-10 text-sm font-light text-text-color/75"
                       >
                         {item}
                       </li>

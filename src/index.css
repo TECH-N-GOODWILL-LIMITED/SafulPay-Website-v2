@@ -356,6 +356,53 @@
     0 24px 60px -34px rgba(58, 86, 70, 0.45);
 }
 
+/* --- Light surfaces ----------------------------------------------------
+   The page itself stays white. These are the cards and panels that sit on
+   it; the dark treatments above are reserved for the two contained blocks
+   per page that act as punctuation (the hero panel and the closing CTA).
+   ------------------------------------------------------------------------ */
+
+@utility card-light {
+  background-color: #ffffff;
+  border: 1px solid rgba(58, 86, 70, 0.1);
+  box-shadow:
+    0 1px 2px 0 rgba(58, 86, 70, 0.04),
+    0 12px 32px -18px rgba(58, 86, 70, 0.28);
+}
+
+.card-light-hover {
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.card-light-hover:hover {
+  border-color: rgba(195, 240, 44, 0.75);
+  box-shadow:
+    0 1px 2px 0 rgba(58, 86, 70, 0.05),
+    0 22px 50px -22px rgba(58, 86, 70, 0.32),
+    0 0 0 4px rgba(195, 240, 44, 0.12);
+  transform: translateY(-3px);
+}
+
+/* Soft mint-to-white wash for a section that needs lifting off the page
+   without going dark. */
+@utility wash-mint {
+  background-image:
+    radial-gradient(
+      ellipse 70% 90% at 8% 0%,
+      rgba(195, 240, 44, 0.16),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 65% 85% at 96% 100%,
+      rgba(103, 150, 123, 0.2),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #f7faf5 0%, #ffffff 100%);
+}
+
 /* Lime edge + lift on hover — the one interactive flourish. */
 .glass-hover {
   transition:

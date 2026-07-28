@@ -17,7 +17,7 @@ import AudienceCTA from "@/components/audience/AudienceCTA";
  */
 function AudienceSurfacePage({ surface }: { surface: AudienceSurface }) {
   return (
-    <main id="main-content" className="pt-0 gap-0 bg-[#0b1310]">
+    <main id="main-content" className="pt-0 gap-0 bg-background">
       <AudienceHero surface={surface} />
 
       <CapabilityGrid
