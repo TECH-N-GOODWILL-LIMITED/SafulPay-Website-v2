@@ -36,9 +36,14 @@ function DesktopNav({ company, setIsMenuOpen }: DesktopNavProps) {
   const isCurrent = (url: string) =>
     url === "/" ? pathname === "/" : pathname.startsWith(url);
 
+  // The bar carries white text over whatever the page puts behind it: the dark
+  // hero panels on the audience and company pages, but also plain white content
+  // once the home page scrolls. At the previous 30% fill the white washed out
+  // over light content, so the fill is strong enough to guarantee contrast
+  // everywhere while keeping the blur.
   return (
     <div
-      className="mx-2.5 md:mx-10 p-3 max-md:p-3 mt-5 max-w-container-width w-full bg-primary-shade-30 backdrop-blur-md rounded-[20px] flex justify-between items-center text-sm font-semibold text-white transition-colors duration-500"
+      className="mx-2.5 md:mx-10 p-3 max-md:p-3 mt-5 max-w-container-width w-full bg-primary-color/85 backdrop-blur-md rounded-[20px] flex justify-between items-center text-sm font-semibold text-white transition-colors duration-500"
       style={{ marginTop: vh < 600 ? "12px" : "" }}
     >
       <Link
