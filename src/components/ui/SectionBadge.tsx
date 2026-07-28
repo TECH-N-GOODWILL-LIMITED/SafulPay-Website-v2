@@ -22,3 +22,5 @@ export function SectionBadge({ label, dark = false }: SectionBadgeProps) {
     </span>
   );
 }
+
+export default SectionBadge;

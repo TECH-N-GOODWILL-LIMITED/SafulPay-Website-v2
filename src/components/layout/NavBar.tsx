@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { companyData } from "@/data/companyData";
-import { footerData, navLinks } from "@/data/appContent";
+import { footerData } from "@/data/appContent";
 import MobileNav from "@/components/layout/MobileNav";
 import DesktopNav from "@/components/layout/DesktopNav";
 
@@ -54,20 +54,15 @@ function NavBar() {
       className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-50"
     >
       <a
-        href="#bridge"
+        href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-black px-4 py-2 z-50"
       >
         Skip to main content
       </a>
-      <DesktopNav
-        company={company}
-        navLinks={navLinks}
-        setIsMenuOpen={setIsMenuOpen}
-      />
+      <DesktopNav company={company} setIsMenuOpen={setIsMenuOpen} />
       <MobileNav
         ref={mobileNavRef}
         companyName={company.name}
-        navLinks={navLinks}
         otherLinks={otherLinks}
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}

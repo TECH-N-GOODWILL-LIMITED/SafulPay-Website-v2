@@ -41,7 +41,11 @@ export default function HomeClient() {
         }`}
       >
         <div className="h-32 md:h-30 sticky"></div>
-        <main ref={mainRef} className="relative rounded-t-[40px] max-m:pt-15">
+        <main
+          id="main-content"
+          ref={mainRef}
+          className="relative rounded-t-[40px] max-m:pt-15"
+        >
           <img
             src={bgIcon.src}
             width={590}

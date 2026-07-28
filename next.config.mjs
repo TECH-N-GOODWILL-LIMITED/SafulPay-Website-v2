@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    unoptimized: false,
+  async redirects() {
+    return [
+      // The single /platform page split into the Business, Agency and
+      // Developers surfaces. Agents were that page's default persona, so bare
+      // /platform lands on Agency and the old in-page anchors map to whichever
+      // surface absorbed each section.
+      { source: "/platform", destination: "/agency", permanent: true },
+    ];
   },
 };
 

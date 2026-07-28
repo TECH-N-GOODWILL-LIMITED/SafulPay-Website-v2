@@ -20,12 +20,7 @@ import testimonialLady3 from "@/assets/images/testimonial/lady3.png";
 
 const currentYear = new Date().getFullYear();
 
-// NAV
-interface NavLink {
-  label: string;
-  url: string;
-  type: "route" | "scroll";
-}
+// NAV — the top-bar information architecture lives in `@/data/navigation`.
 
 // FOOTER
 export interface FooterLinkItem {
@@ -149,61 +144,37 @@ export interface HowItWorks {
   steps: Step[];
 }
 
-// NAVBAR
-export const navLinks: NavLink[] = [
-  { label: "Bridge", url: "bridge", type: "scroll" },
-  { label: "How it Works", url: "works", type: "scroll" },
-  { label: "FAQs", url: "faqs", type: "scroll" },
-  { label: "Contact Us", url: "/contact-us", type: "route" },
-  { label: "For You", url: "/platform", type: "route" },
-  { label: "About Us", url: "/about-us", type: "route" },
-];
-
-// FOOTER
+// FOOTER — mirrors the top-bar IA: the four audience doors, then Company,
+// then the support surfaces.
 export const footerData: FooterData = {
   copyright: `Copyright © ${currentYear}. All Rights Reserved By `,
 
   footerLinks: [
     {
-      category: "Quick links",
+      category: "Audiences",
       links: [
-        { label: "Home", url: "/", type: "route" },
-        { label: "Bridge", url: "bridge", type: "scroll" },
-        { label: "For You", url: "platform", type: "route" },
-        { label: "How it Works", url: "works", type: "scroll" },
-        { label: "Features", url: "features", type: "scroll" },
-        { label: "Download", url: "download", type: "scroll" },
+        { label: "Personal", url: "/personal", type: "route" },
+        { label: "Business", url: "/business", type: "route" },
+        { label: "Agency", url: "/agency", type: "route" },
+        { label: "Developers", url: "/developers", type: "route" },
       ],
     },
     {
-      category: "Platform",
+      category: "Company",
       links: [
-        {
-          label: "Agency Platform",
-          url: "/platform",
-          type: "route",
-          section: "agency",
-        },
-        {
-          label: "Merchant Tools",
-          url: "/platform",
-          type: "route",
-          section: "merchant",
-        },
-        {
-          label: "Developer API",
-          url: "/platform",
-          type: "route",
-          section: "developer",
-        },
+        { label: "About us", url: "/about-us", type: "route" },
+        { label: "Security", url: "/security", type: "route" },
+        { label: "Trusted partners", url: "/partners", type: "route" },
+        { label: "Regulatory", url: "/regulatory", type: "route" },
       ],
     },
     {
-      category: "Contact",
+      category: "Support",
       links: [
-        { label: "About Us", url: "/about-us", type: "route" },
         { label: "Contact Us", url: "/contact-us", type: "route" },
         { label: "FAQs", url: "/contact-us", type: "route", section: "faqs" },
+        { label: "Download App", url: "/download", type: "route" },
+        { label: "Home", url: "/", type: "route" },
       ],
     },
   ],

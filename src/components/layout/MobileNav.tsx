@@ -2,25 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { useSmoothScrollContext } from "@/context/SmoothScrollProvider";
+import { navItems, downloadAction } from "@/data/navigation";
+import { useSectionNav } from "@/hooks/useSectionNav";
 import { useViewportHeight } from "@/hooks/useViewportHeight";
 import menuIconWhite from "@/assets/images/icons/icon-menu-white.svg";
 import safulpayTextIcon from "@/assets/images/brand/safulpay-navbar-text-logo-icon.svg";
 import safulPayLogo from "@/assets/images/brand/safulpay-icon-white.svg";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollToPlugin);
-}
-
-interface NavLink {
-  url: string;
-  label: string;
-  type: "scroll" | "route";
-}
 
 interface OtherLinks {
   url: string;
@@ -29,28 +18,26 @@ interface OtherLinks {
 
 interface MobileNavProps {
   otherLinks: OtherLinks[];
-  navLinks: NavLink[];
   companyName: string;
   isMenuOpen: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+/**
+ * Every nav item collapses into the hamburger in the same left-to-right order
+ * as desktop, with the dropdowns becoming accordions (guide §3.3). Download App
+ * lives in the header bar, outside this panel.
+ */
 const MobileNav = React.forwardRef(
   (
-    {
-      companyName,
-      navLinks,
-      otherLinks,
-      isMenuOpen,
-      setIsMenuOpen,
-    }: MobileNavProps,
+    { companyName, otherLinks, isMenuOpen, setIsMenuOpen }: MobileNavProps,
     ref: React.Ref<HTMLDivElement>,
   ) => {
     const [overlayVisible, setOverlayVisible] = useState(false);
+    const [expanded, setExpanded] = useState<string | null>(null);
 
-    const router = useRouter();
     const pathname = usePathname();
-    const { scrollToSection, isHomePage } = useSmoothScrollContext();
+    const { goToSection } = useSectionNav();
     const vh = useViewportHeight();
 
     useEffect(() => {
@@ -59,6 +46,7 @@ const MobileNav = React.forwardRef(
         setOverlayVisible(true);
       } else {
         document.body.classList.remove("scroll-lock");
+        setExpanded(null);
         const timeout = setTimeout(() => setOverlayVisible(false), 350); // match transition duration
         return () => clearTimeout(timeout);
       }
@@ -77,27 +65,12 @@ const MobileNav = React.forwardRef(
       return () => document.removeEventListener("keydown", handleEsc);
     }, [isMenuOpen, setIsMenuOpen]);
 
-    const handleScrollLink = (url: string) => {
-      if (url === "home") {
-        setIsMenuOpen(false);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-      }
+    const close = () => setIsMenuOpen(false);
 
-      if (isHomePage) {
-        scrollToSection(url, {
-          offset: 140,
-          onMenuClose: () => setIsMenuOpen(false),
-        });
-      } else {
-        setIsMenuOpen(false);
-        sessionStorage.setItem("pendingScroll", url);
-        router.push("/");
-      }
+    const goHome = () => {
+      close();
+      if (pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
     };
-
-    const routeLinks = navLinks.filter((link) => link.type === "route");
-    const scrollLinks = navLinks.filter((link) => link.type === "scroll");
 
     return (
       <>
@@ -108,65 +81,30 @@ const MobileNav = React.forwardRef(
                 ? "opacity-100 pointer-events-auto"
                 : "opacity-0 pointer-events-none"
             }`}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={close}
           />
         )}
         <div
           ref={ref}
-          className="fixed right-0 top-0 max-w-75 w-full h-dvh p-5 pt-19.5 max-md:pt-11 rounded-l-[20px] bg-primary-color font-outfit flex flex-col justify-between text-white lg:hidden z-10 transform translate-x-full"
-          style={{
-            paddingTop: vh < 600 ? "40px" : "",
-          }}
+          id="mobile-menu"
+          className="fixed right-0 top-0 max-w-80 w-full h-dvh p-5 pt-8 rounded-l-[20px] bg-primary-color font-outfit flex flex-col text-white lg:hidden z-10 transform translate-x-full"
         >
-          <div className="flex justify-between items-start">
-            <Image
-              onClick={() => {
-                setIsMenuOpen(false);
-                handleScrollLink("home");
-              }}
-              src={safulpayTextIcon}
-              unoptimized
-              width={100}
-              height={30}
-              alt={`${companyName} text logo`}
-              className="h-42.5 px-3.25 cursor-pointer max-md:h-auto"
-              style={{
-                maxHeight: vh < 760 ? "100px" : "",
-                height: "100%",
-                display: vh < 680 ? "none" : "",
-              }}
-            />
-
-            <div
-              className="flex-center"
-              style={{
-                display: vh > 680 ? "none" : "",
-              }}
-              onClick={() => {
-                setIsMenuOpen(false);
-                handleScrollLink("home");
-              }}
-            >
+          <div className="flex justify-between items-start shrink-0">
+            <Link href="/" onClick={goHome} aria-label="Go to homepage">
               <Image
-                src={safulPayLogo}
+                src={vh < 680 ? safulPayLogo : safulpayTextIcon}
                 unoptimized
-                width={90}
-                height={90}
+                width={100}
+                height={170}
                 alt={`${companyName} logo`}
-                aria-hidden="true"
-                className="w-15 px-3.25 max-xl:w-9 max-xl:px-1 max-lg:w-12.5 max-lg:px-2.5"
-                style={{
-                  width: vh < 600 ? "44px" : "",
-                }}
+                className="px-3.25 cursor-pointer w-auto"
+                style={{ height: vh < 680 ? "48px" : vh < 800 ? "120px" : "150px" }}
               />
-              <p className="secondary-heading text-white tracking-[-0.9px]">
-                {companyName}
-              </p>
-            </div>
+            </Link>
 
             <button
-              onClick={() => setIsMenuOpen(false)}
-              aria-label={isMenuOpen ? "Close menu" : "Open Menu"}
+              onClick={close}
+              aria-label="Close menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               className="cursor-pointer"
@@ -176,83 +114,134 @@ const MobileNav = React.forwardRef(
                 unoptimized
                 width={30}
                 height={30}
-                alt="Close menu icon"
+                alt=""
+                aria-hidden="true"
                 className="w-7.5"
               />
             </button>
           </div>
+
           <nav
             aria-label="Mobile navigation"
-            role="menu"
-            className="flex flex-col items-start mb-0 m:mb-11.25 "
+            className="flex flex-col items-stretch text-left grow overflow-y-auto scrollbar-auto my-6 min-h-0"
           >
-            {scrollLinks.map((link) => (
-              <button
-                key={`mobile-scroll-${link.url}`}
-                onClick={() => handleScrollLink(link.url)}
-                role="menuitem"
-                className="px-5 py-3 text-lg font-semibold tracking-[-0.28px] cursor-pointer hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color transition-colors"
-              >
-                {link.label}
-              </button>
-            ))}
-
-            {routeLinks.map((link) => (
-              <Link
-                href={link.url}
-                onClick={(e) => {
-                  if (pathname === link.url) {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                    setIsMenuOpen(false);
-                  }
-                }}
-                key={`mobile-route-${link.url}`}
-                role="menuitem"
-                className="tracking-[-0.28px] cursor-pointer px-5 py-3 text-lg font-semibold hover:text-secondary-color focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-secondary-color transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <div
-            className="flex flex-col items-start gap-7.5"
-            style={{
-              gap: vh < 550 ? "20px" : "",
-            }}
-          >
-            <button
-              onClick={() => {
-                handleScrollLink("download");
-                setIsMenuOpen(false);
-              }}
-              className="px-7.5 py-4.25 rounded-[10px] bg-secondary-color text-primary-color text-[20px] tracking-[-0.4px] font-semibold cursor-pointer"
-            >
-              Download App
-            </button>
-            <div className="flex justify-between items-center border-t border-white">
-              {otherLinks.map((link, index) => {
-                const isActive = pathname === link.url;
+            {navItems.map((item) => {
+              if (!item.children) {
                 return (
                   <Link
-                    href={link.url}
-                    onClick={(e) => {
-                      if (pathname === link.url) {
-                        e.preventDefault();
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                        setIsMenuOpen(false);
-                      }
-                    }}
-                    key={index}
-                    aria-label={`Navigate to ${link.label}`}
-                    className={`py-2.5 px-5 max-xl:px-3 text-[12px] font-extralight hover:text-secondary-color transition-colors cursor-pointer ${
-                      isActive && "text-secondary-color font-bold"
-                    }`}
+                    key={item.label}
+                    href={item.url}
+                    onClick={close}
+                    className="px-5 py-3 text-lg font-semibold tracking-[-0.28px] hover:text-secondary-color transition-colors"
                   >
-                    {link.label}
+                    {item.label}
                   </Link>
                 );
-              })}
+              }
+
+              const isExpanded = expanded === item.label;
+              return (
+                <div key={item.label} className="flex flex-col">
+                  <button
+                    type="button"
+                    aria-expanded={isExpanded}
+                    onClick={() =>
+                      setExpanded(isExpanded ? null : item.label)
+                    }
+                    className="flex items-center justify-between px-5 py-3 text-lg font-semibold tracking-[-0.28px] cursor-pointer hover:text-secondary-color transition-colors"
+                  >
+                    {item.label}
+                    <svg
+                      viewBox="0 0 12 8"
+                      aria-hidden="true"
+                      className={`w-3 h-3 transition-transform duration-200 ${
+                        isExpanded ? "rotate-180" : ""
+                      }`}
+                    >
+                      <path
+                        d="M1 1.5 6 6.5 11 1.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="flex flex-col pb-2">
+                      <Link
+                        href={item.url}
+                        onClick={close}
+                        className="pl-8 pr-5 py-2 text-sm font-semibold text-secondary-color"
+                      >
+                        {item.label} overview
+                      </Link>
+                      {item.children.map((child) =>
+                        child.external ? (
+                          <a
+                            key={child.label}
+                            href={child.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={close}
+                            className="pl-8 pr-5 py-2 text-sm font-light hover:text-secondary-color transition-colors"
+                          >
+                            {child.label}
+                          </a>
+                        ) : child.section ? (
+                          <button
+                            key={child.label}
+                            type="button"
+                            onClick={() => {
+                              close();
+                              goToSection(child.url, child.section);
+                            }}
+                            className="pl-8 pr-5 py-2 text-sm font-light text-left cursor-pointer hover:text-secondary-color transition-colors"
+                          >
+                            {child.label}
+                          </button>
+                        ) : (
+                          <Link
+                            key={child.label}
+                            href={child.url}
+                            onClick={close}
+                            className="pl-8 pr-5 py-2 text-sm font-light hover:text-secondary-color transition-colors"
+                          >
+                            {child.label}
+                          </Link>
+                        ),
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+
+          <div className="flex flex-col items-stretch gap-4 shrink-0">
+            <Link
+              href={downloadAction.url}
+              onClick={close}
+              className="px-7.5 py-3.5 rounded-[10px] bg-secondary-color text-primary-color text-lg tracking-[-0.4px] font-semibold cursor-pointer text-center"
+            >
+              {downloadAction.label}
+            </Link>
+            <div className="flex justify-between items-center border-t border-white/30 pt-2">
+              {otherLinks.map((link) => (
+                <Link
+                  href={link.url}
+                  onClick={close}
+                  key={link.url}
+                  aria-label={`Navigate to ${link.label}`}
+                  className={`py-2 px-3 text-[12px] font-extralight hover:text-secondary-color transition-colors cursor-pointer ${
+                    pathname === link.url && "text-secondary-color font-bold"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -260,5 +249,7 @@ const MobileNav = React.forwardRef(
     );
   },
 );
+
+MobileNav.displayName = "MobileNav";
 
 export default MobileNav;
