@@ -15,8 +15,8 @@ function CompanyHero({ intro }: { intro: CompanyPageIntro }) {
   useHeaderAnimation({ containerRef: ref, start: "top 95%" });
 
   return (
-    <section className="w-full bg-background px-5 pt-28 max-md:pt-24 pb-16">
-      <div className="relative max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] overflow-hidden bg-[#0d1613] text-white isolate">
+    <section className="w-full bg-background px-6 sm:px-10 lg:px-14 pt-28 max-md:pt-24 pb-16">
+      <div className="relative shell rounded-[36px] max-md:rounded-[26px] overflow-hidden bg-[#0d1613] text-white isolate">
         <Aurora />
 
         <div

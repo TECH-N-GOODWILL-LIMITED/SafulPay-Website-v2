@@ -36,7 +36,7 @@ export default function SecurityPage() {
         <CompanyHero intro={securityPage} />
 
         <section className="w-full bg-background" data-section>
-          <div className="section px-5 pb-24 max-md:pb-16 gap-10 text-left items-start">
+          <div className="shell flex flex-col px-6 sm:px-10 lg:px-14 pb-24 max-md:pb-16 gap-10 text-left items-start">
             <p className="text-[clamp(16px,2vw,20px)] font-extralight leading-relaxed text-text-color/70 max-w-3xl">
               {securityData.intro}
             </p>
@@ -70,8 +70,8 @@ export default function SecurityPage() {
           </div>
         </section>
 
-        <section className="w-full bg-background px-5 pb-24 max-md:pb-16" data-section>
-          <div className="max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex-center flex-col gap-5 text-center">
+        <section className="w-full bg-background px-6 sm:px-10 lg:px-14 pb-24 max-md:pb-16" data-section>
+          <div className="shell rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex-center flex-col gap-5 text-center">
             <span className="flex-center w-16 h-16 rounded-2xl bg-white border border-primary-shade-10 shadow-[0_12px_30px_-14px_rgba(58,86,70,0.5)]">
               <Image
                 src={regulated.icon}

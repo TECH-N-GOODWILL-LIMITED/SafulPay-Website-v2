@@ -35,11 +35,11 @@ function TrustBar({
   return (
     <section
       id="trust"
-      className="w-full bg-background px-5 py-6"
+      className="w-full bg-background px-6 sm:px-10 lg:px-14 py-6"
       aria-labelledby={`${audienceId}-trust-heading`}
       data-section
     >
-      <div className="max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 overflow-hidden">
+      <div className="shell rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 overflow-hidden">
         <div className="px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex flex-col items-center gap-8 text-center">
           <div ref={badgeRef} className="flex flex-col items-center gap-4">
             <span className="flex-center w-16 h-16 rounded-2xl bg-white border border-primary-shade-10 shadow-[0_12px_30px_-14px_rgba(58,86,70,0.5)]">

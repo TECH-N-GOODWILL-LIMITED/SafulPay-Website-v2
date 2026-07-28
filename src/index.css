@@ -137,6 +137,16 @@
   @apply flex items-center justify-center;
 }
 
+/* Page gutter. `.section` maxes out at exactly the 1440px container width, so
+   on a 1440px screen content ran to the edges with only a 20px gutter. This
+   holds the content column narrower than the viewport and gives it real
+   breathing room at every width. */
+@utility shell {
+  width: 100%;
+  max-width: 78rem; /* 1248px */
+  margin-inline: auto;
+}
+
 @layer components {
   .section {
     @apply max-w-360 w-full mx-auto flex-center justify-start flex-col;

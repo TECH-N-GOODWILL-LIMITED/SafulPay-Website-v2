@@ -35,11 +35,11 @@ function AudienceCTA({
   return (
     <section
       id="get-started"
-      className="w-full bg-background px-5 pt-6 pb-24 max-md:pb-16"
+      className="w-full bg-background px-6 sm:px-10 lg:px-14 pt-6 pb-24 max-md:pb-16"
       aria-labelledby={`${audienceId}-cta-heading`}
       data-section
     >
-      <div className="relative max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] overflow-hidden bg-[#0d1613] text-white isolate">
+      <div className="relative shell rounded-[36px] max-md:rounded-[26px] overflow-hidden bg-[#0d1613] text-white isolate">
         <Aurora variant="lime" />
 
         <div

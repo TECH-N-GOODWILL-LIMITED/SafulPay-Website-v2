@@ -47,7 +47,7 @@ function CapabilityGrid({
       aria-labelledby={`${audienceId}-capabilities-heading`}
       data-section
     >
-      <div className="section px-5 py-24 max-md:py-16 gap-12 text-left items-start">
+      <div className="shell flex flex-col px-6 sm:px-10 lg:px-14 py-24 max-md:py-16 gap-12 text-left items-start">
         <div ref={headRef} className="flex flex-col gap-4 max-w-3xl">
           <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-primary-color/60">
             Available today

@@ -34,7 +34,7 @@ function AudienceEligibility({
       aria-labelledby={`${audienceId}-eligibility-heading`}
       data-section
     >
-      <div className="section px-5 py-24 max-md:py-16 items-start">
+      <div className="shell flex flex-col px-6 sm:px-10 lg:px-14 py-24 max-md:py-16 items-start">
         <div className="w-full grid grid-cols-2 max-md:grid-cols-1 gap-12 items-start">
           <div ref={headRef} className="flex flex-col gap-4 text-left">
             <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-primary-color/60">

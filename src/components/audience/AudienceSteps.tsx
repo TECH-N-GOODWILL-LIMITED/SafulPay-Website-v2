@@ -31,11 +31,11 @@ function AudienceSteps({
 
   return (
     <section
-      className="w-full bg-background px-5 py-6"
+      className="w-full bg-background px-6 sm:px-10 lg:px-14 py-6"
       aria-labelledby={`${audienceId}-steps-heading`}
       data-section
     >
-      <div className="max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 overflow-hidden">
+      <div className="shell rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 overflow-hidden">
         <div className="px-14 py-20 max-lg:px-9 max-md:px-6 max-md:py-14 flex flex-col gap-12 text-left items-start">
           <div ref={headRef} className="flex flex-col gap-4 max-w-3xl">
             <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-primary-color/60">

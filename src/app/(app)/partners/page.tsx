@@ -40,7 +40,7 @@ export default function PartnersPage() {
         <CompanyHero intro={partnersPage} />
 
         <section className="w-full bg-background" data-section>
-          <div className="section px-5 pb-24 max-md:pb-16 gap-10 text-left items-start">
+          <div className="shell flex flex-col px-6 sm:px-10 lg:px-14 pb-24 max-md:pb-16 gap-10 text-left items-start">
             <h2 className="text-[clamp(28px,4.6vw,54px)] font-bold tracking-[-0.035em] leading-[1.03] text-left text-primary-color">
               Who we <span className="text-gradient-green">connect</span>
             </h2>
@@ -70,8 +70,8 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        <section className="w-full bg-background px-5 pb-24 max-md:pb-16" data-section>
-          <div className="max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex flex-col gap-10 text-left">
+        <section className="w-full bg-background px-6 sm:px-10 lg:px-14 pb-24 max-md:pb-16" data-section>
+          <div className="shell rounded-[36px] max-md:rounded-[26px] wash-mint border border-primary-shade-10 px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex flex-col gap-10 text-left">
             <div className="flex flex-col gap-4 max-w-3xl">
               <h2 className="text-[clamp(26px,4.2vw,48px)] font-bold tracking-[-0.035em] leading-[1.05] text-left text-primary-color">
                 {bridgeData.title}

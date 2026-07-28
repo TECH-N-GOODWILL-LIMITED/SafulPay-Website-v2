@@ -43,7 +43,7 @@ export default function RegulatoryPage() {
         <CompanyHero intro={regulatoryPage} />
 
         <section className="w-full bg-background" data-section>
-          <div className="section px-5 pb-24 max-md:pb-16 gap-8 text-left items-start">
+          <div className="shell flex flex-col px-6 sm:px-10 lg:px-14 pb-24 max-md:pb-16 gap-8 text-left items-start">
             <div className="w-full flex items-center gap-6 p-8 rounded-[22px] wash-mint border border-primary-shade-10 max-md:flex-col max-md:text-center">
               <span className="flex-center w-16 h-16 rounded-2xl bg-white border border-primary-shade-10 shrink-0 shadow-[0_12px_30px_-14px_rgba(58,86,70,0.5)]">
                 <Image
@@ -79,8 +79,8 @@ export default function RegulatoryPage() {
           </div>
         </section>
 
-        <section className="w-full bg-background px-5 pb-24 max-md:pb-16" data-section>
-          <div className="relative max-w-360 mx-auto rounded-[36px] max-md:rounded-[26px] overflow-hidden bg-[#0d1613] text-white isolate">
+        <section className="w-full bg-background px-6 sm:px-10 lg:px-14 pb-24 max-md:pb-16" data-section>
+          <div className="relative shell rounded-[36px] max-md:rounded-[26px] overflow-hidden bg-[#0d1613] text-white isolate">
             <Aurora variant="lime" />
             <div className="relative z-10 px-14 py-16 max-lg:px-9 max-md:px-6 max-md:py-12 flex flex-col gap-5 text-left items-start">
               <h2 className="text-[clamp(24px,3.6vw,40px)] font-bold tracking-[-0.03em]">
