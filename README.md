@@ -28,6 +28,7 @@ The marketing site for **SafulPay** — Sierra Leone's financial bridge that con
 | **Platform → Merchant**  | QR payments, payment links, bulk disbursements, and dashboards for businesses.                                            |
 | **Platform → Developer** | A single REST API for mobile money, banks, bills, and remittances. Webhooks, idempotency, sandbox.                        |
 | **About**                | Mission, team, and the people behind the platform.                                                                        |
+| **Contact**              | Category-grouped FAQs plus a contact form that posts to `/api/contact`.                                                   |
 | **Download**             | Direct links to the SafulPay mobile app.                                                                                  |
 
 <p align="center">
@@ -50,20 +51,22 @@ The marketing site for **SafulPay** — Sierra Leone's financial bridge that con
 ## Getting started
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Then open [http://localhost:3000](http://localhost:3000).
 
-| Command         | What it does               |
-| --------------- | -------------------------- |
-| `npm run dev`   | Dev server with hot reload |
-| `npm run build` | Production build           |
-| `npm run start` | Serve the production build |
-| `npm run lint`  | ESLint over the project    |
+This repo uses **pnpm** exclusively — there's no `package-lock.json` or `yarn.lock`, only `pnpm-lock.yaml`. Install pnpm first if you don't have it: `corepack enable` (bundled with Node 16.9+) or `npm install -g pnpm`.
 
-Node 20+ recommended.
+| Command      | What it does               |
+| ------------ | --------------------------- |
+| `pnpm dev`   | Dev server with hot reload |
+| `pnpm build` | Production build           |
+| `pnpm start` | Serve the production build |
+| `pnpm lint`  | ESLint over the project    |
+
+Node 20+ recommended (required by Next.js 16).
 
 ---
 
@@ -74,10 +77,13 @@ src/
 ├── app/
 │   ├── (app)/                  Route group — every marketing page
 │   │   ├── about-us/           Mission, team, story
+│   │   ├── contact-us/         Category-grouped FAQs + contact form
 │   │   ├── download/           App store links
 │   │   ├── platform/           Agency, Merchant, Developer use cases
 │   │   ├── privacy/
 │   │   └── terms-and-condition/
+│   ├── api/
+│   │   └── contact/            POST handler backing the contact form
 │   ├── _components/            Home page sections (Hero, Features, Works, etc.)
 │   ├── HomeClient.tsx          Client-side home shell
 │   ├── layout.tsx              Root layout + fonts + providers
