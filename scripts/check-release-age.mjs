@@ -3,23 +3,48 @@
 // minimumReleaseAgeExclude. pnpm applies minimumReleaseAge only while it
 // resolves versions; `pnpm install --frozen-lockfile` reads the lockfile as
 // is and never checks it, so CI needs this separate check.
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
-const workspace = readFileSync("pnpm-workspace.yaml", "utf8");
 const lockfile = readFileSync("pnpm-lock.yaml", "utf8");
 
-const minutes = Number(workspace.match(/^minimumReleaseAge:\s*(\d+)/m)?.[1]);
+// Ask pnpm for its settings so the YAML is parsed by pnpm itself. This keeps
+// every list style pnpm accepts working, such as an unindented `- react`.
+function pnpmSetting(key) {
+  const out = execFileSync("pnpm", ["config", "get", key, "--json"], {
+    encoding: "utf8",
+  }).trim();
+  return out ? JSON.parse(out) : undefined;
+}
+
+const minutes = Number(pnpmSetting("minimumReleaseAge"));
 if (!Number.isFinite(minutes) || minutes <= 0) {
   console.error("minimumReleaseAge is missing from pnpm-workspace.yaml");
   process.exit(1);
 }
 
-const excluded = new Set(
-  (workspace.match(/^minimumReleaseAgeExclude:\n((?:[ \t]+.*\n?)*)/m)?.[1] ?? "")
-    .split("\n")
-    .map((line) => line.match(/^\s*-\s*["']?([^"'\s#]+)["']?/)?.[1])
-    .filter(Boolean)
+// Each entry is a package-name pattern, where * matches any characters, or
+// `name@1.0.0 || 1.0.1` for exact versions of one package.
+const excludeRules = (pnpmSetting("minimumReleaseAgeExclude") ?? []).map(
+  (entry) => {
+    const at = entry.lastIndexOf("@");
+    const hasVersions = at > 0;
+    const pattern = (hasVersions ? entry.slice(0, at) : entry).trim();
+    const regex = new RegExp(
+      `^${pattern.split("*").map((part) => part.replace(/[.+?^${}()|[\]\\]/g, "\\$&")).join(".*")}$`
+    );
+    const versions = hasVersions
+      ? new Set(entry.slice(at + 1).split("||").map((v) => v.trim()))
+      : null;
+    return { regex, versions };
+  }
 );
+
+function isExcluded(name, version) {
+  return excludeRules.some(
+    (rule) => rule.regex.test(name) && (!rule.versions || rule.versions.has(version))
+  );
+}
 
 // Keys in the `packages:` section look like `name@1.2.3:` or `'@scope/name@1.2.3':`.
 const packagesSection = lockfile.match(/^packages:\n([\s\S]*?)(?=^\S)/m)?.[1] ?? "";
@@ -46,7 +71,7 @@ async function check([name, versions]) {
       const published = Date.parse(time?.[version]);
       if (Number.isNaN(published)) {
         failed.push(`${name}@${version}: no publish time in registry`);
-      } else if (published > cutoff && !excluded.has(`${name}@${version}`)) {
+      } else if (published > cutoff && !isExcluded(name, version)) {
         young.push(`${name}@${version} (published ${time[version]})`);
       }
     }
