@@ -78,7 +78,7 @@ function Testimonial() {
         className="lineimage absolute h-[1000px] right-0 bottom-[-24%] scale-x-[-1] max-xl:hidden"
       />
       <h2 className="py-2.5 px-12.5 primary-heading font-bold tracking-[-2.1px] max-m:tracking-[-1.36px]">
-        Don't just take our word for it.
+        Don&apos;t just take our word for it.
       </h2>
       {/* <div className="w-full flex justify-between max-w-207.75 max-md:justify-center">
         <div className="pt-2.5 px-2.5 flex flex-col gap-2.5 text-left max-w-105 overflow-y-auto h-102.5 max-md:h-full max-md:max-w-full max-md:mx-5">
