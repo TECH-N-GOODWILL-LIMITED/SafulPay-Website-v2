@@ -11,12 +11,15 @@ const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_KEYS = 5000;
 const hits = new Map<string, { count: number; resetAt: number }>();
 
-function clientKey(request: Request): string {
-  // Netlify sets the first header itself; a client cannot choose its value.
+// Netlify sets the first header itself; a client cannot choose its value.
+// Without either header the caller is unidentified. Returning null makes the
+// route skip the limit, because one shared bucket would let a single client
+// lock every unidentified visitor out.
+function clientKey(request: Request): string | null {
   return (
     request.headers.get("x-nf-client-connection-ip") ??
     request.headers.get("x-real-ip") ??
-    "unknown"
+    null
   );
 }
 
@@ -78,7 +81,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const retryAfter = checkRateLimit(clientKey(request), Date.now());
+  const key = clientKey(request);
+  const retryAfter = key ? checkRateLimit(key, Date.now()) : 0;
   if (retryAfter > 0) {
     return NextResponse.json(
       { error: "Too many requests. Please try again later." },
