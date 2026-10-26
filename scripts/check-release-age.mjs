@@ -37,7 +37,7 @@ const young = [];
 const failed = [];
 
 async function check([name, versions]) {
-  const url = `https://registry.npmjs.org/${name.replace("/", "%2f")}`;
+  const url = `https://registry.npmjs.org/${name.replaceAll("/", "%2f")}`;
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(30_000) });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
