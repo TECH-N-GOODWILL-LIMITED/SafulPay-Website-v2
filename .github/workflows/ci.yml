@@ -105,3 +105,10 @@ jobs:
       - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
         with:
           fail-on-severity: moderate
+
+      # pnpm applies minimumReleaseAge only while it resolves versions, and
+      # `pnpm install --frozen-lockfile` never checks the lockfile. This reads
+      # pnpm-lock.yaml and fails on any locked version younger than the window
+      # that is not listed under minimumReleaseAgeExclude. It needs no install.
+      - name: Check release age of locked versions
+        run: node scripts/check-release-age.mjs
