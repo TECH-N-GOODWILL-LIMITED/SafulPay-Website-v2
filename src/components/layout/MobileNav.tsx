@@ -261,4 +261,6 @@ const MobileNav = React.forwardRef(
   },
 );
 
+MobileNav.displayName = "MobileNav";
+
 export default MobileNav;
