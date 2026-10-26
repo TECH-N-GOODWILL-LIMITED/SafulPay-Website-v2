@@ -66,7 +66,7 @@ This repo uses **pnpm** exclusively — there's no `package-lock.json` or `yarn.
 | `pnpm start` | Serve the production build |
 | `pnpm lint`  | ESLint over the project    |
 
-Node 20+ recommended (required by Next.js 16).
+Node.js 24 or newer is required (`engines.node` in `package.json`).
 
 ---
 
