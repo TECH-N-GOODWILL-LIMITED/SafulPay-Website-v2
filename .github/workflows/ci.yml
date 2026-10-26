@@ -92,6 +92,13 @@ jobs:
       - name: Audit dependencies
         run: pnpm audit --audit-level high
 
+      # pnpm applies minimumReleaseAge only while it resolves versions, and
+      # `pnpm install --frozen-lockfile` never checks the lockfile. This reads
+      # pnpm-lock.yaml and fails on any locked version younger than the window
+      # that is not listed under minimumReleaseAgeExclude. It needs no install.
+      - name: Check release age of locked versions
+        run: node scripts/check-release-age.mjs
+
   dependency-review:
     name: Dependency review
     if: github.event_name == 'pull_request'

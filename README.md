@@ -8,6 +8,15 @@
   <img src="src/assets/images/brand/safulpay-icon-green.svg" alt="" width="48" height="48" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/TECH-N-GOODWILL-LIMITED/SafulPay-Website-v2/actions/workflows/ci.yml"><img src="https://github.com/TECH-N-GOODWILL-LIMITED/SafulPay-Website-v2/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/TECH-N-GOODWILL-LIMITED/SafulPay-Website-v2/actions/workflows/security.yml"><img src="https://github.com/TECH-N-GOODWILL-LIMITED/SafulPay-Website-v2/actions/workflows/security.yml/badge.svg" alt="Security" /></a>
+  <img src="https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/Node.js-%E2%89%A524-5FA04E?logo=nodedotjs&logoColor=white" alt="Node.js 24 or newer" />
+  <img src="https://img.shields.io/badge/pnpm-10-F69220?logo=pnpm&logoColor=white" alt="pnpm 10" />
+  <a href="https://app.netlify.com/projects/safulpay/deploys"><img src="https://img.shields.io/badge/deploy-Netlify-00C7B7?logo=netlify&logoColor=white" alt="Deployed on Netlify" /></a>
+</p>
+
 The marketing site for **SafulPay** — Sierra Leone's financial bridge that connects every wallet, bank, and bill into a single app. This repo is the public-facing site that tells that story to four audiences: end users, agents, merchants, and developers.
 
 > _"One app sits in the middle of every wallet, bank and bill."_
@@ -28,7 +37,7 @@ The marketing site for **SafulPay** — Sierra Leone's financial bridge that con
 | **Platform → Merchant**  | QR payments, payment links, bulk disbursements, and dashboards for businesses.                                            |
 | **Platform → Developer** | A single REST API for mobile money, banks, bills, and remittances. Webhooks, idempotency, sandbox.                        |
 | **About**                | Mission, team, and the people behind the platform.                                                                        |
-| **Contact**              | Category-grouped FAQs plus a contact form that posts to `/api/contact`.                                                   |
+| **Contact**              | Category-grouped FAQs plus an email form that posts to `/api/contact`. The endpoint checks the address and rate-limits requests, but does not send or store the address yet. |
 | **Download**             | Direct links to the SafulPay mobile app.                                                                                  |
 
 <p align="center">
@@ -50,23 +59,26 @@ The marketing site for **SafulPay** — Sierra Leone's financial bridge that con
 
 ## Getting started
 
+You need Node.js 24 or newer (`engines.node` in `package.json`) and pnpm. The pnpm version is pinned in `packageManager`.
+
 ```bash
+corepack enable   # Node 25+: run `npm install -g corepack` first
 pnpm install
 pnpm dev
 ```
 
 Then open [http://localhost:3000](http://localhost:3000).
 
-This repo uses **pnpm** exclusively — there's no `package-lock.json` or `yarn.lock`, only `pnpm-lock.yaml`. Install pnpm first if you don't have it: `corepack enable` (bundled with Node 16.9+) or `npm install -g pnpm`.
+The repo uses pnpm only. There is no `package-lock.json` or `yarn.lock`.
 
-| Command      | What it does               |
-| ------------ | --------------------------- |
-| `pnpm dev`   | Dev server with hot reload |
-| `pnpm build` | Production build           |
-| `pnpm start` | Serve the production build |
-| `pnpm lint`  | ESLint over the project    |
-
-Node 20+ recommended (required by Next.js 16).
+| Command                  | What it does                                               |
+| ------------------------ | ---------------------------------------------------------- |
+| `pnpm dev`               | Dev server with hot reload                                 |
+| `pnpm build`             | Production build                                           |
+| `pnpm start`             | Serve the production build                                 |
+| `pnpm lint`              | ESLint (flat config in `eslint.config.mjs`)                |
+| `pnpm typecheck`         | Generate Next.js types, then `tsc --noEmit`                |
+| `pnpm check:release-age` | Fail if the lockfile holds a release younger than 14 days  |
 
 ---
 
@@ -157,8 +169,44 @@ Shades like `bg-primary-shade-5/10/30` already exist for translucent overlays.
 
 ---
 
+## Security and CI
+
+Every pull request runs the checks below. A ruleset on `main` requires a pull request and all checks to pass, with no bypass. Force-push and branch deletion are blocked.
+
+```mermaid
+flowchart LR
+    PR[Pull request] --> CI
+    PR --> SEC[Security]
+    PR --> CQ[CodeQL default setup]
+    subgraph CI[ci.yml]
+        B[Lint, typecheck and build]
+        A[pnpm audit, high and critical]
+        R[Release age of locked versions]
+        D[Dependency review]
+    end
+    subgraph SEC[security.yml]
+        G[gitleaks, full history and merge diffs]
+    end
+    CI --> M{All green?}
+    SEC --> M
+    CQ --> M
+    M -- yes --> Main[Merge to main] --> N[Netlify deploy]
+```
+
+Supply-chain rules live in [`pnpm-workspace.yaml`](pnpm-workspace.yaml):
+
+- **Release age.** pnpm refuses releases younger than 14 days. A security patch that is younger goes under `minimumReleaseAgeExclude` by exact version. Remove the entry when the version is 14 days old. `pnpm install --frozen-lockfile` does not check the age, so CI runs [`scripts/check-release-age.mjs`](scripts/check-release-age.mjs) on the lockfile.
+- **Install scripts.** Only `sharp` and `unrs-resolver` may run them.
+- **Overrides.** These force patched versions of vulnerable transitive packages. Drop an override when the parent package pulls the fix on its own.
+
+Dependabot opens grouped minor and patch PRs every Monday, with the same 14-day cooldown. Security updates skip the cooldown. Majors for `typescript` and `@types/node` are held until someone does the upgrade on purpose.
+
+`next.config.mjs` sends security headers on every route: HSTS, `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` and a partial CSP. The CSP has no `script-src` yet, because a strict policy needs nonces for the inline scripts that Next.js adds.
+
+---
+
 ## Deployment
 
-The site is built and deployed via Next.js standard output. Any platform that runs `next build && next start` (Vercel, Render, self-hosted Node) works.
+Netlify builds the site from `main` with `@netlify/plugin-nextjs` (see [`netlify.toml`](netlify.toml)). Each pull request gets a deploy preview. The build needs no environment variables.
 
 Production canonical: [https://safulpay.com](https://safulpay.com)
