@@ -63,8 +63,11 @@ function ContactUs() {
       setEmail("");
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => setSuccess(""), 4000);
-    } catch (err: any) {
-      setError(err.message || "Failed to submit. Please try again.");
+    } catch (err) {
+      setError(
+        (err instanceof Error && err.message) ||
+          "Failed to submit. Please try again.",
+      );
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => setError(""), 4000);
     } finally {

@@ -82,7 +82,7 @@ function PlatformCTA() {
 
           <p className="text-white/60 text-base leading-relaxed max-w-lg">
             Join thousands of agents, merchants, and developers already using
-            SafulPay's infrastructure to power financial services across Sierra
+            SafulPay&apos;s infrastructure to power financial services across Sierra
             Leone.
           </p>
         </div>

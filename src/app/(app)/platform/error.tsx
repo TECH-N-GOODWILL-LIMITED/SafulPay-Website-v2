@@ -20,7 +20,7 @@ export default function PlatformError({
         <p className="text-secondary-color text-xs font-semibold tracking-widest uppercase">
           Platform unavailable
         </p>
-        <h1 className="primary-heading">We couldn't load the platform page.</h1>
+        <h1 className="primary-heading">We couldn&apos;t load the platform page.</h1>
         <p className="text-white/60 text-base leading-relaxed">
           Try again, or head back home. Agency, merchant, and developer services
           are unaffected.
